@@ -58,17 +58,19 @@ paths:
               $ref: '#/definitions/Model'
         400:
           description: bad input parameter
-
   /predict/{modelID}:
     parameters:
       - in: path
         required: true
         name: modelID
+        type: string
+        description: model id to run prediction with
+        
     post:
       tags:
       - "predict"
-      summary: adds molecules and runs prediction with specified model  
-      operationId: Predict
+      summary: "adds molecules and runs prediction with specified model " 
+      operationId: "Predict"
       description: 
       consumes:
       - application/json
@@ -76,15 +78,16 @@ paths:
       - application/json
       parameters:
       - in: body
+        required: true
         name: Molecules
-        description: Molecules to predict
+        description: "Molecules to predict"
         schema:
           type: array
           items:
             $ref: '#/definitions/Molecule'
       responses:
         200:
-          description: prerdiction successful
+          description: "prerdiction successful"
           schema:
             type: array
             items:
