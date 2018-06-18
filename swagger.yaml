@@ -1,0 +1,152 @@
+swagger: '2.0'
+info:
+  description: flame framework API (alpha)
+  version: '0.1'
+  title: Flame API
+  contact:
+    email: biel.stela@upf.edu
+
+  license:
+    name: GLP v3
+    url: https://www.gnu.org/licenses/gpl-3.0.en.html
+
+basePath: /flame
+# tags are used for organizing operations
+tags:
+- name: predict
+  description: Predict interface
+- name: build
+  description: Build models
+- name: manage
+  description: Manage models, versioning, delete, publish, etc.
+
+
+paths:
+  #-----------------
+  # Predict
+  #-----------------
+  /predict:
+    get:
+      tags:
+      - "predict"
+      summary: Prediction models listing
+      operationId: getModels
+      description: |
+        By passing in the appropriate options, you can search for
+        available models
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: searchString
+        description: pass an optional search string for looking up inventory
+        required: false
+        type: string
+      - in: query
+        name: limit
+        description: maximum number of models to return
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 50
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Model'
+        400:
+          description: bad input parameter
+
+  /predict/{modelID}:
+    parameters:
+      - in: path
+        required: true
+        name: modelID
+    post:
+      tags:
+      - "predict"
+      summary: adds molecules and runs prediction with specified model  
+      operationId: Predict
+      description: 
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Molecules
+        description: Molecules to predict
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Molecule'
+      responses:
+        200:
+          description: prerdiction successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Results'
+        
+
+# ---------------------         
+#     DEFINITIONS
+# ---------------------
+
+definitions:
+
+  Model:
+    type: object
+    required:
+    - modelID
+    - name
+    - maintainer
+    - version
+    properties:
+      modelID:
+        type: string
+        format: uuid
+        example: d290f1ee
+      name:
+        type: string
+        example: CACO2
+      maintainer:
+        type: string
+        example: UPF
+      version:
+        type: string
+        format: int32
+        example: "1.0"
+
+  Molecule:
+    type: object
+    required:
+    - name
+    - smiles
+    properties:
+      name:
+        type: string
+        example: "paracetamol"
+      smiles:
+        type: string
+        example: "CC(=O)NC1=CC=C(C=C1)O"
+
+  Results:
+    # empty since diferent models can have diferent type of results
+    type: object
+    properties:
+      columnName:
+        type: string
+      description:
+        type: string
+      values:
+        type: array
+        items:
+          type: number
+        
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+schemes:
+ - https
