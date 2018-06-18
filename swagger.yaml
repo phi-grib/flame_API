@@ -120,19 +120,6 @@ definitions:
         format: int32
         example: "1.0"
 
-  Molecule:
-    type: object
-    required:
-    - name
-    - smiles
-    properties:
-      name:
-        type: string
-        example: "paracetamol"
-      smiles:
-        type: string
-        example: "CC(=O)NC1=CC=C(C=C1)O"
-
   Results:
     # empty since diferent models can have diferent type of results
     type: object
