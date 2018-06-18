@@ -73,18 +73,15 @@ paths:
       operationId: "Predict"
       description: 
       consumes:
-      - application/json
+      - multipart/form-data
       produces:
       - application/json
       parameters:
-      - in: body
+      - in: formData
         required: true
-        name: Molecules
-        description: "Molecules to predict"
-        schema:
-          type: array
-          items:
-            $ref: '#/definitions/Molecule'
+        name: upfile
+        type: file
+        description: "The .sdf or mol file to upload."
       responses:
         200:
           description: "prerdiction successful"
