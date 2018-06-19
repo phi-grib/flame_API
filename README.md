@@ -1,2 +1,2 @@
 # flame_API
-OpenAPI definition for flame
+swagger 2 definition for flame
