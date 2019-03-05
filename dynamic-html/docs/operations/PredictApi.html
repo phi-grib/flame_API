@@ -2,53 +2,29 @@
   <h2><a name=""></a></h2>
   <p>This is the  API</p>
 
-  <h2><a name="getModels"></a>getModels</h2>
-  <hr>
-  <p></p>
-  <p>By passing in the appropriate options, you can search for available models </p>
-  <h3 class="section">URL</h3>
-  <code>https://virtserver.swaggerhub.com/flame/predict</code>
-  <h3 class="section">HTTP Method</h3>
-  <code>GET</code>
-  <h3 class="section">Response Type</h3>
-  <div class="model" data-model="Model"><a href="">List</a></div>
-  <h3 class="section">Parameters</h3>
-  <ul>
-	  <li class="parameter">
-      
-      <span class="param-in">Query: </span>
-      
-      
-      
-      <span class="param-name">searchString</span>
-      <span class="param-type">String</span>
-      
-      <p class="param-description">pass an optional search string for looking up inventory</p>
-	  </li>
-	  <li class="parameter">
-      
-      <span class="param-in">Query: </span>
-      
-      
-      
-      <span class="param-name">limit</span>
-      <span class="param-type">Integer</span>
-      
-      <p class="param-description">maximum number of models to return</p>
-	  </li>
-  </ul>
   <h2><a name="predict"></a>predict</h2>
   <hr>
   <p></p>
-  
+  <p>uploads molecules and runs prediction with specified model </p>
   <h3 class="section">URL</h3>
-  <code>https://virtserver.swaggerhub.com/flame/predict/{modelID}</code>
+  <code>//predict/{modelID}</code>
   <h3 class="section">HTTP Method</h3>
   <code>POST</code>
   <h3 class="section">Response Type</h3>
-  <div class="model" data-model="Results"><a href="">List</a></div>
+  <div class="model" data-model="ModelResults"><a href="">List</a></div>
   <h3 class="section">Parameters</h3>
   <ul>
+	  <li class="parameter">
+      
+      
+      
+      
+      <span class="param-in">Body: </span>
+      <span class="param-name">body</span>
+      <span class="param-type">Object(Object)</span>
+      
+      <p class="param-description"></p>
+	  </li>
 	  <li class="parameter">
       
       
@@ -59,17 +35,6 @@
       <span class="param-type">String</span>
       
       <p class="param-description">model id to run prediction with</p>
-	  </li>
-	  <li class="parameter">
-      <span class="param-in">Form: </span>
-      
-      
-      
-      
-      <span class="param-name">upfile</span>
-      <span class="param-type">File</span>
-      
-      <p class="param-description">The .sdf or mol file to upload.</p>
 	  </li>
   </ul>
 </div>
