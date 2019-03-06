@@ -15,16 +15,47 @@ tags:
     description: Build models
   - name: manage
     description: Manage models, versioning, etc.
+  - name: uploadSDF
+    description: Uploads SDF to the server
 
 #==================
 # PATHS
 #==================
 paths:
-  
   #--------
   # MANAGE
   #--------
   
+  # CREATE
+  /manage/create/modelname/{modelname}:
+    post:
+      tags:
+        - manage
+      summary: create a new model
+      parameters:
+        - in: path
+          name: modelname
+          description: model name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "201":
+          description: The model has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+  
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+
+    
   # LIST
   /manage/list:
     get:
@@ -58,15 +89,15 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
 
-  /manage/list/modelID/{modelID}:
+  /manage/list/modelname/{modelname}:
     get:
       tags:
         - manage
       summary: retrieve list of available versions of the given model
       parameters:
-        - name: modelID
+        - name: modelname
           in: path
-          description: model id 
+          description: model name
           required: true
           schema:
             type: string
@@ -87,27 +118,25 @@ paths:
           $ref: "#/components/schemas/ModelNotFound"
         "500":
           $ref: "#/components/schemas/InternalServerError"
-        "501":
-          $ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
           
-  /manage/dir:
-    get:
-      tags:
-        - manage
-      description: gets models and versions?
+  # /manage/dir:
+  #   get:
+  #     tags:
+  #       - manage
+  #     description: gets models and versions?
       
   # INFO
-  /manage/info/modelID/{modelID}/version/{version}:
+  /manage/info/modelname/{modelname}/version/{version}:
     get:
       tags:
         - manage
       summary: retrieve information of of given Model
       parameters:
-        - name: modelID
+        - name: modelname
           in: path
-          description: model ID
+          description: model name
           required: true
           schema:
             type: string
@@ -139,18 +168,66 @@ paths:
           $ref: "#/components/schemas/ServiceUnavailable"
   
   # DELETE
-  /manage/remove:
+  /manage/remove_version/modelname/{modelname}/version/{version}:
+    summary: Removes a model version
     delete:
       tags:
         - manage
-  /manage/kill:
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+        
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "204":
+          description: version deleted
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/VersionNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+        
+
+  /manage/remove_model/modelname/{modelname}:
+    summary: Removes a model and all of its versions. Delete resource
     delete:
       tags:
         - manage
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: model delete 
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/VersionNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
   
   # PUBLISH
-  /manage/publish:
-    get:
+  /manage/publish/modelname/{modelname}:
+    put:
       tags:
         - manage
   
@@ -221,8 +298,7 @@ paths:
     post:
       tags:
         - build
-      description: Trains the model with parameters and training set
-      
+      description: Trains the model with parameters
 
 #======================
 # COMPONENTS
@@ -250,7 +326,7 @@ components:
       example:
         modelID: d290f1ee
         modelName: CACO2
-        versions: ["dev", "1", "2"]
+        versions: ["0"]
     
 
     # MODEL RESULTS
@@ -299,6 +375,12 @@ components:
 
     ModelNotFound:
       description: Model not found
+    
+    VersionNotFound:
+      description: Version not found
+    
+    ResourceAlreadyExists:
+      description: The model already exists or the name is used by another model
 
     InternalServerError:
       description: The server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
