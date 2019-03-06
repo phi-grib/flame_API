@@ -227,18 +227,7 @@ paths:
   
   # PUBLISH
   /manage/publish/modelname/{modelname}:
-    put:
-      tags:
-        - manage
-  
-  # IMPORT
-  /manage/import:
     post:
-      tags:
-        - manage
-  # EXPORT
-  /manage/export:
-    get:
       tags:
         - manage
   
@@ -274,6 +263,15 @@ paths:
           description: model id to run prediction with
           schema:
             type: string
+      
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+        required: true
+      
       responses:
         '200':
           description: prerdiction successful
@@ -283,13 +281,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PredictionResults'
-      requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              type: string
-              format: binary
-        required: true
   
   #-------
   # BUILD
