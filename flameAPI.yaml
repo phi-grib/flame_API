@@ -15,8 +15,6 @@ tags:
     description: Build models
   - name: manage
     description: Manage models, versioning, etc.
-  - name: uploadSDF
-    description: Uploads SDF to the server
 
 #==================
 # PATHS
@@ -25,7 +23,6 @@ paths:
   #--------
   # MANAGE
   #--------
-  
   # CREATE
   /manage/create/modelname/{modelname}:
     post:
@@ -215,37 +212,133 @@ paths:
             type: string
       responses:
         "204":
-          description: model delete
+          description: model deleted
         "400":
           $ref: "#/components/schemas/BadRequest"
         "404":
-          $ref: "#/components/schemas/VersionNotFound"
+          $ref: "#/components/schemas/ModelNotFound"
         "500":
           $ref: "#/components/schemas/InternalServerError"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
   
   # PUBLISH
+  ## TODO
   /manage/publish/modelname/{modelname}:
     post:
       tags:
         - manage
   
   # RESULTS
+  ## TODO
   /manage/results:
     get:
       tags:
         - manage
-  
-  /manage/parameters:
-    get:
-      tags:
-        - manage
+
   /manage/report:
     get:
       tags:
         - manage
-        
+  
+  # PARAMETERS 
+  /manage/parameters/modelname/{modelname}:
+    get:
+      tags:
+        - manage
+      description: retrieve model parameters
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelParameters"
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+    
+    put: 
+    # upload and update parameters
+      tags:
+        - manage
+      description: update model parameters
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+
+      requestBody: # "deltas"
+        description: subset parameters to sent to the server 
+          as _deltas_ and update the model params
+        required: true
+        content:
+          application/json: {}  # undefined for now
+
+      responses:
+        "200":
+          description: Model parameters updated OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelParameters"
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+  #---------
+  # BUILD
+  #---------
+  /upload-training:
+    post:
+      tags:
+        - build
+      description: Upload SDF for training a model
+    
+      requestBody:
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+          required: true
+      
+      responses:
+        "200":
+          description: SDF uploaded OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrainingFileId"
+  
+  
+  /build/modelname/{modelname}/trainingid/{trainingid}:
+    put:
+      tags:
+        - build
+      description: Trains the model with parameters
+  
   #----------
   # PREDICT
   #----------
@@ -282,14 +375,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/PredictionResults'
   
-  #-------
-  # BUILD
-  #-------
-  /build/modelID/{modelID}:
-    post:
-      tags:
-        - build
-      description: Trains the model with parameters
 
 #======================
 # COMPONENTS
@@ -297,11 +382,14 @@ paths:
 
 components:
   schemas:
+
     AnyValue:
       nullable: true
       description: Can be any value, including `null`.
-    
+
+    # -------
     # MODEL
+    # -------
     Model:
       type: object
       properties:
@@ -318,9 +406,16 @@ components:
         modelID: d290f1ee
         modelName: CACO2
         versions: ["0"]
-    
 
+    # ----------------
+    # MODEL PARAMETERS
+    # ----------------
+    ModelParameters:
+      description: Model parameters object
+    
+    # -------------
     # MODEL RESULTS
+    # -------------
     PredictionResults:
       type: object
       properties:
@@ -330,8 +425,10 @@ components:
         predictResults:
           description: Estimator output for that molecule
           type: object
-    
+
+    # ----------
     # MODEL INFO
+    # ----------
     ModelInfo:
       type: array
       items:
@@ -358,6 +455,21 @@ components:
           ...
         ]
         
+    # -------
+    # SDF ID
+    # -------
+    TrainingFileId:
+      type: object
+      description: Name and unique identifier of the uploaded training file.
+      properties:
+        fileName:
+          type: string
+        fileID:
+          type: string
+    
+    # -------
+    # STATUS
+    # -------
     UnauthorizedError:
       description: Access token is missing or invalid
 
