@@ -1,4 +1,3 @@
-# TEST LINE TO CHECK GITPUSH 
 openapi: "3.0.0"
 info:
   description: |
@@ -97,6 +96,8 @@ paths:
     get:
       tags:
         - manage
+      description: gets models and versions?
+      
   # INFO
   /manage/info/modelID/{modelID}/version/{version}:
     get:
@@ -242,8 +243,6 @@ components:
           format: uuid
         modelNname:
           type: string
-        maintainerID:
-          type: string
         versions:
           type: array
           items:
@@ -251,7 +250,6 @@ components:
       example:
         modelID: d290f1ee
         modelName: CACO2
-        maintainerID: UPF
         versions: ["dev", "1", "2"]
     
 
