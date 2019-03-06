@@ -1,0 +1,311 @@
+openapi: "3.0.0"
+info:
+  description: |
+    Specification of the flame API
+  version: "0.2"
+  title: Flame API
+  license:
+    name: GLP v3 and posterior
+    url: https://www.gnu.org/licenses/gpl-3.0.en.html
+
+tags:
+  - name: predict
+    description: Predict interface
+  - name: build
+    description: Build models
+  - name: manage
+    description: Manage models, versioning, etc.
+
+#==================
+# PATHS
+#==================
+paths:
+  
+  #--------
+  # MANAGE
+  #--------
+  
+  # LIST
+  /manage/list:
+    get:
+      tags:
+        - manage
+      summary: retrieve list of available models
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of Models to return. Default to all.
+
+      responses:
+        "200":
+          description: requested models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Model"
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "501":
+          $ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+  /manage/list/modelID/{modelID}:
+    get:
+      tags:
+        - manage
+      summary: retrieve list of available versions of the given model
+      parameters:
+        - name: modelID
+          in: path
+          description: model id 
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: requested versions of Model
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "501":
+          $ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+          
+  /manage/dir:
+    get:
+      tags:
+        - manage
+  # INFO
+  /manage/info/modelID/{modelID}/version/{version}:
+    get:
+      tags:
+        - manage
+      summary: retrieve information of of given Model
+      parameters:
+        - name: modelID
+          in: path
+          description: model ID
+          required: true
+          schema:
+            type: string
+        
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "200":
+          description: requested info of model and version
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelInfo"
+      
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "501":
+          $ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  
+  # DELETE
+  /manage/remove:
+    delete:
+      tags:
+        - manage
+  /manage/kill:
+    delete:
+      tags:
+        - manage
+  
+  # PUBLISH
+  /manage/publish:
+    get:
+      tags:
+        - manage
+  
+  # IMPORT
+  /manage/import:
+    post:
+      tags:
+        - manage
+  # EXPORT
+  /manage/export:
+    get:
+      tags:
+        - manage
+  
+  # RESULTS
+  /manage/results:
+    get:
+      tags:
+        - manage
+  
+  /manage/parameters:
+    get:
+      tags:
+        - manage
+  /manage/report:
+    get:
+      tags:
+        - manage
+        
+  #----------
+  # PREDICT
+  #----------
+  /predict/modelID/{modelID}:
+    post:
+      tags:
+        - predict
+      description: 'uploads molecules and runs prediction with specified model '
+      summary: 'uploads molecules and runs prediction with specified model '
+      operationId: Predict
+      parameters:
+        - in: path
+          required: true
+          name: modelID
+          description: model id to run prediction with
+          schema:
+            type: string
+      responses:
+        '200':
+          description: prerdiction successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PredictionResults'
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+        required: true
+  
+  #-------
+  # BUILD
+  #-------
+  /build/modelID/{modelID}:
+    post:
+      tags:
+        - build
+      description: Trains the model with parameters and training set
+      
+
+#======================
+# COMPONENTS
+#======================
+
+components:
+  schemas:
+    AnyValue:
+      nullable: true
+      description: Can be any value, including `null`.
+    
+    # MODEL
+    Model:
+      type: object
+      properties:
+        modelID:
+          type: string
+          format: uuid
+        modelNname:
+          type: string
+        maintainerID:
+          type: string
+        versions:
+          type: array
+          items:
+            type: string
+      example:
+        modelID: d290f1ee
+        modelName: CACO2
+        maintainerID: UPF
+        versions: ["dev", "1", "2"]
+    
+
+    # MODEL RESULTS
+    PredictionResults:
+      type: object
+      properties:
+        molId:
+          description: Molecule ID, name or index
+          type: string
+        predictResults:
+          description: Estimator output for that molecule
+          type: object
+    
+    # MODEL INFO
+    ModelInfo:
+      type: array
+      items:
+        type: object
+        properties:
+          varName:
+            type: string
+          varDescription:
+            type: string
+          values:
+            $ref: "#/components/schemas/AnyValue"
+      example: |
+        [
+          {
+            varName: "nobj",
+            varDescription: "number of objects",
+            values: 100
+          },
+          {
+            varName: "model"
+            varDescription: "model type"
+            values: "RF quantitave"
+          },
+          ...
+        ]
+        
+    UnauthorizedError:
+      description: Access token is missing or invalid
+
+    BadRequest:
+      description: Invalid input parameter
+
+    ModelNotFound:
+      description: Model not found
+
+    InternalServerError:
+      description: The server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
+
+    NotImplemented:
+      description: The request method is not supported by the server and cannot be handled.
+
+    ServiceUnavailable:
+      description: The server is not ready to handle the request.
