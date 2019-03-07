@@ -20,11 +20,39 @@ tags:
 # PATHS
 #==================
 paths:
-  
   #--------
   # MANAGE
   #--------
+  # CREATE
+  /manage/create/modelname/{modelname}:
+    post:
+      tags:
+        - manage
+      summary: create a new model
+      parameters:
+        - in: path
+          name: modelname
+          description: model name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "201":
+          description: The model has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
   
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+
+    
   # LIST
   /manage/list:
     get:
@@ -58,15 +86,15 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
 
-  /manage/list/modelID/{modelID}:
+  /manage/list/modelname/{modelname}:
     get:
       tags:
         - manage
       summary: retrieve list of available versions of the given model
       parameters:
-        - name: modelID
+        - name: modelname
           in: path
-          description: model id 
+          description: model name
           required: true
           schema:
             type: string
@@ -87,25 +115,25 @@ paths:
           $ref: "#/components/schemas/ModelNotFound"
         "500":
           $ref: "#/components/schemas/InternalServerError"
-        "501":
-          $ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
           
-  /manage/dir:
-    get:
-      tags:
-        - manage
+  # /manage/dir:
+  #   get:
+  #     tags:
+  #       - manage
+  #     description: gets models and versions?
+      
   # INFO
-  /manage/info/modelID/{modelID}/version/{version}:
+  /manage/info/modelname/{modelname}/version/{version}:
     get:
       tags:
         - manage
       summary: retrieve information of of given Model
       parameters:
-        - name: modelID
+        - name: modelname
           in: path
-          description: model ID
+          description: model name
           required: true
           schema:
             type: string
@@ -137,47 +165,189 @@ paths:
           $ref: "#/components/schemas/ServiceUnavailable"
   
   # DELETE
-  /manage/remove:
+  /manage/remove_version/modelname/{modelname}/version/{version}:
+    summary: Removes a model version
     delete:
       tags:
         - manage
-  /manage/kill:
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+        
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "204":
+          description: version deleted
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/VersionNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+        
+
+  /manage/remove_model/modelname/{modelname}:
+    summary: Removes a model and all of its versions. Delete resource
     delete:
       tags:
         - manage
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: model deleted
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
   
   # PUBLISH
-  /manage/publish:
-    get:
-      tags:
-        - manage
-  
-  # IMPORT
-  /manage/import:
+  ## TODO
+  /manage/publish/modelname/{modelname}:
     post:
-      tags:
-        - manage
-  # EXPORT
-  /manage/export:
-    get:
       tags:
         - manage
   
   # RESULTS
+  ## TODO
   /manage/results:
     get:
       tags:
         - manage
-  
-  /manage/parameters:
-    get:
-      tags:
-        - manage
+
   /manage/report:
     get:
       tags:
         - manage
-        
+  
+  # PARAMETERS 
+  /manage/parameters/modelname/{modelname}:
+    get:
+      tags:
+        - manage
+      description: retrieve model parameters
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelParameters"
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+    
+    put: 
+    # upload and update parameters
+      tags:
+        - manage
+      description: update model parameters
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+
+      requestBody: # "deltas"
+        description: subset parameters to sent to the server 
+          as _deltas_ and update the model params
+        required: true
+        content:
+          application/json: {}  # undefined for now
+
+      responses:
+        "200":
+          description: Model parameters updated OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelParameters"
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+  #---------
+  # BUILD
+  #---------
+  # PLACE SDF IN POST IN BODY
+  
+  /build/modelname/{modelname}/version/{version}:
+    post:
+      tags:
+        - build
+      description: Build a model version with the present SDF in the body as training set
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be build
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: version of the model
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: training SDF to build the model with
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      
+      responses:
+        "200":
+          description: SDF uploaded OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrainingFileId"
+  
   #----------
   # PREDICT
   #----------
@@ -195,6 +365,15 @@ paths:
           description: model id to run prediction with
           schema:
             type: string
+      
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+        required: true
+      
       responses:
         '200':
           description: prerdiction successful
@@ -204,23 +383,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PredictionResults'
-      requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              type: string
-              format: binary
-        required: true
   
-  #-------
-  # BUILD
-  #-------
-  /build/modelID/{modelID}:
-    post:
-      tags:
-        - build
-      description: Trains the model with parameters and training set
-      
 
 #======================
 # COMPONENTS
@@ -228,11 +391,14 @@ paths:
 
 components:
   schemas:
+
     AnyValue:
       nullable: true
       description: Can be any value, including `null`.
-    
+
+    # -------
     # MODEL
+    # -------
     Model:
       type: object
       properties:
@@ -241,8 +407,6 @@ components:
           format: uuid
         modelNname:
           type: string
-        maintainerID:
-          type: string
         versions:
           type: array
           items:
@@ -250,11 +414,17 @@ components:
       example:
         modelID: d290f1ee
         modelName: CACO2
-        maintainerID: UPF
-        versions: ["dev", "1", "2"]
-    
+        versions: ["0"]
 
+    # ----------------
+    # MODEL PARAMETERS
+    # ----------------
+    ModelParameters:
+      description: Model parameters object
+    
+    # -------------
     # MODEL RESULTS
+    # -------------
     PredictionResults:
       type: object
       properties:
@@ -264,8 +434,10 @@ components:
         predictResults:
           description: Estimator output for that molecule
           type: object
-    
+
+    # ----------
     # MODEL INFO
+    # ----------
     ModelInfo:
       type: array
       items:
@@ -292,6 +464,21 @@ components:
           ...
         ]
         
+    # -------
+    # SDF ID
+    # -------
+    TrainingFileId:
+      type: object
+      description: Name and unique identifier of the uploaded training file.
+      properties:
+        fileName:
+          type: string
+        fileID:
+          type: string
+    
+    # -------
+    # STATUS
+    # -------
     UnauthorizedError:
       description: Access token is missing or invalid
 
@@ -300,6 +487,12 @@ components:
 
     ModelNotFound:
       description: Model not found
+    
+    VersionNotFound:
+      description: Version not found
+    
+    ResourceAlreadyExists:
+      description: The model already exists or the name is used by another model
 
     InternalServerError:
       description: The server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
