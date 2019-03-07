@@ -15,6 +15,10 @@ tags:
     description: Build models
   - name: manage
     description: Manage models, versioning, etc.
+  - name: user
+    description: user with acces to prediction and basic manage
+  - name: modeler
+    description: model developer with acces to all of the api
 
 #==================
 # PATHS
@@ -28,6 +32,7 @@ paths:
     post:
       tags:
         - manage
+        - modeler
       summary: create a new model
       parameters:
         - in: path
@@ -58,6 +63,7 @@ paths:
     get:
       tags:
         - manage
+        - user
       summary: retrieve list of available models
       parameters:
         - in: query
@@ -90,6 +96,7 @@ paths:
     get:
       tags:
         - manage
+        - user
       summary: retrieve list of available versions of the given model
       parameters:
         - name: modelname
@@ -129,6 +136,7 @@ paths:
     get:
       tags:
         - manage
+        - user
       summary: retrieve information of of given Model
       parameters:
         - name: modelname
@@ -170,6 +178,7 @@ paths:
     delete:
       tags:
         - manage
+        - modeler
       parameters:
         - name: modelname
           in: path
@@ -203,6 +212,7 @@ paths:
     delete:
       tags:
         - manage
+        - modeler
       parameters:
         - name: modelname
           in: path
@@ -228,6 +238,7 @@ paths:
     post:
       tags:
         - manage
+        - modeler
   
   # RESULTS
   ## TODO
@@ -235,17 +246,20 @@ paths:
     get:
       tags:
         - manage
+        - user
 
   /manage/report:
     get:
       tags:
         - manage
+        - user
   
   # PARAMETERS 
   /manage/parameters/modelname/{modelname}:
     get:
       tags:
         - manage
+        - user
       description: retrieve model parameters
       parameters:
         - name: modelname
@@ -275,6 +289,7 @@ paths:
     # upload and update parameters
       tags:
         - manage
+        - modeler
       description: update model parameters
       parameters:
         - name: modelname
@@ -316,6 +331,7 @@ paths:
     post:
       tags:
         - build
+        - modeler
       description: Build a model version with the present SDF in the body as training set
       parameters:
         - in: path
@@ -355,6 +371,7 @@ paths:
     post:
       tags:
         - predict
+        - user
       description: 'uploads molecules and runs prediction with specified model '
       summary: 'uploads molecules and runs prediction with specified model '
       operationId: Predict
@@ -463,19 +480,7 @@ components:
           },
           ...
         ]
-        
-    # -------
-    # SDF ID
-    # -------
-    TrainingFileId:
-      type: object
-      description: Name and unique identifier of the uploaded training file.
-      properties:
-        fileName:
-          type: string
-        fileID:
-          type: string
-    
+  
     # -------
     # STATUS
     # -------

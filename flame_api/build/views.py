@@ -18,10 +18,4 @@ class Build(APIView):
         for l in file_obj:
             print(l)
         response = {"received data": f"hey! I'm {modelname} version {version} with data {request.data}"}
-        return JsonResponse(response)
-
-# @api_view(['GET'])
-# def build(request, modelname, version):
-#     response = {"response": f"hey! I'm {modelname} version {version}"}
-#     return JsonResponse(response)
-# Create your views here.
+        return JsonResponse(response, status=200)
