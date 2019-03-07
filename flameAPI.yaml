@@ -310,19 +310,35 @@ paths:
   #---------
   # BUILD
   #---------
-  /upload-training:
+  # PLACE SDF IN POST IN BODY
+  
+  /build/modelname/{modelname}/version/{version}:
     post:
       tags:
         - build
-      description: Upload SDF for training a model
-    
-      requestBody:
-          content:
-            application/octet-stream:
-              schema:
-                type: string
-                format: binary
+      description: Build a model version with the present SDF in the body as training set
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be build
           required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: version of the model
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: training SDF to build the model with
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
       
       responses:
         "200":
@@ -331,13 +347,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TrainingFileId"
-  
-  
-  /build/modelname/{modelname}/trainingid/{trainingid}:
-    put:
-      tags:
-        - build
-      description: Trains the model with parameters
   
   #----------
   # PREDICT
