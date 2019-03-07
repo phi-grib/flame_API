@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import Build
 
 urlpatterns = [
-    path('modelname/<str:modelname>/version/<str:version>', views.build),
+    path('modelname/<str:modelname>/version/<str:version>', Build.as_view()),
 ]
