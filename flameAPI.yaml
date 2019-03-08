@@ -234,25 +234,25 @@ paths:
   
   # PUBLISH
   ## TODO
-  /manage/publish/modelname/{modelname}:
-    post:
-      tags:
-        - manage
-        - modeler
+  # /manage/publish/modelname/{modelname}:
+  #   post:
+  #     tags:
+  #       - manage
+  #       - modeler
   
-  # RESULTS
-  ## TODO
-  /manage/results:
-    get:
-      tags:
-        - manage
-        - user
+  # # RESULTS
+  # ## TODO
+  # /manage/results:
+  #   get:
+  #     tags:
+  #       - manage
+  #       - user
 
-  /manage/report:
-    get:
-      tags:
-        - manage
-        - user
+  # /manage/report:
+  #   get:
+  #     tags:
+  #       - manage
+  #       - user
   
   # PARAMETERS 
   /manage/parameters/modelname/{modelname}:
@@ -362,10 +362,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  filename:
-                    type: string
+                $ref: "#/components/schemas/TrainingFileId"
   
   #----------
   # PREDICT
