@@ -362,7 +362,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TrainingFileId"
+                type: object
+                properties:
+                  fileName:
+                    type: string
   
   #----------
   # PREDICT
