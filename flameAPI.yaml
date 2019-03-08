@@ -234,25 +234,25 @@ paths:
   
   # PUBLISH
   ## TODO
-  /manage/publish/modelname/{modelname}:
-    post:
-      tags:
-        - manage
-        - modeler
+  # /manage/publish/modelname/{modelname}:
+  #   post:
+  #     tags:
+  #       - manage
+  #       - modeler
   
-  # RESULTS
-  ## TODO
-  /manage/results:
-    get:
-      tags:
-        - manage
-        - user
+  # # RESULTS
+  # ## TODO
+  # /manage/results:
+  #   get:
+  #     tags:
+  #       - manage
+  #       - user
 
-  /manage/report:
-    get:
-      tags:
-        - manage
-        - user
+  # /manage/report:
+  #   get:
+  #     tags:
+  #       - manage
+  #       - user
   
   # PARAMETERS 
   /manage/parameters/modelname/{modelname}:
@@ -351,10 +351,13 @@ paths:
         description: training SDF to build the model with
         required: true
         content:
-          application/octet-stream:
+          multipart/form-data:
             schema:
-              type: string
-              format: binary
+              type: object
+              properties:
+                fileName:
+                  type: string
+                  format: binary
       
       responses:
         "200":
@@ -362,7 +365,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/TrainingFileId"
+                type: object
+                properties:
+                  fileName:
+                    type: string
   
   #----------
   # PREDICT
@@ -384,12 +390,15 @@ paths:
             type: string
       
       requestBody:
-        content:
-          application/octet-stream:
-            schema:
-              type: string
-              format: binary
         required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fileName:
+                  type: string
+                  format: binary
       
       responses:
         '200':
