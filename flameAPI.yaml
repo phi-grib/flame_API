@@ -27,39 +27,8 @@ paths:
   #--------
   # MANAGE
   #--------
-  # CREATE
-  /manage/create/modelname/{modelname}:
-    post:
-      tags:
-        - manage
-        - modeler
-      summary: create a new model
-      parameters:
-        - in: path
-          name: modelname
-          description: model name
-          required: true
-          schema:
-            type: string
-      
-      responses:
-        "201":
-          description: The model has been created succesfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Model"
-  
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "409":
-          $ref: "#/components/schemas/ResourceAlreadyExists"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-
-    
   # LIST
-  /manage/list:
+  /list:
     get:
       tags:
         - manage
@@ -91,53 +60,45 @@ paths:
           $ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
-
-  /manage/list/modelname/{modelname}:
-    get:
+  
+  /model/{modelname}:
+    # CREATE
+    post:
       tags:
         - manage
-        - user
-      summary: retrieve list of available versions of the given model
+        - modeler
+      description: create a new model with the given name
+      summary: create model
       parameters:
-        - name: modelname
-          in: path
+        - in: path
+          name: modelname
           description: model name
           required: true
           schema:
             type: string
-
+      
       responses:
-        "200":
-          description: requested versions of Model
+        "201":
+          description: The model has been created succesfully
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
-        
+                $ref: "#/components/schemas/Model"
+  
         "400":
           $ref: "#/components/schemas/BadRequest"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
         "500":
           $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-          
-  # /manage/dir:
-  #   get:
-  #     tags:
-  #       - manage
-  #     description: gets models and versions?
-      
-  # INFO
-  /manage/info/modelname/{modelname}/version/{version}:
+
+    # GET INFO
     get:
       tags:
         - manage
         - user
-      summary: retrieve information of of given Model
+      describe: retrieve information of of given Model
+      summary: Model info
       parameters:
         - name: modelname
           in: path
@@ -145,17 +106,10 @@ paths:
           required: true
           schema:
             type: string
-        
-        - name: version
-          in: path
-          description: version of the model to get info from
-          required: true
-          schema:
-            type: string
       
       responses:
         "200":
-          description: requested info of model and version
+          description: requested info of model
           content:
             application/json:
               schema:
@@ -171,14 +125,114 @@ paths:
           $ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
-  
-  # DELETE
-  /manage/remove_version/modelname/{modelname}/version/{version}:
-    summary: Removes a model version
+
+    # DELETE MODEL
     delete:
       tags:
         - manage
         - modeler
+      describe: delete model
+      summary: Delete model
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: model deleted
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+    
+  /model/{modelname}/version/{version}:
+    get:
+      tags:
+        - manage
+        - user
+      description: retrive information about the model version
+      summary: version info
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be build
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: version of the model
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "200":
+          description: requested info of version
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelInfo"
+      
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "501":
+          $ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+
+    post:
+      tags:
+        - manage
+        - modeler
+      description: create a new version via flame publish method
+      summary: new version
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be published
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: version to publish
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: The model version has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+                
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+
+    delete:
+      tags:
+        - manage
+        - modeler
+      description: delete version
+      summary: delete version
       parameters:
         - name: modelname
           in: path
@@ -205,58 +259,9 @@ paths:
           $ref: "#/components/schemas/InternalServerError"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
-        
-
-  /manage/remove_model/modelname/{modelname}:
-    description: Removes a model and all of its versions. Delete resource
-    summary: Remove Model
-    delete:
-      tags:
-        - manage
-        - modeler
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
-      responses:
-        "204":
-          description: model deleted
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-  
-  # PUBLISH
-  ## TODO
-  # /manage/publish/modelname/{modelname}:
-  #   post:
-  #     tags:
-  #       - manage
-  #       - modeler
-  
-  # # RESULTS
-  # ## TODO
-  # /manage/results:
-  #   get:
-  #     tags:
-  #       - manage
-  #       - user
-
-  # /manage/report:
-  #   get:
-  #     tags:
-  #       - manage
-  #       - user
-  
+   
   # PARAMETERS 
-  /manage/parameters/modelname/{modelname}:
+  /model/{modelname}/version/{version}/parameters:
     get:
       tags:
         - manage
@@ -329,7 +334,7 @@ paths:
   #---------
   # PLACE SDF IN POST IN BODY
   
-  /build/modelname/{modelname}/version/{version}:
+  /modelname/{modelname}/version/{version}/build:
     post:
       tags:
         - build
@@ -392,7 +397,7 @@ paths:
   #----------
   # PREDICT
   #----------
-  /predict/modelID/{modelID}:
+  /modelname/{modelname}/version/{version}/predict:
     post:
       tags:
         - predict
@@ -436,7 +441,7 @@ paths:
 
 components:
   schemas:
-
+  
     AnyValue:
       nullable: true
       description: Can be any value, including `null`.
