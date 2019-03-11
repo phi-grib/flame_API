@@ -208,7 +208,8 @@ paths:
         
 
   /manage/remove_model/modelname/{modelname}:
-    summary: Removes a model and all of its versions. Delete resource
+    description: Removes a model and all of its versions. Delete resource
+    summary: Remove Model
     delete:
       tags:
         - manage
@@ -261,6 +262,7 @@ paths:
         - manage
         - user
       description: retrieve model parameters
+      summary: Model parameters
       parameters:
         - name: modelname
           in: path
@@ -333,6 +335,7 @@ paths:
         - build
         - modeler
       description: Build a model version with the present SDF in the body as training set
+      summary: Build model
       parameters:
         - in: path
           name: modelname
@@ -395,7 +398,7 @@ paths:
         - predict
         - user
       description: 'uploads molecules and runs prediction with specified model '
-      summary: 'uploads molecules and runs prediction with specified model '
+      summary: Predict 
       operationId: Predict
       parameters:
         - in: path
