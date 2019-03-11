@@ -361,14 +361,30 @@ paths:
       
       responses:
         "200":
-          description: SDF uploaded OK
+          description: Model build with uploaded SDF
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  fileName:
+                  buildStatus:
+                    description: return flame status
                     type: string
+                  fileName:
+                    description: uploaded file name in the server
+                    type: string
+                  modelName:
+                    type: string
+                  version:
+                    type: string
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
   
   #----------
   # PREDICT

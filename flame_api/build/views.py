@@ -36,17 +36,13 @@ class Build(APIView):
         path = fs.save(file_obj.name, ContentFile(file_obj.read()))
 
         training_data = os.path.join(temp_dir, path)
-        # TODO: implement the actual flame build
+        # TODO: implement correctly flame build
         builder = build.Build(modelname)
-        builder.run(training_data)
+        flame_status = builder.run(training_data)
         
-        response = {
-            "received data":
-            {
-                "path": os.path.join(temp_dir, path),
-                "model": modelname,
-                "version": version
+        response = {"buildStatus": flame_status[1],
+                    "fileName": os.path.join(temp_dir, path),
+                    "modelName": modelname,
+                    "version": version}
 
-            }
-        }
         return JsonResponse(response, status=200)

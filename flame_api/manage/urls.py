@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import ModelsList
+from .views import ListModels, CreateModel
 
 urlpatterns = [
-    path('list', ModelsList.as_view()),
+    path('list', ListModels.as_view()),
+    path('create/modelname/<str:modelname>', CreateModel.as_view()),
 ]
