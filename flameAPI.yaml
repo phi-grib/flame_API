@@ -97,7 +97,7 @@ paths:
       tags:
         - manage
         - user
-      describe: retrieve information of of given Model
+      description: retrieve information of of given Model
       summary: Model info
       parameters:
         - name: modelname
@@ -131,7 +131,7 @@ paths:
       tags:
         - manage
         - modeler
-      describe: delete model
+      description: delete model
       summary: Delete model
       parameters:
         - name: modelname
@@ -275,7 +275,12 @@ paths:
           required: true
           schema:
             type: string
-      
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: OK
@@ -305,7 +310,13 @@ paths:
           required: true
           schema:
             type: string
-
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
+            
       requestBody: # "deltas"
         description: subset parameters to sent to the server 
           as _deltas_ and update the model params
@@ -334,7 +345,7 @@ paths:
   #---------
   # PLACE SDF IN POST IN BODY
   
-  /modelname/{modelname}/version/{version}/build:
+  /model/{modelname}/version/{version}/build:
     post:
       tags:
         - build
@@ -397,7 +408,7 @@ paths:
   #----------
   # PREDICT
   #----------
-  /modelname/{modelname}/version/{version}/predict:
+  /model/{modelname}/version/{version}/predict:
     post:
       tags:
         - predict
@@ -408,8 +419,14 @@ paths:
       parameters:
         - in: path
           required: true
-          name: modelID
+          name: modelname
           description: model id to run prediction with
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
           schema:
             type: string
       
