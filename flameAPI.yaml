@@ -33,7 +33,7 @@ paths:
       tags:
         - manage
         - user
-      summary: retrieve list of available models
+      summary: Model list
       parameters:
         - in: query
           name: limit
@@ -68,7 +68,7 @@ paths:
         - manage
         - modeler
       description: create a new model with the given name
-      summary: create model
+      summary: New model
       parameters:
         - in: path
           name: modelname
@@ -132,7 +132,7 @@ paths:
         - manage
         - modeler
       description: create a new version via flame publish method
-      summary: new version
+      summary: New version
       parameters:
         - in: path
           name: modelname
@@ -188,7 +188,7 @@ paths:
         - manage
         - user
       description: retrive information about the model version
-      summary: version info
+      summary: Version info
       parameters:
         - in: path
           name: modelname
@@ -227,7 +227,7 @@ paths:
         - manage
         - modeler
       description: delete version
-      summary: delete version
+      summary: Delete version
       parameters:
         - name: modelname
           in: path
@@ -341,23 +341,17 @@ paths:
   #---------
   # PLACE SDF IN POST IN BODY
   
-  /build/models/{modelname}/version/{version}:
+  /build/models/{modelname}:
     post:
       tags:
         - build
         - modeler
-      description: Build a model version with the present SDF in the body as training set
+      description: Build model with the present SDF in the body as training set. Always builds version 0
       summary: Build model
       parameters:
         - in: path
           name: modelname
           description: name of the model that will be build
-          required: true
-          schema:
-            type: string
-        - in: path
-          name: version
-          description: version of the model
           required: true
           schema:
             type: string
@@ -370,7 +364,7 @@ paths:
             schema:
               type: object
               properties:
-                fileName:
+                SDF:
                   type: string
                   format: binary
       
@@ -404,8 +398,8 @@ paths:
   #----------
   # PREDICT
   #----------
-  /predict/models/{modelname}/version/{version}/predict:
-    post:
+  /predict/models/{modelname}/version/{version}:
+    put:
       tags:
         - predict
         - user
@@ -416,12 +410,12 @@ paths:
         - in: path
           required: true
           name: modelname
-          description: model id to run prediction with
+          description: model id to run prediction
           schema:
             type: string
         - name: version
           in: path
-          description: version of the model to get info from
+          description: version of the model to run prediction
           required: true
           schema:
             type: string
@@ -433,7 +427,7 @@ paths:
             schema:
               type: object
               properties:
-                fileName:
+                SDF:
                   type: string
                   format: binary
       

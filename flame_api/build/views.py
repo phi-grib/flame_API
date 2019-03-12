@@ -21,25 +21,25 @@ class BuildModel(APIView):
     """
     parser_classes = (MultiPartParser,)
     
-    def post(self, request, modelname, version, format=None):
+    def post(self, request, modelname, format=None):
 
         # get the upladed file with name "file"
-        file_obj = request.FILES['fileName']
+        file_obj = request.FILES['SDF']
 
         # Set the temp filesystem storage
-        temp_dir = tempfile.mkdtemp(prefix="train_set_", dir=None)
+        temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
         fs = FileSystemStorage(location=temp_dir)
         # save the file to the new filesystem
         path = fs.save(file_obj.name, ContentFile(file_obj.read()))
 
         training_data = os.path.join(temp_dir, path)
+
         # TODO: implement correctly flame build
         builder = build.Build(modelname)
         flame_status = builder.run(training_data)
         
         response = {"buildStatus": flame_status[1],
                     "fileName": os.path.join(temp_dir, path),
-                    "modelName": modelname,
-                    "version": version}
+                    "modelName": modelname}
 
         return JsonResponse(response, status=200)

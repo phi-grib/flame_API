@@ -80,6 +80,7 @@ class ManageModels(APIView):
         flame_status = manage.action_publish(modelname)
         return Response(flame_status, status=status.HTTP_201_CREATED)
 
+
 class ManageVersions(APIView):
     """
     Manage models to the version level
@@ -90,7 +91,7 @@ class ManageVersions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_info(modelname, version)
+        flame_status = manage.action_info(modelname, int(version))
         return Response(flame_status, status=status.HTTP_200_OK)
     
     def delete(self, request, modelname, version):
@@ -98,10 +99,12 @@ class ManageVersions(APIView):
         Delete model
         """
         flame_status = manage.action_remove(modelname, version)
+        return Response(flame_status, status=status.HTTP_204_NO_CONTENT)
     
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
+    
     def post(self, request):
         # get the upladed file with name "file"
         return Response(request.FILES)
