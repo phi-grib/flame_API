@@ -18,4 +18,10 @@ Each model is a *resource* that the client can create, modify, delete or exploit
 api.flame.edu/v1/{root}/models/{modelname}
 ```
 
-Over this resource the client can create, delete and get info with the HTTP verbs (POST, DELETE, GET). 
+Over this resource the client can create, delete or get info with the HTTP verbs (POST, DELETE, GET...).
+
+## TODO
+
+* Write data models for requests and responses
+* Write serializers to send and receive standardized data
+* Adapt the responses to the OpenAPI specification in `flameAPI.yml`
