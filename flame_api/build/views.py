@@ -35,10 +35,10 @@ class BuildModel(APIView):
         training_data = os.path.join(temp_dir, path)
 
         # TODO: implement correctly flame build
-        builder = build.Build(modelname)
+        builder = build.Build(modelname, output_format="JSON")
         flame_status = builder.run(training_data)
         
-        response = {"buildStatus": flame_status[1],
+        response = {"buildStatus": flame_status,
                     "fileName": os.path.join(temp_dir, path),
                     "modelName": modelname}
 
