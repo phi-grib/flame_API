@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import ListModels, ManageModel
+from .views import ListModels, ManageModels, ManageVersions
 
 urlpatterns = [
-    path('list', ListModels.as_view()),
-    path('/model/<str:modelname>', ManageModel.as_view()),
+    path('', ListModels.as_view()),
+    path('<str:modelname>', ManageModels.as_view()),
+    path('<str:modelname>/version/<str:version>', ManageVersions.as_view())
 ]

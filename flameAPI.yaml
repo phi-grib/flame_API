@@ -125,7 +125,37 @@ paths:
           $ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
-
+    
+    # PUBLISH MODEL
+    put:
+      tags:
+        - manage
+        - modeler
+      description: create a new version via flame publish method
+      summary: new version
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be published
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: The model version has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+                
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        
+        
     # DELETE MODEL
     delete:
       tags:
@@ -191,41 +221,6 @@ paths:
           $ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
-
-
-    post:
-      tags:
-        - manage
-        - modeler
-      description: create a new version via flame publish method
-      summary: new version
-      parameters:
-        - in: path
-          name: modelname
-          description: name of the model that will be published
-          required: true
-          schema:
-            type: string
-        - in: path
-          name: version
-          description: version to publish
-          required: true
-          schema:
-            type: string
-      responses:
-        "201":
-          description: The model version has been created succesfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Model"
-                
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "409":
-          $ref: "#/components/schemas/ResourceAlreadyExists"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
 
     delete:
       tags:
