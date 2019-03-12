@@ -28,7 +28,7 @@ paths:
   # MANAGE
   #--------
   # LIST
-  /manage/models:
+  /manage/model:
     get:
       tags:
         - manage
@@ -60,8 +60,9 @@ paths:
           $ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
+
   
-  /manage/models/{modelname}:
+  /manage/model/{modelname}:
     # CREATE
     post:
       tags:
@@ -182,7 +183,7 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
     
-  /manage/models/{modelname}/version/{version}:
+  /manage/model/{modelname}/version/{version}:
     get:
       tags:
         - manage
@@ -256,7 +257,7 @@ paths:
           $ref: "#/components/schemas/ServiceUnavailable"
    
   # PARAMETERS 
-  /manage/models/{modelname}/version/{version}/parameters:
+  /manage/model/{modelname}/version/{version}/parameters:
     get:
       tags:
         - manage
@@ -341,7 +342,7 @@ paths:
   #---------
   # PLACE SDF IN POST IN BODY
   
-  /build/models/{modelname}:
+  /build/model/{modelname}:
     post:
       tags:
         - build
@@ -367,6 +368,8 @@ paths:
                 SDF:
                   type: string
                   format: binary
+                modelParams:
+                  $ref: "#/components/schemas/ModelParameters"
       
       responses:
         "200":
@@ -398,7 +401,7 @@ paths:
   #----------
   # PREDICT
   #----------
-  /predict/models/{modelname}/version/{version}:
+  /predict/model/{modelname}/version/{version}:
     put:
       tags:
         - predict
@@ -433,13 +436,22 @@ paths:
       
       responses:
         '200':
-          description: prerdiction successful
+          description: prediction successful
           content:
             application/json:
               schema:
                 type: array
                 items:
                   $ref: '#/components/schemas/PredictionResults'
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  
   
 
 #======================
@@ -478,6 +490,7 @@ components:
     # ----------------
     ModelParameters:
       description: Model parameters object
+      type: object
     
     # -------------
     # MODEL RESULTS
@@ -485,11 +498,13 @@ components:
     PredictionResults:
       type: object
       properties:
-        molId:
-          description: Molecule ID, name or index
-          type: string
-        predictResults:
-          description: Estimator output for that molecule
+        Manifest:
+          description: especification of what data is represented
+          type: array
+          items:
+            type: object
+        Meta:
+          description: model metainformation
           type: object
 
     # ----------

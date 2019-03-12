@@ -22,7 +22,7 @@ class ListModels(APIView):
     """
 
     def get(self, request):
-        models = manage.action_dir()
+        models = manage.action_list()
         # TODO: fix what flame returns
         return Response(models, 200)
 
@@ -104,7 +104,7 @@ class ManageVersions(APIView):
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
-    
+
     def post(self, request):
         # get the upladed file with name "file"
         return Response(request.FILES)

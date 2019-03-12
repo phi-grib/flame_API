@@ -22,6 +22,11 @@ Over this resource the client can create, delete or get info with the HTTP verbs
 
 ## TODO
 
-* Write data models for requests and responses
-* Write serializers to send and receive standardized data
-* Adapt the responses to the OpenAPI specification in `flameAPI.yml`
+* Use data **[validators](https://www.django-rest-framework.org/api-guide/validators/)** for requests and responses
+* Write **[serializers](https://www.django-rest-framework.org/api-guide/serializers/)** to send and receive standardized data
+* Review response schemas in `flameAPI.yml`
+
+
+## Docs
+
+https://www.django-rest-framework.org/
