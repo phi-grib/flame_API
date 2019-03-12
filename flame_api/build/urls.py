@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import Build
+from .views import BuildModel
 
 urlpatterns = [
-    path('modelname/<str:modelname>/version/<str:version>', Build.as_view()),
+    path('models/<str:modelname>/version/<str:version>', BuildModel.as_view()),
 ]

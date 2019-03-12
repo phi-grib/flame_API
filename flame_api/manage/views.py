@@ -1,8 +1,14 @@
+import tempfile
+import os
+
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import FileUploadParser, MultiPartParser
 from rest_framework import status
+
+from django.core.files.storage import FileSystemStorage
+from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
@@ -77,6 +83,7 @@ class ManageModels(APIView):
 class ManageVersions(APIView):
     """
     Manage models to the version level
+    TODO: FIX and FINISH!
     """
 
     def get(self, request, modelname, version):
@@ -90,4 +97,11 @@ class ManageVersions(APIView):
         """
         Delete model
         """
-        flame_status = manage.action_publish(modelname)
+        flame_status = manage.action_remove(modelname, version)
+    
+
+class TestUpload(APIView):
+    parser_classes = (MultiPartParser,)
+    def post(self, request):
+        # get the upladed file with name "file"
+        return Response(request.FILES)
