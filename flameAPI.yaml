@@ -28,7 +28,7 @@ paths:
   # MANAGE
   #--------
   # LIST
-  /models:
+  /manage/models:
     get:
       tags:
         - manage
@@ -61,7 +61,7 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
   
-  /models/{modelname}:
+  /manage/models/{modelname}:
     # CREATE
     post:
       tags:
@@ -182,7 +182,7 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
     
-  /models/{modelname}/version/{version}:
+  /manage/models/{modelname}/version/{version}:
     get:
       tags:
         - manage
@@ -256,7 +256,7 @@ paths:
           $ref: "#/components/schemas/ServiceUnavailable"
    
   # PARAMETERS 
-  /models/{modelname}/version/{version}/parameters:
+  /manage/models/{modelname}/version/{version}/parameters:
     get:
       tags:
         - manage
@@ -341,7 +341,7 @@ paths:
   #---------
   # PLACE SDF IN POST IN BODY
   
-  /models/{modelname}/version/{version}/build:
+  /build/models/{modelname}/version/{version}:
     post:
       tags:
         - build
@@ -404,7 +404,7 @@ paths:
   #----------
   # PREDICT
   #----------
-  /models/{modelname}/version/{version}/predict:
+  /predict/models/{modelname}/version/{version}/predict:
     post:
       tags:
         - predict
