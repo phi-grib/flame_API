@@ -49,14 +49,10 @@ class ManageModels(APIView):
         """
         flame_status = manage.action_new(modelname)
 
-        if flame_status[1] == f'Endpoint {modelname} already exists':
+        if flame_status[1] == f"Endpoint {modelname} already exists":
             return HttpResponse(flame_status[1], status=status.HTTP_409_CONFLICT)
 
-        response = {
-            "status": flame_status,
-            "modelName": modelname,
-            "versions": ["0"]
-        }
+        response = {"status": flame_status, "modelName": modelname, "versions": ["0"]}
 
         return JsonResponse(response, status=status.HTTP_201_CREATED)
 
@@ -71,7 +67,7 @@ class ManageModels(APIView):
         # TODO: implement other responses for model not found
         else:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+
     def put(self, request, modelname):
         """
         Publishes a new version of the model
@@ -93,14 +89,14 @@ class ManageVersions(APIView):
         """
         flame_status = manage.action_info(modelname, int(version))
         return Response(flame_status, status=status.HTTP_200_OK)
-    
+
     def delete(self, request, modelname, version):
         """
         Delete model
         """
         flame_status = manage.action_remove(modelname, version)
         return Response(flame_status, status=status.HTTP_204_NO_CONTENT)
-    
+
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)

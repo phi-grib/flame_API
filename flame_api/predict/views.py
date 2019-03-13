@@ -19,12 +19,13 @@ class Predict(APIView):
     """
     Build model
     """
+
     parser_classes = (MultiPartParser,)
-    
-    def put(self, request, modelname, version,  format=None):
+
+    def put(self, request, modelname, version, format=None):
 
         # get the upladed file with name "file"
-        file_obj = request.FILES['SDF']
+        file_obj = request.FILES["SDF"]
 
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
@@ -36,9 +37,11 @@ class Predict(APIView):
 
         predictor = predict.Predict(modelname, int(version))
         flame_status = predictor.run(predict_data)
-        
-        response = {"buildStatus": flame_status[1],
-                    "fileName": os.path.join(temp_dir, path),
-                    "modelName": modelname}
+
+        response = {
+            "buildStatus": flame_status[1],
+            "fileName": os.path.join(temp_dir, path),
+            "modelName": modelname,
+        }
 
         return JsonResponse(response, status=200)
