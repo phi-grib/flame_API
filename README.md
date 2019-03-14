@@ -32,4 +32,5 @@ Over this resource the client can create, delete or get info with the HTTP verbs
 ## Docs
 
 https://www.django-rest-framework.org/
+
 [Serializer tutorial](https://www.django-rest-framework.org/tutorial/1-serialization/)
