@@ -22,7 +22,7 @@ class ListModels(APIView):
     """
 
     def get(self, request):
-        models = manage.action_list()
+        models = manage.action_dir()
         # TODO: fix what flame returns
         return Response(models, 200)
 
