@@ -25,8 +25,7 @@ SECRET_KEY = "ul-c_)4d4pz!g42-$-(3a^v4--prqkfzgmxels2h1_!ul(pkj!"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['tartaro', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -121,6 +120,7 @@ STATIC_URL = "/static/"
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-'''CORS_ORIGIN_WHITELIST = (
-    '127.0.0.1:4200'
-)'''
+# CORS_ORIGIN_WHITELIST = (
+#     'http//:localhost:8000',
+#     'http//:localhost:4200'
+# )
