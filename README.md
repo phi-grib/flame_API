@@ -20,13 +20,16 @@ api.flame.edu/v1/{root}/models/{modelname}
 
 Over this resource the client can create, delete or get info with the HTTP verbs (POST, DELETE, GET...).
 
+----
+
 ## TODO
 
 * Use data **[validators](https://www.django-rest-framework.org/api-guide/validators/)** for requests and responses
 * Write **[serializers](https://www.django-rest-framework.org/api-guide/serializers/)** to send and receive standardized data
 * Review response schemas in `flameAPI.yml`
 
-
+-----
 ## Docs
 
 https://www.django-rest-framework.org/
+[Serializer tutorial](https://www.django-rest-framework.org/tutorial/1-serialization/)
