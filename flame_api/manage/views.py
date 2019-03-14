@@ -22,7 +22,7 @@ class ListModels(APIView):
     """
 
     def get(self, request):
-        models = manage.action_list()
+        models = manage.action_dir()
         # TODO: fix what flame returns
         return Response(models, 200)
 
@@ -87,7 +87,7 @@ class ManageVersions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_info(modelname, int(version))
+        flame_status = manage.action_info(modelname, version)
         return Response(flame_status, status=status.HTTP_200_OK)
 
     def delete(self, request, modelname, version):
@@ -97,6 +97,17 @@ class ManageVersions(APIView):
         flame_status = manage.action_remove(modelname, version)
         return Response(flame_status, status=status.HTTP_204_NO_CONTENT)
 
+class ManageParameters(APIView):
+    """
+    Manage model parameters
+    """
+
+    def get(self,request,modelname,version):
+        """
+        Retrieve parameters of model version
+        """
+        flame_status = manage.action_parameters(modelname,version,"JSON")
+        return Response(flame_status, status=status.HTTP_200_OK)
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)

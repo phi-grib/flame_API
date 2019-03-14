@@ -25,6 +25,8 @@ class BuildModel(APIView):
 
         # get the upladed file with name "file"
         file_obj = request.FILES['SDF']
+        params_obj = request.GET['parameters']
+        print (params_obj)
 
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
@@ -33,7 +35,7 @@ class BuildModel(APIView):
         path = fs.save(file_obj.name, ContentFile(file_obj.read()))
 
         training_data = os.path.join(temp_dir, path)
-
+        
         # TODO: implement correctly flame build
         builder = build.Build(modelname, output_format="JSON")
         flame_status = builder.run(training_data)
