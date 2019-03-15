@@ -25,8 +25,8 @@ class BuildModel(APIView):
 
         # get the upladed file with name "file"
         file_obj = request.FILES['SDF']
-        params_obj = request.GET['parameters']
-        print (params_obj)
+        
+         print(request.POST.get('parameters', False))
 
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
