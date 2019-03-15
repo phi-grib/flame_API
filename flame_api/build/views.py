@@ -1,5 +1,8 @@
 import tempfile
 import os
+import yaml
+import json
+from ast import literal_eval
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -11,6 +14,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
+
 
 from flame import build
 
@@ -25,23 +29,29 @@ class BuildModel(APIView):
 
         # get the upladed file with name "file"
         file_obj = request.FILES['SDF']
+        params_obj = json.loads(request.POST.get('parameters'))
+        params_obj =yaml.dump(params_obj)
         
-         print(request.POST.get('parameters', False))
-
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
+      
         fs = FileSystemStorage(location=temp_dir)
         # save the file to the new filesystem
-        path = fs.save(file_obj.name, ContentFile(file_obj.read()))
+        path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
+        path_params = fs.save("parameters.yaml", ContentFile(params_obj))
 
-        training_data = os.path.join(temp_dir, path)
+        training_data = os.path.join(temp_dir, path_SDF)
+        parameters = os.path.join(temp_dir, path_params)
+        print (parameters)
+        with open(parameters, 'w') as outfile:
+            yaml.dump(params_obj, outfile, default_flow_style=False)
         
         # TODO: implement correctly flame build
-        builder = build.Build(modelname, output_format="JSON")
+        builder = build.Build(modelname,output_format="JSON")
         flame_status = builder.run(training_data)
         
         response = {"buildStatus": flame_status,
-                    "fileName": os.path.join(temp_dir, path),
+                    "fileName": os.path.join(temp_dir, path_SDF),
                     "modelName": modelname}
 
         return JsonResponse(response, status=200)
