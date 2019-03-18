@@ -30,24 +30,22 @@ class BuildModel(APIView):
         # get the upladed file with name "file"
         file_obj = request.FILES['SDF']
         params_obj = json.loads(request.POST.get('parameters'))
-        params_obj =yaml.dump(params_obj)
-        print (type(params_obj))
+       
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
       
         fs = FileSystemStorage(location=temp_dir)
         # save the file to the new filesystem
         path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
-        path_params = fs.save("parameters.yaml", ContentFile(params_obj))
 
         training_data = os.path.join(temp_dir, path_SDF)
-        parameters = os.path.join(temp_dir, path_params)
-        
+        parameters = os.path.join(temp_dir, "parameters.yaml")
+
         with open(parameters, 'w') as outfile:
             yaml.dump(params_obj, outfile, default_flow_style=False)
-        print(parameters)
+      
         # TODO: implement correctly flame build
-        builder = build.Build(modelname,output_format="JSON")
+        builder = build.Build(modelname,param_file=parameters,output_format="JSON")
         flame_status = builder.run(training_data)
         
         response = {"buildStatus": flame_status,

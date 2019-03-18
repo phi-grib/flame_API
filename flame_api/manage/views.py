@@ -87,7 +87,8 @@ class ManageVersions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_info(modelname, version)
+        flame_status = manage.action_info(modelname, version,
+        output='JSON')
         return Response(flame_status, status=status.HTTP_200_OK)
 
     def delete(self, request, modelname, version):
@@ -107,6 +108,7 @@ class ManageParameters(APIView):
         Retrieve parameters of model version
         """
         flame_status = manage.action_parameters(modelname,version,"JSON")
+        #print(flame_status)
         return Response(flame_status, status=status.HTTP_200_OK)
 
 class TestUpload(APIView):
