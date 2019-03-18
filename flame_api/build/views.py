@@ -31,7 +31,7 @@ class BuildModel(APIView):
         file_obj = request.FILES['SDF']
         params_obj = json.loads(request.POST.get('parameters'))
         params_obj =yaml.dump(params_obj)
-        
+        print (type(params_obj))
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
       
@@ -42,10 +42,10 @@ class BuildModel(APIView):
 
         training_data = os.path.join(temp_dir, path_SDF)
         parameters = os.path.join(temp_dir, path_params)
-        print (parameters)
+        
         with open(parameters, 'w') as outfile:
             yaml.dump(params_obj, outfile, default_flow_style=False)
-        
+        print(parameters)
         # TODO: implement correctly flame build
         builder = build.Build(modelname,output_format="JSON")
         flame_status = builder.run(training_data)
