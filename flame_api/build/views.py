@@ -46,8 +46,22 @@ class BuildModel(APIView):
       
         # TODO: implement correctly flame build
         builder = build.Build(modelname,param_file=parameters,output_format="JSON")
-        flame_status = builder.run(training_data)
-        
+
+        try:
+            flame_status = builder.run(training_data)
+            print('-----------')
+            print(flame_status)
+            print('--------------')
+        except Exception as e:
+            print('-----------')
+            print(e)
+            print(type(e))
+            print('--------------')
+            response = {"buildStatus": str(e),
+                    "fileName": os.path.join(temp_dir, path_SDF),
+                    "modelName": modelname}
+            return JsonResponse(response, status=500) 
+
         response = {"buildStatus": flame_status,
                     "fileName": os.path.join(temp_dir, path_SDF),
                     "modelName": modelname}
