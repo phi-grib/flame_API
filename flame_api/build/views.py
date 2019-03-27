@@ -2,6 +2,7 @@ import tempfile
 import os
 import yaml
 import json
+import shutil
 from ast import literal_eval
 
 from rest_framework.decorators import api_view
@@ -14,9 +15,11 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 from flame import build
+from flame.util import utils
 
 
 class BuildModel(APIView):
@@ -28,17 +31,16 @@ class BuildModel(APIView):
     def post(self, request, modelname, format=None):
 
         # get the upladed file with name "file"
-        file_obj = request.FILES['SDF']
+        try:
+            file_obj = request.FILES['SDF']
+        except MultiValueDictKeyError:
+            file_obj = False
+     
         params_obj = json.loads(request.POST.get('parameters'))
        
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
       
-        fs = FileSystemStorage(location=temp_dir)
-        # save the file to the new filesystem
-        path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
-
-        training_data = os.path.join(temp_dir, path_SDF)
         parameters = os.path.join(temp_dir, "parameters.yaml")
 
         with open(parameters, 'w') as outfile:
@@ -48,22 +50,36 @@ class BuildModel(APIView):
         builder = build.Build(modelname,param_file=parameters,output_format="JSON")
 
         try:
-            flame_status = builder.run(training_data)
-            print('-----------')
-            print(flame_status)
-            print('--------------')
+            if isinstance(file_obj, bool):
+
+                epd = utils.model_path(modelname, 0)
+                lfile = os.path.join(epd, 'training_series')
+
+                flame_status = builder.run(lfile)
+
+            else:
+        
+                fs = FileSystemStorage(location=temp_dir)
+                # save the file to the new filesystem
+                path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
+                training_data = os.path.join(temp_dir, path_SDF)
+
+                flame_status = builder.run(training_data)
+            
+                epd = utils.model_path(modelname, 0)
+                lfile = os.path.join(epd, 'training_series')
+                shutil.copy(training_data, lfile)        
+       
         except Exception as e:
-            print('-----------')
-            print(e)
-            print(type(e))
-            print('--------------')
+
             response = {"buildStatus": str(e),
-                    "fileName": os.path.join(temp_dir, path_SDF),
+                    "fileName":'',
                     "modelName": modelname}
+
             return JsonResponse(response, status=500) 
 
         response = {"buildStatus": flame_status,
-                    "fileName": os.path.join(temp_dir, path_SDF),
+                    "fileName":'',
                     "modelName": modelname}
 
         return JsonResponse(response, status=200)
