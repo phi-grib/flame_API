@@ -111,6 +111,16 @@ class ManageParameters(APIView):
         #print(flame_status)
         return Response(flame_status, status=status.HTTP_200_OK)
 
+class ManageValidation(APIView):
+
+    def get(self,request,modelname,version):
+        """
+        Retrieve parameters of model version
+        """
+        flame_status = manage.action_results(modelname,version,"JSON")
+        #print(flame_status)
+        return Response(flame_status, status=status.HTTP_200_OK)
+
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
 
