@@ -16,6 +16,7 @@ dependencies:
   - requests
   - pytest
   - pip:
+     - psycopg2
      - django
      - djangorestframework
      - django-cors-headers
