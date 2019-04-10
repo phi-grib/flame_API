@@ -30,34 +30,31 @@ class BuildModel(APIView):
     
     def post(self, request, modelname, format=None):
 
-        # get the upladed file with name "file"
+        # get the upladed file
         try:
             file_obj = request.FILES['SDF']
         except MultiValueDictKeyError:
             file_obj = False
      
-        params_obj = json.loads(request.POST.get('parameters'))
+        params =request.POST.get('parameters')
        
-        # Set the temp filesystem storage
-        temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
-      
-        parameters = os.path.join(temp_dir, "parameters.yaml")
-
-        with open(parameters, 'w') as outfile:
-            yaml.dump(params_obj, outfile, default_flow_style=False)
+        
+        epd = utils.model_path(modelname, 0)
+        lfile = os.path.join(epd, 'training_series')
+    
       
         # TODO: implement correctly flame build
-        builder = build.Build(modelname,param_file=parameters,output_format="JSON")
+        builder = build.Build(modelname,param_string=params,output_format="JSON")
 
         try:
             if isinstance(file_obj, bool):
-
-                epd = utils.model_path(modelname, 0)
-                lfile = os.path.join(epd, 'training_series')
-
+     
                 flame_status = builder.run(lfile)
 
             else:
+
+                # Set the temp filesystem storage
+                temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
         
                 fs = FileSystemStorage(location=temp_dir)
                 # save the file to the new filesystem
@@ -65,9 +62,7 @@ class BuildModel(APIView):
                 training_data = os.path.join(temp_dir, path_SDF)
 
                 flame_status = builder.run(training_data)
-            
-                epd = utils.model_path(modelname, 0)
-                lfile = os.path.join(epd, 'training_series')
+                #Copy file
                 shutil.copy(training_data, lfile)        
        
         except Exception as e:
