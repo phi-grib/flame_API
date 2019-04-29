@@ -1,6 +1,24 @@
 # flame_API
 OpenAPI 3 definition for flame and django rest framework implementation.
 
+## How to run the web service?
+
+Clone this repository to a local directory. 
+
+Activate the flame environment
+
+`activate flame`
+
+Change to the flame_API folder
+
+`(flame) C:\Users\mpastor\Documents\soft\flame_API>cd flame_api`
+
+Type
+
+`(flame) C:\Users\mpastor\Documents\soft\flame_API\flame_api>python manage.py runserver`
+
+
+
 ## flame API design explanation
 Here I'll use the base URL to be `api.flame.edu/v1/` as a placeholder for the future (no yet created) base URL that respects the consortium specs.
 
