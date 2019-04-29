@@ -3,19 +3,32 @@ OpenAPI 3 definition for flame and django rest framework implementation.
 
 ## How to run the web service?
 
-Clone this repository to a local directory. 
+Flame should have been already installed in this computer. Refer to the Flame manual for full instructions of how create a flame conda environment and install the software. 
 
-Activate the flame environment
+Start activating the flame environment typing:
 
-`activate flame`
+```bash
+source activate flame (in Linux)
+activate flame (in Windows)
+```
 
-Change to the flame_API folder
+Download the repository:
 
-`(flame) C:\Users\mpastor\Documents\soft\flame_API>cd flame_api`
+```bash
+git clone https://github.com/phi-grib/flame_API.git
+```
+
+Go to the source repository directory 
+
+```bash
+cd flame_API/flame_api
+```
 
 Type
 
-`(flame) C:\Users\mpastor\Documents\soft\flame_API\flame_api>python manage.py runserver`
+```
+python manage.py runserver
+```
 
 
 
