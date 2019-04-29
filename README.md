@@ -3,7 +3,7 @@ OpenAPI 3 definition for flame and django rest framework implementation.
 
 ## How to run the web service?
 
-Flame should have been already installed in this computer. Refer to the Flame manual for full instructions of how create a flame conda environment and install the software. 
+Flame should have been already installed in this computer. Refer to the [flame](https://github.com/phi-grib/flame) manual for full instructions of how create a flame conda environment and install the software. 
 
 Start activating the flame environment typing:
 
