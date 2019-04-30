@@ -13,12 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+#from django.contrib import admin
+#from django.urls import path, include
+
+from django.conf.urls import url, include
+from django.views.generic import RedirectView
+from django.contrib.staticfiles.views import serve
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("manage/", include("manage.urls")),
-    path("build/", include("build.urls")),
-    path("predict/", include("predict.urls")),
+
+    url(r'^$', serve, kwargs={'path': 'index.html'}),
+    #url(r'^', include('API.urls')),
+    url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$', RedirectView.as_view(url='/static/%(path)s', permanent=False)),
+    #path("admin/", admin.site.urls),
+    url("manage/", include("manage.urls")),
+    url("build/", include("build.urls")),
+    url("predict/", include("predict.urls")),
 ]
