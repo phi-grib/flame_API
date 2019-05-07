@@ -351,7 +351,42 @@ paths:
   # BUILD
   #---------
   # PLACE SDF IN POST IN BODY
-  
+  /manage/model/{modelname}/version/{version}/validation:
+    get:
+      tags:
+        - manage
+        - user
+      description: retrieve model parameters
+      summary: Model parameters
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelParameters"
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
   /build/model/{modelname}:
     post:
       tags:
