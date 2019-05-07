@@ -39,7 +39,7 @@ class Predict(APIView):
         flame_status = predictor.run(predict_data)
 
         response = {
-            "buildStatus": flame_status[1],
+            "buildStatus": flame_status,
             "fileName": os.path.join(temp_dir, path),
             "modelName": modelname,
         }
