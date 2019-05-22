@@ -15,6 +15,9 @@ from django.http import HttpResponse, JsonResponse
 from flame import manage
 from flame.util import utils
 
+from wsgiref.util import FileWrapper
+import tarfile
+
 
 class ListModels(APIView):
     """
@@ -120,6 +123,22 @@ class ManageValidation(APIView):
         flame_status = manage.action_results(modelname,version,"JSON")
         #print(flame_status)
         return Response(flame_status, status=status.HTTP_200_OK)
+
+class ManageExport(APIView):
+
+    def get(self,request,modelname):
+        """
+        Retrieve parameters of model version
+        """
+        flame_status = manage.action_export(modelname)
+        current_path = os.getcwd()
+        exportfile = os.path.join(current_path,modelname+'.tgz')
+        file = open(exportfile, 'rb')
+        response = HttpResponse(FileWrapper(file), content_type='application/tgz')
+        response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
+        return response
+        #return Response(flame_status, status=status.HTTP_200_OK)
+
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
