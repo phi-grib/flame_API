@@ -11,6 +11,7 @@ from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.utils.datastructures import MultiValueDictKeyError
 
 from flame import manage
 from flame.util import utils
@@ -139,7 +140,18 @@ class ManageExport(APIView):
         return response
         #return Response(flame_status, status=status.HTTP_200_OK)
 
+class ManageImport(APIView):
 
+    def post(self,request):
+        
+        try:
+            file_obj = request.FILES['model']
+        except MultiValueDictKeyError:
+            file_obj = False
+        
+        print(file_obj.filename)
+        #return Response(flame_status, status=status.HTTP_200_OK)
+        return Response({'ok': True})
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
 
