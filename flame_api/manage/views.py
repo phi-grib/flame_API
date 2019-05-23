@@ -137,6 +137,8 @@ class ManageExport(APIView):
         file = open(exportfile, 'rb')
         response = HttpResponse(FileWrapper(file), content_type='application/tgz')
         response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
+        os.remove(exportfile) 
+
         return response
         #return Response(flame_status, status=status.HTTP_200_OK)
 
@@ -148,10 +150,34 @@ class ManageImport(APIView):
             file_obj = request.FILES['model']
         except MultiValueDictKeyError:
             file_obj = False
+
+        model_name = file_obj.name.split('.')
+        extension = model_name[1]
+        model_name = model_name[0]
+        models_path = utils.model_repository_path()
+
+        # Exist Model
+       
+        if os.path.isdir(models_path+ '/' +model_name+'/'):
+            print('Exist')
+            return Response({'Model': "ERROR"},status=status.HTTP_200_OK)
+
+        fs = FileSystemStorage(location=models_path) #defaults to   MEDIA_ROOT  
+        tarFile = fs.save(model_name+'.'+extension, file_obj)
         
-        print(file_obj.filename)
+        
+       
+        os.mkdir(models_path+ '/' +model_name)
+        
+        tar = tarfile.open(models_path+ '/' +tarFile)
+        tar.extractall(path=models_path+ '/' +model_name+"/")
+        tar.close()
+       
+        os.remove(models_path+ '/' +tarFile) 
+
         #return Response(flame_status, status=status.HTTP_200_OK)
-        return Response({'ok': True})
+        return Response({'Model': model_name})
+
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
 
