@@ -42,7 +42,7 @@ class BuildModel(APIView):
         epd = utils.model_path(modelname, 0)
         lfile = os.path.join(epd, 'training_series')
     
-      
+        print (params)
         # TODO: implement correctly flame build
         builder = build.Build(modelname,param_string=params,output_format="JSON")
 
