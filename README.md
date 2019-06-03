@@ -30,7 +30,9 @@ Type
 python manage.py runserver
 ```
 
+## Introduction
 
+[Flame_API](https://github.com/phi-grib/flame_API) 
 
 ## flame API design explanation
 Here I'll use the base URL to be `api.flame.edu/v1/` as a placeholder for the future (no yet created) base URL that respects the consortium specs.
@@ -55,6 +57,7 @@ Over this resource the client can create, delete or get info with the HTTP verbs
 
 ## TODO
 
+* Control errors **[Status_codes](https://www.django-rest-framework.org/api-guide/status-codes/)** for responses
 * Use data **[validators](https://www.django-rest-framework.org/api-guide/validators/)** for requests and responses
 * Write **[serializers](https://www.django-rest-framework.org/api-guide/serializers/)** to send and receive standardized data
 * Review response schemas in `flameAPI.yml`
