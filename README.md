@@ -30,6 +30,9 @@ Type
 python manage.py runserver
 ```
 
+Then, open a browser and type the address http://localhost:8000
+
+
 
 ## flame API design explanation
 Here I'll use the base URL to be `api.flame.edu/v1/` as a placeholder for the future (no yet created) base URL that respects the consortium specs.
