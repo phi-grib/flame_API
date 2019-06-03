@@ -15,10 +15,10 @@ tags:
     description: Build models
   - name: manage
     description: Manage models, versioning, etc.
-  - name: user
-    description: user with acces to prediction and basic manage
-  - name: modeler
-    description: model developer with acces to all of the api
+  #- name: user
+  #  description: user with acces to prediction and basic manage
+  #- name: modeler
+  #  description: model developer with acces to all of the api'''
 
 #==================
 # PATHS
@@ -28,11 +28,11 @@ paths:
   # MANAGE
   #--------
   # LIST
-  /manage/model:
+  /manage/models:
     get:
       tags:
         - manage
-        - user
+        #- user
       summary: Model list
       parameters:
         - in: query
@@ -60,14 +60,30 @@ paths:
           $ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
-
   
-  /manage/model/{modelname}:
+  /manage/import:
+    post:
+      tags:
+        - manage
+      summary: Import model
+      description: import the new model from selecetd tar file
+      parameters:
+        - in: path
+          name: tarfile
+          description: tarfile with the modle to import
+          required: true
+          schema:
+            type: tarfile
+      responses:
+        "200":
+          description: model name
+  
+  /manage/models/{modelname}:
     # CREATE
     post:
       tags:
         - manage
-        - modeler
+        #- modeler
       description: create a new model with the given name
       summary: New model
       parameters:
@@ -99,7 +115,7 @@ paths:
     get:
       tags:
         - manage
-        - user
+        #- user
       description: retrieve information of of given Model
       summary: Model info
       parameters:
@@ -133,7 +149,7 @@ paths:
     put:
       tags:
         - manage
-        - modeler
+        #- modeler
       description: create a new version via flame publish method
       summary: New version
       parameters:
@@ -165,7 +181,7 @@ paths:
     delete:
       tags:
         - manage
-        - modeler
+        #- modeler
       description: delete model
       summary: Delete model
       parameters:
@@ -188,12 +204,29 @@ paths:
           $ref: "#/components/schemas/InternalServerError"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
-    
-  /manage/model/{modelname}/version/{version}:
+
+  /manage/models/{modelname}/export:
     get:
       tags:
         - manage
-        - user
+      description: export model selected as a tar file
+      summary:  export model selected
+      parameters:
+        - in: path
+          name: model name
+          description: name of the model to export
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: requested info of version
+  
+  /manage/models/{modelname}/version/{version}:
+    get:
+      tags:
+        - manage
+        #- user
       description: retrive information about the model version
       summary: Version info
       parameters:
@@ -232,7 +265,7 @@ paths:
     delete:
       tags:
         - manage
-        - modeler
+        #- modeler
       description: delete version
       summary: Delete version
       parameters:
@@ -265,11 +298,11 @@ paths:
           $ref: "#/components/schemas/ServiceUnavailable"
    
   # PARAMETERS 
-  /manage/model/{modelname}/version/{version}/parameters:
+  /manage/models/{modelname}/version/{version}/parameters:
     get:
       tags:
         - manage
-        - user
+        #- user
       description: retrieve model parameters
       summary: Model parameters
       parameters:
@@ -305,7 +338,7 @@ paths:
     # upload and update parameters
       tags:
         - manage
-        - modeler
+        #- modeler
       description: update model parameters
       summary: Update model parameters
       parameters:
@@ -351,11 +384,11 @@ paths:
   # BUILD
   #---------
   # PLACE SDF IN POST IN BODY
-  /manage/model/{modelname}/version/{version}/validation:
+  /manage/models/{modelname}/version/{version}/validation:
     get:
       tags:
         - manage
-        - user
+        #- user
       description: retrieve model parameters
       summary: Model parameters
       parameters:
@@ -387,11 +420,11 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
 
-  /build/model/{modelname}:
+  /build/models/{modelname}:
     post:
       tags:
         - build
-        - modeler
+        #- modeler
       description: Build model with the present SDF in the body as training set. Always builds version 0
       summary: Build model
       parameters:
@@ -448,11 +481,11 @@ paths:
   #----------
   # PREDICT
   #----------
-  /predict/model/{modelname}/version/{version}:
+  /predict/models/{modelname}/version/{version}:
     put:
       tags:
         - predict
-        - user
+        #- user
       description: 'uploads molecules and runs prediction with specified model '
       summary: Predict 
       operationId: Predict
