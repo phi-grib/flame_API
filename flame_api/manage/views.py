@@ -159,8 +159,7 @@ class ManageImport(APIView):
         # Exist Model
        
         if os.path.isdir(models_path+ '/' +model_name+'/'):
-            print('Exist')
-            return Response({'Model': "ERROR"},status=status.HTTP_200_OK)
+            return Response({'Model': model_name},status=status.HTTP_409_CONFLICT)
 
         fs = FileSystemStorage(location=models_path) #defaults to   MEDIA_ROOT  
         tarFile = fs.save(model_name+'.'+extension, file_obj)
