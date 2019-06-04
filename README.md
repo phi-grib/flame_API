@@ -33,20 +33,27 @@ python manage.py runserver
 Then, open a browser and type the address http://localhost:8000
 
 ## Flame GUI
-The flame GUI consist in 2 main areas: control area and visualization area. 
-Control area has all functions needed to create, delete, build and predict models. Those functions are distributed in three tabs (Manage, Build and Predict).
+The flame GUI consist in 2 main areas: control area and visualization area.
+
+Control area has all functions needed. Those functions are distributed in three tabs (Manage, Build and Predict). The Manage tab is responsible for managing the models: create, delete, import and export. Build and Predict tabs are teh responsible to create and predict models. In both tabs, the sequence is always the same:
+
+- First we have to select a model
+- Next step is select a training or prediction set
+- Select the parameters desired in case of construction.
+- And finally, throw the prediction or build the model.
+
+
 
 ## Screenshots
 
 Areas:
-![Areas](https://raw.githubusercontent.com/phi-grib/flame_API/blob/master/img/areas.png)
-
-Predict
-Manage
-Build
-Data training uploader
-Validation Results
-Prediction Results
+![Areas](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/areas.png)
+![Predict](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Predict.png)
+![Manage](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Manage.png)
+![Build](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Buid.png)
+![Data training uploader](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/uploader.png)
+![Validation Results](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Validation.png)
+![Prediction Results](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Prediction.png)
 
 
 
