@@ -32,6 +32,20 @@ python manage.py runserver
 
 Then, open a browser and type the address http://localhost:8000
 
+## Flame GUI
+The flame GUI consist in 2 main areas: control area and visualization area. 
+Control area has all functions needed to create, delete, build and predict models. Those functions are distributed in three tabs (Manage, Build and Predict).
+
+## Screenshots
+
+Areas
+Predict
+Manage
+Build
+Data training uploader
+Validation Results
+Prediction Results
+
 
 
 ## flame API design explanation
