@@ -38,7 +38,9 @@ Control area has all functions needed to create, delete, build and predict model
 
 ## Screenshots
 
-Areas
+Areas:
+![Areas](https://raw.githubusercontent.com/phi-grib/flame_API/blob/master/img/areas.png)
+
 Predict
 Manage
 Build
