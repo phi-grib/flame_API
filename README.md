@@ -30,6 +30,22 @@ Type
 python manage.py runserver
 ```
 
+Then, open a browser and type the address http://localhost:8000
+
+## Flame GUI
+The flame GUI consist in 2 main areas: control area and visualization area. 
+Control area has all functions needed to create, delete, build and predict models. Those functions are distributed in three tabs (Manage, Build and Predict).
+
+## Screenshots
+
+Areas
+Predict
+Manage
+Build
+Data training uploader
+Validation Results
+Prediction Results
+
 
 
 ## flame API design explanation
@@ -52,9 +68,10 @@ api.flame.edu/v1/{root}/models/{modelname}
 Over this resource the client can create, delete or get info with the HTTP verbs (POST, DELETE, GET...).
 
 ----
-
+<!---
 ## TODO
 
+* Control errors **[Status_codes](https://www.django-rest-framework.org/api-guide/status-codes/)** for responses
 * Use data **[validators](https://www.django-rest-framework.org/api-guide/validators/)** for requests and responses
 * Write **[serializers](https://www.django-rest-framework.org/api-guide/serializers/)** to send and receive standardized data
 * Review response schemas in `flameAPI.yml`
@@ -65,3 +82,4 @@ Over this resource the client can create, delete or get info with the HTTP verbs
 https://www.django-rest-framework.org/
 
 [Serializer tutorial](https://www.django-rest-framework.org/tutorial/1-serialization/)
+-->
