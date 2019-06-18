@@ -30,9 +30,32 @@ Type
 python manage.py runserver
 ```
 
-## Introduction
+Then, open a browser and type the address http://localhost:8000
 
-[Flame_API](https://github.com/phi-grib/flame_API) 
+## Flame GUI
+The flame GUI consist in 2 main areas: control area and visualization area.
+
+Control area has all functions needed. Those functions are distributed in three tabs (Manage, Build and Predict). The Manage tab is responsible for managing the models: create, delete, import and export. Build and Predict tabs are teh responsible to create and predict models. In both tabs, the sequence is always the same:
+
+- First we have to select a model
+- Next step is select a training or prediction set
+- Select the parameters desired in case of construction.
+- And finally, throw the prediction or build the model.
+
+
+
+## Screenshots
+
+Areas:
+![Areas](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/areas.png)
+![Predict](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Predict.png)
+![Manage](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Manage.png)
+![Build](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Buid.png)
+![Data training uploader](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/uploader.png)
+![Validation Results](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Validation.png)
+![Prediction Results](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Prediction.png)
+
+
 
 ## flame API design explanation
 Here I'll use the base URL to be `api.flame.edu/v1/` as a placeholder for the future (no yet created) base URL that respects the consortium specs.
@@ -54,7 +77,7 @@ api.flame.edu/v1/{root}/models/{modelname}
 Over this resource the client can create, delete or get info with the HTTP verbs (POST, DELETE, GET...).
 
 ----
-
+<!---
 ## TODO
 
 * Control errors **[Status_codes](https://www.django-rest-framework.org/api-guide/status-codes/)** for responses
@@ -68,3 +91,4 @@ Over this resource the client can create, delete or get info with the HTTP verbs
 https://www.django-rest-framework.org/
 
 [Serializer tutorial](https://www.django-rest-framework.org/tutorial/1-serialization/)
+-->
