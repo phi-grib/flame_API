@@ -37,8 +37,7 @@ class BuildModel(APIView):
             file_obj = False
      
         params =request.POST.get('parameters')
-       
-        
+              
         epd = utils.model_path(modelname, 0)
         lfile = os.path.join(epd, 'training_series')
     
@@ -66,15 +65,16 @@ class BuildModel(APIView):
                 shutil.copy(training_data, lfile)        
        
         except Exception as e:
+            print("Error NO controled")
+            return Response(str(e), status=status.HTTP_418_NOT_FOUND) 
 
-            response = {"buildStatus": str(e),
-                    "fileName":'',
-                    "modelName": modelname}
+        if (flame_status[0]):
 
-            return JsonResponse(response, status=500) 
+            return Response(flame_status[1], status=status.HTTP_200_OK)
 
-        response = {"buildStatus": flame_status,
-                    "fileName":'',
-                    "modelName": modelname}
+        else:
+            print("Error controled")
+            return Response(flame_status[1], status=status.HTTP_404_OK)
+        
 
-        return JsonResponse(response, status=200)
+        

@@ -516,16 +516,12 @@ paths:
       
       responses:
         '200':
-          description: prediction successful
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PredictionResults'
+          $ref: '#/components/schemas/PredictionResults'
         "400":
           $ref: "#/components/schemas/BadRequest"
         "404":
+          $ref: "#/components/schemas/BadRequest"
+        "418":
           $ref: "#/components/schemas/ModelNotFound"
         "500":
           $ref: "#/components/schemas/InternalServerError"
