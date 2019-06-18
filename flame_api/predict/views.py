@@ -1,5 +1,6 @@
 import tempfile
 import os
+import json
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -11,6 +12,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
+from django.utils.datastructures import MultiValueDictKeyError
 
 from flame import predict
 
@@ -25,7 +27,11 @@ class Predict(APIView):
     def put(self, request, modelname, version, format=None):
 
         # get the upladed file with name "file"
-        file_obj = request.FILES["SDF"]
+        try:
+            file_obj = request.FILES["SDF"]
+        except MultiValueDictKeyError as e:
+            return  Response('Datatest not provided', status=status.HTTP_400_BAD_REQUEST)
+        
 
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
@@ -37,11 +43,12 @@ class Predict(APIView):
 
         predictor = predict.Predict(modelname, int(version))
         flame_status = predictor.run(predict_data)
+        if flame_status[0]:
+            return JsonResponse(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        
+        else:
+            return Response(flame_status[1], status=status.HTTP_418_NOT_FOUND)
+        
+    
 
-        response = {
-            "buildStatus": flame_status,
-            "fileName": os.path.join(temp_dir, path),
-            "modelName": modelname,
-        }
-
-        return JsonResponse(response, status=200)
+        
