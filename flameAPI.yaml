@@ -78,7 +78,7 @@ paths:
         "200":
           description: model name
   
-  /manage/models/{modelname}:
+  /manage/model/{modelname}:
     # CREATE
     post:
       tags:
@@ -205,7 +205,7 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
 
-  /manage/models/{modelname}/export:
+  /manage/model/{modelname}/export:
     get:
       tags:
         - manage
@@ -222,7 +222,7 @@ paths:
         "200":
           description: requested info of version
   
-  /manage/models/{modelname}/version/{version}:
+  /manage/model/{modelname}/version/{version}:
     get:
       tags:
         - manage
@@ -298,7 +298,7 @@ paths:
           $ref: "#/components/schemas/ServiceUnavailable"
    
   # PARAMETERS 
-  /manage/models/{modelname}/version/{version}/parameters:
+  /manage/model/{modelname}/version/{version}/parameters:
     get:
       tags:
         - manage
@@ -384,7 +384,7 @@ paths:
   # BUILD
   #---------
   # PLACE SDF IN POST IN BODY
-  /manage/models/{modelname}/version/{version}/validation:
+  /manage/model/{modelname}/version/{version}/validation:
     get:
       tags:
         - manage
@@ -413,14 +413,14 @@ paths:
                 $ref: "#/components/schemas/ModelParameters"
         "400":
           $ref: "#/components/schemas/BadRequest"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
+        #"404":
+        #  $ref: "#/components/schemas/ModelNotFound"
+        #"500":
+        #  $ref: "#/components/schemas/InternalServerError"
+        #"503":
+        #  $ref: "#/components/schemas/ServiceUnavailable"
 
-  /build/models/{modelname}:
+  /build/model/{modelname}:
     post:
       tags:
         - build
@@ -451,7 +451,7 @@ paths:
       
       responses:
         "200":
-          description: Model build with uploaded SDF
+          description: Model builded succesfully
           content:
             application/json:
               schema:
@@ -471,17 +471,17 @@ paths:
           $ref: "#/components/schemas/BadRequest"
         "401":
           $ref: "#/components/schemas/UnauthorizedError"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
+        #"404":
+        #  $ref: "#/components/schemas/ModelNotFound"
+        #"500":
+        #  $ref: "#/components/schemas/InternalServerError"
+        #"503":
+        #  $ref: "#/components/schemas/ServiceUnavailable"
   
   #----------
   # PREDICT
   #----------
-  /predict/models/{modelname}/version/{version}:
+  /predict/model/{modelname}/version/{version}:
     put:
       tags:
         - predict
@@ -516,9 +516,20 @@ paths:
       
       responses:
         '200':
-          $ref: '#/components/schemas/PredictionResults'
-        "400":
-          $ref: "#/components/schemas/BadRequest"
+          description: prediction successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Manifest:
+                    description: especification of what data is represented
+                    type: array
+                    items:
+                      type: object
+                  Meta:
+                    description: model metainformation
+                    type: object
         "404":
           $ref: "#/components/schemas/BadRequest"
         "418":

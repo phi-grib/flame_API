@@ -47,7 +47,7 @@ class Predict(APIView):
             return JsonResponse(json.loads(flame_status[1]), status=status.HTTP_200_OK)
         
         else:
-            return Response(flame_status[1], status=status.HTTP_418_NOT_FOUND)
+            return Response(flame_status[1], status=status.HTTP_400_NOT_FOUND)
         
     
 
