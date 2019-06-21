@@ -65,16 +65,11 @@ class BuildModel(APIView):
                 shutil.copy(training_data, lfile)        
        
         except Exception as e:
-            print("Error NO controled")
-            return Response(str(e), status=status.HTTP_418_NOT_FOUND) 
-
+            return Response(str(e), status=status.HTTP_500_NOT_FOUND) 
         if (flame_status[0]):
-
             return Response(flame_status[1], status=status.HTTP_200_OK)
-
         else:
-            print("Error controled")
-            return Response(flame_status[1], status=status.HTTP_404_OK)
+            return Response(json.loads(flame_status[1]), status=status.HTTP_400_BAD_REQUEST)
         
 
         
