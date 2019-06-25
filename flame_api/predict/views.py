@@ -30,7 +30,7 @@ class Predict(APIView):
         try:
             file_obj = request.FILES["SDF"]
         except MultiValueDictKeyError as e:
-            return  Response('Datatest not provided', status=status.HTTP_400_BAD_REQUEST)
+            return  JsonResponse({'error':'Datatest not provided'}, status=status.HTTP_400_BAD_REQUEST)
         
 
         # Set the temp filesystem storage
