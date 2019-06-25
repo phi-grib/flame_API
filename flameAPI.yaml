@@ -49,15 +49,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Model"
-        "400":
-          $ref: "#/components/schemas/BadRequest"
+                  $ref: "#/components/schemas/ListModel"
         "404":
-          $ref: "#/components/schemas/ModelNotFound"
+          $ref: "#/components/schemas/BadRequest"
         "500":
           $ref: "#/components/schemas/InternalServerError"
-        "501":
-          $ref: "#/components/schemas/NotImplemented"
+        #"501":
+          #$ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
   
@@ -76,7 +74,17 @@ paths:
             type: tarfile
       responses:
         "200":
-          description: model name
+          description: Model imported successfully
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        #"501":
+          #$ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
   
   /manage/model/{modelname}:
     # CREATE
@@ -102,7 +110,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Model"
   
-        "400":
+        "404":
           $ref: "#/components/schemas/BadRequest"
         "401":
           $ref: "#/components/schemas/UnauthorizedError"
@@ -132,10 +140,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ModelInfo"
+                $ref: "#/components/schemas/ModelInfoArray"
       
-        "400":
-          $ref: "#/components/schemas/BadRequest"
         "404":
           $ref: "#/components/schemas/ModelNotFound"
         "500":
@@ -167,8 +173,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/Model"
                 
-        "400":
-          $ref: "#/components/schemas/BadRequest"
+        #"400":
+        #  $ref: "#/components/schemas/BadRequest"
         "401":
           $ref: "#/components/schemas/UnauthorizedError"
         "404":
@@ -249,7 +255,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ModelInfo"
+                $ref: "#/components/schemas/ModelInfoArray"
       
         "400":
           $ref: "#/components/schemas/BadRequest"
@@ -334,56 +340,6 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
     
-    put: 
-    # upload and update parameters
-      tags:
-        - manage
-        #- modeler
-      description: update model parameters
-      summary: Update model parameters
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
-        - name: version
-          in: path
-          description: version of the model to get info from
-          required: true
-          schema:
-            type: string
-            
-      requestBody: # "deltas"
-        description: subset parameters to sent to the server 
-          as _deltas_ and update the model params
-        required: true
-        content:
-          application/json: {}  # undefined for now
-
-      responses:
-        "200":
-          description: Model parameters updated OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ModelParameters"
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-
-  #---------
-  # BUILD
-  #---------
-  # PLACE SDF IN POST IN BODY
   /manage/model/{modelname}/version/{version}/validation:
     get:
       tags:
@@ -413,13 +369,16 @@ paths:
                 $ref: "#/components/schemas/ModelParameters"
         "400":
           $ref: "#/components/schemas/BadRequest"
-        #"404":
-        #  $ref: "#/components/schemas/ModelNotFound"
-        #"500":
-        #  $ref: "#/components/schemas/InternalServerError"
-        #"503":
-        #  $ref: "#/components/schemas/ServiceUnavailable"
-
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  #---------
+  # BUILD
+  #---------
+  # PLACE SDF IN POST IN BODY
   /build/model/{modelname}:
     post:
       tags:
@@ -437,7 +396,7 @@ paths:
 
       requestBody:
         description: training SDF to build the model with
-        required: true
+        required: false
         content:
           multipart/form-data:
             schema:
@@ -467,16 +426,12 @@ paths:
                     type: string
                   version:
                     type: string
-        "400":
+        "404":
           $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        #"404":
-        #  $ref: "#/components/schemas/ModelNotFound"
-        #"500":
-        #  $ref: "#/components/schemas/InternalServerError"
-        #"503":
-        #  $ref: "#/components/schemas/ServiceUnavailable"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
   
   #----------
   # PREDICT
@@ -532,8 +487,6 @@ paths:
                     type: object
         "404":
           $ref: "#/components/schemas/BadRequest"
-        "418":
-          $ref: "#/components/schemas/ModelNotFound"
         "500":
           $ref: "#/components/schemas/InternalServerError"
         "503":
@@ -558,19 +511,35 @@ components:
     Model:
       type: object
       properties:
-        modelID:
-          type: string
-          format: uuid
         modelNname:
           type: string
-        versions:
+        version:
+          type: string
+      example:
+        modelName: CACO2
+        versions: "0"
+    # -------
+    # ListModel
+    # -------
+    ListModel:
+      type: object
+      properties:
+        modelName:
+          type: string
+        nodes:
           type: array
           items:
-            type: string
-      example:
-        modelID: d290f1ee
-        modelName: CACO2
-        versions: ["0"]
+            type: object
+            properties:
+              text:
+                type: string 
+            example:
+              text:
+      example: 
+        text: Model4
+        nodes: [text: dev,text: ver000001]
+
+    
 
     # ----------------
     # MODEL PARAMETERS
@@ -622,6 +591,45 @@ components:
           },
           ...
         ]
+    #----------
+    # MODEL INFO
+    # ----------
+    ModelInfoArray:
+      type: array
+      items: 
+        type: array
+        items:
+          type: string
+      example: |
+        [
+          [
+          "nobj",
+          "number of objects",
+          100
+          ],
+          [
+          "nvarx",
+          "number of predictor variables",
+          10
+          ],
+          [
+              "model",
+              "model type",
+              "RF quantitative"
+          ],
+          [
+              "scoringR",
+              "Scoring P",
+              0.04411365154338174
+          ],
+          [
+              "R2",
+              "Determination coefficient",
+              0.9267718233293424
+          ],
+          [...]
+        ]
+       
   
     # -------
     # STATUS
@@ -635,6 +643,9 @@ components:
     ModelNotFound:
       description: Model not found
     
+    ModelAlreadyExist:
+      description: Model already exist
+
     VersionNotFound:
       description: Version not found
     
