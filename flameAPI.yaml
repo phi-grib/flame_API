@@ -7,7 +7,8 @@ info:
   license:
     name: GLP v3 and posterior
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
-
+servers:
+  - url: http://localhost:8000/
 tags:
   - name: predict
     description: Predict interface
@@ -425,7 +426,7 @@ paths:
                   modelName:
                     type: string
                   version:
-                    type: string
+                    type: number
         "404":
           $ref: "#/components/schemas/BadRequest"
         "500":

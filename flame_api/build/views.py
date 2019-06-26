@@ -36,15 +36,13 @@ class BuildModel(APIView):
         except MultiValueDictKeyError:
             file_obj = False
      
-        params =request.POST.get('parameters')
+        params = request.POST.get('parameters')  
               
         epd = utils.model_path(modelname, 0)
         lfile = os.path.join(epd, 'training_series')
-    
-        print (params)
+        
         # TODO: implement correctly flame build
         builder = build.Build(modelname,param_string=params,output_format="JSON")
-
         try:
             if isinstance(file_obj, bool):
      
@@ -65,9 +63,20 @@ class BuildModel(APIView):
                 shutil.copy(training_data, lfile)        
        
         except Exception as e:
-            return Response(str(e), status=status.HTTP_400_BAD_REQUEST) 
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+            
         if (flame_status[0]):
-            return Response(flame_status[1], status=status.HTTP_200_OK)
+            if isinstance(file_obj, bool):
+                filename = "internal training set"
+            else:
+                filename = file_obj.name
+            response = {
+                "buildStatus": "Model builded succesfully",
+                "fileName":  filename,
+                "modelName": modelname,
+                "version": 0
+            }
+            return JsonResponse(response, status=status.HTTP_200_OK)
         else:
             return Response(json.loads(flame_status[1]), status = status.HTTP_404_NOT_FOUND)
         
