@@ -2,7 +2,7 @@ openapi: "3.0.0"
 info:
   description: |
     Specification of the flame API
-  version: "1.0"
+  version: "1"
   title: Flame API
   license:
     name: GLP v3 and posterior
@@ -16,15 +16,14 @@ servers:
           - 'v1'
         default: 'v0'
 
-Unlike path parameters, ser
 tags:
-  - name: predict
+  - name: Predict
     description: Predict interface
-  - name: build
+  - name: Build
     description: Build models
-  - name: manage
+  - name: Manage
     description: Manage models, versioning, etc.
-  - name: minimal
+  - name: Minimal
     description: Minimal API specifications
   #- name: user
   #  description: user with acces to prediction and basic manage
@@ -41,7 +40,7 @@ paths:
   /api:
     get:
       tags:
-        - minimal
+        - Minimal
       summary: Returns this API definition
       responses:
         200:
@@ -53,43 +52,43 @@ paths:
   /ready:
     get:
       tags:
-        - minimal
+        - Minimal
       summary: Reports the status of the service component
       responses:
         200:
           description: Service is up and operational
           content:
             text/plain:
-            schema:
-            type: string
-            example: Service is ready
+              schema:
+                type: string
+                example: Service is ready
         503:
           description: Service is non-operational
           content:
             text/plain:
-            schema:
-            type: string
-            example: Service is down for maintenance
+              schema:
+                type: string
+                example: Service is down for maintenance
   /alive:
     get:
       tags:
-        - minimal
+        - Minimal
       summary: Performs a health check of the service
       responses:
         200:
           description: Service passes the internal tests and works
           content:
             text/plain:
-            schema:
-            type: string
-            example: Service is up and running
+              schema:
+                type: string
+                example: Service is up and running
         503:
           description: Service is non-operational
           content:
             text/plain:
-            schema:
-            type: string
-            example: Service is non-operation
+              schema:
+                type: string
+                example: Service is non-operation
       
   #--------
   # MANAGE
@@ -98,7 +97,7 @@ paths:
   /manage/models:
     get:
       tags:
-        - manage
+        - Manage
         #- user
       summary: Model list
       parameters:
@@ -129,16 +128,21 @@ paths:
   /manage/import:
     post:
       tags:
-        - manage
+        - Manage
       summary: Import model
       description: import the new model from selecetd tar file
-      parameters:
-        - in: path
-          name: tarfile
-          description: tarfile with the modle to import
-          required: true
-          schema:
-            type: tarfile
+      
+      requestBody:
+        description: tarfile of the model
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                tarfile:
+                  type: string
+                  format: binary
       responses:
         "200":
           description: Model imported successfully
@@ -157,7 +161,7 @@ paths:
     # CREATE
     post:
       tags:
-        - manage
+        - Manage
         #- modeler
       description: create a new model with the given name
       summary: New model
@@ -189,7 +193,7 @@ paths:
     # GET INFO
     get:
       tags:
-        - manage
+        - Manage
         #- user
       description: retrieve information of of given Model
       summary: Model info
@@ -221,7 +225,7 @@ paths:
     # PUBLISH MODEL
     put:
       tags:
-        - manage
+        - Manage
         #- modeler
       description: create a new version via flame publish method
       summary: New version
@@ -253,7 +257,7 @@ paths:
     # DELETE MODEL
     delete:
       tags:
-        - manage
+        - Manage
         #- modeler
       description: delete model
       summary: Delete model
@@ -281,12 +285,12 @@ paths:
   /manage/model/{modelname}/export:
     get:
       tags:
-        - manage
+        - Manage
       description: export model selected as a tar file
       summary:  export model selected
       parameters:
         - in: path
-          name: model name
+          name: modelname
           description: name of the model to export
           required: true
           schema:
@@ -298,7 +302,7 @@ paths:
   /manage/model/{modelname}/version/{version}:
     get:
       tags:
-        - manage
+        - Manage
         #- user
       description: retrive information about the model version
       summary: Version info
@@ -337,7 +341,7 @@ paths:
 
     delete:
       tags:
-        - manage
+        - Manage
         #- modeler
       description: delete version
       summary: Delete version
@@ -374,7 +378,7 @@ paths:
   /manage/model/{modelname}/version/{version}/parameters:
     get:
       tags:
-        - manage
+        - Manage
         #- user
       description: retrieve model parameters
       summary: Model parameters
@@ -410,7 +414,7 @@ paths:
   /manage/model/{modelname}/version/{version}/validation:
     get:
       tags:
-        - manage
+        - Manage
         #- user
       description: retrieve model parameters
       summary: Model parameters
@@ -449,7 +453,7 @@ paths:
   /build/model/{modelname}:
     post:
       tags:
-        - build
+        - Build
         #- modeler
       description: Build model with the present SDF in the body as training set. Always builds version 0
       summary: Build model
@@ -506,7 +510,7 @@ paths:
   /predict/model/{modelname}/version/{version}:
     put:
       tags:
-        - predict
+        - Predict
         #- user
       description: 'uploads molecules and runs prediction with specified model '
       summary: Predict 
