@@ -26,7 +26,7 @@ urlpatterns = [
     #url(r'^', include('API.urls')),
     url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$', RedirectView.as_view(url='/static/%(path)s', permanent=False)),
     #path("admin/", admin.site.urls),
-    url("manage/", include("manage.urls")),
-    url("build/", include("build.urls")),
-    url("predict/", include("predict.urls")),
+    url("api/flame/manage/", include("manage.urls")),
+    url("api/flame/build/", include("build.urls")),
+    url("api/flame/predict/", include("predict.urls")),
 ]
