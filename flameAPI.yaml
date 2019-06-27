@@ -2,13 +2,21 @@ openapi: "3.0.0"
 info:
   description: |
     Specification of the flame API
-  version: "1"
+  version: "1.0"
   title: Flame API
   license:
     name: GLP v3 and posterior
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
 servers:
-  - url: http://localhost:8000/
+  - url: http://localhost:8000/api/flame/{version}
+    variables:
+      version:
+        enum:
+          - 'v0'
+          - 'v1'
+        default: 'v0'
+
+Unlike path parameters, ser
 tags:
   - name: predict
     description: Predict interface
@@ -16,6 +24,8 @@ tags:
     description: Build models
   - name: manage
     description: Manage models, versioning, etc.
+  - name: minimal
+    description: Minimal API specifications
   #- name: user
   #  description: user with acces to prediction and basic manage
   #- name: modeler
@@ -25,6 +35,62 @@ tags:
 # PATHS
 #==================
 paths:
+  #----------------------
+  # MINIMAL specification 
+  #----------------------
+  /api:
+    get:
+      tags:
+        - minimal
+      summary: Returns this API definition
+      responses:
+        200:
+          description: YAML specification of the API
+          content:
+            text/yaml:
+              schema:
+                type: object
+  /ready:
+    get:
+      tags:
+        - minimal
+      summary: Reports the status of the service component
+      responses:
+        200:
+          description: Service is up and operational
+          content:
+            text/plain:
+            schema:
+            type: string
+            example: Service is ready
+        503:
+          description: Service is non-operational
+          content:
+            text/plain:
+            schema:
+            type: string
+            example: Service is down for maintenance
+  /alive:
+    get:
+      tags:
+        - minimal
+      summary: Performs a health check of the service
+      responses:
+        200:
+          description: Service passes the internal tests and works
+          content:
+            text/plain:
+            schema:
+            type: string
+            example: Service is up and running
+        503:
+          description: Service is non-operational
+          content:
+            text/plain:
+            schema:
+            type: string
+            example: Service is non-operation
+      
   #--------
   # MANAGE
   #--------
