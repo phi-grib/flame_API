@@ -25,7 +25,7 @@ SECRET_KEY = "ul-c_)4d4pz!g42-$-(3a^v4--prqkfzgmxels2h1_!ul(pkj!"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['tartaro', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['tartaro', 'localhost', '127.0.0.1', '0.0.0.0']
 
 # Application definition
 
