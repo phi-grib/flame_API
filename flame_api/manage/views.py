@@ -102,8 +102,6 @@ class ManageVersions(APIView):
         """
         Retrieve info of model version
         """
-        print(modelname)
-        print(version)
         flame_status = manage.action_info(modelname, version,
         output='JSON')
         if flame_status[0]:
