@@ -46,7 +46,7 @@ class ManageModels(APIView):
         # TODO: FIX model info and metadata for  whole endpoint in flame
         flame_status = manage.action_info(modelname, 0,output='JSON')
         if flame_status[0]:
-            return JsonResponse(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
             
