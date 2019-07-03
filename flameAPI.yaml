@@ -18,9 +18,13 @@ servers:
 
 tags:
   - name: Predict
-    description: Predict interface
+    description: Predict the properties of a query compound
   - name: Build
-    description: Build models
+    description: Build a predictive model
+  - name: Search
+    description: Search compounds similar to a query compound 
+  - name: Sbuild
+    description: Build a chemical space
   - name: Manage
     description: Manage models, versioning, etc.
   - name: Minimal
@@ -481,7 +485,7 @@ paths:
       
       responses:
         "200":
-          description: Model builded succesfully
+          description: Model built succesfully
           content:
             application/json:
               schema:
@@ -563,8 +567,123 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
   
-  
+  #---------
+  # SBUILD
+  #---------
+  # PLACE SDF IN POST IN BODY
+  /sbuild/space/{spacename}:
+    post:
+      tags:
+        - Sbuild
+      description: Build a chemical space with the present SDF in the body. Always builds version 0
+      summary: Build a chemical space
+      parameters:
+        - in: path
+          name: space name
+          description: name of the chemical space that will be build
+          required: true
+          schema:
+            type: string
 
+      requestBody:
+        description: SDFile with a collection of compounds populating the chemical space
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                modelParams:
+                  $ref: "#/components/schemas/ModelParameters"
+      
+      responses:
+        "200":
+          description: Space built succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  buildStatus:
+                    description: return flame status
+                    type: string
+                  fileName:
+                    description: uploaded file name in the server
+                    type: string
+                  modelName:
+                    type: string
+                  version:
+                    type: number
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+  #----------
+  # SEARCH
+  #----------
+  /search/space/{spacename}/version/{version}:
+    put:
+      tags:
+        - Search
+      description: 'uploads molecules and runs simuilarity search with specified space and parameters '
+      summary: Search 
+      operationId: Search
+      parameters:
+        - in: path
+          required: true
+          name: spacename
+          description: space id to run similarity search
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the chemical space to run similarity search
+          required: true
+          schema:
+            type: string
+      
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                searchParams:
+                  $ref: "#/components/schemas/SearchParameters"
+      
+      responses:
+        '200':
+          description: search successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Manifest:
+                    description: especification of what data is represented
+                    type: array
+                    items:
+                      type: object
+                  Meta:
+                    description: model metainformation
+                    type: object
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  
 #======================
 # COMPONENTS
 #======================
@@ -619,6 +738,13 @@ components:
       description: Model parameters object
       type: object
     
+    # ----------------
+    # SEARCH PARAMETERS
+    # ----------------
+    SearchParameters:
+      description: Search parameters object
+      type: object
+
     # -------------
     # MODEL RESULTS
     # -------------
