@@ -468,15 +468,15 @@ paths:
                   version:
                     type: string
         "400":
+          $ref: "#/components/schemas/FileNotProvided"
+        "404":
           $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        #"404":
-        #  $ref: "#/components/schemas/ModelNotFound"
-        #"500":
-        #  $ref: "#/components/schemas/InternalServerError"
-        #"503":
-        #  $ref: "#/components/schemas/ServiceUnavailable"
+        "405":
+          $ref: "#/components/schemas/NotImplemented"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
   
   #----------
   # PREDICT
@@ -530,10 +530,12 @@ paths:
                   Meta:
                     description: model metainformation
                     type: object
+        "400":
+          $ref: "#/components/schemas/FileNotProvided"
         "404":
           $ref: "#/components/schemas/BadRequest"
-        "418":
-          $ref: "#/components/schemas/ModelNotFound"
+        "405":
+          $ref: "#/components/schemas/NotImplemented"
         "500":
           $ref: "#/components/schemas/InternalServerError"
         "503":
@@ -626,9 +628,11 @@ components:
     # -------
     # STATUS
     # ------- 
+
+    FileNotProvided:
+      description: File not provided
     UnauthorizedError:
       description: Access token is missing or invalid
-
     BadRequest:
       description: Invalid input parameter
 
