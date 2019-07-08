@@ -7,14 +7,28 @@ info:
   license:
     name: GLP v3 and posterior
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
+servers:
+  - url: http://localhost:8000/api/flame/{version}
+    variables:
+      version:
+        enum:
+          - 'v0'
+          - 'v1'
+        default: 'v0'
 
 tags:
-  - name: predict
-    description: Predict interface
-  - name: build
-    description: Build models
-  - name: manage
+  - name: Predict
+    description: Predict the properties of a query compound
+  - name: Build
+    description: Build a predictive model
+  - name: Search
+    description: Search compounds similar to a query compound 
+  - name: Sbuild
+    description: Build a chemical space
+  - name: Manage
     description: Manage models, versioning, etc.
+  - name: Minimal
+    description: Minimal API specifications
   #- name: user
   #  description: user with acces to prediction and basic manage
   #- name: modeler
@@ -24,6 +38,62 @@ tags:
 # PATHS
 #==================
 paths:
+  #----------------------
+  # MINIMAL specification 
+  #----------------------
+  /api:
+    get:
+      tags:
+        - Minimal
+      summary: Returns this API definition
+      responses:
+        200:
+          description: YAML specification of the API
+          content:
+            text/yaml:
+              schema:
+                type: object
+  /ready:
+    get:
+      tags:
+        - Minimal
+      summary: Reports the status of the service component
+      responses:
+        200:
+          description: Service is up and operational
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Service is ready
+        503:
+          description: Service is non-operational
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Service is down for maintenance
+  /alive:
+    get:
+      tags:
+        - Minimal
+      summary: Performs a health check of the service
+      responses:
+        200:
+          description: Service passes the internal tests and works
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Service is up and running
+        503:
+          description: Service is non-operational
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Service is non-operation
+      
   #--------
   # MANAGE
   #--------
@@ -31,7 +101,7 @@ paths:
   /manage/models:
     get:
       tags:
-        - manage
+        - Manage
         #- user
       summary: Model list
       parameters:
@@ -49,40 +119,53 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Model"
-        "400":
-          $ref: "#/components/schemas/BadRequest"
+                  $ref: "#/components/schemas/ListModel"
         "404":
-          $ref: "#/components/schemas/ModelNotFound"
+          $ref: "#/components/schemas/BadRequest"
         "500":
           $ref: "#/components/schemas/InternalServerError"
-        "501":
-          $ref: "#/components/schemas/NotImplemented"
+        #"501":
+          #$ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
   
   /manage/import:
     post:
       tags:
-        - manage
+        - Manage
       summary: Import model
       description: import the new model from selecetd tar file
-      parameters:
-        - in: path
-          name: tarfile
-          description: tarfile with the modle to import
-          required: true
-          schema:
-            type: tarfile
+      
+      requestBody:
+        description: tarfile of the model
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                tarfile:
+                  type: string
+                  format: binary
       responses:
         "200":
-          description: model name
+          description: Model imported successfully
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        #"501":
+          #$ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
   
   /manage/model/{modelname}:
     # CREATE
     post:
       tags:
-        - manage
+        - Manage
         #- modeler
       description: create a new model with the given name
       summary: New model
@@ -102,7 +185,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Model"
   
-        "400":
+        "404":
           $ref: "#/components/schemas/BadRequest"
         "401":
           $ref: "#/components/schemas/UnauthorizedError"
@@ -114,7 +197,7 @@ paths:
     # GET INFO
     get:
       tags:
-        - manage
+        - Manage
         #- user
       description: retrieve information of of given Model
       summary: Model info
@@ -132,10 +215,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ModelInfo"
+                $ref: "#/components/schemas/ModelInfoArray"
       
-        "400":
-          $ref: "#/components/schemas/BadRequest"
         "404":
           $ref: "#/components/schemas/ModelNotFound"
         "500":
@@ -148,7 +229,7 @@ paths:
     # PUBLISH MODEL
     put:
       tags:
-        - manage
+        - Manage
         #- modeler
       description: create a new version via flame publish method
       summary: New version
@@ -167,8 +248,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/Model"
                 
-        "400":
-          $ref: "#/components/schemas/BadRequest"
+        #"400":
+        #  $ref: "#/components/schemas/BadRequest"
         "401":
           $ref: "#/components/schemas/UnauthorizedError"
         "404":
@@ -180,7 +261,7 @@ paths:
     # DELETE MODEL
     delete:
       tags:
-        - manage
+        - Manage
         #- modeler
       description: delete model
       summary: Delete model
@@ -208,12 +289,12 @@ paths:
   /manage/model/{modelname}/export:
     get:
       tags:
-        - manage
+        - Manage
       description: export model selected as a tar file
       summary:  export model selected
       parameters:
         - in: path
-          name: model name
+          name: modelname
           description: name of the model to export
           required: true
           schema:
@@ -225,7 +306,7 @@ paths:
   /manage/model/{modelname}/version/{version}:
     get:
       tags:
-        - manage
+        - Manage
         #- user
       description: retrive information about the model version
       summary: Version info
@@ -249,7 +330,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ModelInfo"
+                $ref: "#/components/schemas/ModelInfoArray"
       
         "400":
           $ref: "#/components/schemas/BadRequest"
@@ -264,7 +345,7 @@ paths:
 
     delete:
       tags:
-        - manage
+        - Manage
         #- modeler
       description: delete version
       summary: Delete version
@@ -301,7 +382,7 @@ paths:
   /manage/model/{modelname}/version/{version}/parameters:
     get:
       tags:
-        - manage
+        - Manage
         #- user
       description: retrieve model parameters
       summary: Model parameters
@@ -334,60 +415,10 @@ paths:
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
     
-    put: 
-    # upload and update parameters
-      tags:
-        - manage
-        #- modeler
-      description: update model parameters
-      summary: Update model parameters
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
-        - name: version
-          in: path
-          description: version of the model to get info from
-          required: true
-          schema:
-            type: string
-            
-      requestBody: # "deltas"
-        description: subset parameters to sent to the server 
-          as _deltas_ and update the model params
-        required: true
-        content:
-          application/json: {}  # undefined for now
-
-      responses:
-        "200":
-          description: Model parameters updated OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ModelParameters"
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-
-  #---------
-  # BUILD
-  #---------
-  # PLACE SDF IN POST IN BODY
   /manage/model/{modelname}/version/{version}/validation:
     get:
       tags:
-        - manage
+        - Manage
         #- user
       description: retrieve model parameters
       summary: Model parameters
@@ -413,17 +444,20 @@ paths:
                 $ref: "#/components/schemas/ModelParameters"
         "400":
           $ref: "#/components/schemas/BadRequest"
-        #"404":
-        #  $ref: "#/components/schemas/ModelNotFound"
-        #"500":
-        #  $ref: "#/components/schemas/InternalServerError"
-        #"503":
-        #  $ref: "#/components/schemas/ServiceUnavailable"
-
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  #---------
+  # BUILD
+  #---------
+  # PLACE SDF IN POST IN BODY
   /build/model/{modelname}:
     post:
       tags:
-        - build
+        - Build
         #- modeler
       description: Build model with the present SDF in the body as training set. Always builds version 0
       summary: Build model
@@ -437,7 +471,7 @@ paths:
 
       requestBody:
         description: training SDF to build the model with
-        required: true
+        required: false
         content:
           multipart/form-data:
             schema:
@@ -451,7 +485,7 @@ paths:
       
       responses:
         "200":
-          description: Model builded succesfully
+          description: Model built succesfully
           content:
             application/json:
               schema:
@@ -466,13 +500,9 @@ paths:
                   modelName:
                     type: string
                   version:
-                    type: string
-        "400":
-          $ref: "#/components/schemas/FileNotProvided"
+                    type: number
         "404":
           $ref: "#/components/schemas/BadRequest"
-        "405":
-          $ref: "#/components/schemas/NotImplemented"
         "500":
           $ref: "#/components/schemas/InternalServerError"
         "503":
@@ -484,7 +514,7 @@ paths:
   /predict/model/{modelname}/version/{version}:
     put:
       tags:
-        - predict
+        - Predict
         #- user
       description: 'uploads molecules and runs prediction with specified model '
       summary: Predict 
@@ -534,15 +564,128 @@ paths:
           $ref: "#/components/schemas/FileNotProvided"
         "404":
           $ref: "#/components/schemas/BadRequest"
-        "405":
-          $ref: "#/components/schemas/NotImplemented"
         "500":
           $ref: "#/components/schemas/InternalServerError"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
   
-  
+  #---------
+  # SBUILD
+  #---------
+  # PLACE SDF IN POST IN BODY
+  /sbuild/space/{spacename}:
+    post:
+      tags:
+        - Sbuild
+      description: Build a chemical space with the present SDF in the body. Always builds version 0
+      summary: Build a chemical space
+      parameters:
+        - in: path
+          name: space name
+          description: name of the chemical space that will be build
+          required: true
+          schema:
+            type: string
 
+      requestBody:
+        description: SDFile with a collection of compounds populating the chemical space
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                modelParams:
+                  $ref: "#/components/schemas/ModelParameters"
+      
+      responses:
+        "200":
+          description: Space built succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  buildStatus:
+                    description: return flame status
+                    type: string
+                  fileName:
+                    description: uploaded file name in the server
+                    type: string
+                  modelName:
+                    type: string
+                  version:
+                    type: number
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+  #----------
+  # SEARCH
+  #----------
+  /search/space/{spacename}/version/{version}:
+    put:
+      tags:
+        - Search
+      description: 'uploads molecules and runs simuilarity search with specified space and parameters '
+      summary: Search 
+      operationId: Search
+      parameters:
+        - in: path
+          required: true
+          name: spacename
+          description: space id to run similarity search
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the chemical space to run similarity search
+          required: true
+          schema:
+            type: string
+      
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                searchParams:
+                  $ref: "#/components/schemas/SearchParameters"
+      
+      responses:
+        '200':
+          description: search successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Manifest:
+                    description: especification of what data is represented
+                    type: array
+                    items:
+                      type: object
+                  Meta:
+                    description: model metainformation
+                    type: object
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  
 #======================
 # COMPONENTS
 #======================
@@ -560,19 +703,35 @@ components:
     Model:
       type: object
       properties:
-        modelID:
-          type: string
-          format: uuid
         modelNname:
           type: string
-        versions:
+        version:
+          type: string
+      example:
+        modelName: CACO2
+        versions: "0"
+    # -------
+    # ListModel
+    # -------
+    ListModel:
+      type: object
+      properties:
+        modelName:
+          type: string
+        nodes:
           type: array
           items:
-            type: string
-      example:
-        modelID: d290f1ee
-        modelName: CACO2
-        versions: ["0"]
+            type: object
+            properties:
+              text:
+                type: string 
+            example:
+              text:
+      example: 
+        text: Model4
+        nodes: [text: dev,text: ver000001]
+
+    
 
     # ----------------
     # MODEL PARAMETERS
@@ -581,6 +740,13 @@ components:
       description: Model parameters object
       type: object
     
+    # ----------------
+    # SEARCH PARAMETERS
+    # ----------------
+    SearchParameters:
+      description: Search parameters object
+      type: object
+
     # -------------
     # MODEL RESULTS
     # -------------
@@ -624,6 +790,45 @@ components:
           },
           ...
         ]
+    #----------
+    # MODEL INFO
+    # ----------
+    ModelInfoArray:
+      type: array
+      items: 
+        type: array
+        items:
+          type: string
+      example: |
+        [
+          [
+          "nobj",
+          "number of objects",
+          100
+          ],
+          [
+          "nvarx",
+          "number of predictor variables",
+          10
+          ],
+          [
+              "model",
+              "model type",
+              "RF quantitative"
+          ],
+          [
+              "scoringR",
+              "Scoring P",
+              0.04411365154338174
+          ],
+          [
+              "R2",
+              "Determination coefficient",
+              0.9267718233293424
+          ],
+          [...]
+        ]
+       
   
     # -------
     # STATUS
@@ -639,6 +844,9 @@ components:
     ModelNotFound:
       description: Model not found
     
+    ModelAlreadyExist:
+      description: Model already exist
+
     VersionNotFound:
       description: Version not found
     
