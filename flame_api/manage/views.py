@@ -1,5 +1,6 @@
 import tempfile
 import os
+import json
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -28,7 +29,7 @@ class ListModels(APIView):
     def get(self, request):
         models = manage.action_dir()
         # TODO: fix what flame returns
-        return Response(models, 200)
+        return Response(json.loads(models[1]), 200)
 
 
 class ManageModels(APIView):
@@ -43,10 +44,12 @@ class ManageModels(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = manage.action_info(modelname, 0)
-
-        return Response(flame_status, status=status.HTTP_200_OK)
-
+        flame_status = manage.action_info(modelname, 0,output='JSON')
+        if flame_status[0]:
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            
     def post(self, request, modelname):
         """
         Creates a new flame model
@@ -54,9 +57,9 @@ class ManageModels(APIView):
         flame_status = manage.action_new(modelname)
 
         if flame_status[1] == f"Endpoint {modelname} already exists":
-            return HttpResponse(flame_status[1], status=status.HTTP_409_CONFLICT)
+            return JsonResponse({'error':flame_status[1]}, status=status.HTTP_409_CONFLICT)
 
-        response = {"status": flame_status, "modelName": modelname, "versions": ["0"]}
+        response = {"modelName": modelname, "versions": "0"}
 
         return JsonResponse(response, status=status.HTTP_201_CREATED)
 
@@ -66,11 +69,11 @@ class ManageModels(APIView):
         """
         flame_status = manage.action_kill(modelname)
 
-        if flame_status[0] == True:
+        if flame_status[0]:
             return Response(status=status.HTTP_204_NO_CONTENT)
         # TODO: implement other responses for model not found
         else:
-            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return JsonResponse({'error':flame_status[1]}, status=status.HTTP_404_NOT_FOUND)
 
     def put(self, request, modelname):
         """
@@ -78,8 +81,16 @@ class ManageModels(APIView):
         TODO: Complete  error handling and error status
         """
         flame_status = manage.action_publish(modelname)
-        return Response(flame_status, status=status.HTTP_201_CREATED)
-
+        if flame_status[0]:
+            #PATCH to get version
+            version = flame_status[1].split('/')
+            version = version[len(version)-1]
+            version = version.replace("ver","")
+            version = int(version)
+            response = {'modelName':modelname,'version':version}
+            return JsonResponse(response, status=status.HTTP_201_CREATED)
+        else:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
 class ManageVersions(APIView):
     """
@@ -93,15 +104,21 @@ class ManageVersions(APIView):
         """
         flame_status = manage.action_info(modelname, version,
         output='JSON')
-        return Response(flame_status, status=status.HTTP_200_OK)
+        if flame_status[0]:
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, modelname, version):
         """
         Delete model
         """
         flame_status = manage.action_remove(modelname, version)
-        return Response(flame_status, status=status.HTTP_204_NO_CONTENT)
-
+        if flame_status[0]:
+             return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+       
 class ManageParameters(APIView):
     """
     Manage model parameters
@@ -111,9 +128,11 @@ class ManageParameters(APIView):
         """
         Retrieve parameters of model version
         """
-        flame_status = manage.action_parameters(modelname,version,"JSON")
-        #print(flame_status)
-        return Response(flame_status, status=status.HTTP_200_OK)
+        flame_status = manage.action_parameters(modelname,version,"JSON")       
+        if flame_status[0]:
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
 class ManageValidation(APIView):
 
@@ -122,8 +141,11 @@ class ManageValidation(APIView):
         Retrieve parameters of model version
         """
         flame_status = manage.action_results(modelname,version,"JSON")
+        if flame_status[0]:
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
         #print(flame_status)
-        return Response(flame_status, status=status.HTTP_200_OK)
 
 class ManageExport(APIView):
 
@@ -149,8 +171,9 @@ class ManageImport(APIView):
         try:
             file_obj = request.FILES['model']
         except MultiValueDictKeyError:
-            file_obj = False
-
+            response = {"error": "Model to import not provided"}
+            return JsonResponse(response, status = status.HTTP_400_BAD_REQUEST)
+        print (file_obj)
         model_name = file_obj.name.split('.')
         extension = model_name[1]
         model_name = model_name[0]
@@ -159,15 +182,11 @@ class ManageImport(APIView):
         # Exist Model
        
         if os.path.isdir(models_path+ '/' +model_name+'/'):
-            return Response({'Model': "ERROR"},status=status.HTTP_200_OK)
+            return JsonResponse({'error': "Model already exist"},status=status.HTTP_409_CONFLICT)
 
         fs = FileSystemStorage(location=models_path) #defaults to   MEDIA_ROOT  
         tarFile = fs.save(model_name+'.'+extension, file_obj)
-        
-        
-       
         os.mkdir(models_path+ '/' +model_name)
-        
         tar = tarfile.open(models_path+ '/' +tarFile)
         tar.extractall(path=models_path+ '/' +model_name+"/")
         tar.close()
@@ -175,7 +194,7 @@ class ManageImport(APIView):
         os.remove(models_path+ '/' +tarFile) 
 
         #return Response(flame_status, status=status.HTTP_200_OK)
-        return Response({'Model': model_name})
+        return JsonResponse({'Model': model_name}, status=status.HTTP_200_OK)
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
