@@ -13,6 +13,7 @@ from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.utils.datastructures import MultiValueDictKeyError
+from rest_framework.permissions import IsAuthenticated
 
 from flame import manage
 from flame.util import utils
@@ -25,7 +26,7 @@ class ListModels(APIView):
     """
     Model list
     """
-
+    #permission_classes = (IsAuthenticated,)
     def get(self, request):
         models = manage.action_dir()
         # TODO: fix what flame returns
@@ -36,6 +37,7 @@ class ManageModels(APIView):
     """
     Manage flame model (aka endpoint)
     """
+    #permission_classes = (IsAuthenticated,)
 
     def get(self, request, modelname):
         """
