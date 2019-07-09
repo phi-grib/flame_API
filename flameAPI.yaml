@@ -49,6 +49,9 @@ paths:
             text/yaml:
               schema:
                 type: object
+        401:
+          $ref: "#/components/schemas/UnauthorizedError"
+
   /ready:
     get:
       tags:
@@ -62,6 +65,9 @@ paths:
               schema:
                 type: string
                 example: Service is ready
+        401:
+         $ref: "#/components/schemas/UnauthorizedError"
+
         503:
           description: Service is non-operational
           content:
@@ -82,6 +88,9 @@ paths:
               schema:
                 type: string
                 example: Service is up and running
+        401:
+          $ref: "#/components/schemas/UnauthorizedError"
+
         503:
           description: Service is non-operational
           content:
