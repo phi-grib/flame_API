@@ -13,7 +13,7 @@ from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.utils.datastructures import MultiValueDictKeyError
-from rest_framework.permissions import IsAuthenticated
+#from rest_framework.permissions import IsAuthenticated
 
 from flame import manage
 from flame.util import utils
