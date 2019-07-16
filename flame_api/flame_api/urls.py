@@ -24,11 +24,11 @@ urlpatterns = [
 
     url(r'^$', serve, kwargs={'path': 'index.html'}),
     url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$', RedirectView.as_view(url='/static/%(path)s', permanent=False)),
-    url("flame/api/",include("minimal.urls")),
-    url("flame/api/manage/", include("manage.urls")),
-    url("flame/api/smanage/", include("smanage.urls")),
-    url("flame/api/build/", include("build.urls")),
-    url("flame/api/sbuild/", include("sbuild.urls")),
-    url("flame/api/predict/", include("predict.urls")),
-    url("flame/api/search/", include("search.urls"))
+    url("api/",include("minimal.urls")),
+    url("api/manage/", include("manage.urls")),
+    url("api/smanage/", include("smanage.urls")),
+    url("api/build/", include("build.urls")),
+    url("api/sbuild/", include("sbuild.urls")),
+    url("api/predict/", include("predict.urls")),
+    url("api/search/", include("search.urls"))
 ]
