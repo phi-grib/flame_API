@@ -22,11 +22,16 @@ class Search(APIView):
     Build model
     """
 
-    parser_classes = (MultiPartParser,)
+    #parser_classes = (MultiPartParser,)
 
     def put(self, request, spacename, version, format=None):
 
         # get the upladed file with name "file"
+
+        metric = request.query_params.get('metric')
+        numsel = request.query_params.get('numsel')
+        cutoff = request.query_params.get('cutoff')
+
         try:
             file_obj = request.FILES["SDF"]
         except MultiValueDictKeyError as e:
@@ -42,7 +47,7 @@ class Search(APIView):
         search_data = os.path.join(temp_dir, path)
 
         searcher = search.Search(spacename, int(version))
-        flame_status = searcher.run(search_data)
+        flame_status = searcher.run(search_data, metric=metric, numsel=int(numsel), cutoff=float(cutoff))
         if flame_status[0]:
             return JsonResponse(json.loads(flame_status[1]), status=status.HTTP_200_OK)
         else:
