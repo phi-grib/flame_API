@@ -47,6 +47,9 @@ class Search(APIView):
         search_data = os.path.join(temp_dir, path)
 
         searcher = search.Search(spacename, int(version))
+        print(metric)
+        print(int(numsel))
+        print(float(cutoff))
         flame_status = searcher.run(search_data, metric=metric, numsel=int(numsel), cutoff=float(cutoff))
         if flame_status[0]:
             return JsonResponse(json.loads(flame_status[1]), status=status.HTTP_200_OK)

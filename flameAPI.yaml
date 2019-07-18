@@ -8,13 +8,12 @@ info:
     name: GLP v3 and posterior
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
 servers:
-  - url: http://localhost:8000/api/flame/{version}
+  - url: /api/{version}
     variables:
       version:
         enum:
-          - 'v0'
           - 'v1'
-        default: 'v0'
+        default: 'v1'
 
 tags:
   - name: Predict
