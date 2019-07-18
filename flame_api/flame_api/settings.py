@@ -131,7 +131,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # CORS
 ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
+KH_APP_DIR = os.path.join(BASE_DIR, 'flame.kh.sc/frontend')
 
 STATICFILES_DIRS = [
     os.path.join(ANGULAR_APP_DIR),
+    os.path.join(KH_APP_DIR),
 ]
