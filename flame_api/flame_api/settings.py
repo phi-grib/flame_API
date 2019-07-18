@@ -126,8 +126,8 @@ USE_TZ = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # CORS
 ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
