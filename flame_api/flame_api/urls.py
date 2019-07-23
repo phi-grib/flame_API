@@ -19,11 +19,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.views.generic import RedirectView
 from django.contrib.staticfiles.views import serve
+from . import views
+
 
 urlpatterns = [
 
-    url(r'^$', serve, kwargs={'path': 'index.html'}),
-    url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$', RedirectView.as_view(url='/static/%(path)s', permanent=False)),
+    #url(r'^$', serve, kwargs={'path': 'index.html'}),
+    #url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$', RedirectView.as_view(url='/static/%(path)s', permanent=False)),
+    url(r'^$', views.HomePageView.as_view()),
     url("api/v1/",include("minimal.urls")),
     url("api/v1/manage/", include("manage.urls")),
     url("api/v1/smanage/", include("smanage.urls")),
