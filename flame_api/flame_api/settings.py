@@ -135,3 +135,5 @@ ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
 STATICFILES_DIRS = [
     os.path.join(ANGULAR_APP_DIR),
 ]
+print (STATICFILES_DIRS)
+print (BASE_DIR)
