@@ -20,14 +20,18 @@ from django.conf.urls import url, include
 from django.views.generic import RedirectView
 from django.contrib.staticfiles.views import serve
 from django.views.generic.base import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
+from . import views
 
 
 urlpatterns = [
 
-    #url(r'^$', serve, kwargs={'path': 'index.html'}),
+   
+    url(r'^$', serve,kwargs={'path': 'index.html'}), 
+    #url(r'^$', views.HomePageView.as_view() ),
     #url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$',
-    # RedirectView.as_view(url='/static/%(path)s', permanent=False)),
-    url(r'^$', serve,kwargs={'path': 'index.html'}),    
+    #    RedirectView.as_view(url='/static/%(path)s', permanent=False)),
     url("api/v1/",include("minimal.urls")),
     url("api/v1/manage/", include("manage.urls")),
     url("api/v1/smanage/", include("smanage.urls")),
@@ -35,4 +39,4 @@ urlpatterns = [
     url("api/v1/sbuild/", include("sbuild.urls")),
     url("api/v1/predict/", include("predict.urls")),
     url("api/v1/search/", include("search.urls"))
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
