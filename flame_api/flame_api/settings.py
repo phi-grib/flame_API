@@ -126,8 +126,8 @@ USE_TZ = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-STATIC_URL = '/flame.kh.svc/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'flame.kh.svc')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # CORS
 ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
@@ -135,4 +135,3 @@ ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
 STATICFILES_DIRS = [
     os.path.join(ANGULAR_APP_DIR),
 ]
-print (STATICFILES_DIRS)
