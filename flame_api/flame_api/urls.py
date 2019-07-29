@@ -32,11 +32,11 @@ urlpatterns = [
     #url(r'^$', views.HomePageView.as_view() ),
     url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$',
         RedirectView.as_view(url='/static/%(path)s', permanent=False)),
-    url("api/v1/",include("minimal.urls")),
-    url("api/v1/manage/", include("manage.urls")),
-    url("api/v1/smanage/", include("smanage.urls")),
-    url("api/v1/build/", include("build.urls")),
-    url("api/v1/sbuild/", include("sbuild.urls")),
-    url("api/v1/predict/", include("predict.urls")),
-    url("api/v1/search/", include("search.urls"))
+    url("flame.kh.svc/api/v1/",include("minimal.urls")),
+    url("flame.kh.svc/api/v1/manage/", include("manage.urls")),
+    url("flame.kh.svc/api/v1/smanage/", include("smanage.urls")),
+    url("flame.kh.svc/api/v1/build/", include("build.urls")),
+    url("flame.kh.svc/api/v1/sbuild/", include("sbuild.urls")),
+    url("flame.kh.svc/api/v1/predict/", include("predict.urls")),
+    url("flame.kh.svc/api/v1/search/", include("search.urls"))
 ]
