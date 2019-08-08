@@ -88,3 +88,19 @@ class ManageSpaces(APIView):
             return JsonResponse(response, status=status.HTTP_201_CREATED)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
+class ManageVersions(APIView):
+    """
+    Manage models to the version level
+    TODO: FIX and FINISH!
+    """
+
+    def delete(self, request, spacename, version):
+        """
+        Delete model
+        """
+        flame_status = smanage.action_remove(spacename, version)
+        if flame_status[0]:
+             return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
