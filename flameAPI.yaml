@@ -16,18 +16,22 @@ servers:
         default: 'v1'
 
 tags:
-  - name: Predict
-    description: Predict the properties of a query compound
-  - name: Build
-    description: Build a predictive model
-  - name: Search
-    description: Search compounds similar to a query compound 
-  - name: Sbuild
-    description: Build a chemical space
-  - name: Manage
-    description: Manage models, versioning, etc.
   - name: Minimal
     description: Minimal API specifications
+  - name: Manage
+    description: Manage models, versioning, etc.
+  - name: Build
+    description: Build a predictive model
+  - name: Predict
+    description: Predict the properties of a query compound
+  - name: Smanage
+    description: Manage spaces, versioning, etc.
+  - name: Sbuild
+    description: Build a chemical space
+  - name: Search
+    description: Search compounds similar to a query compound 
+  
+  
   #- name: user
   #  description: user with acces to prediction and basic manage
   #- name: modeler
