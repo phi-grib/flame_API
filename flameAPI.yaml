@@ -697,6 +697,170 @@ paths:
           $ref: "#/components/schemas/InternalServerError"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
+
+
+#=============================
+#---------
+# SMANAGE
+#---------
+  /smanage/spaces:
+    get:
+      tags:
+        - Smanage
+        #- user
+      summary: Spaces list
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of spaces to return. Default to all.
+
+      responses:
+        "200":
+          description: requested spaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ListModel"
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        #"501":
+          #$ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  /smanage/space/{spacename}:
+    # CREATE
+    post:
+      tags:
+        - Smanage
+        #- modeler
+      description: create a new model with the given name
+      summary: New model
+      parameters:
+        - in: path
+          name: spacename
+          description: apace name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "201":
+          description: The space has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+
+    # GET INFO
+    get:
+      tags:
+        - Smanage
+        #- user
+      description: retrieve information of of given Model
+      summary: Space info
+      parameters:
+        - name: spacename
+          in: path
+          description: space name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "200":
+          description: requested info of model
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelInfoArray"
+      
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "501":
+          $ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+    
+    # PUBLISH MODEL
+    put:
+      tags:
+        - Smanage
+        #- modeler
+      description: create a new version via flame publish method
+      summary: New version
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be published
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: The model version has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+                
+        #"400":
+        #  $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        
+        
+    # DELETE MODEL
+    delete:
+      tags:
+        - Smanage
+        #- modeler
+      description: delete model
+      summary: Delete model
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: model deleted
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+
+  
+#==============
   
 #======================
 # COMPONENTS
