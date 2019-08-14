@@ -52,9 +52,6 @@ INSTALLED_APPS = [
     ],
 }'''
 
-
-SWAGGER_YAML_FILE = '../flameAPI.yaml' 
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -71,7 +68,7 @@ ROOT_URLCONF = "flame_api.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(os.path.dirname(__file__), 'templates'),],
+        "DIRS": ['templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -138,4 +135,5 @@ ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
 
 STATICFILES_DIRS = [
     os.path.join(ANGULAR_APP_DIR),
+    os.path.join(BASE_DIR,'static')
 ]
