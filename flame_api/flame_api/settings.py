@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "swagger_ui",
     "rest_framework",
     "corsheaders",
     "build.apps.BuildConfig",
@@ -50,6 +51,9 @@ INSTALLED_APPS = [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
 }'''
+
+
+SWAGGER_YAML_FILE = '../flameAPI.yaml' 
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
