@@ -39,4 +39,4 @@ urlpatterns = [
     url("api/v1/sbuild/", include("sbuild.urls")),
     url("api/v1/predict/", include("predict.urls")),
     url("api/v1/search/", include("search.urls"))
-]
+]+ static(settings.STATIC_URL)
