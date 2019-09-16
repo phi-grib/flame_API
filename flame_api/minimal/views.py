@@ -12,7 +12,6 @@ class Ready(APIView):
     """
     Ready service
     """
-
     def get(self, request):
        
         return Response("I am ready", 200)
@@ -21,7 +20,6 @@ class Alive(APIView):
     """
     Alive service
     """
-
     def get(self, request):
        
         return Response("I am alive", 200)
