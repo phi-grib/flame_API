@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
    
-    path('api', TemplateView.as_view(template_name="API.html")),
+    path('api', API.as_view()),
     path("alive", Alive.as_view()),
     path("ready", Ready.as_view()),  
 ]
