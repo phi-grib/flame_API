@@ -1,4 +1,5 @@
 openapi: "3.0.0"
+kind: Service
 info:
   description: |
     Specification of the flame API
@@ -8,8 +9,6 @@ info:
     name: GLP v3 and posterior
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
   x-meta:
-    serviceType: service
-    uuid: de11aca9-b589-4f78-93cb-6b9721a9cfab
     provider: Universitat Pompeu Fabra
     created: 2019-09-27
     released: 2019-09-27
