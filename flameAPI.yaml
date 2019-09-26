@@ -7,6 +7,19 @@ info:
   license:
     name: GLP v3 and posterior
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
+  x-meta:
+    serviceType: flame
+    uuid: de11aca9-b589-4f78-93cb-6b9721a9cfab
+    provider: Universitat Pompeu Fabra
+    created: 2019-09-27
+    released: 2019-09-27
+    lastChanged: 2019-09-27
+    software: 
+      - name: Flame
+        version: 1.0
+        description: Flame Description
+        provider:  Universitat Pompeu Fabra
+        license:  Universitat Pompeu Fabra
 servers:
   - url: /api/{version}
     variables:
@@ -14,7 +27,6 @@ servers:
         enum:
           - 'v1'
         default: 'v1'
-
 tags:
   - name: Minimal
     description: Minimal API specifications
