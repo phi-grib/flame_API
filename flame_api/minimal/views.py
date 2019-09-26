@@ -32,7 +32,7 @@ class API(APIView):
     def get(self, request):
         with open("../flameAPI.yaml", 'r') as stream:
             data_loaded = yaml.safe_load(stream)
-        return Response(data_loaded,200)
+        return Response(data_loaded, status=200)
 
   
 
