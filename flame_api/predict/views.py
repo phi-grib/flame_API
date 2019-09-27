@@ -16,6 +16,8 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from flame import predict
 
+import flame.context as context
+
 
 class Predict(APIView):
     """
@@ -41,13 +43,17 @@ class Predict(APIView):
 
         predict_data = os.path.join(temp_dir, path)
 
-        predictor = predict.Predict(modelname, int(version))
-        flame_status = predictor.run(predict_data)
-        if flame_status[0]:
-            return JsonResponse(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        arguments={'endpoint': modelname, 'version':int(version) ,'infile':predict_data}
         
+        try:
+            success, results = context.predict_cmd(arguments, output_format='JSON')
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
+
+        if success:
+            return JsonResponse(json.loads(results), status=status.HTTP_200_OK)
         else:
-            return Response(flame_status[1], status = status.HTTP_404_NOT_FOUND)
+            return Response(results, status = status.HTTP_404_NOT_FOUND)
         
     
 

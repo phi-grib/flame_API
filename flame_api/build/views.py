@@ -17,9 +17,6 @@ from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
-
-from flame import build
-from flame.util import utils
 import flame.context as context
 
 
@@ -48,12 +45,11 @@ class BuildModel(APIView):
        
         # TODO: implement correctly flame build
         command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params}
-
+        
         try:
             success, results = context.build_cmd(command_build, output_format='JSON')
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
-
         if success:
             if isinstance(file_obj, bool):
                 filename = "internal training set"
@@ -67,7 +63,7 @@ class BuildModel(APIView):
             }
             return JsonResponse(response, status=status.HTTP_200_OK)
         else:
-            return Response(json.loads(results[1]), status = status.HTTP_404_NOT_FOUND)
+            return Response(results, status = status.HTTP_404_NOT_FOUND)
           
        
       
