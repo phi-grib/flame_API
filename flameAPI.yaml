@@ -9,8 +9,8 @@ info:
     name: GLP v3 and posterior
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
   x-meta:
-    serviceType: Service
-    uuid: de11aca9-b589-4f78-93cb-6b9721a9cfaa
+    serviceType: predictor
+    uuid: f27b70ef-1003-4b99-8015-09ab9e052082
     provider: Universitat Pompeu Fabra
     created: 2019-09-27
     released: 2019-09-27
