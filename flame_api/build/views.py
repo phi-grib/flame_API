@@ -46,10 +46,10 @@ class BuildModel(APIView):
         # TODO: implement correctly flame build
         command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params}
         
-        try:
-            success, results = context.build_cmd(command_build, output_format='JSON')
-        except Exception as e:
-            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
+        #try:
+        success, results = context.build_cmd(command_build, output_format='JSON')
+        #except Exception as e:
+            #return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
         if success:
             if isinstance(file_obj, bool):
                 filename = "internal training set"
