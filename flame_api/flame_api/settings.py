@@ -27,7 +27,9 @@ SECRET_KEY = "ul-c_)4d4pz!g42-$-(3a^v4--prqkfzgmxels2h1_!ul(pkj!"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ] 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']ç
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 20*1024*1024  # your size limit in bytes
 
 # Application definition
 
