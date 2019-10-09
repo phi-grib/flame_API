@@ -35,12 +35,14 @@ class BuildModel(APIView):
             file_obj = False
      
         params = request.POST.get('parameters')  
-              
+
+        training_data = None     
         # Set the temp filesystem storage
-        temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
-        fs = FileSystemStorage(location=temp_dir)
-        path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
-        training_data = os.path.join(temp_dir, path_SDF)
+        if not isinstance(file_obj, bool):
+            temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
+            fs = FileSystemStorage(location=temp_dir)
+            path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
+            training_data = os.path.join(temp_dir, path_SDF)
 
        
         # TODO: implement correctly flame build
@@ -63,7 +65,8 @@ class BuildModel(APIView):
             }
             return JsonResponse(response, status=status.HTTP_200_OK)
         else:
-            return Response(results, status = status.HTTP_404_NOT_FOUND)
+            error = json.loads(results);
+            return Response(error['error'], status = status.HTTP_404_NOT_FOUND)
           
        
       
