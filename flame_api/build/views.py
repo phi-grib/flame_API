@@ -18,6 +18,8 @@ from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
 import flame.context as context
+import threading
+import time
 
 
 class BuildModel(APIView):
@@ -48,11 +50,14 @@ class BuildModel(APIView):
         # TODO: implement correctly flame build
         command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params}
         
-        #try:
-        success, results = context.build_cmd(command_build, output_format='JSON')
-        #except Exception as e:
-            #return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
-        if success:
+        try:
+            x = threading.Thread(target=buildThread, args=(command_build,'JSON'))
+            #threads.append(x)
+            x.start()
+            #success, results = context.build_cmd(command_build, output_format='JSON')
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
+        '''if success:
             if isinstance(file_obj, bool):
                 filename = "internal training set"
             else:
@@ -66,10 +71,19 @@ class BuildModel(APIView):
             return JsonResponse(response, status=status.HTTP_200_OK)
         else:
             error = json.loads(results);
-            return Response(error['error'], status = status.HTTP_404_NOT_FOUND)
-          
+            return Response(error['error'], status = status.HTTP_404_NOT_FOUND)'''
+        
+        return Response("Creating Model " + modelname, status=status.HTTP_200_OK)  
        
-      
+def buildThread(command, output):
+
+    print (command)
+    print (output)
+    print ("Thread Start");
+    success, results = context.build_cmd(command, output_format=output)
+    print ("Thread End")
+    print (success)
+    print (results)
         
 
            
