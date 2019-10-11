@@ -1,10 +1,9 @@
 openapi: "3.0.0"
 kind: Service
 info:
-  description: |
-    Specification of the flame API
-  version: "1"
-  title: Flame API
+  version: "0.2"
+  title: Flame
+  description: eTRANSAFE modeling framework for building and applying predictive models.
   license:
     name: GLP v3 and posterior
     url: https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -17,8 +16,8 @@ info:
     lastChanged: 2019-09-27
     software: 
       - name: Flame
-        version: 1.0
-        description: Flame Description
+        version: 0.2
+        description: eTRANSAFE modeling framework for building and applying predictive models.
         provider:  Universitat Pompeu Fabra
         license:  Universitat Pompeu Fabra
 servers:
