@@ -21,7 +21,7 @@ info:
         provider:  Universitat Pompeu Fabra
         license:  Universitat Pompeu Fabra
 servers:
-  - url: /api/{version}
+  - url: /api/v1
     variables:
       version:
         enum:
