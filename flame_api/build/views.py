@@ -77,13 +77,9 @@ class BuildModel(APIView):
        
 def buildThread(command, output):
 
-    print (command)
-    print (output)
     print ("Thread Start");
     success, results = context.build_cmd(command, output_format=output)
     print ("Thread End")
-    print (success)
-    print (results)
         
 
            
