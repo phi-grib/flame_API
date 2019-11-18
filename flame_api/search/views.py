@@ -31,6 +31,12 @@ class Search(APIView):
         metric = request.query_params.get('metric')
         numsel = request.query_params.get('numsel')
         cutoff = request.query_params.get('cutoff')
+        
+        if cutoff is not None:
+            cutoff = float(cutoff)
+
+        if numsel is not None:
+            numsel = int(numsel)
 
         try:
             file_obj = request.FILES["SDF"]
@@ -47,10 +53,8 @@ class Search(APIView):
         search_data = os.path.join(temp_dir, path)
 
         searcher = search.Search(spacename, int(version))
-        print(metric)
-        print(int(numsel))
-        print(float(cutoff))
-        flame_status = searcher.run(search_data, metric=metric, numsel=int(numsel), cutoff=float(cutoff))
+       
+        flame_status = searcher.run(search_data, metric=metric, numsel=numsel, cutoff=cutoff)
         if flame_status[0]:
             return JsonResponse(json.loads(flame_status[1]), status=status.HTTP_200_OK)
         else:

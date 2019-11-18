@@ -41,7 +41,7 @@ class ManageSpaces(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = smanage.action_info(spacename, 0,output='JSON')
+        flame_status = smanage.action_info(spacename, 0)
         
         if flame_status[0]:
             return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
@@ -90,10 +90,26 @@ class ManageSpaces(APIView):
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
 class ManageVersions(APIView):
+
     """
-    Manage models to the version level
+    Manage spaces to the version level
     TODO: FIX and FINISH!
     """
+
+    def get(self, request, spacename, version):
+        """
+        Retrieves model information or metadata
+        TODO: dont use hardcoded 0 version
+        TODO: haandle info errors 
+        """
+        # TODO: FIX model info and metadata for  whole endpoint in flame
+        flame_status = smanage.action_info(spacename, version)
+        
+        if flame_status[0]:
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            
 
     def delete(self, request, spacename, version):
         """
@@ -104,3 +120,18 @@ class ManageVersions(APIView):
              return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
+class ManageParameters(APIView):
+    """
+    Manage model parameters
+    """
+
+    def get(self,request,spacename,version):
+        """
+        Retrieve parameters of space version
+        """
+        flame_status = smanage.action_parameters(spacename, version,"JSON")       
+        if flame_status[0]:
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
