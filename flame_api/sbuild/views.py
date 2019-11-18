@@ -17,6 +17,10 @@ from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
+import flame.context as context
+import threading
+import time
+
 from flame import sbuild
 from flame.util import utils
 
@@ -80,5 +84,3 @@ class BuildSpace(APIView):
             return JsonResponse(response, status=status.HTTP_200_OK)
         else:
             return Response(json.loads(flame_status[1]), status = status.HTTP_404_NOT_FOUND)
-        
-        

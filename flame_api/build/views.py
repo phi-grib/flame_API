@@ -50,34 +50,16 @@ class BuildModel(APIView):
         # TODO: implement correctly flame build
         command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params}
         
-        #try:
+       
         x = threading.Thread(target=buildThread, args=(command_build,'JSON'))
-            #threads.append(x)
+            
         x.start()
-            #success, results = context.build_cmd(command_build, output_format='JSON')
-        #except Exception as e:
-        #return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
-        '''if success:
-            if isinstance(file_obj, bool):
-                filename = "internal training set"
-            else:
-                filename = file_obj.name
-            response = {
-                "buildStatus": "Model build successfully",
-                "fileName":  filename,
-                "modelName": modelname,
-                "version": 0
-            }
-            return JsonResponse(response, status=status.HTTP_200_OK)
-        else:
-            error = json.loads(results);
-            return Response(error['error'], status = status.HTTP_404_NOT_FOUND)'''
         
         return Response("Creating Model " + modelname, status=status.HTTP_200_OK)  
        
 def buildThread(command, output):
 
-    print ("Thread Start");
+    print ("Thread Start")
     success, results = context.build_cmd(command, output_format=output)
     print ("Thread End")
         

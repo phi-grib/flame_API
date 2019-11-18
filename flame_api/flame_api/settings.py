@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "ul-c_)4d4pz!g42-$-(3a^v4--prqkfzgmxels2h1_!ul(pkj!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 #ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ] 
 ALLOWED_HOSTS = ['*']
 
@@ -128,8 +128,8 @@ USE_TZ = True
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-STATIC_URL = 'static/'
-STATIC_ROOT = 'static/'
+STATIC_URL = '/static/'
+#STATIC_ROOT = 'static/'
 
 # CORS
 ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
