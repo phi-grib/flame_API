@@ -132,8 +132,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
 
 # CORS
-ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
+#ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'frontend')
 
-STATICFILES_DIRS = [
-    os.path.join(ANGULAR_APP_DIR)
-]
+#STATICFILES_DIRS = [
+#    os.path.join(ANGULAR_APP_DIR)
+#]
