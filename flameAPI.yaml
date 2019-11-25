@@ -117,7 +117,10 @@ paths:
               schema:
                 type: string
                 example: Service is non-operation
-      
+
+#----------------------------------------------------------------
+# MODELS
+#----------------------------------------------------------------                
   #--------
   # MANAGE
   #--------
@@ -592,129 +595,13 @@ paths:
           $ref: "#/components/schemas/InternalServerError"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
-  
+
+#--------------------------------------------------------
+# SPACES
+#--------------------------------------------------------
   #---------
-  # SBUILD
+  # SMANAGE
   #---------
-  # PLACE SDF IN POST IN BODY
-  /sbuild/space/{spacename}:
-    post:
-      tags:
-        - Sbuild
-      description: Build a chemical space with the present SDF in the body. Always builds version 0
-      summary: Build a chemical space
-      parameters:
-        - in: path
-          name: space name
-          description: name of the chemical space that will be build
-          required: true
-          schema:
-            type: string
-
-      requestBody:
-        description: SDFile with a collection of compounds populating the chemical space
-        required: false
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                SDF:
-                  type: string
-                  format: binary
-                modelParams:
-                  $ref: "#/components/schemas/ModelParameters"
-      
-      responses:
-        "200":
-          description: Space built succesfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  buildStatus:
-                    description: return flame status
-                    type: string
-                  fileName:
-                    description: uploaded file name in the server
-                    type: string
-                  modelName:
-                    type: string
-                  version:
-                    type: number
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-
-  #----------
-  # SEARCH
-  #----------
-  /search/space/{spacename}/version/{version}:
-    put:
-      tags:
-        - Search
-      description: 'uploads molecules and runs simuilarity search with specified space and parameters '
-      summary: Search 
-      operationId: Search
-      parameters:
-        - in: path
-          required: true
-          name: spacename
-          description: space id to run similarity search
-          schema:
-            type: string
-        - name: version
-          in: path
-          description: version of the chemical space to run similarity search
-          required: true
-          schema:
-            type: string
-      
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                SDF:
-                  type: string
-                  format: binary
-                searchParams:
-                  $ref: "#/components/schemas/SearchParameters"
-      
-      responses:
-        '200':
-          description: search successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Manifest:
-                    description: especification of what data is represented
-                    type: array
-                    items:
-                      type: object
-                  Meta:
-                    description: model metainformation
-                    type: object
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-
-
-#=============================
-#---------
-# SMANAGE
-#---------
   /smanage/spaces:
     get:
       tags:
@@ -736,13 +623,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/ListModel"
+                  $ref: "#/components/schemas/ListSpace"
         "404":
           $ref: "#/components/schemas/BadRequest"
         "500":
           $ref: "#/components/schemas/InternalServerError"
-        #"501":
-          #$ref: "#/components/schemas/NotImplemented"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
   /smanage/space/{spacename}:
@@ -751,12 +636,12 @@ paths:
       tags:
         - Smanage
         #- modeler
-      description: create a new model with the given name
+      description: create a new space with the given name
       summary: New model
       parameters:
         - in: path
           name: spacename
-          description: apace name
+          description: space name
           required: true
           schema:
             type: string
@@ -869,10 +754,122 @@ paths:
           $ref: "#/components/schemas/InternalServerError"
         "503":
           $ref: "#/components/schemas/ServiceUnavailable"
+ 
+  #---------
+  # SBUILD
+  #---------
+  /sbuild/space/{spacename}:
+    post:
+      tags:
+        - Sbuild
+      description: Build a chemical space with the present SDF in the body. Always builds version 0
+      summary: Build a chemical space
+      parameters:
+        - in: path
+          name: space name
+          description: name of the chemical space that will be build
+          required: true
+          schema:
+            type: string
 
+      requestBody:
+        description: SDFile with a collection of compounds populating the chemical space
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                modelParams:
+                  $ref: "#/components/schemas/ModelParameters"
+      
+      responses:
+        "200":
+          description: Space built succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  buildStatus:
+                    description: return flame status
+                    type: string
+                  fileName:
+                    description: uploaded file name in the server
+                    type: string
+                  modelName:
+                    type: string
+                  version:
+                    type: number
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
 
-  
-#==============
+  #----------
+  # SEARCH
+  #----------
+  /search/space/{spacename}/version/{version}:
+    put:
+      tags:
+        - Search
+      description: 'uploads molecules and runs simuilarity search with specified space and parameters '
+      summary: Search 
+      operationId: Search
+      parameters:
+        - in: path
+          required: true
+          name: spacename
+          description: space id to run similarity search
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the chemical space to run similarity search
+          required: true
+          schema:
+            type: string
+      
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                searchParams:
+                  $ref: "#/components/schemas/SearchParameters"
+      
+      responses:
+        '200':
+          description: search successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Manifest:
+                    description: especification of what data is represented
+                    type: array
+                    items:
+                      type: object
+                  Meta:
+                    description: model metainformation
+                    type: object
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
   
 #======================
 # COMPONENTS
@@ -917,6 +914,26 @@ components:
               text:
       example: 
         text: Model4
+        nodes: [text: dev,text: ver000001]
+    # -------
+    # ListSpaces
+    # -------
+    ListSpace:
+      type: object
+      properties:
+        modelName:
+          type: string
+        nodes:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string 
+            example:
+              text:
+      example: 
+        text: Space4
         nodes: [text: dev,text: ver000001]
 
     
