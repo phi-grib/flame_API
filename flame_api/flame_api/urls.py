@@ -28,10 +28,10 @@ from . import views
 urlpatterns = [
 
    
-    url(r'^$', serve,kwargs={'path': 'index.html'}), 
+    #url(r'^$', serve,kwargs={'path': 'index.html'}), 
     #url(r'^$', views.HomePageView.as_view() ),
-    url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$',
-        RedirectView.as_view(url='/static/%(path)s', permanent=False)),
+    #url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$',
+        #RedirectView.as_view(url='/static/%(path)s', permanent=False)),
     url("api/v1/",include("minimal.urls")),
     url("api/v1/manage/", include("manage.urls")),
     url("api/v1/smanage/", include("smanage.urls")),
@@ -39,4 +39,4 @@ urlpatterns = [
     url("api/v1/sbuild/", include("sbuild.urls")),
     url("api/v1/predict/", include("predict.urls")),
     url("api/v1/search/", include("search.urls"))
-]+ static(settings.STATIC_URL)
+]#+ static(settings.STATIC_URL)

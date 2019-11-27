@@ -1,0 +1,33 @@
+name: flame
+channels:
+  - default
+  - rdkit
+  - mordred-descriptor
+  - conda-forge
+  - anaconda
+dependencies:
+  - cherrypy=>18
+  - numpy=>1.14.0
+  - matplotlib=>2.1.2
+  - mordred==1.2.0
+  - pip
+  - python=3.6
+  - scipy=>1.0.0
+  - setuptools=>38.4.0
+  - scikit-learn=>0.19.1
+  - statsmodels=>0.8.0
+  - rdkit
+  - pyyaml
+  - requests
+  - pytest
+  - psycopg2
+  - nginx
+  - supervisor
+  - uwsgi
+  - pip:
+     - django
+     - djangorestframework
+     - django-cors-headers
+     - djangorestframework-yaml
+     - "https://github.com/phi-grib/standardiser/archive/master.zip"
+     - "https://github.com/josecarlosgomezt/nonconformist/archive/master.zip"
