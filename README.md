@@ -1,33 +1,46 @@
-# flame_API
+# Flame_service
 OpenAPI 3 definition for flame and django rest framework implementation.
 
 ## Installation
 
 Flame should have been already installed in this computer. Refer to the [flame](https://github.com/phi-grib/flame) manual for full instructions of how create a flame conda environment and install the software. 
 
-Start activating the flame environment typing:
+### Start activating the flame environment typing:
 
-```bash
+```sh
 source activate flame (in Linux)
 activate flame (in Windows)
 ```
 
-Download the repository:
+### Download the repository:
 
-```bash
-git clone https://github.com/phi-grib/flame_API.git
+```sh
+git clone https://github.com/phi-grib/flame_service.git
 ```
 
-Go to the source repository directory 
+### Go to the source repository directory 
 
-```bash
+```sh
 cd flame_API/flame_api
 ```
+### Configure files and paths:
 
-Type
+In the `nginx-app.conf`, `supervisor-app.conf` and `uwsgi.ini` replace `{ABSOLUTE_PROJECT_PATH}` string  with the absolute path of the project and `{ENVIRONMENT_PATH_FLAME}` string  with the absolute path of the flame enviroment  files. E.g. 
+
+![nginx](img/nginx.gif)
+![supervisor](img/supervisord.gif)
+![uwsgi](img/uwsgi.gif)
+
+Create the folder 'var/run/nginx/' in your flame enviroment.  
+
+```sh
+mkdir /home/$user/$conda/envs/flame/var/run/nginx/
+```
+
+### RUN
 
 ```
-python manage.py runserver
+supervisord -c supervisor-app.conf
 ```
 
 Then, open a browser and type the address http://localhost:8000
