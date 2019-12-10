@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "build.apps.BuildConfig",
     "manage.apps.ManageConfig",
-    "predict.apps.PredictConfig",
-    'django_crontab',
+    "predict.apps.PredictConfig"
 ]
 
 MIDDLEWARE = [
