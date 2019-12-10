@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "ul-c_)4d4pz!g42-$-(3a^v4--prqkfzgmxels2h1_!ul(pkj!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 #ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ] 
 ALLOWED_HOSTS = ['*']
 
@@ -45,13 +45,8 @@ INSTALLED_APPS = [
     "build.apps.BuildConfig",
     "manage.apps.ManageConfig",
     "predict.apps.PredictConfig",
+    'django_crontab',
 ]
-
-'''REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-}'''
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -100,9 +95,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -132,8 +125,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
 
 # CORS
-ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'static')
+#ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_DIRS = [
-    os.path.join(ANGULAR_APP_DIR)
-]
+#STATICFILES_DIRS = [
+#    os.path.join(ANGULAR_APP_DIR)
+#]
