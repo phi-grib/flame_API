@@ -85,10 +85,10 @@ class ManageModels(APIView):
         flame_status = manage.action_publish(modelname)
         if flame_status[0]:
             #PATCH to get version
-            version = flame_status[1].split('/')
-            version = version[len(version)-1]
+            vpath, version = os.path.split(flame_status[1])
             version = version.replace("ver","")
             version = int(version)
+
             response = {'modelName':modelname,'version':version}
             return JsonResponse(response, status=status.HTTP_201_CREATED)
         else:
