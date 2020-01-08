@@ -1,4 +1,4 @@
-# Flame_service
+# Flame_API
 OpenAPI 3 definition for flame and django rest framework implementation.
 
 ## Installation
@@ -15,7 +15,7 @@ activate flame (in Windows)
 ### Download the repository:
 
 ```sh
-git clone https://github.com/phi-grib/flame_service.git
+git clone https://github.com/phi-grib/flame_API.git
 ```
 
 ### Go to the source repository directory 
@@ -23,24 +23,11 @@ git clone https://github.com/phi-grib/flame_service.git
 ```sh
 cd flame_API/flame_api
 ```
-### Configure files and paths:
-
-In the `nginx-app.conf`, `supervisor-app.conf` and `uwsgi.ini` replace `{ABSOLUTE_PROJECT_PATH}` string  with the absolute path of the project and `{ENVIRONMENT_PATH_FLAME}` string  with the absolute path of the flame enviroment  files. E.g. 
-
-![nginx](img/nginx.gif)
-![supervisor](img/supervisord.gif)
-![uwsgi](img/uwsgi.gif)
-
-Create the folder 'var/run/nginx/' in your flame enviroment.  
-
-```sh
-mkdir /home/$user/$conda/envs/flame/var/run/nginx/
-```
 
 ### RUN
 
 ```
-supervisord -c supervisor-app.conf
+python manage.py runserver
 ```
 
 Then, open a browser and type the address http://localhost:8000
