@@ -32,6 +32,11 @@ python manage.py runserver
 
 Then, open a browser and type the address http://localhost:8000
 
+Alternatively, Windows users can use the script `flame API.bat` included in main directory. Right click this file and select 'Send to...'  which will give you an option to send a shortcut to the desktop. A double click on this icon will start the server and open automaticaly the GUI in a new window/tab of the Firefox browser, without entering any address. In some computers the server takes a few second to start while performing system checks. In this case, simply reload the GUI page.
+
+If you prefer using another web browser (e.f. Edge or Chrome), edit the last line of the script accordingly. You can also customize the icon assigning a more descriptive name (e.g. Flame API) and the eTRANSAFE logo, which is also included in this directory as `etransafe-256px.ico`, by right clicking this shortcut and editing its properties. 
+
+
 ## Flame GUI
 The flame GUI consist in 2 main areas: control area and visualization area.
 
