@@ -33,6 +33,19 @@ class ListModels(APIView):
         return Response(json.loads(models[1]), 200)
 
 
+
+class ListPredictions(APIView):
+    """
+    Model list
+    """
+    #permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        predictions = manage.action_predictions_list()
+        print (predictions)
+        # TODO: fix what flame returns
+        return Response(json.loads(predictions[1]), 200)
+
+
 class ManageModels(APIView):
     """
     Manage flame model (aka endpoint)
