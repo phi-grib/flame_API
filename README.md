@@ -1,61 +1,53 @@
-# Flame_service
-OpenAPI 3 definition for flame and django rest framework implementation.
+# Flame_API
+
+Flame API is a web application designed to facilitate the use of essential features incorporated in the Flame software. It consists of a backend offering REST web services, which conform to the OpenAPI 3 specifications defined by the eTRANSAFE project, and a frontend accessing to these services. Together, they provide a complete Graphic User Interface which allows for an interactive usage of the functions of Flame, including model building and management as well as the generation of predictions. 
 
 ## Installation
 
-Flame should have been already installed in this computer. Refer to the [flame](https://github.com/phi-grib/flame) manual for full instructions of how create a flame conda environment and install the software. 
+### Requirements
 
-### Start activating the flame environment typing:
+Before proceeding, make sure that Flame is installed in your computer. Refer to the [flame](https://github.com/phi-grib/flame) manual for full instructions of how to create a flame conda environment and install the software. 
+
+### Activate the flame environment 
 
 ```sh
 source activate flame (in Linux)
 activate flame (in Windows)
 ```
 
-### Download the repository:
+### Download the repository
 
 ```sh
-git clone https://github.com/phi-grib/flame_service.git
+git clone https://github.com/phi-grib/flame_API.git
 ```
 
-### Go to the source repository directory 
+## Running the graphic user interface
+
+Change to the directory containing the source:
 
 ```sh
 cd flame_API/flame_api
 ```
-### Configure files and paths:
-
-In the `nginx-app.conf`, `supervisor-app.conf` and `uwsgi.ini` replace `{ABSOLUTE_PROJECT_PATH}` string  with the absolute path of the project and `{ENVIRONMENT_PATH_FLAME}` string  with the absolute path of the flame enviroment  files. E.g. 
-
-![nginx](img/nginx.gif)
-![supervisor](img/supervisord.gif)
-![uwsgi](img/uwsgi.gif)
-
-Create the folder 'var/run/nginx/' in your flame enviroment.  
-
-```sh
-mkdir /home/$user/$conda/envs/flame/var/run/nginx/
+```
+python manage.py runserver
 ```
 
-### RUN
+Then, open a browser and type the following address: http://localhost:8000
 
-```
-supervisord -c supervisor-app.conf
-```
+Alternatively, Windows users can additionally use the script `flame API.bat` which is included in the main directory flame_API. In order to do so, right click this file and select 'Send to...'. This will give you an option to send a shortcut to the desktop. A double click on this icon will start the server which will be followed by an automatic opening of the GUI in a new window/tab of the Firefox browser. Due to several system checks, in some computers the server may take a few seconds to start... In this case, simply reload the GUI page.
 
-Then, open a browser and type the address http://localhost:8000
+If you prefer using another web browser (e.f. Edge or Chrome), edit the last line of the script accordingly. By right clicking this shortcut and editing its properties you can also customize the icon, for instance by selecting a more descriptive name (e.g. Flame API) or changing its logo (e.g. to the eTRANSAFE logo which is also included in this directory as etransafe-256px.ico).  
 
-## Flame GUI
-The flame GUI consist in 2 main areas: control area and visualization area.
+## Flame GUI description
 
-Control area has all functions needed. Those functions are distributed in three tabs (Manage, Build and Predict). The Manage tab is responsible for managing the models: create, delete, import and export. Build and Predict tabs are teh responsible to create and predict models. In both tabs, the sequence is always the same:
+The flame GUI consist of 2 main areas: a control area and a visualization area.
 
-- First we have to select a model
-- Next step is select a training or prediction set
-- Select the parameters desired in case of construction.
-- And finally, throw the prediction or build the model.
+The control area is a visual demonstration of the three fundamental functions of Flame which are distributed in three tabs, namely 'Manage', 'Build', and 'Predict'. Moreover, the 'Manage' tab is further subdivided, thereby allowing for the management of  models, viz. to create, delete, import and export them. The 'Build' and 'Predict' tabs can be used to create new models and generate predictions, respectively. In both tabs, the sequence of steps which must be performed is always the same:
 
-
+- Select a model
+- Select a training or prediction set
+- Select the parameters desired in case of construction
+- Run a prediction or build a model
 
 ## Screenshots
 
@@ -71,9 +63,10 @@ Areas:
 
 
 ## flame API design explanation
-Here I'll use the base URL to be `api.flame.edu/v1/` as a placeholder for the future (no yet created) base URL that respects the consortium specs.
+Here I'll use the base URL to be api.flame.edu/v1/ as a placeholder for the future (not yet created) base URL that respects the consortium specs.
 
-For sake of simplicity and guiven the architecture of flame this API uses 3 roots:
+For the sake of simplicity and given the architecture of flame this API uses 3 roots:
+
 
 ```
 /manage
