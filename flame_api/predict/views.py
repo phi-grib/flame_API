@@ -21,7 +21,7 @@ import flame.context as context
 
 class Predict(APIView):
     """
-    Build model
+    Prediction
     """
 
     parser_classes = (MultiPartParser,)
@@ -55,6 +55,39 @@ class Predict(APIView):
         else:
             return Response(results, status = status.HTTP_404_NOT_FOUND)
         
+class PredictName(APIView):
     
+    """
+    Prediction
+    """
 
+    
+    def put(self, request, modelname, version, predictionName, format=None):
+
+        # get the upladed file with name "file"
+        try:
+            file_obj = request.FILES["SDF"]
+        except MultiValueDictKeyError as e:
+            return  JsonResponse({'error':'Datatest not provided'}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+        # Set the temp filesystem storage
+        temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
+        fs = FileSystemStorage(location=temp_dir)
+        # save the file to the new filesystem
+        path = fs.save(file_obj.name, ContentFile(file_obj.read()))
+
+        predict_data = os.path.join(temp_dir, path)
+
+        arguments={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
+        
+        try:
+            success, results = context.predict_cmd(arguments, output_format='JSON')
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
+
+        if success:
+            return JsonResponse(json.loads(results), status=status.HTTP_200_OK)
+        else:
+            return Response(results, status = status.HTTP_404_NOT_FOUND)
         

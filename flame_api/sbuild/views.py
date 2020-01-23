@@ -43,7 +43,6 @@ class BuildSpace(APIView):
 
         params = request.POST.get('parameters')
         epd = utils.space_path(spacename, 0)
-        print(epd)
         lfile = os.path.join(epd, 'training_series')
         # TODO: implement correctly flame build
         builder = sbuild.Sbuild(spacename,param_string=params,output_format="JSON")
@@ -53,7 +52,6 @@ class BuildSpace(APIView):
                 flame_status = builder.run(lfile)
 
             else:
-
                 # Set the temp filesystem storage
                 temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
                 
