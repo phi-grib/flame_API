@@ -107,6 +107,34 @@ class ManageModels(APIView):
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
+class ManagePredictions(APIView):
+
+    """
+    Manage models to the version level
+    TODO: FIX and FINISH!
+    """
+
+    def get(self, request, predictionName):
+        """
+        Retrieve info of model version
+        """
+        flame_status = manage.action_predictions_result(predictionName)
+        if flame_status[0]:
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
+    
+    def delete(self, request, predictionName):
+        """
+        Delete model
+        """
+        #flame_status = manage.ac(modelname, version)
+        if flame_status[0]:
+             return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
+
 class ManageVersions(APIView):
     """
     Manage models to the version level

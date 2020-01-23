@@ -1,11 +1,12 @@
 from django.urls import path
 from .views import ListModels, ManageModels, ManageVersions
 from .views import ManageParameters, ManageValidation, ManageExport, ManageImport
-from .views import ListPredictions
+from .views import ListPredictions, ManagePredictions
 
 urlpatterns = [
     path("models", ListModels.as_view()),
     path("predictions", ListPredictions.as_view()),
+    path("predictions/predictionName/<str:predictionName>", ManagePredictions.as_view()),
     path("model/import", ManageImport.as_view()),
     path("model/<str:modelname>", ManageModels.as_view()),
     path("model/<str:modelname>/export",ManageExport.as_view()),
