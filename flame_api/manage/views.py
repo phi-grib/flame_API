@@ -128,11 +128,11 @@ class ManagePredictions(APIView):
         """
         Delete model
         """
-        #flame_status = manage.ac(modelname, version)
+        flame_status = manage.action_predictions_remove(predictionName)
         if flame_status[0]:
              return Response(status=status.HTTP_204_NO_CONTENT)
         else:
-            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
 
 class ManageVersions(APIView):
