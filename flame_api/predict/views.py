@@ -17,6 +17,8 @@ from django.utils.datastructures import MultiValueDictKeyError
 from flame import predict
 
 import flame.context as context
+import threading
+import time
 
 
 class Predict(APIView):
@@ -43,25 +45,17 @@ class Predict(APIView):
 
         predict_data = os.path.join(temp_dir, path)
 
-        arguments={'endpoint': modelname, 'version':int(version) ,'infile':predict_data}
+        command_predict={'endpoint': modelname, 'version':int(version) ,'infile':predict_data}
         
-        try:
-            success, results = context.predict_cmd(arguments, output_format='JSON')
-        except Exception as e:
-            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
-
-        if success:
-            return JsonResponse(json.loads(results), status=status.HTTP_200_OK)
-        else:
-            return Response(results, status = status.HTTP_404_NOT_FOUND)
+        x = threading.Thread(target=predictThread, args=(command_predict,'JSON'))
+        x.start()
+        return Response("Predicting ", status=status.HTTP_200_OK)  
         
 class PredictName(APIView):
     
     """
     Prediction
     """
-
-    
     def put(self, request, modelname, version, predictionName, format=None):
 
         # get the upladed file with name "file"
@@ -79,15 +73,14 @@ class PredictName(APIView):
 
         predict_data = os.path.join(temp_dir, path)
 
-        arguments={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
+        command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        try:
-            success, results = context.predict_cmd(arguments, output_format='JSON')
-        except Exception as e:
-            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)    
+        x = threading.Thread(target=predictThread, args=(command_predict,'JSON'))
+        x.start()
+        return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
+        
+def predictThread(command, output):
 
-        if success:
-            return JsonResponse(json.loads(results), status=status.HTTP_200_OK)
-        else:
-            return Response(results, status = status.HTTP_404_NOT_FOUND)
-        
+    print ("Thread Start")
+    success, results = context.predict_cmd(command, output_format=output)
+    print ("Thread End")

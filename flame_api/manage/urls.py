@@ -6,7 +6,7 @@ from .views import ListPredictions, ManagePredictions
 urlpatterns = [
     path("models", ListModels.as_view()),
     path("predictions", ListPredictions.as_view()),
-    path("predictions/predictionName/<str:predictionName>", ManagePredictions.as_view()),
+    path("prediction/<str:predictionName>", ManagePredictions.as_view()),
     path("model/import", ManageImport.as_view()),
     path("model/<str:modelname>", ManageModels.as_view()),
     path("model/<str:modelname>/export",ManageExport.as_view()),
