@@ -21,6 +21,7 @@ import threading
 import time
 
 
+
 class Predict(APIView):
     """
     Prediction

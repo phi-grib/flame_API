@@ -21,8 +21,8 @@ import flame.context as context
 import threading
 import time
 
-from flame import sbuild
 from flame.util import utils
+
 
 # Create your views here.
 
@@ -42,43 +42,25 @@ class BuildSpace(APIView):
             file_obj = False
 
         params = request.POST.get('parameters')
-        epd = utils.space_path(spacename, 0)
-        lfile = os.path.join(epd, 'training_series')
-        # TODO: implement correctly flame build
-        builder = sbuild.Sbuild(spacename,param_string=params,output_format="JSON")
-        try:
-            if isinstance(file_obj, bool):
-     
-                flame_status = builder.run(lfile)
 
-            else:
-                # Set the temp filesystem storage
-                temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
-                
-                fs = FileSystemStorage(location=temp_dir)
-                # save the file to the new filesystem
-                path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
-                
-                training_data = os.path.join(temp_dir, path_SDF)
-                print(training_data)
-                flame_status = builder.run(training_data)
-                #Copy file
-                shutil.copy(training_data, lfile)        
+        training_data = None     
+        # Set the temp filesystem storage
+        if not isinstance(file_obj, bool):
+            temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
+            fs = FileSystemStorage(location=temp_dir)
+            path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
+            training_data = os.path.join(temp_dir, path_SDF)
+
        
-        except Exception as e:
-            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
-            
-        if (flame_status[0]):
-            if isinstance(file_obj, bool):
-                filename = "internal training set"
-            else:
-                filename = file_obj.name
-            response = {
-                "buildStatus": "Space builded succesfully",
-                "fileName":  filename,
-                "spacename": spacename,
-                "version": 0
-            }
-            return JsonResponse(response, status=status.HTTP_200_OK)
-        else:
-            return Response(json.loads(flame_status[1]), status = status.HTTP_404_NOT_FOUND)
+        # TODO: implement correctly flame build
+        command_sbuild = {'space': spacename, 'infile': training_data, 'param_string': params}
+        x = threading.Thread(target=sbuildThread, args=(command_sbuild,'JSON'))
+        x.start()
+        
+        return Response( spacename, status=status.HTTP_200_OK)  
+
+def sbuildThread(command, output):
+
+    print ("Thread Start")
+    success, results = context.sbuild_cmd(command, output_format=output)
+    print ("Thread End")

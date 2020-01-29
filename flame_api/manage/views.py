@@ -134,7 +134,6 @@ class ManagePredictions(APIView):
         else:
             return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
-
 class ManageVersions(APIView):
     """
     Manage models to the version level
