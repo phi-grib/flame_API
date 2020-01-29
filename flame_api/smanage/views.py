@@ -135,3 +135,16 @@ class ManageParameters(APIView):
             return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
+
+
+class ManageSearches(APIView):
+
+    def get(self, request, searchName):
+        """
+        Retrieve info of sesrch
+        """
+        flame_status = smanage.action_searches_result(searchName)
+        if flame_status[0]:
+            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)  
