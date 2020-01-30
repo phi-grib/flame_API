@@ -61,10 +61,7 @@ class Search(APIView):
 
 
         searchName = id_generator()
-        print('---------------')
-        print(searchName)
-        print('---------------')
-        command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'infile':search_data, 'runtime_param': None , 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
+        command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'infile':search_data, 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
         
         x = threading.Thread(target=searchThread, args=(command_search,'JSON'))
         x.start()
@@ -105,7 +102,7 @@ class SearchName(APIView):
 
         search_data = os.path.join(temp_dir, path)
 
-        command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'infile':search_data, 'runtime_param': None , 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
+        command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'infile':search_data , 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
         
         x = threading.Thread(target=searchThread, args=(command_search,'JSON'))
         x.start()
