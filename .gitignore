@@ -4,4 +4,11 @@ nginx-app.conf
 uwsgi_params
 uwsgi.ini
 *__pycache__*
-.vscode/
+*.vscode
+.idea
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
+__pycache__/
+*/__pycache__/
+*.ipynb
