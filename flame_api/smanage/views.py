@@ -145,6 +145,14 @@ class ManageSearches(APIView):
         """
         flame_status = smanage.action_searches_result(searchName)
         if flame_status[0]:
-            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            result = json.loads(flame_status[1])
+            print (type(result))
+            result['endpoint'] = result['meta']['endpoint']
+            del result['meta']
+            del result['manifest']
+            return Response(result, status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)  
+            if "not found" in flame_status[1]:
+                return JsonResponse({'status':1,'error':"prediction " +searchName+ " have not finished"},status = status.HTTP_404_NOT_FOUND)
+            else:
+                return JsonResponse({'status':2,'error':flame_status[1]},status = status.HTTP_500_NOT_FOUND)
