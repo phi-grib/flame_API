@@ -32,8 +32,6 @@ class ListModels(APIView):
         # TODO: fix what flame returns
         return Response(json.loads(models[1]), 200)
 
-
-
 class ListPredictions(APIView):
     """
     Model list
@@ -44,7 +42,6 @@ class ListPredictions(APIView):
         print (predictions)
         # TODO: fix what flame returns
         return Response(json.loads(predictions[1]), 200)
-
 
 class ManageModels(APIView):
     """
@@ -134,7 +131,6 @@ class ManagePredictions(APIView):
         else:
             return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
-
 class ManageDocumentation(APIView):
 
     """
@@ -155,7 +151,6 @@ class ManageDocumentation(APIView):
             return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
-
 
 class ManageVersions(APIView):
     """
