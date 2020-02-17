@@ -313,7 +313,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<!--<div class=\"page-header border-bottom mb-3\">\n  <div class=\"d-flex\">\n        <div class=\"mr-auto p-2\">\n            <ul class=\"nav nav-pills nav-fill\" id=\"myTab\" role=\"tablist\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link active\" routerLink=\"/modeling\"  data-toggle=\"pill\" role=\"tab\">Modeling</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" routerLink=\"/similarity\" data-toggle=\"pill\" role=\"tab\">Similarity</a>\n                </li>\n            </ul>\n        </div>\n        <div class=\"p-2\">\n            <!--<a target=\"_blank\">\n                <img [src]=\"imageSource\" data-holder-rendered=\"true\" height=\"40\"/>\n            </a>\n        </div>\n    </div>\n</div>-->\n\n<div class=\"row\">\n    <div class=\"col p-0\">\n        <div class=\"\">\n            <app-sidebar></app-sidebar>\n        </div>\n        <div class=\"pr-3\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    <div class=\"col-6 border-left info v-100\" *ngIf=\"(this.prediction.name != undefined && this.model.name == undefined && isActive('predictions'))\">\n        <app-prediction [predictionName]=this.prediction.name></app-prediction>\n    </div>\n    <div class=\"col-6 border-left info v-100\" *ngIf=\"(this.model.name != undefined && this.model.trained && this.prediction.name == undefined && isActive('models'))\">\n        <app-validations [name] = this.model.name [version] = this.model.version></app-validations>\n    </div>\n    <!--<div class=\"col-6 border-left info  v-100\" *ngIf=\"isActive('similarity')\">\n        <p>SIMILARITY</p>\n    </div>-->\n</div>\n\n\n\n";
+    __webpack_exports__["default"] = "\n<!--<div class=\"page-header border-bottom mb-3\">\n  <div class=\"d-flex\">\n        <div class=\"mr-auto p-2\">\n            <ul class=\"nav nav-pills nav-fill\" id=\"myTab\" role=\"tablist\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link active\" routerLink=\"/modeling\"  data-toggle=\"pill\" role=\"tab\">Modeling</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" routerLink=\"/similarity\" data-toggle=\"pill\" role=\"tab\">Similarity</a>\n                </li>\n            </ul>\n        </div>\n        <div class=\"p-2\">\n            <!--<a target=\"_blank\">\n                <img [src]=\"imageSource\" data-holder-rendered=\"true\" height=\"40\"/>\n            </a>\n        </div>\n    </div>\n</div>-->\n\n<div class=\"row\">\n    <div class=\"col p-0\">\n        <div class=\"\">\n            <app-sidebar></app-sidebar>\n        </div>\n        <div class=\"pr-3\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    <div class=\"col-6 border-left info v-100\" *ngIf=\"(!isActive('similarity'))\">\n        <div *ngIf=\"(this.prediction.name != undefined && this.model.name == undefined && isActive('predictions'))\">\n            <app-prediction [predictionName]=this.prediction.name></app-prediction>\n        </div>\n        <div *ngIf=\"(this.model.name != undefined && this.model.trained && this.prediction.name == undefined && isActive('models'))\">\n            <app-validations [name] = this.model.name [version] = this.model.version></app-validations>\n        </div>\n    </div>\n    <!--<div class=\"col-6 border-left info  v-100\" *ngIf=\"isActive('similarity')\">\n        <p>SIMILARITY</p>\n    </div>-->\n</div>\n\n\n\n";
     /***/
   },
 
@@ -473,7 +473,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n<div class =\"text-center spinner\" *ngIf = \"!this.tableVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.tableVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th width=\"5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th width=\"30%\">Name</th>\n          <th width=\"10%\">Version</th>\n          <th width=\"10%\">#Molecules</th>\n          <th width=\"10%\">#Variables</th>\n          <th width=\"30%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td >{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n";
+    __webpack_exports__["default"] = "\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n<div class =\"text-center spinner-table\" *ngIf = \"!this.tableVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.tableVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th width=\"5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th width=\"30%\">Name</th>\n          <th width=\"10%\">Version</th>\n          <th width=\"10%\">#Molecules</th>\n          <th width=\"10%\">#Variables</th>\n          <th width=\"30%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td >{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n";
     /***/
   },
 
@@ -533,7 +533,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<hr class=\"my-0\">\n\n<app-manage-predictions></app-manage-predictions>\n<div class =\"text-center spinner\" *ngIf = \"!this.tableVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class=\"col-12 ml-3 mr-3\"  [hidden] = \"!this.tableVisible\">\n  <table class=\"table\" id=\"dataTablePredictions\" width=\"100%\" cellspacing=\"0\">\n    <thead>\n      <tr>\n        <th>Name</th>\n        <th>Models</th>\n        <th>Version</th>\n        <th>Prediction Set</th>\n        <th>Date</th>\n      </tr>\n    </thead>\n    <tbody>\n        <tr class=\"blink\" *ngFor=\"let key of objectKeys(this.prediction.predicting)\">\n            <td >{{key}}</td>\n            <td>{{this.prediction.predicting[key][0]}}</td>\n            <td>{{this.prediction.predicting[key][1]}}</td>\n            <td>{{this.prediction.predicting[key][2].substring(this.prediction.predicting[key][2].lastIndexOf('/') + 1)}}</td>\n            <td>-</td>         \n          </tr>\n      <tr *ngFor=\"let info of this.prediction.predictions\" (click)= \"selectPrediction(info[0], info[1], info[2])\">\n        <td>{{info[0]}}</td>\n        <td>{{info[1]}}</td>\n        <td>{{info[2]}}</td>\n        <td>{{info[4].substring(info[4].lastIndexOf('/') + 1)}}</td>\n        <td>{{info[3]}}</td>         \n      </tr>\n    </tbody>\n  </table>\n</div>";
+    __webpack_exports__["default"] = "<hr class=\"my-0\">\n\n<app-manage-predictions></app-manage-predictions>\n<div class=\"row\">\n  <div class =\"text-center spinner-table\" *ngIf = \"!this.tableVisible\">\n    <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n      <span class=\"sr-only\">Loading...</span>\n    </div>\n  </div>\n  <div class=\"col-12 ml-3 mr-3\"  [hidden] = \"!this.tableVisible\">\n    <table class=\"table\" id=\"dataTablePredictions\" width=\"100%\" cellspacing=\"0\">\n      <thead>\n        <tr>\n          <th>Name</th>\n          <th>Models</th>\n          <th>Version</th>\n          <th>Prediction Set</th>\n          <th>Date</th>\n        </tr>\n      </thead>\n      <tbody>\n          <tr class=\"blink\" *ngFor=\"let key of objectKeys(this.prediction.predicting)\">\n              <td >{{key}}</td>\n              <td>{{this.prediction.predicting[key][0]}}</td>\n              <td>{{this.prediction.predicting[key][1]}}</td>\n              <td>{{this.prediction.predicting[key][2].substring(this.prediction.predicting[key][2].lastIndexOf('/') + 1)}}</td>\n              <td>-</td>         \n            </tr>\n        <tr *ngFor=\"let info of this.prediction.predictions\" (click)= \"selectPrediction(info[0], info[1], info[2], info[3])\">\n          <td>{{info[0]}}</td>\n          <td>{{info[1]}}</td>\n          <td>{{info[2]}}</td>\n          <td>{{info[4].substring(info[4].lastIndexOf('/') + 1)}}</td>\n          <td>{{info[3]}}</td>         \n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>";
     /***/
   },
 
@@ -553,7 +553,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<!--<div class =\"text-center spinner\" *ngIf = \"!this.predictionVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>-->\n<div class=\"container\"  *ngIf=\"this.predictionResult != undefined\">\n  <div class=\"row\" *ngIf=\"this.predictionResult != undefined  && this.predictionResult['external-validation']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n      <div class=\"card-body\"> \n        <div class=\"row ml-2\">\n            <small class=\"h2 text-muted\"><u>Fitting</u></small>\n        </div>\n        <div class=\"row align-items-center\">\n          <div class=\"col-2 mt-1\">\n            <table class=\"table table-sm mt-4\">\n              <tbody>\n                <tr *ngFor = \"let key of objectKeys(modelValidationInfo)\">\n                  \n                  <td  *ngIf=\"!this.q_measures.includes(key)\" class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo[key][0]}}\"><strong>{{key}}:</strong></td>\n                  <td  *ngIf=\"!this.q_measures.includes(key)\" class=\"text-right text-capitalize\">{{modelValidationInfo[key][1]}}</td>\n              </tr>\n              </tbody>\n            </table> \n          </div>\n          <div class=\"col-5\" *ngIf=\"this.modelValidationInfo['TP']\">\n            <!--CONFUSION MATRIX-->\n            <app-confusion-matrix \n                  [TP] = \"this.modelValidationInfo['TP'][1]\"\n                  [FP] = \"this.modelValidationInfo['FP'][1]\"\n                  [FN] = \"this.modelValidationInfo['FN'][1]\"\n                  [TN] = \"this.modelValidationInfo['TN'][1]\"\n              ></app-confusion-matrix>                 \n          </div>\n          <div class=\"col-5\"  *ngIf=\"this.modelValidationInfo['TP']\">\n            <div style=\"display: block\">\n              <canvas baseChart\n                  [data]=\"polarAreaChartData\"\n                  [options]=\"polarChartOptions\"\n                  [labels]=\"polarAreaChartLabels\"\n                  [legend]=\"polarAreaLegend\"\n                  [colors]=\"polarAreaChartColors\"\n                  [chartType]=\"polarAreaChartType\">\n              </canvas>\n            </div>\n          </div>\n        </div><!--row---->\n      </div><!--body-->\n    </div><!--card-->\n  </div>\n  <div class=\"row\" *ngIf=\"this.predictionResult != undefined && this.predictionResult.warning\">\n    <div class=\"card w-100\">\n      <div class=\"card-body\"> \n        <div class=\"alert alert-danger text-center\" role=\"alert\">\n          {{this.predictionResult.warning}}\n        </div>\n      </div>\n    </div>\n  </div>\n \n    <!--<div class=\"d-flex flex-row-reverse\" *ngIf=\"this.predictionResult != undefined\">\n      \n        <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n          <button type=\"button\" class=\"btn btn-raised btn-etransafe\" (click)=\"savePDF()\"><i class=\"far fa-file-pdf\"></i>  PDF</button>\n          <button type=\"button\" class=\"btn btn-raised btn-etransafe\" (click)=\"saveEXCEL()\"><i class=\"fas fa-file-excel\"></i>  Excel</button>\n        </div>\n      \n    </div>-->\n  <div class=\"row mt-3\" *ngIf=\"this.predictionResult != undefined\">\n    <div class=\"card w-100\">\n      <!--NAVS tables-->\n        <ul class=\"nav nav-pills mb-3\" id=\"pills-tab\" role=\"tablist\">\n          <li class=\"nav-item\">\n            <a class=\"nav-link active\" id=\"pills-all-tab\" data-toggle=\"tab\" href=\"#pills-all\" role=\"tab\" aria-controls=\"pills-home\" aria-selected=\"true\"><h4>List</h4></a>\n          </li>\n          <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"pills-one-tab\" data-toggle=\"tab\" href=\"#pills-one\" role=\"tab\" aria-controls=\"pills-one\" aria-selected=\"false\"><h4>Reports</h4></a>\n          </li>\n        </ul>\n\n        <div class=\"tab-content\" id=\"pills-tabContent\">\n          <!--ALL-->\n          <div class=\"tab-pane fade show active\" id=\"pills-all\" role=\"tabpanel\" aria-labelledby=\"pills-all-tab\">\n            <div class=\"card-body\">\n              <table  id=\"prediction\" class=\"table m-0 table-light\">\n                <thead>\n                  <tr>\n                    <th >Name</th>\n                    <th class=\"align-middle text-center\">Mol</th>\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ymatrix\">Value</th>\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.values\">Prediction</th>\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.upper_limit\">Upper limit</th>\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.lower_limit\">Lower limit</th>\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c0\">Inactive</th>\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c1\">Active</th>\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c0\">Ensemble Class 0</th>\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c1\">Ensemble Class 1</th>\n      \n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let res of this.predictionResult.SMILES; let i=index\">\n                    <td class=\"align-middle\" >{{this.predictionResult.obj_nam[i]}}</td>\n                    <td class=\"align-middle text-center\">\n                      <canvas #cmp id=\"{{i}}\">{{this.predictionResult.SMILES[i]}}</canvas>\n                    </td>\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ymatrix\" >{{this.predictionResult.ymatrix[i].toFixed(3)}}</td>\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.values\">{{this.predictionResult.values[i].toFixed(3)}}</td>\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.upper_limit\">{{this.predictionResult.upper_limit[i].toFixed(3)}}</td>\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.lower_limit\">{{this.predictionResult.lower_limit[i].toFixed(3)}}</td>\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c0\">{{this.predictionResult.c0[i]}}</td>\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c1\">{{this.predictionResult.c1[i]}}</td>\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c0\">{{this.predictionResult.ensemble_c0[i].toFixed(3)}}</td>\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c1\">{{this.predictionResult.ensemble_c1[i].toFixed(3)}}</td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!--END ALL-->\n          <!--ONE-->\n          <div class=\"tab-pane fade\" id=\"pills-one\" role=\"tabpanel\" aria-labelledby=\"pills-one-tab\" *ngIf=\"this.predictionResult != undefined\">\n            <div class=\"card-body\">\n              <!--PAGINATION-->\n              <div class=\"row  align-items-center\">\n                <div class=\"col-2 offset-5\">\n                  <span><strong>{{this.i +1}} of {{this.predictionResult.SMILES.length}}</strong></span>\n                </div>\n                <div class=\"col-1  p-0 offset-4\">\n                  <nav aria-label=\"Page navigation example\">\n                    <ul class=\"pagination\">\n                      <li class=\"page-item\" [ngClass]=\"{'disabled': this.noPrevious}\">\n                        <a class=\"page-link\" href=\"javascript:void(0)\" aria-label=\"Previous\" (click) = \"Previous()\">\n                          <span aria-hidden=\"true\">&laquo;</span>\n                          <span class=\"sr-only\">Previous</span>\n                        </a>\n                      </li>\n                      <li class=\"page-item\" [ngClass]=\"{'disabled': this.noNext}\">\n                        <a class=\"page-link\" href=\"javascript:void(0)\" aria-label=\"Next\" (click) = \"Next()\">\n                          <span aria-hidden=\"true\">&raquo;</span>\n                          <span class=\"sr-only\">Next</span>\n                        </a>\n                      </li>\n                    </ul>\n                  </nav>\n                </div>\n              </div>\n              <!--END PAGINATION-->\n\n\n              <div class=\"row\" style=\"background-color: #22577a;color: white\">\n                <div class=\"col-3 border\">\n                  {{this.prediction.name}}\n                </div>\n                <div class=\"col-6 border\">\n                 Model {{this.prediction.modelName}} version {{this.prediction.modelVersion}}\n                </div>\n                <div class=\"col-3 border\">\n                  12-02-2020\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>Name</strong>\n                </div>\n                <div class=\"col-9 border\">\n                 {{this.predictionResult.obj_nam[i]}}\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>ID</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  {{this.predictionResult.obj_id[i]}}\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>Structure</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <canvas id=\"one_canvas\"></canvas>\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Other</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span><strong>Activity: </strong></span>\n                  <span *ngIf=\"this.predictionResult.ymatrix\">{{this.predictionResult.ymatrix[i].toFixed(3)}}</span> \n                  <span *ngIf=\"!this.predictionResult.ymatrix\">-</span> \n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Result</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span *ngIf=\"this.predictionResult.values\">{{this.predictionResult.values[i].toFixed(3)}}</span>\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Reliability</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  90%CI: 8.3 - 10.6\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Interpretation</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <p>The result rxpress the predicted potency ofthe compound in an assy measuring the ability to inhibit BSEP transporter in rat\n                  <br><br>The higher the potency the more likely is the compound to inhibit the transporter at therapeutic concentration.\n                  </p>\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Model</strong>\n                </div>\n                <div class=\"col-9 border\">\n                    <p>Conformal RF using RDKit_md (120vars)\n                      <br><br>\n                      Training series 450 compounds<br>\n                      R2:0.90, Q2:0.67, SDEP:0.5<br>\n                      <a>QMRF report</a>\n                    </p>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      <!---->\n    </div>\n  </div>\n</div>\n";
+    __webpack_exports__["default"] = "\n<!--<div class =\"overlay text-center\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>-->\n\n\n<div class=\"container\"  *ngIf=\"this.predictionResult != undefined\">\n  <div class=\"row\" *ngIf=\"this.predictionResult != undefined  && this.predictionResult['external-validation']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n      <div class=\"card-body\"> \n        <div class=\"row ml-2\">\n            <small class=\"h2 text-muted\"><u>Fitting</u></small>\n        </div>\n        <div class=\"row align-items-center\">\n          <div class=\"col-2 mt-1\">\n            <table class=\"table table-sm mt-4\">\n              <tbody>\n                <tr *ngFor = \"let key of objectKeys(modelValidationInfo)\">\n                  \n                  <td  *ngIf=\"!this.q_measures.includes(key)\" class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo[key][0]}}\"><strong>{{key.replace('_',' ')}}:</strong></td>\n                  <td  *ngIf=\"!this.q_measures.includes(key)\" class=\"text-right text-capitalize\">{{modelValidationInfo[key][1]}}</td>\n              </tr>\n              </tbody>\n            </table> \n          </div>\n          <div class=\"col-5\" *ngIf=\"this.modelValidationInfo['TP']\">\n            <!--CONFUSION MATRIX-->\n            <app-confusion-matrix \n                  [TP] = \"this.modelValidationInfo['TP'][1]\"\n                  [FP] = \"this.modelValidationInfo['FP'][1]\"\n                  [FN] = \"this.modelValidationInfo['FN'][1]\"\n                  [TN] = \"this.modelValidationInfo['TN'][1]\"\n              ></app-confusion-matrix>                 \n          </div>\n          <div class=\"col-5\"  *ngIf=\"this.modelValidationInfo['TP']\">\n            <div style=\"display: block\">\n              <canvas baseChart\n                  [data]=\"polarAreaChartData\"\n                  [options]=\"polarChartOptions\"\n                  [labels]=\"polarAreaChartLabels\"\n                  [legend]=\"polarAreaLegend\"\n                  [colors]=\"polarAreaChartColors\"\n                  [chartType]=\"polarAreaChartType\">\n              </canvas>\n            </div>\n          </div>\n        </div><!--row---->\n      </div><!--body-->\n    </div><!--card-->\n  </div>\n  <div class=\"row\" *ngIf=\"this.predictionResult != undefined && this.predictionResult.warning\">\n    <div class=\"card w-100\">\n      <div class=\"card-body\"> \n        <div class=\"alert alert-danger text-center\" role=\"alert\">\n          {{this.predictionResult.warning}}\n        </div>\n      </div>\n    </div>\n  </div>\n \n    <!--<div class=\"d-flex flex-row-reverse\" *ngIf=\"this.predictionResult != undefined\">\n      \n        <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n          <button type=\"button\" class=\"btn btn-raised btn-etransafe\" (click)=\"savePDF()\"><i class=\"far fa-file-pdf\"></i>  PDF</button>\n          <button type=\"button\" class=\"btn btn-raised btn-etransafe\" (click)=\"saveEXCEL()\"><i class=\"fas fa-file-excel\"></i>  Excel</button>\n        </div>\n      \n    </div>-->\n  <div class=\"row mt-3\" *ngIf=\"this.predictionResult != undefined\">\n    <div class=\"card w-100\">\n        <div id=\"overlay\" *ngIf=\"!this.predictionVisible\">\n          <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n            <span class=\"sr-only\">Loading...</span>\n          </div>\n        </div>\n      <!--NAVS tables-->\n        <ul class=\"nav nav-pills mb-3\" id=\"pills-tab\" role=\"tablist\">\n          <li class=\"nav-item\">\n            <a class=\"nav-link active\" id=\"pills-all-tab\" data-toggle=\"tab\" href=\"#pills-all\" role=\"tab\" aria-controls=\"pills-home\" aria-selected=\"true\"><h4>List</h4></a>\n          </li>\n          <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"pills-one-tab\" data-toggle=\"tab\" href=\"#pills-one\" role=\"tab\" aria-controls=\"pills-one\" aria-selected=\"false\"><h4>Reports</h4></a>\n          </li>\n        </ul>\n\n        <div class=\"tab-content\" id=\"pills-tabContent\">\n          <!--ALL-->\n          <div class=\"tab-pane fade show active\" id=\"pills-all\" role=\"tabpanel\" aria-labelledby=\"pills-all-tab\">\n            <div class=\"card-body\">\n              \n              <table  id=\"prediction\" class=\"table m-0 table-light\">\n                <thead>\n                  <tr>\n                    <th >Name</th>\n                    <th class=\"align-middle text-center\">Mol</th>\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ymatrix\">Value</th>-->\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.values\">Prediction</th>\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.upper_limit\">Upper limit</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.lower_limit\">Lower limit</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c0\">Inactive</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c1\">Active</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c0\">Ensemble Class 0</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c1\">Ensemble Class 1</th>-->\n      \n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let res of this.predictionResult.SMILES; let i=index\">\n                    <td class=\"align-middle\" >{{this.predictionResult.obj_nam[i]}}</td>\n                    <td class=\"align-middle text-center\">\n                      <canvas #cmp id=\"{{i}}\">{{this.predictionResult.SMILES[i]}}</canvas>\n                    </td>\n                   <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ymatrix\" >{{this.predictionResult.ymatrix[i].toFixed(3)}}</td>-->\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.values\">{{castValue(this.predictionResult.values[i])}}</td>\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.upper_limit\">{{this.predictionResult.upper_limit[i].toFixed(3)}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.lower_limit\">{{this.predictionResult.lower_limit[i].toFixed(3)}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c0\">{{this.predictionResult.c0[i]}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c1\">{{this.predictionResult.c1[i]}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c0\">{{this.predictionResult.ensemble_c0[i].toFixed(3)}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c1\">{{this.predictionResult.ensemble_c1[i].toFixed(3)}}</td>-->\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!--END ALL-->\n          <!--ONE-->\n          <div class=\"tab-pane fade\" id=\"pills-one\" role=\"tabpanel\" aria-labelledby=\"pills-one-tab\" *ngIf=\"this.predictionResult != undefined\">\n            <div class=\"card-body\">\n              <!--PAGINATION-->\n              <div class=\"row  align-items-center\">\n                <div class=\"col-2 offset-5\">\n                  <span><strong>{{this.i +1}} of {{this.predictionResult.SMILES.length}}</strong></span>\n                </div>\n                <div class=\"col-1  p-0 offset-4\">\n                  <nav aria-label=\"Page navigation example\">\n                    <ul class=\"pagination\">\n                      <li class=\"page-item\" [ngClass]=\"{'disabled': this.noPrevious}\">\n                        <a class=\"page-link\" href=\"javascript:void(0)\" aria-label=\"Previous\" (click) = \"Previous()\">\n                          <span aria-hidden=\"true\">&laquo;</span>\n                          <span class=\"sr-only\">Previous</span>\n                        </a>\n                      </li>\n                      <li class=\"page-item\" [ngClass]=\"{'disabled': this.noNext}\">\n                        <a class=\"page-link\" href=\"javascript:void(0)\" aria-label=\"Next\" (click) = \"Next()\">\n                          <span aria-hidden=\"true\">&raquo;</span>\n                          <span class=\"sr-only\">Next</span>\n                        </a>\n                      </li>\n                    </ul>\n                  </nav>\n                </div>\n              </div>\n              <!--END PAGINATION-->\n\n\n              <div class=\"row\" style=\"background-color: #22577a;color: white\">\n                <div class=\"col-3 border\">\n                  {{this.prediction.name}}\n                </div>\n                <div class=\"col-6 border\">\n                 Model {{this.prediction.modelName}} version {{this.prediction.modelVersion}}\n                </div>\n                <div class=\"col-3 border\">\n                  {{this.prediction.date}}\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>Name</strong>\n                </div>\n                <div class=\"col-9 border\">\n                 {{this.predictionResult.obj_nam[i]}}\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>ID</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  {{this.predictionResult.obj_id[i]}}\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>Structure</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <canvas id=\"one_canvas\"></canvas>\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>Other</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span><strong>Activity: </strong></span>\n                  <span *ngIf=\"this.predictionResult.ymatrix\">{{this.predictionResult.ymatrix[i]}}</span> \n                  <span *ngIf=\"!this.predictionResult.ymatrix\">-</span> \n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Result</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span *ngIf=\"this.predictionResult.values\">{{castValue(this.predictionResult.values[i])}}</span>\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Reliability</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span *ngIf=\"!this.modelBuildInfo['conformal']\">-</span>\n                  <span *ngIf=\"this.modelBuildInfo['conformal']\">{{(1.0-this.prediction.modelParameters.conformalSignificance.value)*100}}%CI</span>\n                  <span *ngIf=\"this.modelBuildInfo['conformal'] && this.modelBuildInfo['quantitative']\">\n                    : {{this.predictionResult.lower_limit[i].toFixed(1)}} <strong>-</strong> {{this.predictionResult.upper_limit[i].toFixed(3)}}\n                  </span>\n                  <!--90%CI: 8.3 - 10.6-->\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Interpretation</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span *ngIf=\"this.modelDocumentation === undefined\">No documentation</span>\n                  <p *ngIf=\"this.modelDocumentation['Endpoint'].value != undefined\">{{this.modelDocumentation['Endpoint'].value}}</p>\n                  <p *ngIf=\"this.modelDocumentation['Comment_on_the_endpoint'].value != undefined\"> <br>{{this.modelDocumentation['Comment_on_the_endpoint'].value}}</p>\n                  <p *ngIf=\"this.modelDocumentation['Species'].value != undefined\"> <br>{{this.modelDocumentation['Species'].value}}</p>\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Model</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span class=\"text-capitalize\">{{this.modelBuildInfo['model']}}</span><span> using {{this.modelBuildInfo['nvarx']}}vars</span>\n                  <br><br>\n                  <span>Training series {{this.modelBuildInfo['nobj']}} compounds</span><br>\n                  <div *ngIf=\"this.modelBuildInfo['quantitative'] && !this.modelBuildInfo['conformal']\">\n                    <span>R2: {{this.modelBuildInfo['R2'].toFixed(2)}}, </span>\n                    <span>SDEC: {{this.modelBuildInfo['SDEC'].toFixed(2)}}, </span>\n                    <span>Q2: {{this.modelBuildInfo['Q2'].toFixed(2)}}, </span>\n                    <span>SDEP: {{this.modelBuildInfo['SDEP'].toFixed(2)}}</span>\n                  </div>\n                  <div *ngIf=\"!this.modelBuildInfo['quantitative'] && !this.modelBuildInfo['conformal']\">\n                    <span>Sensitivity: {{this.modelBuildInfo['Sensitivity'].toFixed(2)}}, </span>\n                    <span>Specificity: {{this.modelBuildInfo['Specificity'].toFixed(2)}}, </span>\n                    <span>MCC: {{this.modelBuildInfo['MCC'].toFixed(2)}}</span><br>\n                     <span>Sensitivity (predicted): {{this.modelBuildInfo['SensitivityPed'].toFixed(2)}}, </span>\n                    <span>Specificity (predicted): {{this.modelBuildInfo['SpecificityPred'].toFixed(2)}}, </span>\n                    <span>MCC (predicted): {{this.modelBuildInfo['MCC'].toFixed(2)}}</span>\n                  </div>\n                  <div *ngIf=\"this.modelBuildInfo['quantitative'] && this.modelBuildInfo['conformal']\">\n                    <span>Conformal mean interval: {{this.modelBuildInfo['Conformal_mean_interval'].toFixed(2)}}, </span>\n                    <span>Conformal accuracy: {{this.modelBuildInfo['Conformal_accuracy'].toFixed(2)}} </span>\n                  </div>\n                  <div *ngIf=\"!this.modelBuildInfo['quantitative'] && this.modelBuildInfo['conformal']\">\n                    <span>Sensitivity: {{this.modelBuildInfo['Sensitivity'].toFixed(2)}}, </span>\n                    <span>Specificity: {{this.modelBuildInfo['Specificity'].toFixed(2)}}, </span>\n                    <span>MCC: {{this.modelBuildInfo['MCC'].toFixed(2)}}, </span>\n                    <span>Conformal coverage: {{this.modelBuildInfo['Conformal_coverage'].toFixed(2)}}, </span>\n                    <span>Conformal accuracy: {{this.modelBuildInfo['Conformal_accuracy'].toFixed(2)}} </span>\n                  </div>\n                  <br>\n                    <a>QMRF report</a>\n                    \n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      <!---->\n    </div>\n  </div>\n</div>\n";
     /***/
   },
 
@@ -674,26 +674,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     __webpack_exports__["default"] = "\n<ul class=\"nav nav-pills pl-2\" role=\"tablist\">\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"predict-tab\" data-toggle=\"tab\" href=\"#predict\" role=\"tab\" aria-controls=\"predict\" aria-selected=\"true\" [routerLink]=\"['/predictions']\" [class.active]=\"isActive('predictions')\">Predictions</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"build-tab\" data-toggle=\"tab\" href=\"#build\" role=\"tab\" aria-controls=\"build\" aria-selected=\"false\" [routerLink]=\"['/models']\" [class.active]=\"isActive('models')\">Models</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"similarity-tab\" data-toggle=\"tab\" href=\"#similarity\" role=\"tab\" aria-controls=\"similarity\" aria-selected=\"false\" [routerLink]=\"['/similarity']\" [class.active]=\"isActive('similarity')\">Similarity</a>\n  </li>\n</ul>\n";
-    /***/
-  },
-
-  /***/
-  "./node_modules/raw-loader/dist/cjs.js!./src/app/similarity-results/similarity-results.component.html":
-  /*!************************************************************************************************************!*\
-    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/similarity-results/similarity-results.component.html ***!
-    \************************************************************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function node_modulesRawLoaderDistCjsJsSrcAppSimilarityResultsSimilarityResultsComponentHtml(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "<p>similarity-results works!</p>\n";
     /***/
   },
 
@@ -1444,6 +1424,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.file = undefined; // Name of file uploaded in the second step
 
       this.result = undefined;
+      this.date = undefined;
     };
 
     Prediction = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], Prediction);
@@ -1479,6 +1460,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       this.file_fields = undefined;
       this.result = undefined;
+      this.predicting = false;
+      this.nameSrc = undefined;
+      this.smileSrc = undefined;
     };
 
     Similarity = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], Similarity);
@@ -1953,19 +1937,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _similarity_results_similarity_results_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(
-    /*! ./similarity-results/similarity-results.component */
-    "./src/app/similarity-results/similarity-results.component.ts");
-    /* harmony import */
-
-
-    var _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(
+    var _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(
     /*! ./confusion-matrix/confusion-matrix.component */
     "./src/app/confusion-matrix/confusion-matrix.component.ts");
     /* harmony import */
 
 
-    var angular_datatables__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(
+    var angular_datatables__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(
     /*! angular-datatables */
     "./node_modules/angular-datatables/index.js");
 
@@ -1974,8 +1952,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _model_list_model_list_component__WEBPACK_IMPORTED_MODULE_7__["ModelListComponent"], _training_series_training_series_component__WEBPACK_IMPORTED_MODULE_8__["TrainingSeriesComponent"], _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_9__["SidebarComponent"], _validations_validations_component__WEBPACK_IMPORTED_MODULE_10__["ValidationsComponent"], _config_training_config_training_component__WEBPACK_IMPORTED_MODULE_14__["ConfigTrainingComponent"], _config_model_config_model_component__WEBPACK_IMPORTED_MODULE_15__["ConfigModelComponent"], _config_preferences_config_preferences_component__WEBPACK_IMPORTED_MODULE_16__["ConfigPreferencesComponent"], _qualit_no_conformal_qualit_no_conformal_component__WEBPACK_IMPORTED_MODULE_19__["QualitNoConformalComponent"], _qualit_conformal_qualit_conformal_component__WEBPACK_IMPORTED_MODULE_20__["QualitConformalComponent"], _quantit_no_conformal_quantit_no_conformal_component__WEBPACK_IMPORTED_MODULE_21__["QuantitNoConformalComponent"], _quantit_conformal_quantit_conformal_component__WEBPACK_IMPORTED_MODULE_22__["QuantitConformalComponent"], _builder_builder_component__WEBPACK_IMPORTED_MODULE_23__["BuilderComponent"], _predictor_predictor_component__WEBPACK_IMPORTED_MODULE_24__["PredictorComponent"], _prediction_prediction_component__WEBPACK_IMPORTED_MODULE_25__["PredictionComponent"], _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_27__["SimilarityComponent"], _modeling_sidebar_modeling_sidebar_component__WEBPACK_IMPORTED_MODULE_28__["ModelingSidebarComponent"], _new_similarity_new_similarity_component__WEBPACK_IMPORTED_MODULE_29__["NewSimilarityComponent"], _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_30__["PredictionListComponent"], _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_31__["ManageModelsComponent"], _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_32__["ManagePredictionsComponent"], _similarity_results_similarity_results_component__WEBPACK_IMPORTED_MODULE_34__["SimilarityResultsComponent"], _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_35__["ConfusionMatrixComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_13__["BrowserAnimationsModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_11__["ToastrModule"].forRoot(), ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_26__["NgMultiSelectDropDownModule"].forRoot(), angular_checklist__WEBPACK_IMPORTED_MODULE_17__["ChecklistModule"], ng2_charts__WEBPACK_IMPORTED_MODULE_18__["ChartsModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_33__["NgbModule"], angular_datatables__WEBPACK_IMPORTED_MODULE_36__["DataTablesModule"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _model_list_model_list_component__WEBPACK_IMPORTED_MODULE_7__["ModelListComponent"], _training_series_training_series_component__WEBPACK_IMPORTED_MODULE_8__["TrainingSeriesComponent"], _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_9__["SidebarComponent"], _validations_validations_component__WEBPACK_IMPORTED_MODULE_10__["ValidationsComponent"], _config_training_config_training_component__WEBPACK_IMPORTED_MODULE_14__["ConfigTrainingComponent"], _config_model_config_model_component__WEBPACK_IMPORTED_MODULE_15__["ConfigModelComponent"], _config_preferences_config_preferences_component__WEBPACK_IMPORTED_MODULE_16__["ConfigPreferencesComponent"], _qualit_no_conformal_qualit_no_conformal_component__WEBPACK_IMPORTED_MODULE_19__["QualitNoConformalComponent"], _qualit_conformal_qualit_conformal_component__WEBPACK_IMPORTED_MODULE_20__["QualitConformalComponent"], _quantit_no_conformal_quantit_no_conformal_component__WEBPACK_IMPORTED_MODULE_21__["QuantitNoConformalComponent"], _quantit_conformal_quantit_conformal_component__WEBPACK_IMPORTED_MODULE_22__["QuantitConformalComponent"], _builder_builder_component__WEBPACK_IMPORTED_MODULE_23__["BuilderComponent"], _predictor_predictor_component__WEBPACK_IMPORTED_MODULE_24__["PredictorComponent"], _prediction_prediction_component__WEBPACK_IMPORTED_MODULE_25__["PredictionComponent"], _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_27__["SimilarityComponent"], _modeling_sidebar_modeling_sidebar_component__WEBPACK_IMPORTED_MODULE_28__["ModelingSidebarComponent"], _new_similarity_new_similarity_component__WEBPACK_IMPORTED_MODULE_29__["NewSimilarityComponent"], _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_30__["PredictionListComponent"], _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_31__["ManageModelsComponent"], _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_32__["ManagePredictionsComponent"], _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_34__["ConfusionMatrixComponent"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_13__["BrowserAnimationsModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_11__["ToastrModule"].forRoot(), ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_26__["NgMultiSelectDropDownModule"].forRoot(), angular_checklist__WEBPACK_IMPORTED_MODULE_17__["ChecklistModule"], ng2_charts__WEBPACK_IMPORTED_MODULE_18__["ChartsModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_33__["NgbModule"], angular_datatables__WEBPACK_IMPORTED_MODULE_35__["DataTablesModule"]],
       providers: [_Globals__WEBPACK_IMPORTED_MODULE_12__["Model"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Prediction"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Globals"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Manager"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Similarity"]],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })], AppModule);
@@ -3931,7 +3909,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n}\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\ntd {\n    padding: 4px;\n    vertical-align: middle;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjs7R0FFdEIscUJBQXFCO0lBQ3BCLHNCQUFzQjs7O0FBRzFCO0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIseUJBQXlCO0lBQ3pCLGFBQWE7QUFDakI7QUFFQTtJQUNJLFlBQVk7SUFDWixnREFBZ0Q7SUFDaEQsZ0NBQWdDO0FBQ3BDO0FBQ0E7SUFDSSxlQUFlO0FBQ25CO0FBR0E7SUFDSSxtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtBQUMxQjtBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGNBQWM7QUFDbEIiLCJmaWxlIjoic3JjL2FwcC9tb2RlbC1saXN0L21vZGVsLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImkge1xuICAgIG1hcmdpbi1yaWdodDogNXB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbi50YWJsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgLypiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gbGVmdCwgI0Y3RjdGNyAwJSwgI0Y3RjdGNyAxMDAlKTsqL1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIGNvbG9yOiAjMjI1NzdBO1xuICAgIC8qYm9yZGVyOiAxcHggc29saWQ7Ki9cbiAgICBcbiAgIC8qIG1heC1oZWlnaHQ6IDgwdmg7Ki9cbiAgICAvKm92ZXJmbG93LXk6IHNjcm9sbDsqL1xuICAgIFxuICAgIFxufVxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsgKi9cbiAgICBjb2xvcjojMDA3NmEzO1xufVxuXG4udGFibGUgdGQge1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICBmb250LWZhbWlseTogJ0JhcmxvdyBTZW1pIENvbmRlbnNlZCcsIHNhbnMtc2VyaWY7XG4gICAgYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkICNCOERDRUQ7XG59XG50ciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxudGQge1xuICAgIHBhZGRpbmc6IDRweDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuXG4ubW9kZWwtY29udGVudCB7XG4gICAgbWF4LXdpZHRoOiAzNTBweDtcbiAgICBtYXgtaGVpZ2h0OiAzNTBweDtcbn1cbi5zY3JvbGx0YWJsZXtcbiAgICBtYXgtaGVpZ2h0OiA5MHZoO1xuICAgIG92ZXJmbG93OiBhdXRvO1xufVxuXG5cbiJdfQ== */";
+    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n}\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\ntd {\n    padding: 4px;\n    vertical-align: middle;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjs7R0FFdEIscUJBQXFCO0lBQ3BCLHNCQUFzQjs7O0FBRzFCO0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIseUJBQXlCO0lBQ3pCLGFBQWE7QUFDakI7QUFFQTtJQUNJLFlBQVk7SUFDWixnREFBZ0Q7SUFDaEQsZ0NBQWdDO0FBQ3BDO0FBQ0E7SUFDSSxlQUFlO0FBQ25CO0FBR0E7SUFDSSxtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtBQUMxQjtBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGNBQWM7QUFDbEI7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9tb2RlbC1saXN0L21vZGVsLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImkge1xuICAgIG1hcmdpbi1yaWdodDogNXB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbi50YWJsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgLypiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gbGVmdCwgI0Y3RjdGNyAwJSwgI0Y3RjdGNyAxMDAlKTsqL1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIGNvbG9yOiAjMjI1NzdBO1xuICAgIC8qYm9yZGVyOiAxcHggc29saWQ7Ki9cbiAgICBcbiAgIC8qIG1heC1oZWlnaHQ6IDgwdmg7Ki9cbiAgICAvKm92ZXJmbG93LXk6IHNjcm9sbDsqL1xuICAgIFxuICAgIFxufVxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsgKi9cbiAgICBjb2xvcjojMDA3NmEzO1xufVxuXG4udGFibGUgdGQge1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICBmb250LWZhbWlseTogJ0JhcmxvdyBTZW1pIENvbmRlbnNlZCcsIHNhbnMtc2VyaWY7XG4gICAgYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkICNCOERDRUQ7XG59XG50ciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxudGQge1xuICAgIHBhZGRpbmc6IDRweDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuXG4ubW9kZWwtY29udGVudCB7XG4gICAgbWF4LXdpZHRoOiAzNTBweDtcbiAgICBtYXgtaGVpZ2h0OiAzNTBweDtcbn1cbi5zY3JvbGx0YWJsZXtcbiAgICBtYXgtaGVpZ2h0OiA5MHZoO1xuICAgIG92ZXJmbG93OiBhdXRvO1xufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn1cblxuIl19 */";
     /***/
   },
 
@@ -4145,7 +4123,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             setTimeout(function () {
               _this12.tableVisible = true;
-              var table = $('#dataTableModels').DataTable();
+              var table = $('#dataTableModels').DataTable({
+                /* No ordering applied by DataTables during initialisation */
+                order: []
+              });
             }, 500);
           }, function (error) {
             console.log(error.message);
@@ -4446,7 +4427,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n\n.table {\n    background-color: white;\n    background: white;\n    color: #22577A;\n}\n\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED;*/\n    color:#0076a3;\n    vertical-align: middle;\n}\n\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\n\ntr {\n    cursor: pointer;\n}\n\ntr.selected {\n    background: #f7f9ea;\n}\n\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n\n.blink {\n    -webkit-animation: blinker 0.6s linear infinite;\n            animation: blinker 0.6s linear infinite;\n}\n\n@-webkit-keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n@keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n/*table.dataTable thead .sorting:before,\ntable.dataTable thead .sorting_asc:before,\ntable.dataTable thead .sorting_desc:before,\ntable.dataTable thead .sorting_asc_disabled:before,\ntable.dataTable thead .sorting_desc_disabled:before {\n    position: fixed;\n}\ntable.dataTable thead .sorting:after,\ntable.dataTable thead .sorting_asc:after,\ntable.dataTable thead .sorting_desc:after,\ntable.dataTable thead .sorting_asc_disabled:after,\ntable.dataTable thead .sorting_desc_disabled:after {\n    position: fixed;\n}*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi1saXN0L3ByZWRpY3Rpb24tbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsaUJBQWlCO0lBQ2pCLGNBQWM7QUFDbEI7O0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIsd0JBQXdCO0lBQ3hCLGFBQWE7SUFDYixzQkFBc0I7QUFDMUI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osZ0RBQWdEO0lBQ2hELGdDQUFnQztBQUNwQzs7QUFDQTtJQUNJLGVBQWU7QUFDbkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSwrQ0FBdUM7WUFBdkMsdUNBQXVDO0FBQzNDOztBQUNBO0lBQ0ksT0FBTyxVQUFVLEVBQUU7QUFDdkI7O0FBRkE7SUFDSSxPQUFPLFVBQVUsRUFBRTtBQUN2Qjs7QUFFQTs7Ozs7Ozs7Ozs7OztFQWFFIiwiZmlsZSI6InNyYy9hcHAvcHJlZGljdGlvbi1saXN0L3ByZWRpY3Rpb24tbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaSB7XG4gICAgbWFyZ2luLXJpZ2h0OiA1cHg7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4udGFibGUge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIGNvbG9yOiAjMjI1NzdBO1xufVxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsqL1xuICAgIGNvbG9yOiMwMDc2YTM7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cbi50YWJsZSB0ZCB7XG4gICAgcGFkZGluZzogNXB4O1xuICAgIGZvbnQtZmFtaWx5OiAnQmFybG93IFNlbWkgQ29uZGVuc2VkJywgc2Fucy1zZXJpZjtcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgI0I4RENFRDtcbn1cbnRyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG50ci5zZWxlY3RlZCB7XG4gICAgYmFja2dyb3VuZDogI2Y3ZjllYTtcbn1cbi50YWJsZSB0Ym9keSB0cjpob3ZlciB7XG4gICAgYmFja2dyb3VuZDogI2Y3ZjllYTtcbn1cblxuLmJsaW5rIHtcbiAgICBhbmltYXRpb246IGJsaW5rZXIgMC42cyBsaW5lYXIgaW5maW5pdGU7XG59XG5Aa2V5ZnJhbWVzIGJsaW5rZXIgeyAgXG4gICAgMTAwJSB7IG9wYWNpdHk6IDA7IH1cbn1cblxuLyp0YWJsZS5kYXRhVGFibGUgdGhlYWQgLnNvcnRpbmc6YmVmb3JlLFxudGFibGUuZGF0YVRhYmxlIHRoZWFkIC5zb3J0aW5nX2FzYzpiZWZvcmUsXG50YWJsZS5kYXRhVGFibGUgdGhlYWQgLnNvcnRpbmdfZGVzYzpiZWZvcmUsXG50YWJsZS5kYXRhVGFibGUgdGhlYWQgLnNvcnRpbmdfYXNjX2Rpc2FibGVkOmJlZm9yZSxcbnRhYmxlLmRhdGFUYWJsZSB0aGVhZCAuc29ydGluZ19kZXNjX2Rpc2FibGVkOmJlZm9yZSB7XG4gICAgcG9zaXRpb246IGZpeGVkO1xufVxudGFibGUuZGF0YVRhYmxlIHRoZWFkIC5zb3J0aW5nOmFmdGVyLFxudGFibGUuZGF0YVRhYmxlIHRoZWFkIC5zb3J0aW5nX2FzYzphZnRlcixcbnRhYmxlLmRhdGFUYWJsZSB0aGVhZCAuc29ydGluZ19kZXNjOmFmdGVyLFxudGFibGUuZGF0YVRhYmxlIHRoZWFkIC5zb3J0aW5nX2FzY19kaXNhYmxlZDphZnRlcixcbnRhYmxlLmRhdGFUYWJsZSB0aGVhZCAuc29ydGluZ19kZXNjX2Rpc2FibGVkOmFmdGVyIHtcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG59Ki8iXX0= */";
+    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n\n.table {\n    background-color: white;\n    background: white;\n    color: #22577A;\n}\n\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED;*/\n    color:#0076a3;\n    vertical-align: middle;\n}\n\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\n\ntr {\n    cursor: pointer;\n}\n\ntr.selected {\n    background: #f7f9ea;\n}\n\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n\n.blink {\n    -webkit-animation: blinker 0.6s linear infinite;\n            animation: blinker 0.6s linear infinite;\n}\n\n@-webkit-keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n@keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi1saXN0L3ByZWRpY3Rpb24tbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsaUJBQWlCO0lBQ2pCLGNBQWM7QUFDbEI7O0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIsd0JBQXdCO0lBQ3hCLGFBQWE7SUFDYixzQkFBc0I7QUFDMUI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osZ0RBQWdEO0lBQ2hELGdDQUFnQztBQUNwQzs7QUFDQTtJQUNJLGVBQWU7QUFDbkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSwrQ0FBdUM7WUFBdkMsdUNBQXVDO0FBQzNDOztBQUNBO0lBQ0ksT0FBTyxVQUFVLEVBQUU7QUFDdkI7O0FBRkE7SUFDSSxPQUFPLFVBQVUsRUFBRTtBQUN2Qjs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9wcmVkaWN0aW9uLWxpc3QvcHJlZGljdGlvbi1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpIHtcbiAgICBtYXJnaW4tcmlnaHQ6IDVweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi50YWJsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgY29sb3I6ICMyMjU3N0E7XG59XG4udGFibGUgdGh7XG4gICAgLypwYWRkaW5nLWxlZnQ6IDFweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxcHg7Ki9cbiAgICAvKiBiYWNrZ3JvdW5kOiAjQjhEQ0VEOyovXG4gICAgY29sb3I6IzAwNzZhMztcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuLnRhYmxlIHRkIHtcbiAgICBwYWRkaW5nOiA1cHg7XG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCBzYW5zLXNlcmlmO1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjQjhEQ0VEO1xufVxudHIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuXG4uYmxpbmsge1xuICAgIGFuaW1hdGlvbjogYmxpbmtlciAwLjZzIGxpbmVhciBpbmZpbml0ZTtcbn1cbkBrZXlmcmFtZXMgYmxpbmtlciB7ICBcbiAgICAxMDAlIHsgb3BhY2l0eTogMDsgfVxufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn0iXX0= */";
     /***/
   },
 
@@ -4530,10 +4511,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "selectPrediction",
-        value: function selectPrediction(name, modelName, modelVersion) {
+        value: function selectPrediction(name, modelName, modelVersion, date) {
           this.prediction.name = name;
           this.prediction.modelName = modelName;
           this.prediction.modelVersion = modelVersion;
+          this.prediction.date = date;
         }
       }, {
         key: "getPredictionList",
@@ -4544,7 +4526,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.commonService.getPredictionList().subscribe(function (result) {
             _this13.prediction.predictions = result;
             setTimeout(function () {
-              var table = $('#dataTablePredictions').DataTable();
+              var table = $('#dataTablePredictions').DataTable({
+                /* No ordering applied by DataTables during initialisation */
+                order: [[4, 'asc']]
+              });
               $('#dataTablePredictions tbody').on('click', 'tr', function () {
                 $('tr').removeClass('selected'); // removes all highlights from tr's
 
@@ -4599,7 +4584,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "/* @import '../../assets/css/dataTables.material.min.css';\n@import '../../assets/css/material.min.css'; */\n\n.table th{\n    color: #22577A;\n}\n\n.table td {\n    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/\n}\n\n.table td, .table th {\n    border-top: 4px solid rgba(0,0,0,.06);\n}\n\nul li.nav-item a {\n  background:white;\n  color: #6C757D;\n}\n\nul li.nav-item a.active{\n  background: #F0F0F0;\n  color: #6C757D;\n}\n\n/* rotating circle to show progress */\n\n.loading {\n    position: absolute;\n    left: 50%;\n    /* top: 50%; */ /* center vertically */\n    z-index: 1; \n    width: 120px;\n    height: 120px;\n    /* margin: -75px 0 0 -75px; */\n    margin: 0 0 0 -60px;\n    /* border: 20px solid #f3f3f3; */\n    border: 20px solid #e6901a;\n\n    border-radius: 60%;\n    /* border-top: 20px solid #3498db; */\n    border-top: 20px solid #165379;\n    -webkit-animation: spin 2s linear infinite;\n    animation: spin 2s linear infinite;\n  }\n\n/* Safari */\n\n@-webkit-keyframes spin {\n    0% { -webkit-transform: rotate(0deg); }\n    100% { -webkit-transform: rotate(360deg); }\n  }\n\n@keyframes spin {\n    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }\n    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }\n  }\n\n.TP {\n  background-color: rgba(0,255,0,0.3);\n}\n\n.FP {\n  background-color:rgba(235,143,3,0.3);\n}\n\n.TN {\n  background-color:rgba(3,49,155,0.3);\n}\n\n.FN {\n  background-color:rgba(255,0,0,0.3);\n}\n\n.card-header {\n  background: #B8DCED;\n  background-color: #B8DCED;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi9wcmVkaWN0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7OENBQzhDOztBQUU5QztJQUNJLGNBQWM7QUFDbEI7O0FBQ0E7SUFDSSxvREFBb0Q7QUFDeEQ7O0FBQ0E7SUFDSSxxQ0FBcUM7QUFDekM7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQixjQUFjO0FBQ2hCOztBQUVBLHFDQUFxQzs7QUFFckM7SUFDSSxrQkFBa0I7SUFDbEIsU0FBUztJQUNULGNBQWMsRUFBRSxzQkFBc0I7SUFDdEMsVUFBVTtJQUNWLFlBQVk7SUFDWixhQUFhO0lBQ2IsNkJBQTZCO0lBQzdCLG1CQUFtQjtJQUNuQixnQ0FBZ0M7SUFDaEMsMEJBQTBCOztJQUUxQixrQkFBa0I7SUFDbEIsb0NBQW9DO0lBQ3BDLDhCQUE4QjtJQUM5QiwwQ0FBMEM7SUFDMUMsa0NBQWtDO0VBQ3BDOztBQUVBLFdBQVc7O0FBQ1g7SUFDRSxLQUFLLCtCQUErQixFQUFFO0lBQ3RDLE9BQU8saUNBQWlDLEVBQUU7RUFDNUM7O0FBRUE7SUFDRSxLQUFLLCtCQUF1QixFQUF2Qix1QkFBdUIsRUFBRTtJQUM5QixPQUFPLGlDQUF5QixFQUF6Qix5QkFBeUIsRUFBRTtFQUNwQzs7QUFFRjtFQUNFLG1DQUFtQztBQUNyQzs7QUFDQTtFQUNFLG9DQUFvQztBQUN0Qzs7QUFDQTtFQUNFLG1DQUFtQztBQUNyQzs7QUFDQTtFQUNFLGtDQUFrQztBQUNwQzs7QUFDQTtFQUNFLG1CQUFtQjtFQUNuQix5QkFBeUI7QUFDM0IiLCJmaWxlIjoic3JjL2FwcC9wcmVkaWN0aW9uL3ByZWRpY3Rpb24uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIEBpbXBvcnQgJy4uLy4uL2Fzc2V0cy9jc3MvZGF0YVRhYmxlcy5tYXRlcmlhbC5taW4uY3NzJztcbkBpbXBvcnQgJy4uLy4uL2Fzc2V0cy9jc3MvbWF0ZXJpYWwubWluLmNzcyc7ICovXG5cbi50YWJsZSB0aHtcbiAgICBjb2xvcjogIzIyNTc3QTtcbn1cbi50YWJsZSB0ZCB7XG4gICAgLypmb250LWZhbWlseTogVmVyZGFuYSwgR2VuZXZhLCBUYWhvbWEsIHNhbnMtc2VyaWY7Ki9cbn1cbi50YWJsZSB0ZCwgLnRhYmxlIHRoIHtcbiAgICBib3JkZXItdG9wOiA0cHggc29saWQgcmdiYSgwLDAsMCwuMDYpO1xufVxuXG51bCBsaS5uYXYtaXRlbSBhIHtcbiAgYmFja2dyb3VuZDp3aGl0ZTtcbiAgY29sb3I6ICM2Qzc1N0Q7XG59XG5cbnVsIGxpLm5hdi1pdGVtIGEuYWN0aXZle1xuICBiYWNrZ3JvdW5kOiAjRjBGMEYwO1xuICBjb2xvcjogIzZDNzU3RDtcbn1cblxuLyogcm90YXRpbmcgY2lyY2xlIHRvIHNob3cgcHJvZ3Jlc3MgKi9cblxuLmxvYWRpbmcge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgLyogdG9wOiA1MCU7ICovIC8qIGNlbnRlciB2ZXJ0aWNhbGx5ICovXG4gICAgei1pbmRleDogMTsgXG4gICAgd2lkdGg6IDEyMHB4O1xuICAgIGhlaWdodDogMTIwcHg7XG4gICAgLyogbWFyZ2luOiAtNzVweCAwIDAgLTc1cHg7ICovXG4gICAgbWFyZ2luOiAwIDAgMCAtNjBweDtcbiAgICAvKiBib3JkZXI6IDIwcHggc29saWQgI2YzZjNmMzsgKi9cbiAgICBib3JkZXI6IDIwcHggc29saWQgI2U2OTAxYTtcblxuICAgIGJvcmRlci1yYWRpdXM6IDYwJTtcbiAgICAvKiBib3JkZXItdG9wOiAyMHB4IHNvbGlkICMzNDk4ZGI7ICovXG4gICAgYm9yZGVyLXRvcDogMjBweCBzb2xpZCAjMTY1Mzc5O1xuICAgIC13ZWJraXQtYW5pbWF0aW9uOiBzcGluIDJzIGxpbmVhciBpbmZpbml0ZTtcbiAgICBhbmltYXRpb246IHNwaW4gMnMgbGluZWFyIGluZmluaXRlO1xuICB9XG5cbiAgLyogU2FmYXJpICovXG4gIEAtd2Via2l0LWtleWZyYW1lcyBzcGluIHtcbiAgICAwJSB7IC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH1cbiAgICAxMDAlIHsgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyB9XG4gIH1cblxuICBAa2V5ZnJhbWVzIHNwaW4ge1xuICAgIDAlIHsgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH1cbiAgICAxMDAlIHsgdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTsgfVxuICB9XG5cbi5UUCB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwyNTUsMCwwLjMpO1xufVxuLkZQIHtcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDIzNSwxNDMsMywwLjMpO1xufVxuLlROIHtcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDMsNDksMTU1LDAuMyk7XG59XG4uRk4ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMjU1LDAsMCwwLjMpO1xufVxuLmNhcmQtaGVhZGVyIHtcbiAgYmFja2dyb3VuZDogI0I4RENFRDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0I4RENFRDtcbn1cbiJdfQ== */";
+    __webpack_exports__["default"] = "/* @import '../../assets/css/dataTables.material.min.css';\n@import '../../assets/css/material.min.css'; */\n\n.table th{\n    color: #22577A;\n}\n\n.table td {\n    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/\n}\n\n.table td, .table th {\n    border-top: 4px solid rgba(0,0,0,.06);\n}\n\nul li.nav-item a {\n  background:white;\n  color: #6C757D;\n}\n\nul li.nav-item a.active{\n  background: #F0F0F0;\n  color: #6C757D;\n}\n\n/* rotating circle to show progress */\n\n.TP {\n  background-color: rgba(0,255,0,0.3);\n}\n\n.FP {\n  background-color:rgba(235,143,3,0.3);\n}\n\n.TN {\n  background-color:rgba(3,49,155,0.3);\n}\n\n.FN {\n  background-color:rgba(255,0,0,0.3);\n}\n\n.card-header {\n  background: #B8DCED;\n  background-color: #B8DCED;\n}\n\n.spinner-border {\n  display: block;\n  position: absolute;\n  z-index: 1031;\n  top: 25%; /* where ... is the element's height */\n  right: 45%; /* where ... is the element's width */\n}\n\n#overlay {\n  position: absolute;\n  /*display: none;*/\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #FAFAFA;\n  opacity: 0.7;\n  z-index: 2;\n  cursor: pointer;\n}\n\n/*END LOADING*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi9wcmVkaWN0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7OENBQzhDOztBQUU5QztJQUNJLGNBQWM7QUFDbEI7O0FBQ0E7SUFDSSxvREFBb0Q7QUFDeEQ7O0FBQ0E7SUFDSSxxQ0FBcUM7QUFDekM7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQixjQUFjO0FBQ2hCOztBQUVBLHFDQUFxQzs7QUFFckM7RUFDRSxtQ0FBbUM7QUFDckM7O0FBQ0E7RUFDRSxvQ0FBb0M7QUFDdEM7O0FBQ0E7RUFDRSxtQ0FBbUM7QUFDckM7O0FBQ0E7RUFDRSxrQ0FBa0M7QUFDcEM7O0FBQ0E7RUFDRSxtQkFBbUI7RUFDbkIseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UsY0FBYztFQUNkLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsUUFBUSxFQUFFLHNDQUFzQztFQUNoRCxVQUFVLEVBQUUscUNBQXFDO0FBQ25EOztBQUdBO0VBQ0Usa0JBQWtCO0VBQ2xCLGlCQUFpQjtFQUNqQixNQUFNO0VBQ04sT0FBTztFQUNQLFFBQVE7RUFDUixTQUFTO0VBQ1QseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixVQUFVO0VBQ1YsZUFBZTtBQUNqQjs7QUFDQSxjQUFjIiwiZmlsZSI6InNyYy9hcHAvcHJlZGljdGlvbi9wcmVkaWN0aW9uLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBAaW1wb3J0ICcuLi8uLi9hc3NldHMvY3NzL2RhdGFUYWJsZXMubWF0ZXJpYWwubWluLmNzcyc7XG5AaW1wb3J0ICcuLi8uLi9hc3NldHMvY3NzL21hdGVyaWFsLm1pbi5jc3MnOyAqL1xuXG4udGFibGUgdGh7XG4gICAgY29sb3I6ICMyMjU3N0E7XG59XG4udGFibGUgdGQge1xuICAgIC8qZm9udC1mYW1pbHk6IFZlcmRhbmEsIEdlbmV2YSwgVGFob21hLCBzYW5zLXNlcmlmOyovXG59XG4udGFibGUgdGQsIC50YWJsZSB0aCB7XG4gICAgYm9yZGVyLXRvcDogNHB4IHNvbGlkIHJnYmEoMCwwLDAsLjA2KTtcbn1cblxudWwgbGkubmF2LWl0ZW0gYSB7XG4gIGJhY2tncm91bmQ6d2hpdGU7XG4gIGNvbG9yOiAjNkM3NTdEO1xufVxuXG51bCBsaS5uYXYtaXRlbSBhLmFjdGl2ZXtcbiAgYmFja2dyb3VuZDogI0YwRjBGMDtcbiAgY29sb3I6ICM2Qzc1N0Q7XG59XG5cbi8qIHJvdGF0aW5nIGNpcmNsZSB0byBzaG93IHByb2dyZXNzICovXG5cbi5UUCB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwyNTUsMCwwLjMpO1xufVxuLkZQIHtcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDIzNSwxNDMsMywwLjMpO1xufVxuLlROIHtcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDMsNDksMTU1LDAuMyk7XG59XG4uRk4ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMjU1LDAsMCwwLjMpO1xufVxuLmNhcmQtaGVhZGVyIHtcbiAgYmFja2dyb3VuZDogI0I4RENFRDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0I4RENFRDtcbn1cblxuLnNwaW5uZXItYm9yZGVyIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgei1pbmRleDogMTAzMTtcbiAgdG9wOiAyNSU7IC8qIHdoZXJlIC4uLiBpcyB0aGUgZWxlbWVudCdzIGhlaWdodCAqL1xuICByaWdodDogNDUlOyAvKiB3aGVyZSAuLi4gaXMgdGhlIGVsZW1lbnQncyB3aWR0aCAqL1xufVxuXG5cbiNvdmVybGF5IHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICAvKmRpc3BsYXk6IG5vbmU7Ki9cbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgYm90dG9tOiAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRkFGQUZBO1xuICBvcGFjaXR5OiAwLjc7XG4gIHotaW5kZXg6IDI7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi8qRU5EIExPQURJTkcqLyJdfQ== */";
     /***/
   },
 
@@ -4655,66 +4640,73 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _prediction_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _common_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../common.service */
+    "./src/app/common.service.ts");
+    /* harmony import */
+
+
+    var _prediction_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./prediction.service */
     "./src/app/prediction/prediction.service.ts");
     /* harmony import */
 
 
-    var jspdf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var jspdf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! jspdf */
     "./node_modules/jspdf/dist/jspdf.min.js");
     /* harmony import */
 
 
-    var jspdf__WEBPACK_IMPORTED_MODULE_5___default =
+    var jspdf__WEBPACK_IMPORTED_MODULE_6___default =
     /*#__PURE__*/
-    __webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_5__);
+    __webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_6__);
     /* harmony import */
 
 
-    var jspdf_autotable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var jspdf_autotable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! jspdf-autotable */
     "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js");
     /* harmony import */
 
 
-    var jspdf_autotable__WEBPACK_IMPORTED_MODULE_6___default =
+    var jspdf_autotable__WEBPACK_IMPORTED_MODULE_7___default =
     /*#__PURE__*/
-    __webpack_require__.n(jspdf_autotable__WEBPACK_IMPORTED_MODULE_6__);
+    __webpack_require__.n(jspdf_autotable__WEBPACK_IMPORTED_MODULE_7__);
     /* harmony import */
 
 
-    var xlsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var xlsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! xlsx */
     "./node_modules/xlsx/xlsx.js");
     /* harmony import */
 
 
-    var xlsx__WEBPACK_IMPORTED_MODULE_7___default =
+    var xlsx__WEBPACK_IMPORTED_MODULE_8___default =
     /*#__PURE__*/
-    __webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_7__);
+    __webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_8__);
 
     var PredictionComponent =
     /*#__PURE__*/
     function () {
-      function PredictionComponent(prediction, service) {
+      function PredictionComponent(prediction, service, commonService) {
         _classCallCheck(this, PredictionComponent);
 
         this.prediction = prediction;
         this.service = service;
+        this.commonService = commonService;
         this.objectKeys = Object.keys;
         this.predictionVisible = false;
         this.q_measures = ['TP', 'FP', 'TN', 'FN'];
         this.table = undefined;
         this.info = [];
         this.head = [];
+        this.modelDocumentation = undefined;
         this.i = 0;
         this.noNext = false;
         this.noPrevious = true;
         this.modelBuildInfo = {};
-        this.modelValidationInfo = {};
-        this.quantitative = true; // PolarArea
+        this.modelValidationInfo = {}; // PolarArea
 
         this.polarChartOptions = {
           responsive: true,
@@ -4785,73 +4777,154 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnChanges",
         value: function ngOnChanges() {
+          this.getParameters();
+          this.getInfo();
           this.getDocumentation();
           this.getPrediction();
         }
       }, {
-        key: "getDocumentation",
-        value: function getDocumentation() {
+        key: "getParameters",
+        value: function getParameters() {
           var _this14 = this;
 
-          this.service.getDocumentation(this.prediction.modelName, this.prediction.modelVersion).subscribe(function (result) {
-            _this14.modelDocumentation = result;
+          this.commonService.getParameters(this.prediction.modelName, this.prediction.modelVersion).subscribe(function (result) {
+            _this14.prediction.modelParameters = result;
+            console.log(_this14.prediction.modelParameters);
           }, function (error) {
-            alert('Error getting Documentation');
+            alert(error.status + ' : ' + error.statusText);
+          }, function () {// console.log('actual parameters.yaml \n', parameters);
           });
+        }
+      }, {
+        key: "getInfo",
+        value: function getInfo() {
+          var _this15 = this;
+
+          this.commonService.getModel(this.prediction.modelName, this.prediction.modelVersion).subscribe(function (result) {
+            _this15.modelBuildInfo = {};
+            var _iteratorNormalCompletion12 = true;
+            var _didIteratorError12 = false;
+            var _iteratorError12 = undefined;
+
+            try {
+              for (var _iterator12 = result[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                var info = _step12.value;
+                _this15.modelBuildInfo[info[0]] = info[2];
+              }
+            } catch (err) {
+              _didIteratorError12 = true;
+              _iteratorError12 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion12 && _iterator12.return != null) {
+                  _iterator12.return();
+                }
+              } finally {
+                if (_didIteratorError12) {
+                  throw _iteratorError12;
+                }
+              }
+            }
+
+            _this15.modelBuildInfo['quantitative'] = false;
+
+            if (_this15.modelBuildInfo['model'].includes('quantitative') || _this15.modelBuildInfo['model'].includes('mean') || _this15.modelBuildInfo['model'].includes('median')) {
+              _this15.modelBuildInfo['quantitative'] = true;
+            }
+
+            _this15.modelBuildInfo['conformal'] = false;
+
+            if (_this15.modelBuildInfo['model'].includes('conformal')) {
+              _this15.modelBuildInfo['conformal'] = true;
+            }
+
+            _this15.modelBuildInfo['ensemble'] = false;
+
+            if (_this15.modelBuildInfo['model'].includes('combination')) {
+              _this15.modelBuildInfo['ensemble'] = true;
+            }
+
+            console.log(_this15.modelBuildInfo);
+          }, function (error) {});
+        }
+      }, {
+        key: "getDocumentation",
+        value: function getDocumentation() {
+          var _this16 = this;
+
+          this.service.getDocumentation(this.prediction.modelName, this.prediction.modelVersion).subscribe(function (result) {
+            _this16.modelDocumentation = result;
+          }, function (error) {
+            _this16.modelDocumentation = undefined;
+          });
+        }
+      }, {
+        key: "castValue",
+        value: function castValue(value) {
+          if (this.modelBuildInfo['quantitative']) {
+            return value.toFixed(3);
+          } else {
+            if (value === 0) {
+              return 'Negative';
+            } else if (value === 1) {
+              return 'Positive';
+            } else {
+              return 'Uncertain';
+            }
+          }
         }
       }, {
         key: "getPrediction",
         value: function getPrediction() {
-          var _this15 = this;
+          var _this17 = this;
 
           this.predictionVisible = false;
           this.predictionResult = undefined;
           $('#prediction').DataTable().destroy();
           $('#predictionOne').DataTable().destroy();
-          this.modelBuildInfo = {};
           this.modelValidationInfo = {};
           this.service.getPrediction(this.predictionName).subscribe(function (result) {
-            _this15.predictionResult = result;
+            _this17.predictionResult = result;
 
-            if ('external-validation' in _this15.predictionResult) {
-              var _iteratorNormalCompletion12 = true;
-              var _didIteratorError12 = false;
-              var _iteratorError12 = undefined;
+            if ('external-validation' in _this17.predictionResult) {
+              var _iteratorNormalCompletion13 = true;
+              var _didIteratorError13 = false;
+              var _iteratorError13 = undefined;
 
               try {
-                for (var _iterator12 = _this15.predictionResult['external-validation'][Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                  var modelInfo = _step12.value;
+                for (var _iterator13 = _this17.predictionResult['external-validation'][Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                  var modelInfo = _step13.value;
 
                   if (typeof modelInfo[2] === 'number') {
                     modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
                   }
 
                   if (typeof modelInfo[2] !== 'object') {
-                    _this15.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+                    _this17.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
                   }
                 }
               } catch (err) {
-                _didIteratorError12 = true;
-                _iteratorError12 = err;
+                _didIteratorError13 = true;
+                _iteratorError13 = err;
               } finally {
                 try {
-                  if (!_iteratorNormalCompletion12 && _iterator12.return != null) {
-                    _iterator12.return();
+                  if (!_iteratorNormalCompletion13 && _iterator13.return != null) {
+                    _iterator13.return();
                   }
                 } finally {
-                  if (_didIteratorError12) {
-                    throw _iteratorError12;
+                  if (_didIteratorError13) {
+                    throw _iteratorError13;
                   }
                 }
               }
             }
 
-            if ('TP' in _this15.modelValidationInfo) {
-              _this15.polarAreaChartData = [_this15.modelValidationInfo['TP'][1], _this15.modelValidationInfo['FP'][1], _this15.modelValidationInfo['TN'][1], _this15.modelValidationInfo['FN'][1]];
+            if ('TP' in _this17.modelValidationInfo) {
+              _this17.polarAreaChartData = [_this17.modelValidationInfo['TP'][1], _this17.modelValidationInfo['FP'][1], _this17.modelValidationInfo['TN'][1], _this17.modelValidationInfo['FN'][1]];
             }
 
             setTimeout(function () {
-              _this15.components.forEach(function (child) {
+              _this17.components.forEach(function (child) {
                 var options = {
                   'width': 300,
                   'height': 150
@@ -4864,10 +4937,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 });
               });
 
-              _this15.predictionVisible = true;
-              var table = $('#prediction').DataTable(); // const table2 = $('#predictionOne').DataTable({'pageLength': 1});
-
-              var me = _this15;
+              var table = $('#prediction').DataTable({
+                /* No ordering applied by DataTables during initialisation */
+                order: []
+              });
+              _this17.predictionVisible = true;
+              var me = _this17;
               $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 if (e.target.id === 'pills-one-tab') {
                   var options = {
@@ -4902,19 +4977,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           xls.splice(0, 0, this.head);
           /* generate worksheet */
 
-          var ws = xlsx__WEBPACK_IMPORTED_MODULE_7__["utils"].aoa_to_sheet(xls);
+          var ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].aoa_to_sheet(xls);
           /* generate workbook and add the worksheet */
 
-          var wb = xlsx__WEBPACK_IMPORTED_MODULE_7__["utils"].book_new();
-          xlsx__WEBPACK_IMPORTED_MODULE_7__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+          var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
+          xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
           /* save to file */
 
-          xlsx__WEBPACK_IMPORTED_MODULE_7__["writeFile"](wb, this.prediction.name + '.xlsx');
+          xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, this.prediction.name + '.xlsx');
         }
       }, {
         key: "savePDF",
         value: function savePDF() {
-          var pdf = new jspdf__WEBPACK_IMPORTED_MODULE_5___default.a();
+          var pdf = new jspdf__WEBPACK_IMPORTED_MODULE_6___default.a();
           pdf.autoTable({
             head: [this.head],
             body: this.info,
@@ -5037,7 +5112,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       return [{
         type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"]
       }, {
-        type: _prediction_service__WEBPACK_IMPORTED_MODULE_4__["PredictionService"]
+        type: _prediction_service__WEBPACK_IMPORTED_MODULE_5__["PredictionService"]
+      }, {
+        type: _common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]
       }];
     };
 
@@ -5052,7 +5129,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./prediction.component.css */
       "./src/app/prediction/prediction.component.css")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"], _prediction_service__WEBPACK_IMPORTED_MODULE_4__["PredictionService"]])], PredictionComponent);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"], _prediction_service__WEBPACK_IMPORTED_MODULE_5__["PredictionService"], _common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])], PredictionComponent);
     /***/
   },
 
@@ -5264,26 +5341,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           this.models = {};
           this.getModelList();
-          var _iteratorNormalCompletion13 = true;
-          var _didIteratorError13 = false;
-          var _iteratorError13 = undefined;
+          var _iteratorNormalCompletion14 = true;
+          var _didIteratorError14 = false;
+          var _iteratorError14 = undefined;
 
           try {
-            for (var _iterator13 = this.prediction.predictions[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-              var _name2 = _step13.value;
+            for (var _iterator14 = this.prediction.predictions[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+              var _name2 = _step14.value;
               this.predictionsNames[_name2[0]] = true;
             }
           } catch (err) {
-            _didIteratorError13 = true;
-            _iteratorError13 = err;
+            _didIteratorError14 = true;
+            _iteratorError14 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion13 && _iterator13.return != null) {
-                _iterator13.return();
+              if (!_iteratorNormalCompletion14 && _iterator14.return != null) {
+                _iterator14.return();
               }
             } finally {
-              if (_didIteratorError13) {
-                throw _iteratorError13;
+              if (_didIteratorError14) {
+                throw _iteratorError14;
               }
             }
           }
@@ -5307,69 +5384,69 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getModelList",
         value: function getModelList() {
-          var _this16 = this;
+          var _this18 = this;
 
           this.commonService.getModelList().subscribe(function (result) {
             // result = JSON.parse(result[1]);
-            var _iteratorNormalCompletion14 = true;
-            var _didIteratorError14 = false;
-            var _iteratorError14 = undefined;
+            var _iteratorNormalCompletion15 = true;
+            var _didIteratorError15 = false;
+            var _iteratorError15 = undefined;
 
             try {
               var _loop7 = function _loop7() {
-                var model = _step14.value;
+                var model = _step15.value;
                 var modelName = model.modelname;
-                var _iteratorNormalCompletion15 = true;
-                var _didIteratorError15 = false;
-                var _iteratorError15 = undefined;
+                var _iteratorNormalCompletion16 = true;
+                var _didIteratorError16 = false;
+                var _iteratorError16 = undefined;
 
                 try {
                   var _loop8 = function _loop8() {
-                    var version = _step15.value;
+                    var version = _step16.value;
 
                     // INFO OF EACH MODEL
-                    _this16.commonService.getModel(modelName, version).subscribe(function (result2) {
-                      if (!(modelName in _this16.models)) {
-                        _this16.models[modelName] = [];
+                    _this18.commonService.getModel(modelName, version).subscribe(function (result2) {
+                      if (!(modelName in _this18.models)) {
+                        _this18.models[modelName] = [];
                       }
 
-                      _this16.models[modelName].push(version);
+                      _this18.models[modelName].push(version);
                     });
                   };
 
-                  for (var _iterator15 = model.versions[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+                  for (var _iterator16 = model.versions[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
                     _loop8();
                   }
                 } catch (err) {
-                  _didIteratorError15 = true;
-                  _iteratorError15 = err;
+                  _didIteratorError16 = true;
+                  _iteratorError16 = err;
                 } finally {
                   try {
-                    if (!_iteratorNormalCompletion15 && _iterator15.return != null) {
-                      _iterator15.return();
+                    if (!_iteratorNormalCompletion16 && _iterator16.return != null) {
+                      _iterator16.return();
                     }
                   } finally {
-                    if (_didIteratorError15) {
-                      throw _iteratorError15;
+                    if (_didIteratorError16) {
+                      throw _iteratorError16;
                     }
                   }
                 }
               };
 
-              for (var _iterator14 = result[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+              for (var _iterator15 = result[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
                 _loop7();
               }
             } catch (err) {
-              _didIteratorError14 = true;
-              _iteratorError14 = err;
+              _didIteratorError15 = true;
+              _iteratorError15 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion14 && _iterator14.return != null) {
-                  _iterator14.return();
+                if (!_iteratorNormalCompletion15 && _iterator15.return != null) {
+                  _iterator15.return();
                 }
               } finally {
-                if (_didIteratorError14) {
-                  throw _iteratorError14;
+                if (_didIteratorError15) {
+                  throw _iteratorError15;
                 }
               }
             }
@@ -5378,10 +5455,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getPredictionList",
         value: function getPredictionList() {
-          var _this17 = this;
+          var _this19 = this;
 
           this.commonService.getPredictionList().subscribe(function (result) {
-            _this17.prediction.predictions = result;
+            _this19.prediction.predictions = result;
             setTimeout(function () {
               var table = $('#dataTablePredictions').DataTable();
             }, 100);
@@ -5392,7 +5469,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "predict",
         value: function predict() {
-          var _this18 = this;
+          var _this20 = this;
 
           this.activeModal.close('Close click');
           var inserted = this.toastr.info('Running!', 'Prediction ' + this.predictName, {
@@ -5404,21 +5481,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var iter = 0;
             var intervalId = setInterval(function () {
               if (iter < 15) {
-                _this18.checkPrediction(_this18.predictName, inserted, intervalId);
+                _this20.checkPrediction(_this20.predictName, inserted, intervalId);
               } else {
                 clearInterval(intervalId);
 
-                _this18.toastr.clear(inserted.toastId);
+                _this20.toastr.clear(inserted.toastId);
 
-                _this18.toastr.error('Prediction ' + name + ' \n ', 'ERROR!', {
+                _this20.toastr.error('Prediction ' + name + ' \n ', 'ERROR!', {
                   timeOut: 10000,
                   positionClass: 'toast-top-right'
                 });
 
-                delete _this18.prediction.predicting[_this18.predictName];
+                delete _this20.prediction.predicting[_this20.predictName];
                 $('#dataTablePredictions').DataTable().destroy();
 
-                _this18.getPredictionList();
+                _this20.getPredictionList();
               }
 
               iter += 1;
@@ -5431,23 +5508,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkPrediction",
         value: function checkPrediction(name, inserted, intervalId) {
-          var _this19 = this;
+          var _this21 = this;
 
           this.commonService.getPrediction(name).subscribe(function (result) {
             console.log(result);
 
-            _this19.toastr.clear(inserted.toastId);
+            _this21.toastr.clear(inserted.toastId);
 
-            _this19.toastr.success('Prediction ' + name + ' created', 'PREDICTION CREATED', {
+            _this21.toastr.success('Prediction ' + name + ' created', 'PREDICTION CREATED', {
               timeOut: 5000,
               positionClass: 'toast-top-right'
             });
 
             clearInterval(intervalId);
-            delete _this19.prediction.predicting[_this19.predictName];
+            delete _this21.prediction.predicting[_this21.predictName];
             $('#dataTablePredictions').DataTable().destroy();
 
-            _this19.getPredictionList();
+            _this21.getPredictionList();
           }, function (error) {});
         }
       }]);
@@ -5670,57 +5747,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getValidation",
         value: function getValidation() {
-          var _this20 = this;
+          var _this22 = this;
 
           this.service.getValidation(this.modelName, this.modelVersion).subscribe(function (result) {
             var info = result; // INFO ABOUT MODEL
-
-            var _iteratorNormalCompletion16 = true;
-            var _didIteratorError16 = false;
-            var _iteratorError16 = undefined;
-
-            try {
-              for (var _iterator16 = info['model_build_info'][Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
-                var modelInfo = _step16.value;
-
-                if (typeof modelInfo[2] === 'number') {
-                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
-                }
-
-                _this20.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-              } // INFO ABOUT VALIDATION
-
-            } catch (err) {
-              _didIteratorError16 = true;
-              _iteratorError16 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion16 && _iterator16.return != null) {
-                  _iterator16.return();
-                }
-              } finally {
-                if (_didIteratorError16) {
-                  throw _iteratorError16;
-                }
-              }
-            }
 
             var _iteratorNormalCompletion17 = true;
             var _didIteratorError17 = false;
             var _iteratorError17 = undefined;
 
             try {
-              for (var _iterator17 = info['model_valid_info'][Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
-                var _modelInfo = _step17.value;
+              for (var _iterator17 = info['model_build_info'][Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
+                var modelInfo = _step17.value;
 
-                if (typeof _modelInfo[2] === 'number') {
-                  _modelInfo[2] = parseFloat(_modelInfo[2].toFixed(3));
+                if (typeof modelInfo[2] === 'number') {
+                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
                 }
 
-                if (typeof _modelInfo[2] !== 'object') {
-                  _this20.modelValidationInfo[_modelInfo[0]] = [_modelInfo[1], _modelInfo[2]];
-                }
-              }
+                _this22.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+              } // INFO ABOUT VALIDATION
+
             } catch (err) {
               _didIteratorError17 = true;
               _iteratorError17 = err;
@@ -5736,9 +5782,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
+            var _iteratorNormalCompletion18 = true;
+            var _didIteratorError18 = false;
+            var _iteratorError18 = undefined;
+
+            try {
+              for (var _iterator18 = info['model_valid_info'][Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
+                var _modelInfo = _step18.value;
+
+                if (typeof _modelInfo[2] === 'number') {
+                  _modelInfo[2] = parseFloat(_modelInfo[2].toFixed(3));
+                }
+
+                if (typeof _modelInfo[2] !== 'object') {
+                  _this22.modelValidationInfo[_modelInfo[0]] = [_modelInfo[1], _modelInfo[2]];
+                }
+              }
+            } catch (err) {
+              _didIteratorError18 = true;
+              _iteratorError18 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion18 && _iterator18.return != null) {
+                  _iterator18.return();
+                }
+              } finally {
+                if (_didIteratorError18) {
+                  throw _iteratorError18;
+                }
+              }
+            }
+
             setTimeout(function () {
-              if (_this20.modelValidationInfo['TP']) {
-                _this20.polarAreaChartData = [_this20.modelValidationInfo['TP'][1], _this20.modelValidationInfo['FP'][1], _this20.modelValidationInfo['TN'][1], _this20.modelValidationInfo['FN'][1]];
+              if (_this22.modelValidationInfo['TP']) {
+                _this22.polarAreaChartData = [_this22.modelValidationInfo['TP'][1], _this22.modelValidationInfo['FP'][1], _this22.modelValidationInfo['TN'][1], _this22.modelValidationInfo['FN'][1]];
               }
             }, 50);
           }, function (error) {
@@ -5955,58 +6032,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getValidation",
         value: function getValidation() {
-          var _this21 = this;
+          var _this23 = this;
 
           this.service.getValidation(this.modelName, this.modelVersion).subscribe(function (result) {
             var info = result;
             console.log(info); // INFO ABOUT MODEL
-
-            var _iteratorNormalCompletion18 = true;
-            var _didIteratorError18 = false;
-            var _iteratorError18 = undefined;
-
-            try {
-              for (var _iterator18 = info['model_build_info'][Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
-                var modelInfo = _step18.value;
-
-                if (typeof modelInfo[2] === 'number') {
-                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
-                }
-
-                _this21.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-              } // INFO ABOUT VALIDATION
-
-            } catch (err) {
-              _didIteratorError18 = true;
-              _iteratorError18 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion18 && _iterator18.return != null) {
-                  _iterator18.return();
-                }
-              } finally {
-                if (_didIteratorError18) {
-                  throw _iteratorError18;
-                }
-              }
-            }
 
             var _iteratorNormalCompletion19 = true;
             var _didIteratorError19 = false;
             var _iteratorError19 = undefined;
 
             try {
-              for (var _iterator19 = info['model_valid_info'][Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
-                var _modelInfo2 = _step19.value;
+              for (var _iterator19 = info['model_build_info'][Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
+                var modelInfo = _step19.value;
 
-                if (typeof _modelInfo2[2] === 'number') {
-                  _modelInfo2[2] = parseFloat(_modelInfo2[2].toFixed(3));
+                if (typeof modelInfo[2] === 'number') {
+                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
                 }
 
-                if (typeof _modelInfo2[2] !== 'object') {
-                  _this21.modelValidationInfo[_modelInfo2[0]] = [_modelInfo2[1], _modelInfo2[2]];
-                }
-              }
+                _this23.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+              } // INFO ABOUT VALIDATION
+
             } catch (err) {
               _didIteratorError19 = true;
               _iteratorError19 = err;
@@ -6022,13 +6068,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
+            var _iteratorNormalCompletion20 = true;
+            var _didIteratorError20 = false;
+            var _iteratorError20 = undefined;
+
+            try {
+              for (var _iterator20 = info['model_valid_info'][Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
+                var _modelInfo2 = _step20.value;
+
+                if (typeof _modelInfo2[2] === 'number') {
+                  _modelInfo2[2] = parseFloat(_modelInfo2[2].toFixed(3));
+                }
+
+                if (typeof _modelInfo2[2] !== 'object') {
+                  _this23.modelValidationInfo[_modelInfo2[0]] = [_modelInfo2[1], _modelInfo2[2]];
+                }
+              }
+            } catch (err) {
+              _didIteratorError20 = true;
+              _iteratorError20 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion20 && _iterator20.return != null) {
+                  _iterator20.return();
+                }
+              } finally {
+                if (_didIteratorError20) {
+                  throw _iteratorError20;
+                }
+              }
+            }
+
             setTimeout(function () {
-              if (_this21.modelValidationInfo['TP']) {
-                _this21.polarAreaChartData = [_this21.modelValidationInfo['TP'][1], _this21.modelValidationInfo['FP'][1], _this21.modelValidationInfo['TN'][1], _this21.modelValidationInfo['FN'][1]];
+              if (_this23.modelValidationInfo['TP']) {
+                _this23.polarAreaChartData = [_this23.modelValidationInfo['TP'][1], _this23.modelValidationInfo['FP'][1], _this23.modelValidationInfo['TN'][1], _this23.modelValidationInfo['FN'][1]];
               }
 
-              if (_this21.modelValidationInfo['TPpred']) {
-                _this21.polarAreaChartData2 = [_this21.modelValidationInfo['TPpred'][1], _this21.modelValidationInfo['FPpred'][1], _this21.modelValidationInfo['TNpred'][1], _this21.modelValidationInfo['FNpred'][1]];
+              if (_this23.modelValidationInfo['TPpred']) {
+                _this23.polarAreaChartData2 = [_this23.modelValidationInfo['TPpred'][1], _this23.modelValidationInfo['FPpred'][1], _this23.modelValidationInfo['TNpred'][1], _this23.modelValidationInfo['FNpred'][1]];
               }
             }, 50);
           }, function (error) {
@@ -6343,57 +6420,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getValidation",
         value: function getValidation() {
-          var _this22 = this;
+          var _this24 = this;
 
           this.service.getValidation(this.modelName, this.modelVersion).subscribe(function (result) {
             var info = result;
             console.log(info);
-            var _iteratorNormalCompletion20 = true;
-            var _didIteratorError20 = false;
-            var _iteratorError20 = undefined;
-
-            try {
-              for (var _iterator20 = info['model_build_info'][Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
-                var modelInfo = _step20.value;
-
-                if (typeof modelInfo[2] === 'number') {
-                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3)); // do something
-                }
-
-                _this22.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-              }
-            } catch (err) {
-              _didIteratorError20 = true;
-              _iteratorError20 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion20 && _iterator20.return != null) {
-                  _iterator20.return();
-                }
-              } finally {
-                if (_didIteratorError20) {
-                  throw _iteratorError20;
-                }
-              }
-            }
-
             var _iteratorNormalCompletion21 = true;
             var _didIteratorError21 = false;
             var _iteratorError21 = undefined;
 
             try {
-              for (var _iterator21 = info['model_valid_info'][Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
-                var _modelInfo3 = _step21.value;
+              for (var _iterator21 = info['model_build_info'][Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
+                var modelInfo = _step21.value;
 
-                if (typeof _modelInfo3[2] === 'number') {
-                  _modelInfo3[2] = parseFloat(_modelInfo3[2].toFixed(3)); // do something
+                if (typeof modelInfo[2] === 'number') {
+                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3)); // do something
                 }
 
-                if (typeof _modelInfo3[2] !== 'object') {
-                  _this22.modelValidationInfo[_modelInfo3[0]] = [_modelInfo3[1], _modelInfo3[2]];
-                } else {
-                  _this22.modelConformal[_modelInfo3[0]] = _modelInfo3[2];
-                }
+                _this24.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
               }
             } catch (err) {
               _didIteratorError21 = true;
@@ -6410,6 +6454,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
+            var _iteratorNormalCompletion22 = true;
+            var _didIteratorError22 = false;
+            var _iteratorError22 = undefined;
+
+            try {
+              for (var _iterator22 = info['model_valid_info'][Symbol.iterator](), _step22; !(_iteratorNormalCompletion22 = (_step22 = _iterator22.next()).done); _iteratorNormalCompletion22 = true) {
+                var _modelInfo3 = _step22.value;
+
+                if (typeof _modelInfo3[2] === 'number') {
+                  _modelInfo3[2] = parseFloat(_modelInfo3[2].toFixed(3)); // do something
+                }
+
+                if (typeof _modelInfo3[2] !== 'object') {
+                  _this24.modelValidationInfo[_modelInfo3[0]] = [_modelInfo3[1], _modelInfo3[2]];
+                } else {
+                  _this24.modelConformal[_modelInfo3[0]] = _modelInfo3[2];
+                }
+              }
+            } catch (err) {
+              _didIteratorError22 = true;
+              _iteratorError22 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion22 && _iterator22.return != null) {
+                  _iterator22.return();
+                }
+              } finally {
+                if (_didIteratorError22) {
+                  throw _iteratorError22;
+                }
+              }
+            }
+
             setTimeout(function () {
               var max = null;
               var min = null; // tslint:disable-next-line:forin
@@ -6417,36 +6494,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               for (var i in info['ymatrix']) {
                 // this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
                 // this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
-                _this22.ChartDataFitted[0].data[i] = {
+                _this24.ChartDataFitted[0].data[i] = {
                   x: info['ymatrix'][i],
-                  y: _this22.modelConformal['Conformal_interval_medians'][i]
+                  y: _this24.modelConformal['Conformal_interval_medians'][i]
                 };
-                _this22.ChartDataFitted[0].errorBars[info['obj_nam'][i]] = {
-                  plus: _this22.modelConformal['Conformal_prediction_ranges'][i][0],
-                  minus: _this22.modelConformal['Conformal_prediction_ranges'][i][1]
+                _this24.ChartDataFitted[0].errorBars[info['obj_nam'][i]] = {
+                  plus: _this24.modelConformal['Conformal_prediction_ranges'][i][0],
+                  minus: _this24.modelConformal['Conformal_prediction_ranges'][i][1]
                 };
-                _this22.ChartDataFitted[1].data[i] = {
+                _this24.ChartDataFitted[1].data[i] = {
                   x: info['ymatrix'][i],
                   y: info['ymatrix'][i]
                 };
 
                 if (max) {
-                  if (max < _this22.modelConformal['Conformal_prediction_ranges'][i][0]) {
-                    max = _this22.modelConformal['Conformal_prediction_ranges'][i][0];
+                  if (max < _this24.modelConformal['Conformal_prediction_ranges'][i][0]) {
+                    max = _this24.modelConformal['Conformal_prediction_ranges'][i][0];
                   }
                 } else {
-                  max = _this22.modelConformal['Conformal_prediction_ranges'][i][0];
+                  max = _this24.modelConformal['Conformal_prediction_ranges'][i][0];
                 }
 
                 if (min) {
-                  if (min > _this22.modelConformal['Conformal_prediction_ranges'][i][1]) {
-                    min = _this22.modelConformal['Conformal_prediction_ranges'][i][1];
+                  if (min > _this24.modelConformal['Conformal_prediction_ranges'][i][1]) {
+                    min = _this24.modelConformal['Conformal_prediction_ranges'][i][1];
                   }
                 } else {
-                  min = _this22.modelConformal['Conformal_prediction_ranges'][i][1];
+                  min = _this24.modelConformal['Conformal_prediction_ranges'][i][1];
                 }
 
-                _this22.ChartLabels[i] = info['obj_nam'][i];
+                _this24.ChartLabels[i] = info['obj_nam'][i];
               } // this.ChartOptionsFitted.scales.yAxes[0].ticks.min = min - 1 ;
               // this.ChartOptionsFitted.scales.yAxes[0].ticks.max = max + 1;
               // console.log(this.QuantitConformalChart.nativeElement);
@@ -6747,37 +6824,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getValidation",
         value: function getValidation() {
-          var _this23 = this;
+          var _this25 = this;
 
           this.service.getValidation(this.modelName, this.modelVersion).subscribe(function (result) {
             var info = result;
-            var _iteratorNormalCompletion22 = true;
-            var _didIteratorError22 = false;
-            var _iteratorError22 = undefined;
+            var _iteratorNormalCompletion23 = true;
+            var _didIteratorError23 = false;
+            var _iteratorError23 = undefined;
 
             try {
-              for (var _iterator22 = info['model_valid_info'][Symbol.iterator](), _step22; !(_iteratorNormalCompletion22 = (_step22 = _iterator22.next()).done); _iteratorNormalCompletion22 = true) {
-                var modelInfo = _step22.value;
+              for (var _iterator23 = info['model_valid_info'][Symbol.iterator](), _step23; !(_iteratorNormalCompletion23 = (_step23 = _iterator23.next()).done); _iteratorNormalCompletion23 = true) {
+                var modelInfo = _step23.value;
 
                 if (typeof modelInfo[2] === 'number') {
                   modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
                 }
 
                 if (typeof modelInfo[2] !== 'object') {
-                  _this23.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+                  _this25.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
                 }
               }
             } catch (err) {
-              _didIteratorError22 = true;
-              _iteratorError22 = err;
+              _didIteratorError23 = true;
+              _iteratorError23 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion22 && _iterator22.return != null) {
-                  _iterator22.return();
+                if (!_iteratorNormalCompletion23 && _iterator23.return != null) {
+                  _iterator23.return();
                 }
               } finally {
-                if (_didIteratorError22) {
-                  throw _iteratorError22;
+                if (_didIteratorError23) {
+                  throw _iteratorError23;
                 }
               }
             }
@@ -6786,25 +6863,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               // tslint:disable-next-line:forin
               for (var i in info['ymatrix']) {
                 if ('Y_pred' in info) {
-                  _this23.ChartDataPredicted[0].data[i] = {
+                  _this25.ChartDataPredicted[0].data[i] = {
                     x: info['ymatrix'][i],
                     y: info['Y_pred'][i]
                   };
-                  _this23.ChartDataPredicted[1].data[i] = {
+                  _this25.ChartDataPredicted[1].data[i] = {
                     x: info['ymatrix'][i],
                     y: info['ymatrix'][i]
                   };
                 }
 
-                _this23.ChartDataFitted[0].data[i] = {
+                _this25.ChartDataFitted[0].data[i] = {
                   x: info['ymatrix'][i],
                   y: info['Y_adj'][i]
                 };
-                _this23.ChartDataFitted[1].data[i] = {
+                _this25.ChartDataFitted[1].data[i] = {
                   x: info['ymatrix'][i],
                   y: info['ymatrix'][i]
                 };
-                _this23.ChartLabels[i] = info['obj_nam'][i];
+                _this25.ChartLabels[i] = info['obj_nam'][i];
               }
             }, 50);
           }, function (error) {
@@ -7025,85 +7102,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
-  "./src/app/similarity-results/similarity-results.component.css":
-  /*!*********************************************************************!*\
-    !*** ./src/app/similarity-results/similarity-results.component.css ***!
-    \*********************************************************************/
-
-  /*! exports provided: default */
-
-  /***/
-  function srcAppSimilarityResultsSimilarityResultsComponentCss(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony default export */
-
-
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpbWlsYXJpdHktcmVzdWx0cy9zaW1pbGFyaXR5LXJlc3VsdHMuY29tcG9uZW50LmNzcyJ9 */";
-    /***/
-  },
-
-  /***/
-  "./src/app/similarity-results/similarity-results.component.ts":
-  /*!********************************************************************!*\
-    !*** ./src/app/similarity-results/similarity-results.component.ts ***!
-    \********************************************************************/
-
-  /*! exports provided: SimilarityResultsComponent */
-
-  /***/
-  function srcAppSimilarityResultsSimilarityResultsComponentTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "SimilarityResultsComponent", function () {
-      return SimilarityResultsComponent;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! @angular/core */
-    "./node_modules/@angular/core/fesm2015/core.js");
-
-    var SimilarityResultsComponent =
-    /*#__PURE__*/
-    function () {
-      function SimilarityResultsComponent() {
-        _classCallCheck(this, SimilarityResultsComponent);
-      }
-
-      _createClass(SimilarityResultsComponent, [{
-        key: "ngOnInit",
-        value: function ngOnInit() {}
-      }]);
-
-      return SimilarityResultsComponent;
-    }();
-
-    SimilarityResultsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-similarity-results',
-      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! raw-loader!./similarity-results.component.html */
-      "./node_modules/raw-loader/dist/cjs.js!./src/app/similarity-results/similarity-results.component.html")).default,
-      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
-      /*! ./similarity-results.component.css */
-      "./src/app/similarity-results/similarity-results.component.css")).default]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], SimilarityResultsComponent);
-    /***/
-  },
-
-  /***/
   "./src/app/similarity/similarity.component.css":
   /*!*****************************************************!*\
     !*** ./src/app/similarity/similarity.component.css ***!
@@ -7215,7 +7213,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(SimilarityComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this24 = this;
+          var _this26 = this;
 
           this.prediction.name = undefined;
           this.model.name = undefined;
@@ -7223,55 +7221,55 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.model.trained = false;
           this.spaces = {};
           this.service.getSpaces().subscribe(function (result) {
-            var _iteratorNormalCompletion23 = true;
-            var _didIteratorError23 = false;
-            var _iteratorError23 = undefined;
+            var _iteratorNormalCompletion24 = true;
+            var _didIteratorError24 = false;
+            var _iteratorError24 = undefined;
 
             try {
-              for (var _iterator23 = result[Symbol.iterator](), _step23; !(_iteratorNormalCompletion23 = (_step23 = _iterator23.next()).done); _iteratorNormalCompletion23 = true) {
-                var space = _step23.value;
-                _this24.spaces[space.spacename] = [];
-                var _iteratorNormalCompletion24 = true;
-                var _didIteratorError24 = false;
-                var _iteratorError24 = undefined;
+              for (var _iterator24 = result[Symbol.iterator](), _step24; !(_iteratorNormalCompletion24 = (_step24 = _iterator24.next()).done); _iteratorNormalCompletion24 = true) {
+                var space = _step24.value;
+                _this26.spaces[space.spacename] = [];
+                var _iteratorNormalCompletion25 = true;
+                var _didIteratorError25 = false;
+                var _iteratorError25 = undefined;
 
                 try {
-                  for (var _iterator24 = space.versions[Symbol.iterator](), _step24; !(_iteratorNormalCompletion24 = (_step24 = _iterator24.next()).done); _iteratorNormalCompletion24 = true) {
-                    var version = _step24.value;
+                  for (var _iterator25 = space.versions[Symbol.iterator](), _step25; !(_iteratorNormalCompletion25 = (_step25 = _iterator25.next()).done); _iteratorNormalCompletion25 = true) {
+                    var version = _step25.value;
 
-                    _this24.spaces[space.spacename].push(version);
+                    _this26.spaces[space.spacename].push(version);
                   }
                 } catch (err) {
-                  _didIteratorError24 = true;
-                  _iteratorError24 = err;
+                  _didIteratorError25 = true;
+                  _iteratorError25 = err;
                 } finally {
                   try {
-                    if (!_iteratorNormalCompletion24 && _iterator24.return != null) {
-                      _iterator24.return();
+                    if (!_iteratorNormalCompletion25 && _iterator25.return != null) {
+                      _iterator25.return();
                     }
                   } finally {
-                    if (_didIteratorError24) {
-                      throw _iteratorError24;
+                    if (_didIteratorError25) {
+                      throw _iteratorError25;
                     }
                   }
                 }
               }
             } catch (err) {
-              _didIteratorError23 = true;
-              _iteratorError23 = err;
+              _didIteratorError24 = true;
+              _iteratorError24 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion23 && _iterator23.return != null) {
-                  _iterator23.return();
+                if (!_iteratorNormalCompletion24 && _iterator24.return != null) {
+                  _iterator24.return();
                 }
               } finally {
-                if (_didIteratorError23) {
-                  throw _iteratorError23;
+                if (_didIteratorError24) {
+                  throw _iteratorError24;
                 }
               }
             }
 
-            console.log(_this24.spaces);
+            console.log(_this26.spaces);
           }, function (error) {
             console.log(error.message);
             alert(error.message);
@@ -7280,7 +7278,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "search",
         value: function search() {
-          var _this25 = this;
+          var _this27 = this;
 
           // CAST VERSION
           this.result = [];
@@ -7292,7 +7290,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log(result);
             var intervalId = setInterval(function () {
               if (iter < 15) {
-                _this25.checkSearch(result, intervalId);
+                _this27.checkSearch(result, intervalId);
               } else {
                 clearInterval(intervalId);
               }
@@ -7308,12 +7306,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkSearch",
         value: function checkSearch(searchName, intervalId) {
-          var _this26 = this;
+          var _this28 = this;
 
           this.service.getSearch(searchName).subscribe(function (result) {
-            _this26.result = result.search_results;
-            _this26.nameSrc = result.obj_nam;
-            _this26.smileSrc = result.SMILES;
+            _this28.result = result.search_results;
+            _this28.nameSrc = result.obj_nam;
+            _this28.smileSrc = result.SMILES;
             clearInterval(intervalId);
           }, function (error) {
             console.log(error.message);
@@ -7337,13 +7335,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             self.similarity.file_info['num_mols'] = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
             var res_array = self.fileContent.match(/>( )*<(.*)>/g);
             var res_dict = {};
-            var _iteratorNormalCompletion25 = true;
-            var _didIteratorError25 = false;
-            var _iteratorError25 = undefined;
+            var _iteratorNormalCompletion26 = true;
+            var _didIteratorError26 = false;
+            var _iteratorError26 = undefined;
 
             try {
-              for (var _iterator25 = res_array[Symbol.iterator](), _step25; !(_iteratorNormalCompletion25 = (_step25 = _iterator25.next()).done); _iteratorNormalCompletion25 = true) {
-                var variable = _step25.value;
+              for (var _iterator26 = res_array[Symbol.iterator](), _step26; !(_iteratorNormalCompletion26 = (_step26 = _iterator26.next()).done); _iteratorNormalCompletion26 = true) {
+                var variable = _step26.value;
                 var value = variable.replace(/[<> ]*/g, '');
 
                 if (value in res_dict) {
@@ -7353,16 +7351,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             } catch (err) {
-              _didIteratorError25 = true;
-              _iteratorError25 = err;
+              _didIteratorError26 = true;
+              _iteratorError26 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion25 && _iterator25.return != null) {
-                  _iterator25.return();
+                if (!_iteratorNormalCompletion26 && _iterator26.return != null) {
+                  _iterator26.return();
                 }
               } finally {
-                if (_didIteratorError25) {
-                  throw _iteratorError25;
+                if (_didIteratorError26) {
+                  throw _iteratorError26;
                 }
               }
             }
@@ -7375,11 +7373,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this27 = this;
+          var _this29 = this;
 
           this.components.changes.subscribe(function () {
-            if (_this27.components !== undefined) {
-              _this27.components.forEach(function (child) {
+            if (_this29.components !== undefined) {
+              _this29.components.forEach(function (child) {
                 var options = {
                   'width': 300,
                   'height': 150
@@ -7625,13 +7623,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             self.model.file_info['num_mols'] = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
             var res_array = self.fileContent.match(/>( )*<(.*)>/g);
             var res_dict = {};
-            var _iteratorNormalCompletion26 = true;
-            var _didIteratorError26 = false;
-            var _iteratorError26 = undefined;
+            var _iteratorNormalCompletion27 = true;
+            var _didIteratorError27 = false;
+            var _iteratorError27 = undefined;
 
             try {
-              for (var _iterator26 = res_array[Symbol.iterator](), _step26; !(_iteratorNormalCompletion26 = (_step26 = _iterator26.next()).done); _iteratorNormalCompletion26 = true) {
-                var variable = _step26.value;
+              for (var _iterator27 = res_array[Symbol.iterator](), _step27; !(_iteratorNormalCompletion27 = (_step27 = _iterator27.next()).done); _iteratorNormalCompletion27 = true) {
+                var variable = _step27.value;
                 var value = variable.replace(/[<> ]*/g, '');
 
                 if (value in res_dict) {
@@ -7641,16 +7639,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             } catch (err) {
-              _didIteratorError26 = true;
-              _iteratorError26 = err;
+              _didIteratorError27 = true;
+              _iteratorError27 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion26 && _iterator26.return != null) {
-                  _iterator26.return();
+                if (!_iteratorNormalCompletion27 && _iterator27.return != null) {
+                  _iterator27.return();
                 }
               } finally {
-                if (_didIteratorError26) {
-                  throw _iteratorError26;
+                if (_didIteratorError27) {
+                  throw _iteratorError27;
                 }
               }
             }
@@ -7766,10 +7764,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getParameters",
         value: function getParameters() {
-          var _this28 = this;
+          var _this30 = this;
 
           this.commonService.getParameters(this.name, this.version).subscribe(function (result) {
-            _this28.model.parameters = result;
+            _this30.model.parameters = result;
           }, function (error) {
             alert('get paramaeters validation');
             alert(error.status + ' : ' + error.statusText);
