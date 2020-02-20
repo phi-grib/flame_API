@@ -295,7 +295,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<!--<div class=\"page-header border-bottom mb-3\">\n  <div class=\"d-flex\">\n        <div class=\"mr-auto p-2\">\n            <ul class=\"nav nav-pills nav-fill\" id=\"myTab\" role=\"tablist\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link active\" routerLink=\"/modeling\"  data-toggle=\"pill\" role=\"tab\">Modeling</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" routerLink=\"/similarity\" data-toggle=\"pill\" role=\"tab\">Similarity</a>\n                </li>\n            </ul>\n        </div>\n        <div class=\"p-2\">\n            <!--<a target=\"_blank\">\n                <img [src]=\"imageSource\" data-holder-rendered=\"true\" height=\"40\"/>\n            </a>\n        </div>\n    </div>\n</div>-->\n\n\n\n<div class=\"row h-100\">\n  <div class=\"col-2 ml-10 sidebar pr-0\">\n      <app-sidebar></app-sidebar>\n  </div>\n  <!-- Main content -->\n  <div class=\"col-10 main\">\n     <router-outlet></router-outlet>\n  </div>\n</div>\n<!--<div class=\"tab-content\" id=\"myTabContent\">\n \n   <router-outlet></router-outlet>\n\n</div>-->");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!--<div class=\"page-header border-bottom mb-3\">\n  <div class=\"d-flex\">\n        <div class=\"mr-auto p-2\">\n            <ul class=\"nav nav-pills nav-fill\" id=\"myTab\" role=\"tablist\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link active\" routerLink=\"/modeling\"  data-toggle=\"pill\" role=\"tab\">Modeling</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" routerLink=\"/similarity\" data-toggle=\"pill\" role=\"tab\">Similarity</a>\n                </li>\n            </ul>\n        </div>\n        <div class=\"p-2\">\n            <!--<a target=\"_blank\">\n                <img [src]=\"imageSource\" data-holder-rendered=\"true\" height=\"40\"/>\n            </a>\n        </div>\n    </div>\n</div>-->\n\n<div class=\"row\">\n    <div class=\"col p-0\">\n        <div class=\"\">\n            <app-sidebar></app-sidebar>\n        </div>\n        <div class=\"pr-3\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    <div class=\"col-6 border-left info v-100\" *ngIf=\"!isActive('similarity')\">\n        <div *ngIf=\"(this.prediction.name != undefined && this.model.name == undefined && isActive('predictions'))\">\n            <app-prediction [predictionName]=this.prediction.name></app-prediction>\n        </div>\n        <div *ngIf=\"(this.model.name != undefined && this.model.trained && this.prediction.name == undefined && isActive('models'))\">\n            <app-validations [name] = this.model.name [version] = this.model.version></app-validations>\n        </div>\n    </div>\n    <!--<div class=\"col-6 border-left info  v-100\" *ngIf=\"isActive('similarity')\">\n        <p>SIMILARITY</p>\n    </div>-->\n</div>\n\n\n\n");
 
 /***/ }),
 
@@ -351,6 +351,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/confusion-matrix/confusion-matrix.component.html":
+/*!********************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/confusion-matrix/confusion-matrix.component.html ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("  <!--CONFUSION MATRIX-->\n  <div id=\"matrix\" class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-6 offset-4 text-center\">\n        <strong>Actual</strong>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-3 offset-4 text-center border-left border-right border-bottom\">\n        <strong>+</strong>\n      </div>\n      <div class=\"col-3 text-center border-right border-bottom\">\n        <strong>-</strong>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-3 rotate text-right\">\n          <span><strong>Predicted</strong></span>\n      </div>\n      <div class=\"col-1 text-center border-top border-right border-bottom\">\n        <strong>+</strong>\n      </div>\n      <div class=\"col-3 text-center border-top border-right border-bottom TP\">\n          {{this.TP}}\n       </div>\n       <div class=\"col-3 text-center border-top border-right border-bottom FP\">\n          {{this.FP}}\n       </div>\n       <div class=\"col-2 border-top border-left border-bottom\">\n          {{this.TP+this.FP}}\n       </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-1 offset-3 text-center border-top border-right border-bottom\">\n          <strong>-</strong>\n      </div>\n      <div class=\"col-3 text-center border-top border-right border-bottom FN\">\n          {{this.FN}}\n      </div>\n      <div class=\"col-3 text-center border-top border-right border-bottom TN\">\n          {{this.TN}}\n      </div>\n      <div class=\"col-2 border-top border-left border-bottom\">\n          {{this.FN+this.TN}}\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-3 offset-4 border-left text-center\">\n          {{this.TP+this.FN}}\n      </div>\n      <div class=\"col-3 border-left text-center\">\n          {{this.FP+this.TN}}\n      </div>\n      <div class=\"col-2 border-left\">\n          {{this.TP+this.FP+this.TN+this.FN}}  \n      </div>\n    </div>\n          \n        \n                      \n                \n                     \n                  \n                      \n                \n                     \n                  \n                      \n                \n                      \n          \n                      \n                  \n                     \n                  \n                 \n  </div>  \n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/manage-models/manage-models.component.html":
 /*!**************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/manage-models/manage-models.component.html ***!
@@ -360,7 +373,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"btn-toolbar mt-3 ml-3 mr-3\" role=\"toolbar\" aria-label=\"Toolbar with button groups\">\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"First group\">\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" data-toggle=\"modal\" data-target=\"#newModal\">New</button>\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" [ngClass]=\"{'disabled': model.name === undefined}\" (click)=\"buildModel(model.name, model.version)\">Build</button>\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" [ngClass]=\"{'disabled': model.name === undefined}\" (click)=\"cloneModel()\">Clone</button>\n  </div>\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"second group\">\n    <button type=\"button\" class=\"btn btn-outline-success btn-lg\"  (click)=\"exportModel()\" [ngClass]=\"{'disabled': model.name === undefined}\">Export</button>\n    <button type=\"button\" class=\"btn btn-outline-success btn-lg\"  (click)=\"importModel($event.target.files)\">Import</button>\n  </div>\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"third group\">\n    <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deleteModel\" [ngClass]=\"{'disabled': model.name === undefined || model.version != '0'}\">Delete Model </button>\n    <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deleteVersion\"[ngClass]=\"{'disabled': model.name === undefined || model.version == '0'}\">Delete Version</button>\n  </div>    \n</div>\n\n\n\n<!-- New Modal -->\n<div  class=\"modal fade\" id=\"newModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"newModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"newModalLabel\">New Model</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <div class=\"row form-inline\" >\n              <div class=\"form-group mx-sm-3 mb-2\">\n                <label for=\"model_name\">Model name: </label>\n                <input type=\"text\" class=\"form-control ml-2\" [(ngModel)]=\"modelName\" placeholder=\"name\">\n              </div>\n            </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-outline-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-etransafe\" data-dismiss=\"modal\" (click)=\"createModel()\">Create</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Delete Model-->\n<div class=\"modal fade\" id=\"deleteModel\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete model '{{this.model.name}}'</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this model?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deleteModel()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Delete Version-->\n<div class=\"modal fade\" id=\"deleteVersion\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete model '{{this.model.name}} v.{{this.model.version}}'</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this model version?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deleteVersion()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"btn-toolbar mt-3 mb-3 ml-4\" role=\"toolbar\" aria-label=\"Toolbar with button groups\">\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"First group\">\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" data-toggle=\"modal\" data-target=\"#newModal\">New</button>\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" [ngClass]=\"{'disabled': model.name === undefined}\" (click)=\"buildModel(model.name, model.version)\">Build</button>\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" [ngClass]=\"{'disabled': model.name === undefined}\" (click)=\"cloneModel()\">Clone</button>\n  </div>\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"second group\">\n    <button type=\"button\" class=\"btn btn-outline-success btn-lg\"  (click)=\"exportModel()\" [ngClass]=\"{'disabled': model.name === undefined}\">Export</button>\n    <label class=\"btn btn-outline-success btn-lg mb-0\" for=\"manager\">\n            <input id=\"manager\" type=\"file\" style=\"display:none;\" (change)=\"importModel($event.target.files)\">\n            Import\n          </label>\n  </div>\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"third group\">\n    <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deleteModel\" [ngClass]=\"{'disabled': model.name === undefined || model.version != '0'}\">Delete Model </button>\n    <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deleteVersion\"[ngClass]=\"{'disabled': model.name === undefined || model.version == '0'}\">Delete Version</button>\n  </div>    \n</div>\n\n\n\n<!-- New Model -->\n<div  class=\"modal fade\" id=\"newModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"newModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"newModalLabel\">New Model</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <div class=\"row form-inline\" >\n              <div class=\"form-group mx-sm-3 mb-2\">\n                <label for=\"model_name\">Model name: </label>\n                <input type=\"text\" class=\"form-control ml-2\" [(ngModel)]=\"modelName\" placeholder=\"name\">\n              </div>\n            </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-outline-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-etransafe\" data-dismiss=\"modal\" (click)=\"createModel()\">Create</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Delete Model-->\n<div class=\"modal fade\" id=\"deleteModel\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete model '{{this.model.name}}'</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this model?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deleteModel()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Delete Version-->\n<div class=\"modal fade\" id=\"deleteVersion\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete model '{{this.model.name}} v.{{this.model.version}}'</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this model version?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deleteVersion()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n");
 
 /***/ }),
 
@@ -373,7 +386,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"btn-toolbar m-3\">\n  <button type=\"button\" class=\"btn btn-outline-primary btn-lg mr-2\" (click)=\"newPrediction()\">New</button>\n  <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deletePrediction\">Delete</button>\n</div>\n<!-- Delete Prediction-->\n<div class=\"modal fade\" id=\"deletePrediction\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete Predctions</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this prediction?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deletePrediction()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"btn-toolbar mt-3 mb-3 ml-4\">\n  <button type=\"button\" class=\"btn btn-outline-primary btn-lg mr-2\" (click)=\"newPrediction()\">New</button>\n  <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deletePrediction\">Delete</button>\n</div>\n<!-- Delete Prediction-->\n<div class=\"modal fade\" id=\"deletePrediction\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete Predctions</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this prediction?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deletePrediction()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>");
 
 /***/ }),
 
@@ -386,7 +399,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"mt-3\">\n    <h2 class=\"text-primary text-left\">Models</h2>\n</div>\n\n<hr class=\"my-4\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n<div class =\"row mh-100 mt-3 ml-3 mr-3\">\n  <div class=\"col-12 scrolltable p-0 card\">\n    <table class=\"table table-hover\">\n      <thead>\n        <tr>\n          <th ></th>\n          <th class=\"text-center\" >STATE</th>\n          <th class=\"text-center\">NAME</th>\n          <th class=\"text-center\">VERSION</th>\n          <th class=\"text-center\">#MOLECULES</th>\n          <th class=\"text-center\">#VARIABLES</th>\n          <th class=\"text-center\">TYPE</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)\">\n          <td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar fa-lg\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye fa-lg\" title=\"Quality\" ></i>\n            </button>\n                \n            <!-- Content poppover--> \n            <ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>  \n\n              \n          </td>\n\n          <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\" >\n          <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <td class=\"text-center\" *ngIf=\"model.listModels[key].version === 0\">{{model.listModels[key].name}}</td>\n          <td class=\"text-center\" *ngIf=\"model.listModels[key].version != 0\"><i class=\"fas fa-level-up-alt fa-rotate-90 fa-lg\"></i></td>\n         \n         \n          <td class=\"text-center\">{{model.listModels[key].version}}</td>\n          <td class=\"text-center\">{{model.listModels[key].numMols}}</td>\n          <td class=\"text-center\">{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize text-center\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n<div class =\"text-center spinner-table\" *ngIf = \"!this.tableVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.tableVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th width=\"5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th width=\"30%\">Name</th>\n          <th width=\"10%\">Version</th>\n          <th width=\"10%\">#Molecules</th>\n          <th width=\"10%\">#Variables</th>\n          <th width=\"30%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td >{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n");
 
 /***/ }),
 
@@ -399,7 +412,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<ul class=\"nav flex-column\" role=\"tablist\">\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"predict-tab\" data-toggle=\"tab\" href=\"#predict\" role=\"tab\" aria-controls=\"predict\" aria-selected=\"true\" [routerLink]=\"['/modeling/predictions']\" [class.active]=\"isActive('predictions')\">Predictions</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"build-tab\" data-toggle=\"tab\" href=\"#build\" role=\"tab\" aria-controls=\"build\" aria-selected=\"false\" [routerLink]=\"['/modeling/models']\" [class.active]=\"isActive('models')\">Models</a>\n  </li>\n  <!--<li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"manage-tab\" data-toggle=\"tab\" href=\"#manage\" role=\"tab\" aria-controls=\"manage\" aria-selected=\"false\" [routerLink]=\"['/modeling/documentation']\" [class.active]=\"isActive('documentation')\">Manage</a>\n  </li>-->\n</ul>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<ul class=\"nav nav-pills\" role=\"tablist\">\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"predict-tab\" data-toggle=\"tab\" href=\"#predict\" role=\"tab\" aria-controls=\"predict\" aria-selected=\"true\" [routerLink]=\"['/predictions']\" [class.active]=\"isActive('predictions')\">Predictions</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"build-tab\" data-toggle=\"tab\" href=\"#build\" role=\"tab\" aria-controls=\"build\" aria-selected=\"false\" [routerLink]=\"['/models']\" [class.active]=\"isActive('models')\">Models</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"similarity-tab\" data-toggle=\"tab\" href=\"#similarity\" role=\"tab\" aria-controls=\"similarity\" aria-selected=\"false\" [routerLink]=\"['/similarity']\" [class.active]=\"isActive('similarity')\">Similarity</a>\n  </li>\n</ul>\n");
 
 /***/ }),
 
@@ -425,7 +438,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"mt-3\">\n    <h2 class=\"text-primary text-left\">Predictions</h2>\n</div>\n\n<hr class=\"my-4\">\n\n<app-manage-predictions></app-manage-predictions>\n<div class=\"ml-3\" *ngIf=\"this.prediction.predictions  !== undefined\">\n  <table class=\"table table-bordered\" id=\"dataTable\" width=\"100%\" cellspacing=\"0\">\n    <thead>\n      <tr>\n        <th></th>\n        <th>Name</th>\n        <th>Models</th>\n        <th>Version</th>\n        <th>Prediction Set</th>\n        <th>Date</th>\n      </tr>\n    </thead>\n    <tfoot>\n      <tr>\n        <th></th>\n        <th>Name</th>\n        <th>Models</th>\n        <th>Version</th>\n        <th>Prediction Set</th>\n        <th>Date</th>\n      </tr>\n    </tfoot>\n    <tbody>\n        <tr class=\"blink\" *ngFor=\"let key of objectKeys(this.prediction.predicting)\">\n            <td>\n              \n            </td>\n            <td >{{key}}</td>\n            <td>{{this.prediction.predicting[key][0]}}</td>\n            <td>{{this.prediction.predicting[key][1]}}</td>\n            <td>{{this.prediction.predicting[key][2].substring(this.prediction.predicting[key][2].lastIndexOf('/') + 1)}}</td>\n            <td>-</td>         \n          </tr>\n      <tr *ngFor=\"let info of this.prediction.predictions\" (click)= \"selectPrediction(info[0])\">\n        <td>\n           <button class=\"btn\" (click)=\"openPredcition(info[0])\">\n                <i class=\"far fa-chart-bar fa-lg\" title=\"Prediction\" ></i>\n            </button>\n        </td>\n        <td>{{info[0]}}</td>\n        <td>{{info[1]}}</td>\n        <td>{{info[2]}}</td>\n        <td>{{info[4].substring(info[4].lastIndexOf('/') + 1)}}</td>\n        <td>{{info[3]}}</td>         \n      </tr>\n    </tbody>\n  </table>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<hr class=\"my-0\">\n\n<app-manage-predictions></app-manage-predictions>\n<div class=\"ml-3 mr-3\">\n  <div class =\"text-center spinner-table\" *ngIf = \"!this.tableVisible\">\n    <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n      <span class=\"sr-only\">Loading...</span>\n    </div>\n  </div>\n  <div class=\"col-12\"  [hidden] = \"!this.tableVisible\">\n    <table class=\"table\" id=\"dataTablePredictions\" width=\"100%\" cellspacing=\"0\">\n      <thead>\n        <tr>\n          <th>Name</th>\n          <th>Models</th>\n          <th>Version</th>\n          <th>Prediction Set</th>\n          <th>Date</th>\n        </tr>\n      </thead>\n      <tbody>\n          <tr class=\"blink\" *ngFor=\"let key of objectKeys(this.prediction.predicting)\">\n              <td >{{key}}</td>\n              <td>{{this.prediction.predicting[key][0]}}</td>\n              <td>{{this.prediction.predicting[key][1]}}</td>\n              <td>{{this.prediction.predicting[key][2].substring(this.prediction.predicting[key][2].lastIndexOf('/') + 1)}}</td>\n              <td>-</td>         \n            </tr>\n        <tr *ngFor=\"let info of this.prediction.predictions\" (click)= \"selectPrediction(info[0], info[1], info[2], info[3])\">\n          <td>{{info[0]}}</td>\n          <td>{{info[1]}}</td>\n          <td>{{info[2]}}</td>\n          <td>{{info[4].substring(info[4].lastIndexOf('/') + 1)}}</td>\n          <td>{{info[3].substring(0, info[3].lastIndexOf(' ') + 1)}}</td>         \n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>");
 
 /***/ }),
 
@@ -438,7 +451,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\n    <h4 class=\"modal-title\">Prediction</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\n    <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n  <div class=\"row\"> \n    <div class=\"col p-0\" *ngIf=\"(this.predictionResult != undefined) && (this.predictionResult['external-validation'])\">\n      <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-header\"><h5>External Validation</h5></div>\n        <div class=\"card-body\">\n          <div class=\"row justify-content-between\">\n            <div class=\"col-2\">\n              <table class=\"table table-sm table-striped\">\n                <tbody>\n                  <tr *ngFor = \"let res of this.predictionResult['external-validation']\">\n                    <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{res[1]}}\"><strong>{{res[0]}}</strong></td>\n                    <td class=\"text-right text-capitalize\">{{res[2]}}</td>\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n                                                                                                                                  <!--Check if is quantitative-->\n            <div class=\"col p-0\" *ngIf=\"(this.predictionResult != undefined) && (this.predictionResult['external-validation']) && (existKey(this.modelValidationInfo,'TP'))\">\n              <!--CONFUSION MATRIX-->\n              <div class=\"container\">\n                <div class=\"row align-items-center justify-content-center\">\n                  <div class=\"col-2\">\n                    <div class=\"row\">\n\n                    </div>\n                    <div class=\"row border-bottom border-top\">\n                        <strong>Predicted +</strong> \n                    </div>\n                    <div class=\"row border-bottom\">\n                        <strong>Predicted -</strong>\n                    </div>\n                          \n                  </div>\n                  <div class=\"col-6\">\n                    <div class=\"row text-center align-middle border-bottom\">\n                      <div class=\"col border-right border-left\">\n                          <strong>Actual +</strong>\n                      </div>\n                      <div class=\"col border-right\">\n                          <strong>Actual -</strong>\n                      </div>\n                      <div class=\"col\">\n                          &nbsp;\n                      </div>\n                    </div>\n                    <div class=\"row border-bottom\">\n                      <div class=\"col border-right border-left TP\">\n                          {{this.modelValidationInfo['TP'][1]}} TP\n                      </div>\n                      <div class=\"col border-right FP\">\n                          {{this.modelValidationInfo['FP'][1]}} FP\n                      </div>\n                      <div class=\"col\"> \n                          {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FP'][1]}}\n                      </div>\n                    </div>\n                    <div class=\"row border-bottom\">\n                      <div class=\"col border-right border-left FN\">\n                          {{this.modelValidationInfo['FN'][1]}} FN\n                      </div>\n                      <div class=\"col border-right TN\">\n                          {{this.modelValidationInfo['TN'][1]}} TN\n                      </div>\n                      <div class=\"col\">\n                          {{this.modelValidationInfo['FN'][1]+this.modelValidationInfo['TN'][1]}}\n                      </div>\n                    </div>\n                    <div class=\"row\">\n                      <div class=\"col border-right border-left\">\n                          {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]}}\n                      </div>\n                      <div class=\"col border-right\">\n                          {{this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}\n                      </div>\n                      <div class=\"col\">\n                      {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]\n                          +  this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>  \n            </div>\n                                                                                                                                <!--Check if is quantitative-->\n            <div class=\"col-4\" *ngIf=\"(this.predictionResult != undefined) && (this.predictionResult['external-validation']) && (existKey(this.modelValidationInfo,'TP'))\">\n              <div style=\"display: block\">\n                <canvas baseChart\n                    [data]=\"polarAreaChartData\"\n                    [options]=\"polarChartOptions\"\n                    [labels]=\"polarAreaChartLabels\"\n                    [legend]=\"polarAreaLegend\"\n                    [colors]=\"polarAreaChartColors\"\n                    [chartType]=\"polarAreaChartType\">\n                </canvas>\n              </div>\n            </div>  \n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  \n  <div class=\"row\" *ngIf=\"(this.predictionResult != undefined) && (this.predictionResult.warning)\">\n    <div class=\"col-10\">\n      <div class=\"alert alert-danger text-center\" role=\"alert\">\n          {{this.predictionResult.warning}}\n      </div>\n    </div>\n  </div>\n  <div class=\"container mt-3 mb-3\">\n    <div class=\"d-flex flex-row-reverse\" *ngIf=\"this.predictionResult != undefined\">\n     \n        <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n          <button type=\"button\" class=\"btn btn-raised btn-etransafe\" (click)=\"savePDF()\"><i class=\"far fa-file-pdf\"></i>  PDF</button>\n          <button type=\"button\" class=\"btn btn-raised btn-etransafe\" (click)=\"saveEXCEL()\"><i class=\"fas fa-file-excel\"></i>  Excel</button>\n        </div>\n      \n    </div>\n    <div class=\"row mt-3\">\n      <div class=\"col\">\n        <table id=\"predictionTable\" class=\"table table-fixed table-bordered table-striped m-0 table-light\" *ngIf=\"this.predictionResult != undefined\">\n          <thead>\n            <tr>\n              <th>#</th>\n              <th >Name</th>\n              <th class=\"align-middle text-center\">Mol</th>\n              <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ymatrix\">Value</th>\n              <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.values\">Prediction</th>\n              <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.upper_limit\">Upper limit</th>\n              <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.lower_limit\">Lower limit</th>\n              <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c0\">Inactive</th>\n              <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c1\">Active</th>\n              <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c0\">Ensemble Class 0</th>\n              <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c1\">Ensemble Class 1</th>\n\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let res of this.predictionResult.SMILES; let i=index\">\n              <td class=\"align-middle\">{{i}}</td>\n              <td class=\"align-middle\" >{{this.predictionResult.obj_nam[i]}}</td>\n              <td class=\"align-middle text-center\">\n                <canvas #cmp id=\"{{this.predictionResult.obj_nam[i]}}\">{{this.predictionResult.SMILES[i]}}</canvas>\n              </td>\n              <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ymatrix\" >{{this.predictionResult.ymatrix[i].toFixed(3)}}</td>\n              <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.values\">{{this.predictionResult.values[i].toFixed(3)}}</td>\n              <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.upper_limit\">{{this.predictionResult.upper_limit[i].toFixed(3)}}</td>\n              <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.lower_limit\">{{this.predictionResult.lower_limit[i].toFixed(3)}}</td>\n              <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c0\">{{this.predictionResult.c0[i]}}</td>\n              <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c1\">{{this.predictionResult.c1[i]}}</td>\n              <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c0\">{{this.predictionResult.ensemble_c0[i].toFixed(3)}}</td>\n              <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c1\">{{this.predictionResult.ensemble_c1[i].toFixed(3)}}</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"activeModal.close('Close click')\">Close</button>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!--<div class =\"overlay text-center\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>-->\n<div class=\"container\"  *ngIf=\"this.predictionResult != undefined\">\n  <div class=\"row\" *ngIf=\"this.predictionResult != undefined  && this.predictionResult['external-validation']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n      <div class=\"card-body\"> \n        <div class=\"row ml-2\">\n            <small class=\"h2 text-muted\"><u>Fitting</u></small>\n        </div>\n        <div class=\"row align-items-center\">\n          <div class=\"col-2 mt-1\">\n            <table class=\"table table-sm mt-4\">\n              <tbody>\n                <tr *ngFor = \"let key of objectKeys(modelValidationInfo)\">\n                  \n                  <td  *ngIf=\"!this.q_measures.includes(key)\" class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo[key][0]}}\"><strong>{{key.split('_').join(' ')}}:</strong></td>\n                  <td  *ngIf=\"!this.q_measures.includes(key)\" class=\"text-right text-capitalize\">{{modelValidationInfo[key][1]}}</td>\n              </tr>\n              </tbody>\n            </table> \n          </div>\n          <div class=\"col-5\" *ngIf=\"this.modelValidationInfo['TP']\">\n            <!--CONFUSION MATRIX-->\n            <app-confusion-matrix \n                  [TP] = \"this.modelValidationInfo['TP'][1]\"\n                  [FP] = \"this.modelValidationInfo['FP'][1]\"\n                  [FN] = \"this.modelValidationInfo['FN'][1]\"\n                  [TN] = \"this.modelValidationInfo['TN'][1]\"\n              ></app-confusion-matrix>                 \n          </div>\n          <div class=\"col-5\"  *ngIf=\"this.modelValidationInfo['TP']\">\n            <div style=\"display: block\">\n              <canvas baseChart\n                  [data]=\"polarAreaChartData\"\n                  [options]=\"polarChartOptions\"\n                  [labels]=\"polarAreaChartLabels\"\n                  [legend]=\"polarAreaLegend\"\n                  [colors]=\"polarAreaChartColors\"\n                  [chartType]=\"polarAreaChartType\">\n              </canvas>\n            </div>\n          </div>\n        </div><!--row---->\n      </div><!--body-->\n    </div><!--card-->\n  </div>\n  <div class=\"row\" *ngIf=\"this.predictionResult != undefined && this.predictionResult.warning\">\n    <div class=\"card w-100\">\n      <div class=\"card-body\"> \n        <div class=\"alert alert-danger text-center\" role=\"alert\">\n          {{this.predictionResult.warning}}\n        </div>\n      </div>\n    </div>\n  </div>\n \n    <!--<div class=\"d-flex flex-row-reverse\" *ngIf=\"this.predictionResult != undefined\">\n      \n        <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n          <button type=\"button\" class=\"btn btn-raised btn-etransafe\" (click)=\"savePDF()\"><i class=\"far fa-file-pdf\"></i>  PDF</button>\n          <button type=\"button\" class=\"btn btn-raised btn-etransafe\" (click)=\"saveEXCEL()\"><i class=\"fas fa-file-excel\"></i>  Excel</button>\n        </div>\n      \n    </div>-->\n  <div class=\"row mt-3\" *ngIf=\"this.predictionResult != undefined\">\n    <div class=\"card w-100\">\n        <div id=\"overlay\" *ngIf=\"!this.predictionVisible\">\n          <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n            <span class=\"sr-only\">Loading...</span>\n          </div>\n        </div>\n      <!--NAVS tables-->\n        <ul class=\"nav nav-pills mb-3\" id=\"pills-tab\" role=\"tablist\">\n          <li class=\"nav-item\">\n            <a class=\"nav-link active\" id=\"pills-all-tab\" data-toggle=\"tab\" href=\"#pills-all\" role=\"tab\" aria-controls=\"pills-home\" aria-selected=\"true\"><h4>List</h4></a>\n          </li>\n          <li class=\"nav-item\">\n            <a class=\"nav-link\" id=\"pills-one-tab\" data-toggle=\"tab\" href=\"#pills-one\" role=\"tab\" aria-controls=\"pills-one\" aria-selected=\"false\"><h4>Reports</h4></a>\n          </li>\n        </ul>\n\n        <div class=\"tab-content\" id=\"pills-tabContent\">\n          <!--ALL-->\n          <div class=\"tab-pane fade show active\" id=\"pills-all\" role=\"tabpanel\" aria-labelledby=\"pills-all-tab\">\n            <div class=\"card-body\">\n              \n              <table  id=\"prediction\" class=\"table m-0 table-light\">\n                <thead>\n                  <tr>\n                  \n                    <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"Name of the molecule, as present in the input file\">Name</th>\n                    <th class=\"align-middle text-center\" data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"Structure of the molecule in SMILES format\">Mol</th>\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ymatrix\">Value</th>-->\n                    <th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.values\" data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"Results of the prediction\">\n                    Prediction \n                      <span *ngIf =\"this.modelDocumentation?.Endpoint_units.value != null\">({{this.modelDocumentation?.Endpoint_units.value}})</span>\n                    </th>\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.upper_limit\">Upper limit</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.lower_limit\">Lower limit</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c0\">Inactive</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c1\">Active</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c0\">Ensemble Class 0</th>-->\n                    <!--<th class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c1\">Ensemble Class 1</th>-->\n      \n                  </tr>\n                </thead>\n                <tbody>\n                  <tr *ngFor=\"let res of this.predictionResult.SMILES; let i=index\">\n                    <td class=\"align-middle\" >{{this.predictionResult.obj_nam[i]}}</td>\n                    <td class=\"align-middle text-center\">\n                      <canvas #cmp id=\"{{i}}\">{{this.predictionResult.SMILES[i]}}</canvas>\n                    </td>\n                   <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ymatrix\" >{{this.predictionResult.ymatrix[i].toFixed(3)}}</td>-->\n                    <td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.values\">{{castValue(this.predictionResult.values[i])}}</td>\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.upper_limit\">{{this.predictionResult.upper_limit[i].toFixed(3)}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.lower_limit\">{{this.predictionResult.lower_limit[i].toFixed(3)}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c0\">{{this.predictionResult.c0[i]}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.c1\">{{this.predictionResult.c1[i]}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c0\">{{this.predictionResult.ensemble_c0[i].toFixed(3)}}</td>-->\n                    <!--<td class=\"align-middle text-center\" *ngIf=\"this.predictionResult.ensemble_c1\">{{this.predictionResult.ensemble_c1[i].toFixed(3)}}</td>-->\n                  </tr>\n                </tbody>\n              </table>\n            </div>\n          </div>\n          <!--END ALL-->\n          <!--ONE-->\n        \n          <div class=\"tab-pane fade\" id=\"pills-one\" role=\"tabpanel\" aria-labelledby=\"pills-one-tab\" *ngIf=\"this.predictionResult != undefined \">\n            <div class=\"card-body\">\n              <!--PAGINATION-->\n              <div class=\"row  align-items-center\">\n                <div class=\"col-2 offset-5\">\n                  <span><strong>{{this.i +1}} of {{this.predictionResult.SMILES.length}}</strong></span>\n                </div>\n                <div class=\"col-1  p-0 offset-4\">\n                  <nav aria-label=\"Page navigation example\">\n                    <ul class=\"pagination\">\n                      <li class=\"page-item\" [ngClass]=\"{'disabled': this.noPrevious}\">\n                        <a class=\"page-link\" href=\"javascript:void(0)\" aria-label=\"Previous\" (click) = \"Previous()\">\n                          <span aria-hidden=\"true\">&laquo;</span>\n                          <span class=\"sr-only\">Previous</span>\n                        </a>\n                      </li>\n                      <li class=\"page-item\" [ngClass]=\"{'disabled': this.noNext}\">\n                        <a class=\"page-link\" href=\"javascript:void(0)\" aria-label=\"Next\" (click) = \"Next()\">\n                          <span aria-hidden=\"true\">&raquo;</span>\n                          <span class=\"sr-only\">Next</span>\n                        </a>\n                      </li>\n                    </ul>\n                  </nav>\n                </div>\n              </div>\n              <!--END PAGINATION-->\n\n\n              <div class=\"row\" style=\"background-color: #22577a;color: white\">\n                <div class=\"col-3 border\">\n                  {{this.prediction.name}}\n                </div>\n                <div class=\"col-6 border\">\n                 Model {{this.prediction.modelName}} version {{this.prediction.modelVersion}}\n                </div>\n                <div class=\"col-3 border\">\n                  {{this.prediction.date}}\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>Name</strong>\n                </div>\n                <div class=\"col-9 border\">\n                 {{this.predictionResult.obj_nam[i]}}\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>ID</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  {{this.predictionResult.obj_id[i]}}\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>Structure</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <canvas id=\"one_canvas\"></canvas>\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"col-3 border\">\n                  <strong>Other</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span><strong>Activity: </strong></span>\n                  <span *ngIf=\"this.predictionResult.ymatrix\">{{this.predictionResult.ymatrix[i]}}</span> \n                  <span *ngIf=\"!this.predictionResult.ymatrix\">-</span> \n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Result</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span *ngIf=\"this.predictionResult.values\">{{castValue(this.predictionResult.values[i])}}</span>\n                  <span *ngIf=\"this.modelDocumentation != undefined && this.modelDocumentation['Endpoint_units']\"> {{this.modelDocumentation['Endpoint_units'].value}}</span>\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Reliability</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span *ngIf=\"!this.modelBuildInfo['conformal']\">-</span>\n                  <span *ngIf=\"this.modelBuildInfo['conformal']\">{{(1.0-this.prediction.modelParameters.conformalSignificance.value)*100}}%CI</span>\n                  <span *ngIf=\"this.modelBuildInfo['conformal'] && this.modelBuildInfo['quantitative']\">\n                    : {{this.predictionResult.lower_limit[i].toFixed(1)}} <strong>-</strong> {{this.predictionResult.upper_limit[i].toFixed(3)}}\n                  </span>\n                  <!--90%CI: 8.3 - 10.6-->\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Interpretation</strong>\n                </div>\n                <div class=\"col-9 border\" *ngIf=\"this.modelDocumentation === undefined\">\n                  <span>No documentation</span>\n                </div>\n                <div class=\"col-9 border\" *ngIf=\"this.modelDocumentation != undefined\">\n                  <p *ngIf=\"this.modelDocumentation['Endpoint'].value != undefined\">{{this.modelDocumentation['Endpoint'].value}}</p>\n                  <p *ngIf=\"this.objectKeys(this.modelDocumentation).includes('Interpretation') && this.modelDocumentation['Interpretation'].value != undefined\"> <br>{{this.modelDocumentation?.Interpretation.value}}</p>\n                  <p *ngIf=\"this.modelDocumentation['Species'].value != undefined\"> <br>{{this.modelDocumentation['Species'].value}}</p>\n                </div>\n              </div>\n              <div class=\"row bg-light\">\n                <div class=\"col-3 border\">\n                  <strong>Model</strong>\n                </div>\n                <div class=\"col-9 border\">\n                  <span class=\"text-capitalize\">{{this.modelBuildInfo['model']}}</span><span> using {{this.modelBuildInfo['nvarx']}}vars</span>\n                  <br><br>\n                  <span>Training series {{this.modelBuildInfo['nobj']}} compounds</span><br>\n                    <span *ngIf=\"this.modelBuildInfo['R2']\">R2: {{this.modelBuildInfo['R2'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['SDEC']\">SDEC: {{this.modelBuildInfo['SDEC'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['Q2']\">Q2: {{this.modelBuildInfo['Q2'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['SDEP']\">SDEP: {{this.modelBuildInfo['SDEP'].toFixed(2)}}</span>\n                    <span *ngIf=\"this.modelBuildInfo['Sensitivity']\">Sensitivity: {{this.modelBuildInfo['Sensitivity'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['Specificity']\">Specificity: {{this.modelBuildInfo['Specificity'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['MCC']\">MCC: {{this.modelBuildInfo['MCC'].toFixed(2)}}</span><br>\n                    <span *ngIf=\"this.modelBuildInfo['SensitivityPed']\">Sensitivity (predicted): {{this.modelBuildInfo['SensitivityPed'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['SpecificityPred']\">Specificity (predicted): {{this.modelBuildInfo['SpecificityPred'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['MCCpred']\">MCC (predicted): {{this.modelBuildInfo['MCCpred'].toFixed(2)}}</span>\n                    <span *ngIf=\"this.modelBuildInfo['Conformal_mean_interval']\">Conformal mean interval: {{this.modelBuildInfo['Conformal_mean_interval'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['Conformal_coverage']\">Conformal coverage: {{this.modelBuildInfo['Conformal_coverage'].toFixed(2)}}, </span>\n                    <span *ngIf=\"this.modelBuildInfo['Conformal_accuracy']\">Conformal accuracy: {{this.modelBuildInfo['Conformal_accuracy'].toFixed(2)}} </span>\n                  <br>\n                    <a>QMRF report</a>\n                    \n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      <!---->\n    </div>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -464,7 +477,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n    <div class=\"col-4\">\n        <div class=\"row justify-content-center\">\n            <div class=\"card w-100\" style=\"width: 18rem;\">\n                <div class=\"card-header\"><h5>Model info</h5></div>\n                <div class=\"card-body\">\n                    <table class=\"table table-striped\">\n                        <tbody>\n                            <tr *ngFor = \"let key of objectKeys(modelBuildInfo).sort()\">\n                            <td class=\"text-left text-capitalize\"  data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelBuildInfo[key][0]}}\"><strong>{{key}}</strong></td>\n                            <td class=\"text-right text-capitalize\">{{modelBuildInfo[key][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<!--<div class=\"row m-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <h3 class=\"card-header\">Fitting</h3>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2\">\n                    <table class=\"table table-sm table-striped\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SensitivityPed'][0]}}\"><strong>Sensitivity</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SensitivityPed'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SpecificityPred'][0]}}\"><strong>Specificity</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SpecificityPred'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCCpred'][0]}}\"><strong>MCC</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCCpred'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                <div class=\"col-5\">-->\n                    <!--CONFUSION MATRIX-->\n                    <!--<div class=\"container h-60 text-center mb-5 bt-3\">\n                        <div class=\"row align-items-center justify-content-center\">\n                            <div class=\"col-2\">\n                                <div class=\"row\">\n\n                                </div>\n                                <div class=\"row border-bottom border-top\">\n                                    <strong>Predicted +</strong> \n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <strong>Predicted -</strong>\n                                </div>\n                                    \n                            </div>\n                            <div class=\"col-6\">\n                                <div class=\"row text-center align-middle border-bottom\">\n                                    <div class=\"col border-right border-left\">\n                                        <strong>Actual +</strong>\n                                    </div>\n                                    <div class=\"col border-right\">\n                                        <strong>Actual -</strong>\n                                    </div>\n                                    <div class=\"col\">\n                                        &nbsp;\n                                    </div>\n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <div class=\"col border-right border-left TP\">\n                                        {{this.modelValidationInfo['TPpred'][1]}} TP\n                                    </div>\n                                    <div class=\"col border-right FP\">\n                                        {{this.modelValidationInfo['FPpred'][1]}} FP\n                                    </div>\n                                    <div class=\"col\"> \n                                        {{this.modelValidationInfo['TPpred'][1]+this.modelValidationInfo['FPpred'][1]}}\n                                    </div>\n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <div class=\"col border-right border-left FN\">\n                                        {{this.modelValidationInfo['FNpred'][1]}} FN\n                                    </div>\n                                    <div class=\"col border-right TN\">\n                                        {{this.modelValidationInfo['TNpred'][1]}} TN\n                                    </div>\n                                    <div class=\"col\">\n                                        {{this.modelValidationInfo['FNpred'][1]+this.modelValidationInfo['TNpred'][1]}}\n                                    </div>\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col border-right border-left\">\n                                        {{this.modelValidationInfo['TPpred'][1]+this.modelValidationInfo['FNpred'][1]}}\n                                    </div>\n                                    <div class=\"col border-right\">\n                                        {{this.modelValidationInfo['FPpred'][1]+this.modelValidationInfo['TNpred'][1]}}\n                                    </div>\n                                    <div class=\"col\">\n                                    {{this.modelValidationInfo['TPpred'][1]+this.modelValidationInfo['FNpred'][1]\n                                        +  this.modelValidationInfo['FPpred'][1]+this.modelValidationInfo['TNpred'][1]}}\n                                    </div>\n                                </div>\n                            </div>\n                        </div>   \n                    </div>  \n                </div>\n                <div class=\"col-5\">\n                        <div style=\"display: block\">\n                        <canvas baseChart\n                            [data]=\"polarAreaChartData2\"\n                            [options]=\"polarChartOptions\"\n                            [labels]=\"polarAreaChartLabels\"\n                            [legend]=\"polarAreaLegend\"\n                            [colors]=\"polarAreaChartColors\"\n                            [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>-->\n\n<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <h5 class=\"card-header\">Prediction (cross-validation)</h5>\n        <div class=\"card-body\">\n            <div class=\"row align-items-center\">\n                <div class=\"col-2\">\n                    <table class=\"table table-sm table-striped\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Sensitivity'][0]}}\"><strong>Sensitivity</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Sensitivity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Specificity'][0]}}\"><strong>Specificity</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Specificity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCC'][0]}}\"><strong>MCC</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCC'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Conformal_coverage'][0]}}\"><strong>Conformal coverage</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Conformal_coverage'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Conformal_accuracy'][0]}}\"><strong>Conformal accuracy</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Conformal_accuracy'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-5\">\n                    <!--CONFUSION MATRIX-->\n                    <div class=\"container h-60 text-center mb-5 bt-3\">\n                        <div class=\"row align-items-center justify-content-center\">\n                            <div class=\"col-2\">\n                                <div class=\"row\">\n\n                                </div>\n                                <div class=\"row border-bottom border-top\">\n                                    <strong>Predicted +</strong> \n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <strong>Predicted -</strong>\n                                </div>\n                                    \n                            </div>\n                            <div class=\"col-6\">\n                                <div class=\"row text-center align-middle border-bottom\">\n                                    <div class=\"col border-right border-left\">\n                                        <strong>Actual +</strong>\n                                    </div>\n                                    <div class=\"col border-right\">\n                                        <strong>Actual -</strong>\n                                    </div>\n                                    <div class=\"col\">\n                                        &nbsp;\n                                    </div>\n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <div class=\"col border-right border-left TP\">\n                                        {{this.modelValidationInfo['TP'][1]}} TP\n                                    </div>\n                                    <div class=\"col border-right FP\">\n                                        {{this.modelValidationInfo['FP'][1]}} FP\n                                    </div>\n                                    <div class=\"col\"> \n                                        {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FP'][1]}}\n                                    </div>\n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <div class=\"col border-right border-left FN\">\n                                        {{this.modelValidationInfo['FN'][1]}} FN\n                                    </div>\n                                    <div class=\"col border-right TN\">\n                                        {{this.modelValidationInfo['TN'][1]}} TN\n                                    </div>\n                                    <div class=\"col\">\n                                        {{this.modelValidationInfo['FN'][1]+this.modelValidationInfo['TN'][1]}}\n                                    </div>\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col border-right border-left\">\n                                        {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]}}\n                                    </div>\n                                    <div class=\"col border-right\">\n                                        {{this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}\n                                    </div>\n                                    <div class=\"col\">\n                                    {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]\n                                        +  this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}\n                                    </div>\n                                </div>\n                            </div>\n                        </div>   \n                    </div>  \n                </div>\n                <div class=\"col-5\">\n                        <div style=\"display: block\">\n                        <canvas baseChart\n                                [data]=\"polarAreaChartData\"\n                                [options]=\"polarChartOptions\"\n                                [labels]=\"polarAreaChartLabels\"\n                                [legend]=\"polarAreaLegend\"\n                                [colors]=\"polarAreaChartColors\"\n                                [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2 mt-1\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Sensitivity'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Sensitivity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Specificity'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Specificity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCC'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCC'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Conformal_coverage'][0]}}\"><strong>Conformal coverage:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Conformal_coverage'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Conformal_accuracy'][0]}}\"><strong>Conformal accuracy:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Conformal_accuracy'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-5\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n                    <!--CONFUSION MATRIX-->\n                    <app-confusion-matrix  \n                        [TP] = \"this.modelValidationInfo['TP'][1]\"\n                        [FP] = \"this.modelValidationInfo['FP'][1]\"\n                        [FN] = \"this.modelValidationInfo['FN'][1]\"\n                        [TN] = \"this.modelValidationInfo['TN'][1]\"\n                    > </app-confusion-matrix>\n                </div>\n                <div class=\"col-5\">\n                        <div style=\"display: block\">\n                        <canvas baseChart\n                                [data]=\"polarAreaChartData\"\n                                [options]=\"polarChartOptions\"\n                                [labels]=\"polarAreaChartLabels\"\n                                [legend]=\"polarAreaLegend\"\n                                [colors]=\"polarAreaChartColors\"\n                                [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -477,7 +490,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n    <div class=\"col-3\">\n        <div class=\"row justify-content-center\">\n            <div class=\"card w-100\" style=\"width: 18rem;\">\n                <div class=\"card-header\"><h5>Model info</h5></div>\n                <div class=\"card-body\">   \n                    <table class=\"table table-striped\">\n                        <tbody>\n                            <tr *ngFor = \"let key of objectKeys(modelBuildInfo).sort()\">\n                            <td class=\"text-left text-capitalize\"  data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelBuildInfo[key][0]}}\"><strong>{{key}}</strong></td>\n                            <td class=\"text-right text-capitalize\">{{modelBuildInfo[key][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-header\"><h5>Fitting</h5></div>\n        <div class=\"card-body\"> \n            <div class=\"row align-items-center\">\n                <div class=\"col-2\">\n                    <table class=\"table table-sm table-striped\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SensitivityPed'][0]}}\"><strong>Sensitivity</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SensitivityPed'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SpecificityPred'][0]}}\"><strong>Specificity</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SpecificityPred'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCCpred'][0]}}\"><strong>MCC</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCCpred'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                <div class=\"col-5\">\n                    <!--CONFUSION MATRIX-->\n                    <div class=\"container h-60 text-center mb-5 bt-3\">\n                        <div class=\"row align-items-center justify-content-center\">\n                            <div class=\"col-2\">\n                                <div class=\"row\">\n\n                                </div>\n                                <div class=\"row border-bottom border-top\">\n                                    <strong>Predicted +</strong> \n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <strong>Predicted -</strong>\n                                </div>\n                                    \n                            </div>\n                            <div class=\"col-6\">\n                                <div class=\"row text-center align-middle border-bottom\">\n                                    <div class=\"col border-right border-left\">\n                                        <strong>Actual +</strong>\n                                    </div>\n                                    <div class=\"col border-right\">\n                                        <strong>Actual -</strong>\n                                    </div>\n                                    <div class=\"col\">\n                                        &nbsp;\n                                    </div>\n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <div class=\"col border-right border-left TP\">\n                                        {{this.modelValidationInfo['TPpred'][1]}} TP\n                                    </div>\n                                    <div class=\"col border-right FP\">\n                                        {{this.modelValidationInfo['FPpred'][1]}} FP\n                                    </div>\n                                    <div class=\"col\"> \n                                        {{this.modelValidationInfo['TPpred'][1]+this.modelValidationInfo['FPpred'][1]}}\n                                    </div>\n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <div class=\"col border-right border-left FN\">\n                                        {{this.modelValidationInfo['FNpred'][1]}} FN\n                                    </div>\n                                    <div class=\"col border-right TN\">\n                                        {{this.modelValidationInfo['TNpred'][1]}} TN\n                                    </div>\n                                    <div class=\"col\">\n                                        {{this.modelValidationInfo['FNpred'][1]+this.modelValidationInfo['TNpred'][1]}}\n                                    </div>\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col border-right border-left\">\n                                        {{this.modelValidationInfo['TPpred'][1]+this.modelValidationInfo['FNpred'][1]}}\n                                    </div>\n                                    <div class=\"col border-right\">\n                                        {{this.modelValidationInfo['FPpred'][1]+this.modelValidationInfo['TNpred'][1]}}\n                                    </div>\n                                    <div class=\"col\">\n                                    {{this.modelValidationInfo['TPpred'][1]+this.modelValidationInfo['FNpred'][1]\n                                        +  this.modelValidationInfo['FPpred'][1]+this.modelValidationInfo['TNpred'][1]}}\n                                    </div>\n                                </div>\n                            </div>\n                        </div>   \n                    </div>  \n                </div>\n                <div class=\"col-5\">\n                     <div style=\"display: block\">\n                        <canvas baseChart\n                            [data]=\"polarAreaChartData2\"\n                            [options]=\"polarChartOptions\"\n                            [labels]=\"polarAreaChartLabels\"\n                            [legend]=\"polarAreaLegend\"\n                            [colors]=\"polarAreaChartColors\"\n                            [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row mt-3\" *ngIf=\"this.modelValidationInfo['TP']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>\n        <div class=\"card-body\">\n            <div class=\"row align-items-center\">\n                <div class=\"col-2\">\n                    <table class=\"table table-sm table-striped\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Sensitivity'][0]}}\"><strong>Sensitivity</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Sensitivity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Specificity'][0]}}\"><strong>Specificity</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Specificity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCC'][0]}}\"><strong>MCC</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCC'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-5\">\n                    <!--CONFUSION MATRIX-->\n                    <div class=\"container h-60 text-center mb-5 bt-3\">\n                        <div class=\"row align-items-center justify-content-center\">\n                            <div class=\"col-2\">\n                                <div class=\"row\">\n\n                                </div>\n                                <div class=\"row border-bottom border-top\">\n                                    <strong>Predicted +</strong> \n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <strong>Predicted -</strong>\n                                </div>\n                                    \n                            </div>\n                            <div class=\"col-6\">\n                                <div class=\"row text-center align-middle border-bottom\">\n                                    <div class=\"col border-right border-left\">\n                                        <strong>Actual +</strong>\n                                    </div>\n                                    <div class=\"col border-right\">\n                                        <strong>Actual -</strong>\n                                    </div>\n                                    <div class=\"col\">\n                                        &nbsp;\n                                    </div>\n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <div class=\"col border-right border-left TP\">\n                                        {{this.modelValidationInfo['TP'][1]}} TP\n                                    </div>\n                                    <div class=\"col border-right FP\">\n                                        {{this.modelValidationInfo['FP'][1]}} FP\n                                    </div>\n                                    <div class=\"col\"> \n                                        {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FP'][1]}}\n                                    </div>\n                                </div>\n                                <div class=\"row border-bottom\">\n                                    <div class=\"col border-right border-left FN\">\n                                        {{this.modelValidationInfo['FN'][1]}} FN\n                                    </div>\n                                    <div class=\"col border-right TN\">\n                                        {{this.modelValidationInfo['TN'][1]}} TN\n                                    </div>\n                                    <div class=\"col\">\n                                        {{this.modelValidationInfo['FN'][1]+this.modelValidationInfo['TN'][1]}}\n                                    </div>\n                                </div>\n                                <div class=\"row\">\n                                    <div class=\"col border-right border-left\">\n                                        {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]}}\n                                    </div>\n                                    <div class=\"col border-right\">\n                                        {{this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}\n                                    </div>\n                                    <div class=\"col\">\n                                    {{this.modelValidationInfo['TP'][1]+this.modelValidationInfo['FN'][1]\n                                        +  this.modelValidationInfo['FP'][1]+this.modelValidationInfo['TN'][1]}}\n                                    </div>\n                                </div>\n                            </div>\n                        </div>   \n                    </div>  \n                </div>\n                <div class=\"col-5\">\n                     <div style=\"display: block\">\n                        <canvas baseChart\n                                [data]=\"polarAreaChartData\"\n                                [options]=\"polarChartOptions\"\n                                [labels]=\"polarAreaChartLabels\"\n                                [legend]=\"polarAreaLegend\"\n                                [colors]=\"polarAreaChartColors\"\n                                [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row mt-3\" *ngIf=\"this.modelValidationInfo['TPpred']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\"> \n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SensitivityPed'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SensitivityPed'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SpecificityPred'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SpecificityPred'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCCpred'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCCpred'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                <div class=\"col-5\">\n                  <!--CONFUSION MATRIX-->\n                 <app-confusion-matrix \n                        [TP] = \"this.modelValidationInfo['TPpred'][1]\"\n                        [FP] = \"this.modelValidationInfo['FPpred'][1]\"\n                        [FN] = \"this.modelValidationInfo['FNpred'][1]\"\n                        [TN] = \"this.modelValidationInfo['TNpred'][1]\"\n                    ></app-confusion-matrix>                 \n                </div>\n                <div class=\"col-5\">\n                     <div style=\"display: block\">\n                        <canvas baseChart\n                            [data]=\"polarAreaChartData2\"\n                            [options]=\"polarChartOptions\"\n                            [labels]=\"polarAreaChartLabels\"\n                            [legend]=\"polarAreaLegend\"\n                            [colors]=\"polarAreaChartColors\"\n                            [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row mt-3\" *ngIf=\"this.modelValidationInfo['TP']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Sensitivity'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Sensitivity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Specificity'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Specificity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCC'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCC'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-5\">\n                    <!--CONFUSION MATRIX-->\n                     <app-confusion-matrix \n                        [TP] = \"this.modelValidationInfo['TP'][1]\"\n                        [FP] = \"this.modelValidationInfo['FP'][1]\"\n                        [FN] = \"this.modelValidationInfo['FN'][1]\"\n                        [TN] = \"this.modelValidationInfo['TN'][1]\"\n                    ></app-confusion-matrix>\n                </div>\n                <div class=\"col-5\">\n                     <div style=\"display: block\">\n                        <canvas baseChart\n                                [data]=\"polarAreaChartData\"\n                                [options]=\"polarChartOptions\"\n                                [labels]=\"polarAreaChartLabels\"\n                                [legend]=\"polarAreaLegend\"\n                                [colors]=\"polarAreaChartColors\"\n                                [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -490,7 +503,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n    <div class=\"col-4\">\n        <div class=\"row justify-content-center\">\n            <div class=\"card w-100\" style=\"width: 18rem;\">\n                <div class=\"card-header\"><h5>Model info</h5></div> \n                <div class=\"card-body\">\n                    <table class=\"table table-striped\">\n                        <tbody>\n                            <tr *ngFor = \"let key of objectKeys(modelBuildInfo).sort()\">\n                            <td class=\"text-left text-capitalize\"  data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelBuildInfo[key][0]}}\"><strong>{{key}}</strong></td>\n                            <td class=\"text-right text-capitalize\">{{modelBuildInfo[key][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<!-------------------------------->\n<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-header\"><h5>Fitting</h5></div>\n        <div class=\"card-body\">\n            <div class=\"row justify-content-between\">\n                <div class=\"col-2 mt-5\">\n                    <table class=\"table table-sm table-striped\">\n                        <tbody>\n                            <tr *ngFor = \"let key of objectKeys(modelValidationInfo)\">\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo[key][0]}}\"><strong>{{key}}</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo[key][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                         <canvas baseChart #QuantitConformalChart\n                            [datasets]=\"ChartDataFitted\"\n                            [options]=\"ChartOptionsFitted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<!--<div class=\"row m-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <h3 class=\"card-header\">Prediction (cross-validation)</h3>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-2 mt-5\">\n                    <table class=\"table table-sm table-striped\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringP'][0]}}\"><strong>ScoringP</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringP'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Q2'][0]}}\"><strong>Q2</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Q2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEP'][0]}}\"><strong>SDEP</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEP'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                \n                <div class=\"col-9\">\n                <div style=\"display: block\">\n                        <canvas baseChart\n                            [datasets]=\"ChartDataPredicted\"\n                            [options]=\"ChartOptionsPredicted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>   -->    ");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-------------------------->\n<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr *ngFor = \"let key of objectKeys(modelValidationInfo)\">\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo[key][0]}}\"><strong>{{key}}:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo[key][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                         <canvas baseChart #QuantitConformalChart\n                            [datasets]=\"ChartDataFitted\"\n                            [options]=\"ChartOptionsFitted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -503,7 +516,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\">\n    <div class=\"col-3\">\n        <div class=\"row justify-content-center\">\n            <div class=\"card w-100\" style=\"width: 18rem;\">\n                <div class=\"card-header\"><h5>Model info</h5></div>\n                <div class=\"card-body\">\n                    <table class=\"table table-striped\">\n                        <tbody>\n                            <tr *ngFor = \"let key of objectKeys(modelBuildInfo).sort()\">\n                            <td class=\"text-left text-capitalize\"  data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelBuildInfo[key][0]}}\"><strong>{{key}}</strong></td>\n                            <td class=\"text-right text-capitalize\">{{modelBuildInfo[key][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<!------------------------------------------------------------------------>\n<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-header\"><h5>Fitting</h5></div>\n        <div class=\"card-body\">\n            <div class=\"row justify-content-between\">\n                <div class=\"col-2 mt-5\">\n                    <table class=\"table table-sm table-striped\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringR'][0]}}\"><strong>ScoringR</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringR'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['R2'][0]}}\"><strong>R2</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['R2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEC'][0]}}\"><strong>SDEC</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEC'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                         <canvas baseChart\n                            [datasets]=\"ChartDataFitted\"\n                            [options]=\"ChartOptionsFitted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"ChartDataPredicted[0].data.length>0\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>\n        <div class=\"card-body\">\n            <div class=\"row justify-content-between\">\n                <div class=\"col-2 mt-5\">\n                    <table class=\"table table-sm table-striped\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringP'][0]}}\"><strong>ScoringP</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringP'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Q2'][0]}}\"><strong>Q2</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Q2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEP'][0]}}\"><strong>SDEP</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEP'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                \n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                        <canvas baseChart\n                            [datasets]=\"ChartDataPredicted\"\n                            [options]=\"ChartOptionsPredicted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>       ");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<!------------------------------------------------------------------------>\n<div class=\"row mt-3\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Fitting</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringR'][0]}}\"><strong>Scoring:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringR'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['R2'][0]}}\"><strong>R2:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['R2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEC'][0]}}\"><strong>SDEC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEC'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                         <canvas baseChart\n                            [datasets]=\"ChartDataFitted\"\n                            [options]=\"ChartOptionsFitted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"ChartDataPredicted[0].data.length>0\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    \n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringP'][0]}}\"><strong>Scoring:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringP'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Q2'][0]}}\"><strong>Q2:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Q2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEP'][0]}}\"><strong>SDEP:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEP'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                \n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                        <canvas baseChart\n                            [datasets]=\"ChartDataPredicted\"\n                            [options]=\"ChartOptionsPredicted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>       ");
 
 /***/ }),
 
@@ -516,20 +529,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!-- Models Tab-->\n\n  <ul class=\"nav nav-pills nav-justified\" id=\"pills-tab\" role=\"tablist\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" id=\"pills-modeling-tab\" data-toggle=\"pill\" href=\"#pills-modeling\" role=\"tab\" aria-controls=\"pills-modeling\" aria-selected=\"true\" [routerLink]=\"['/modeling/predictions']\" [class.active]=\"isActive('modeling')\">Modeling</a>\n    </li>\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" id=\"pills-similarity-tab\" data-toggle=\"pill\" href=\"#pills-similarity\" role=\"tab\" aria-controls=\"pills-similarity\" aria-selected=\"false\" [routerLink]=\"['/similarity']\" routerLinkActive=\"active\">Similarity</a>\n    </li>     \n  </ul>\n  <hr class=\"style1 m-0\">\n  <div class=\"tab-content mt-0\" id=\"pills-tabContent\">\n    <div class=\"tab-pane fade show\" id=\"pills-modeling\" role=\"tabpanel\" aria-labelledby=\"pills-modeling-tab\" [routerLink]=\"['/modeling']\" routerLinkActive=\"active\">\n      <app-modeling-sidebar></app-modeling-sidebar>\n    </div>\n    <div class=\"tab-pane fade\" id=\"pills-similarity\" role=\"tabpanel\" aria-labelledby=\"pills-similarity-tab\" [routerLink]=\"['/similarity']\" routerLinkActive=\"active\">\n     <app-similarity-sidebar></app-similarity-sidebar>\n    </div>\n  </div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/similarity-sidebar/similarity-sidebar.component.html":
-/*!************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/similarity-sidebar/similarity-sidebar.component.html ***!
-  \************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  similarity-sidebar works!\n</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<ul class=\"nav nav-pills pl-2\" role=\"tablist\">\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"predict-tab\" data-toggle=\"tab\" href=\"#predict\" role=\"tab\" aria-controls=\"predict\" aria-selected=\"true\" [routerLink]=\"['/predictions']\" [class.active]=\"isActive('predictions')\">Predictions</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"build-tab\" data-toggle=\"tab\" href=\"#build\" role=\"tab\" aria-controls=\"build\" aria-selected=\"false\" [routerLink]=\"['/models']\" [class.active]=\"isActive('models')\">Models</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"similarity-tab\" data-toggle=\"tab\" href=\"#similarity\" role=\"tab\" aria-controls=\"similarity\" aria-selected=\"false\" [routerLink]=\"['/similarity']\" [class.active]=\"isActive('similarity')\">Similarity</a>\n  </li>\n</ul>\n");
 
 /***/ }),
 
@@ -542,7 +542,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container mt-5\">\n  <div class=\"row align-items-centermt-4\">\n    <div class=\"col-6\">\n      <div class=\"form-group\">\n        <label for=\"exampleInputFile\" class=\"bmd-label-floating\">File input</label>\n        <input type=\"file\" class=\"form-control-file\" id=\"exampleInputFile\" accept=\".sdf\" (change)=\"change($event.target.files)\">\n        <small class=\"text-muted\">Input search file.</small>\n      </div>\n    </div>\n    <div class=\"col-6 align-self-center\">\n      <!--<div class=\"form-check form-check-inline\">\n        <input class=\"form-check-input\" type=\"radio\" name=\"gridRadios\" id=\"gridRadios1\" value=\"option1\" checked>\n        <label class=\"form-check-label\" for=\"gridRadios1\">\n          Euclidean\n        </label>\n      </div>\n      <div class=\"form-check form-check-inline\">\n        <input class=\"form-check-input\" type=\"radio\" name=\"gridRadios\" id=\"gridRadios2\" value=\"option2\">\n        <label class=\"form-check-label\" for=\"gridRadios2\">\n          Tanimoto\n        </label>\n      </div>-->\n    </div>\n    <div class=\"col-6\">\n      <div class=\"form-group\">\n        <label for=\"space\">Space</label>\n          <select id=\"space\" class=\"form-control\" [(ngModel)]=\"this.space\" name=\"space\"> \n            <option *ngFor=\"let value of objectKeys(this.spaces)\" [value]='value'>\n            {{value}}\n            </option>\n        </select>\n         <small id=\"space\" class=\"text-muted\">\n          Select space.\n        </small>\n      </div>\n    </div>\n    <div class=\"col-6\"> \n      <div class=\"form-group w-25\">\n        <label for=\"dist_cutoff\">Distance cutoff</label>\n        <input type=\"number\" id=\"dist_cutoff\" class=\"form-control mx-sm-1\" [(ngModel)]=\"this.dist_cutoff\" aria-describedby=\"dist_cutoff\" min=\"0\" max=\"10\" step=\".01\">\n        <small id=\"dist_cutoff\" class=\"text-muted\">\n          Distance cutoff(0-10).\n        </small>\n      </div>\n    </div>\n    <div class=\"col-6\">\n      <div class=\"form-group\">\n        <label for=\"version\">Version</label>\n          <select class=\"form-control\" [(ngModel)]=\"this.version\" name=\"version\"> \n              <option *ngFor=\"let value of this.spaces[this.space]\" [value]='value'>\n              {{value}}\n              </option>\n          </select>\n           <small id=\"version\" class=\"text-muted\">\n          Select version.\n        </small>\n      </div> \n    </div>\n    <div class=\"col-6\">\n      <div class=\"form-group w-25\">\n        <label for=\"num_cutoff\">Number cutoff</label>\n        <input type=\"number\" id=\"num_cutoff\" class=\"form-control mx-sm-1\" [(ngModel)]=\"this.num_cutoff\" aria-describedby=\"num_cutoff\" min=\"1\" step=\"1\">\n        <small id=\"num_cutoff\" class=\"text-muted\">\n          Number cutoff (min 1).\n        </small>\n      </div>\n    </div>\n  </div>\n  <div class=\"row justify-content-end\">\n    <div class=\"col\">\n      <button class=\"btn btn-outline-primary\" role=\"button\" id=\"search\" (click) = \"search()\" >Search</button>\n    </div>\n  </div>\n\n\n  <div class=\"text-center mt-5\" *ngIf= \"this.result.length == 0 && predicting\">\n    <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n      <span class=\"sr-only\">Loading...</span>\n    </div>\n  </div>\n\n  <div class=\"row mt-5\" *ngIf = \"this.result.length > 0\">\n    <div class=\"col-12\" >\n      <h4>Similarity Results</h4>\n    </div>\n    <div class=\"col-12\" *ngIf = \"this.result.length > 0\">\n      <table class=\"table table-fixed table-bordered table-striped\" id=\"data-table\">\n        <thead>\n          <tr>\n            <th>Index</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"<span>Query column name from query test set</span>\">Query name</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"<span>Query molecule from query test set</span>\">Query molecule</th>\n              <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"<span>Reference column ID from Reference training set</span>\">Reference ID</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"<span>Reference column name from Reference training set</span>\">Reference name</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\"  title=\"<span>Reference molecule column from Reference training set</span>\">Reference molecule</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\"  title=\"<span>Similarity distance score: Tanimoto for binary descriptors and Euclidean for continues ones</span>\">Similarity</th>\n          </tr>\n        </thead>\n        <tbody>\n          <ng-container *ngFor=\"let src of this.nameSrc;let i=index\">\n            <tr *ngFor=\"let pred of this.result[i].names;let j=index\">\n              <td class=\"align-middle\" width=\"\">{{i}} - {{j}}</td>\n              <td class=\"align-middle\" >{{this.nameSrc[i]}}</td>\n              <td class=\"align-middle\"><canvas #cmp id=\"{{'query_' + i + '_' + j}}\" width=\"300\" height=\"150\">{{this.smileSrc[i]}}</canvas></td>\n              <td class=\"align-middle\">{{this.result[i].ids[j]}}</td>\n              <td class=\"align-middle\">{{this.result[i].names[j]}}</td>\n              <td class=\"align-middle\"><canvas #cmp id=\"{{'ref_' + i + '_' + j}}\" width=\"300\" height=\"150\">{{this.result[i].SMILES[j]}}</canvas></td>\n              <td class=\"align-middle\">{{this.result[i].distances[j].toFixed(3)}}</td>\n            </tr>\n          </ng-container>\n        </tbody>\n      </table>\n    </div>   \n    <div class=\"row\">\n      <div class=\"loader\" id=\"processing\" hidden=\"true\"></div>\n    </div>\n  </div>  \n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container mt-5\">\n  <div class=\"row align-items-centermt-4\">\n    <div class=\"col-6\">\n      <div class=\"form-group\">\n        <label for=\"exampleInputFile\" class=\"bmd-label-floating\">File input</label>\n        <input type=\"file\" class=\"form-control-file\" id=\"exampleInputFile\" accept=\".sdf\" (change)=\"change($event.target.files)\">\n        <small class=\"text-muted\">Input search file.</small>\n      </div>\n    </div>\n    <div class=\"col-6 align-self-center\">\n      <!--<div class=\"form-check form-check-inline\">\n        <input class=\"form-check-input\" type=\"radio\" name=\"gridRadios\" id=\"gridRadios1\" value=\"option1\" checked>\n        <label class=\"form-check-label\" for=\"gridRadios1\">\n          Euclidean\n        </label>\n      </div>\n      <div class=\"form-check form-check-inline\">\n        <input class=\"form-check-input\" type=\"radio\" name=\"gridRadios\" id=\"gridRadios2\" value=\"option2\">\n        <label class=\"form-check-label\" for=\"gridRadios2\">\n          Tanimoto\n        </label>\n      </div>-->\n    </div>\n    <div class=\"col-6\">\n      <div class=\"form-group\">\n        <label for=\"space\">Space</label>\n          <select id=\"space\" class=\"form-control\" [(ngModel)]=\"this.space\" name=\"space\"> \n            <option *ngFor=\"let value of objectKeys(this.spaces)\" [value]='value'>\n            {{value}} ({{this.molsXspace[value]}})\n            </option>\n        </select>\n         <small id=\"space\" class=\"text-muted\">\n          Select space.\n        </small>\n      </div>\n    </div>\n    <div class=\"col-6\"> \n      <div class=\"form-group w-25\">\n        <label for=\"dist_cutoff\">Distance cutoff</label>\n        <input type=\"number\" id=\"dist_cutoff\" class=\"form-control mx-sm-1\" [(ngModel)]=\"this.dist_cutoff\" aria-describedby=\"dist_cutoff\" min=\"0\" max=\"10\" step=\".01\">\n        <small id=\"dist_cutoff\" class=\"text-muted\">\n          (0-10)\n        </small>\n      </div>\n    </div>\n    <div class=\"col-6\">\n      <div class=\"form-group\">\n        <label for=\"version\">Version</label>\n          <select class=\"form-control\" [(ngModel)]=\"this.version\" name=\"version\"> \n              <option *ngFor=\"let value of this.spaces[this.space]\" [value]='value'>\n              {{value}}\n              </option>\n          </select>\n           <small id=\"version\" class=\"text-muted\">\n          Select version.\n        </small>\n      </div> \n    </div>\n    <div class=\"col-6\">\n      <div class=\"form-group w-25\">\n        <label for=\"num_cutoff\">Number cutoff</label>\n        <input type=\"number\" id=\"num_cutoff\" class=\"form-control mx-sm-1\" [(ngModel)]=\"this.num_cutoff\" aria-describedby=\"num_cutoff\" min=\"1\" step=\"1\">\n        <small id=\"num_cutoff\" class=\"text-muted\">\n          (min 1)\n        </small>\n      </div>\n    </div>\n  </div>\n  <div class=\"row justify-content-end\">\n    <div class=\"col\">\n      <button type=\"button\" class=\"btn btn-outline-primary\" \n      [ngClass]=\"{'disabled': this.similarity.file === undefined || this.space === undefined || this.version === undefined }\"\n     (click) = \"search()\" >Search</button>\n    </div>\n  </div>\n\n  <div class=\"text-center mt-5\" *ngIf= \"this.result.length == 0 && predicting\">\n    <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n      <span class=\"sr-only\">Loading...</span>\n    </div>\n  </div>\n\n  <div class=\"row mt-5\" *ngIf = \"this.result.length > 0\">\n    <div class=\"col-12\" >\n      <h4>Similarity Results</h4>\n    </div>\n    <div class=\"col-12\" *ngIf = \"this.result.length > 0\">\n      <table id=\"simlarityTable\" class=\"table table-fixed table-bordered table-striped\">\n        <thead>\n          <tr>\n            <th>Index</th>\n            <th s>Query name</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"Query molecule from query test set\">Query molecule</th>\n              <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"Reference column ID from Reference training set\">Reference ID</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\" title=\"Reference column name from Reference training set\">Reference name</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\"  title=\"Reference molecule column from Reference training set\">Reference molecule</th>\n            <th data-toggle=\"tooltip\" data-placement=\"top\" data-html=\"true\"  title=\"Similarity distance score: Tanimoto for binary descriptors and Euclidean for continues ones\">Similarity</th>\n          </tr>\n        </thead>\n        <tbody>\n          <ng-container *ngFor=\"let src of this.nameSrc;let i=index\">\n            <tr *ngFor=\"let pred of this.result[i].names;let j=index\">\n              <td class=\"align-middle\" width=\"\">{{i}} - {{j}}</td>\n              <td class=\"align-middle\" >{{this.nameSrc[i]}}</td>\n              <td class=\"align-middle\"><canvas #cmp id=\"{{'query_' + i + '_' + j}}\" width=\"300\" height=\"150\">{{this.smileSrc[i]}}</canvas></td>\n              <td class=\"align-middle\">{{this.result[i].ids[j]}}</td>\n              <td class=\"align-middle\">{{this.result[i].names[j]}}</td>\n              <td class=\"align-middle\"><canvas #cmp id=\"{{'ref_' + i + '_' + j}}\" width=\"300\" height=\"150\">{{this.result[i].SMILES[j]}}</canvas></td>\n              <td class=\"align-middle\">{{this.result[i].distances[j].toFixed(3)}}</td>\n            </tr>\n          </ng-container>\n        </tbody>\n      </table>\n    </div>   \n    <div class=\"row\">\n      <div class=\"loader\" id=\"processing\" hidden=\"true\"></div>\n    </div>\n  </div>  \n</div>\n");
 
 /***/ }),
 
@@ -568,7 +568,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (" <!--START Modal Documentation-->\n<div class=\"modal-header\">\n    <h4 class=\"modal-title\">Validation</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\n    <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n    <div class=\"m-3\" *ngIf=\"this.model.parameters.quantitative.value != undefined && this.model.parameters.conformal.value != undefined\">\n        <div *ngIf=\"!this.model.parameters.quantitative.value && !this.model.parameters.conformal.value\">\n            <app-qualit-no-conformal></app-qualit-no-conformal>\n        </div>\n        <div *ngIf=\"!this.model.parameters.quantitative.value && this.model.parameters.conformal.value\">\n            <app-qualit-conformal></app-qualit-conformal>\n        </div>\n        <div *ngIf=\"this.model.parameters.quantitative.value && !this.model.parameters.conformal.value\">\n            <app-quantit-no-conformal></app-quantit-no-conformal>\n        </div>\n        <div *ngIf=\"this.model.parameters.quantitative.value && this.model.parameters.conformal.value\">\n            <app-quantit-conformal></app-quantit-conformal>\n        </div>\n    </div>\n</div>\n<div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"activeModal.close('Close click')\">Close</button>\n</div>\n                \n<!--END Modal Documentation-->\n\n\n\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"m-3\" *ngIf=\"this.model.parameters !=undefined\">\n    <div *ngIf=\"!this.model.parameters.quantitative.value && !this.model.parameters.conformal.value\">\n        <app-qualit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-no-conformal>\n    </div>\n    <div *ngIf=\"!this.model.parameters.quantitative.value && this.model.parameters.conformal.value\">\n        <app-qualit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-conformal>\n    </div>\n    <div *ngIf=\"this.model.parameters.quantitative.value && !this.model.parameters.conformal.value\">\n        <app-quantit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-no-conformal>\n    </div>\n    <div *ngIf=\"this.model.parameters.quantitative.value && this.model.parameters.conformal.value\">\n        <app-quantit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-conformal>\n    </div>\n</div>\n\n                \n<!--END Modal Documentation-->\n\n\n\n\n");
 
 /***/ }),
 
@@ -870,11 +870,14 @@ Model = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 let Prediction = class Prediction {
     constructor() {
         this.name = undefined; // Name of the model selected in the first step
+        this.modelName = undefined;
+        this.modelVersion = undefined;
         this.predictions = [];
         this.predicting = {};
         this.conformal = false;
         this.file = undefined; // Name of file uploaded in the second step
         this.result = undefined;
+        this.date = undefined;
     }
 };
 Prediction = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -909,6 +912,9 @@ let Similarity = class Similarity {
         this.file_info = undefined; // Info file ej. num mols, variables
         this.file_fields = undefined;
         this.result = undefined;
+        this.predicting = false;
+        this.nameSrc = undefined;
+        this.smileSrc = undefined;
     }
 };
 Similarity = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -934,14 +940,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _model_list_model_list_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model-list/model-list.component */ "./src/app/model-list/model-list.component.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
-/* harmony import */ var _training_series_training_series_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./training-series/training-series.component */ "./src/app/training-series/training-series.component.ts");
-/* harmony import */ var _validations_validations_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validations/validations.component */ "./src/app/validations/validations.component.ts");
-/* harmony import */ var _prediction_prediction_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./prediction/prediction.component */ "./src/app/prediction/prediction.component.ts");
-/* harmony import */ var _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./similarity/similarity.component */ "./src/app/similarity/similarity.component.ts");
-/* harmony import */ var _builder_builder_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./builder/builder.component */ "./src/app/builder/builder.component.ts");
-/* harmony import */ var _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./prediction-list/prediction-list.component */ "./src/app/prediction-list/prediction-list.component.ts");
-/* harmony import */ var _predictor_predictor_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./predictor/predictor.component */ "./src/app/predictor/predictor.component.ts");
-
+/* harmony import */ var _validations_validations_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./validations/validations.component */ "./src/app/validations/validations.component.ts");
+/* harmony import */ var _prediction_prediction_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./prediction/prediction.component */ "./src/app/prediction/prediction.component.ts");
+/* harmony import */ var _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./similarity/similarity.component */ "./src/app/similarity/similarity.component.ts");
+/* harmony import */ var _builder_builder_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./builder/builder.component */ "./src/app/builder/builder.component.ts");
+/* harmony import */ var _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./prediction-list/prediction-list.component */ "./src/app/prediction-list/prediction-list.component.ts");
+/* harmony import */ var _predictor_predictor_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./predictor/predictor.component */ "./src/app/predictor/predictor.component.ts");
 
 
 
@@ -954,19 +958,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const routes = [
-    /*{
-      path: 'training-series',
-      component: TrainingSeriesComponent
-    },*/
-    { path: 'modeling/predictions', component: _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_10__["PredictionListComponent"] },
-    { path: 'modeling/models', component: _model_list_model_list_component__WEBPACK_IMPORTED_MODULE_3__["ModelListComponent"] },
-    { path: 'trainigseries', component: _training_series_training_series_component__WEBPACK_IMPORTED_MODULE_5__["TrainingSeriesComponent"] },
-    { path: 'validation', component: _validations_validations_component__WEBPACK_IMPORTED_MODULE_6__["ValidationsComponent"] },
-    { path: 'predictor', component: _predictor_predictor_component__WEBPACK_IMPORTED_MODULE_11__["PredictorComponent"] },
-    { path: 'builder', component: _builder_builder_component__WEBPACK_IMPORTED_MODULE_9__["BuilderComponent"] },
-    { path: 'prediction', component: _prediction_prediction_component__WEBPACK_IMPORTED_MODULE_7__["PredictionComponent"] },
-    { path: 'similarity', component: _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_8__["SimilarityComponent"] },
-    { path: '', redirectTo: '/modeling/predictions', pathMatch: 'full' },
+    { path: 'predictions', component: _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_9__["PredictionListComponent"] },
+    { path: 'models', component: _model_list_model_list_component__WEBPACK_IMPORTED_MODULE_3__["ModelListComponent"] },
+    { path: 'similarity', component: _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_7__["SimilarityComponent"] },
+    { path: 'predictor', component: _predictor_predictor_component__WEBPACK_IMPORTED_MODULE_10__["PredictorComponent"] },
+    { path: 'builder', component: _builder_builder_component__WEBPACK_IMPORTED_MODULE_8__["BuilderComponent"] },
+    { path: 'validation', component: _validations_validations_component__WEBPACK_IMPORTED_MODULE_5__["ValidationsComponent"] },
+    { path: 'prediction', component: _prediction_prediction_component__WEBPACK_IMPORTED_MODULE_6__["PredictionComponent"] },
+    { path: '', redirectTo: '/predictions', pathMatch: 'full' },
+    { path: '**', redirectTo: '' }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -994,7 +994,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".sidebar {\n    min-height: 95vh;\n    padding-bottom: 10px;\n    background-color:#0076a3;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: #0076a3;\n    border-right: 5px solid #B8DCED; \n    \n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxnQkFBZ0I7SUFDaEIsb0JBQW9CO0lBQ3BCLHdCQUF3QjtJQUN4QixrRUFBa0U7SUFDbEUsbUJBQW1CO0lBQ25CLCtCQUErQjs7QUFFbkMiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5zaWRlYmFyIHtcbiAgICBtaW4taGVpZ2h0OiA5NXZoO1xuICAgIHBhZGRpbmctYm90dG9tOiAxMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IzAwNzZhMztcbiAgICAvKmJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byBsZWZ0LCAjRjdGN0Y3IDAlLCAjRjdGN0Y3IDEwMCUpOyovXG4gICAgYmFja2dyb3VuZDogIzAwNzZhMztcbiAgICBib3JkZXItcmlnaHQ6IDVweCBzb2xpZCAjQjhEQ0VEOyBcbiAgICBcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".info {\n    background-color: #FAFAFA;\n    min-height: 100vh;   \n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSx5QkFBeUI7SUFDekIsaUJBQWlCO0FBQ3JCIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaW5mbyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0ZBRkFGQTtcbiAgICBtaW4taGVpZ2h0OiAxMDB2aDsgICBcbn0iXX0= */");
 
 /***/ }),
 
@@ -1010,19 +1010,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Globals */ "./src/app/Globals.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
 
 
 let AppComponent = class AppComponent {
-    constructor() {
+    constructor(prediction, model, router) {
+        this.prediction = prediction;
+        this.model = model;
+        this.router = router;
         this.title = 'flameweb';
     }
+    isActive(url) {
+        return this.router.url.includes(url);
+    }
 };
+AppComponent.ctorParameters = () => [
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"] },
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Model"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
+];
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-root',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")).default]
-    })
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"],
+        _Globals__WEBPACK_IMPORTED_MODULE_2__["Model"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], AppComponent);
 
 
@@ -1070,11 +1088,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./similarity/similarity.component */ "./src/app/similarity/similarity.component.ts");
 /* harmony import */ var _modeling_sidebar_modeling_sidebar_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./modeling-sidebar/modeling-sidebar.component */ "./src/app/modeling-sidebar/modeling-sidebar.component.ts");
 /* harmony import */ var _new_similarity_new_similarity_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./new-similarity/new-similarity.component */ "./src/app/new-similarity/new-similarity.component.ts");
-/* harmony import */ var _similarity_sidebar_similarity_sidebar_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./similarity-sidebar/similarity-sidebar.component */ "./src/app/similarity-sidebar/similarity-sidebar.component.ts");
-/* harmony import */ var _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./prediction-list/prediction-list.component */ "./src/app/prediction-list/prediction-list.component.ts");
-/* harmony import */ var _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./manage-models/manage-models.component */ "./src/app/manage-models/manage-models.component.ts");
-/* harmony import */ var _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./manage-predictions/manage-predictions.component */ "./src/app/manage-predictions/manage-predictions.component.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./prediction-list/prediction-list.component */ "./src/app/prediction-list/prediction-list.component.ts");
+/* harmony import */ var _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./manage-models/manage-models.component */ "./src/app/manage-models/manage-models.component.ts");
+/* harmony import */ var _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./manage-predictions/manage-predictions.component */ "./src/app/manage-predictions/manage-predictions.component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./confusion-matrix/confusion-matrix.component */ "./src/app/confusion-matrix/confusion-matrix.component.ts");
+/* harmony import */ var angular_datatables__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! angular-datatables */ "./node_modules/angular-datatables/index.js");
+
 
 
 
@@ -1133,10 +1153,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_27__["SimilarityComponent"],
             _modeling_sidebar_modeling_sidebar_component__WEBPACK_IMPORTED_MODULE_28__["ModelingSidebarComponent"],
             _new_similarity_new_similarity_component__WEBPACK_IMPORTED_MODULE_29__["NewSimilarityComponent"],
-            _similarity_sidebar_similarity_sidebar_component__WEBPACK_IMPORTED_MODULE_30__["SimilaritySidebarComponent"],
-            _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_31__["PredictionListComponent"],
-            _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_32__["ManageModelsComponent"],
-            _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_33__["ManagePredictionsComponent"]
+            _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_30__["PredictionListComponent"],
+            _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_31__["ManageModelsComponent"],
+            _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_32__["ManagePredictionsComponent"],
+            _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_34__["ConfusionMatrixComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -1148,7 +1168,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_26__["NgMultiSelectDropDownModule"].forRoot(),
             angular_checklist__WEBPACK_IMPORTED_MODULE_17__["ChecklistModule"],
             ng2_charts__WEBPACK_IMPORTED_MODULE_18__["ChartsModule"],
-            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_34__["NgbModule"]
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_33__["NgbModule"],
+            angular_datatables__WEBPACK_IMPORTED_MODULE_35__["DataTablesModule"]
         ],
         providers: [_Globals__WEBPACK_IMPORTED_MODULE_12__["Model"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Prediction"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Globals"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Manager"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Similarity"]],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -1283,7 +1304,7 @@ let BuilderComponent = class BuilderComponent {
             });
             this.getModelList();
         });
-        this.router.navigate(['/modeling/models']);
+        this.router.navigate(['/models']);
     }
     getModelList() {
         this.commonService.getModelList().subscribe(result => {
@@ -1728,6 +1749,67 @@ ConfigTrainingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/confusion-matrix/confusion-matrix.component.css":
+/*!*****************************************************************!*\
+  !*** ./src/app/confusion-matrix/confusion-matrix.component.css ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".TP {\n    background-color: rgba(0,255,0,0.3);\n}\n.FP {\n    background-color:rgba(235,143,3,0.3);\n}\n.TN {\n    background-color:rgba(3,49,155,0.3);\n}\n.FN {\n    background-color:rgba(255,0,0,0.3);\n}\n.card-header {\n    background: #B8DCED;\n    background-color: #B8DCED;\n}\n#matrix * {\n  padding: 0px;\n  text-align: center;\n}\n.rotate > span {\n  -webkit-transform: rotate(-90deg);\n          transform: rotate(-90deg);\n  position:absolute;\n  left:10;\n  right:0;\n  top: 10px;\n  margin:auto;\n  \n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29uZnVzaW9uLW1hdHJpeC9jb25mdXNpb24tbWF0cml4LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQ0FBbUM7QUFDdkM7QUFDQTtJQUNJLG9DQUFvQztBQUN4QztBQUNBO0lBQ0ksbUNBQW1DO0FBQ3ZDO0FBQ0E7SUFDSSxrQ0FBa0M7QUFDdEM7QUFDQTtJQUNJLG1CQUFtQjtJQUNuQix5QkFBeUI7QUFDN0I7QUFDQTtFQUNFLFlBQVk7RUFDWixrQkFBa0I7QUFDcEI7QUFFQTtFQUNFLGlDQUF5QjtVQUF6Qix5QkFBeUI7RUFDekIsaUJBQWlCO0VBQ2pCLE9BQU87RUFDUCxPQUFPO0VBQ1AsU0FBUztFQUNULFdBQVc7O0FBRWIiLCJmaWxlIjoic3JjL2FwcC9jb25mdXNpb24tbWF0cml4L2NvbmZ1c2lvbi1tYXRyaXguY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5UUCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLDI1NSwwLDAuMyk7XG59XG4uRlAge1xuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgyMzUsMTQzLDMsMC4zKTtcbn1cbi5UTiB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDMsNDksMTU1LDAuMyk7XG59XG4uRk4ge1xuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgyNTUsMCwwLDAuMyk7XG59XG4uY2FyZC1oZWFkZXIge1xuICAgIGJhY2tncm91bmQ6ICNCOERDRUQ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0I4RENFRDtcbn1cbiNtYXRyaXggKiB7XG4gIHBhZGRpbmc6IDBweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4ucm90YXRlID4gc3BhbiB7XG4gIHRyYW5zZm9ybTogcm90YXRlKC05MGRlZyk7XG4gIHBvc2l0aW9uOmFic29sdXRlO1xuICBsZWZ0OjEwO1xuICByaWdodDowO1xuICB0b3A6IDEwcHg7XG4gIG1hcmdpbjphdXRvO1xuICBcbn1cbiJdfQ== */");
+
+/***/ }),
+
+/***/ "./src/app/confusion-matrix/confusion-matrix.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/confusion-matrix/confusion-matrix.component.ts ***!
+  \****************************************************************/
+/*! exports provided: ConfusionMatrixComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfusionMatrixComponent", function() { return ConfusionMatrixComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let ConfusionMatrixComponent = class ConfusionMatrixComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+};
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], ConfusionMatrixComponent.prototype, "TP", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], ConfusionMatrixComponent.prototype, "FP", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], ConfusionMatrixComponent.prototype, "TN", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], ConfusionMatrixComponent.prototype, "FN", void 0);
+ConfusionMatrixComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-confusion-matrix',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./confusion-matrix.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/confusion-matrix/confusion-matrix.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./confusion-matrix.component.css */ "./src/app/confusion-matrix/confusion-matrix.component.css")).default]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], ConfusionMatrixComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/manage-models/manage-models.component.css":
 /*!***********************************************************!*\
   !*** ./src/app/manage-models/manage-models.component.css ***!
@@ -1794,6 +1876,8 @@ let ManageModelsComponent = class ManageModelsComponent {
         if (this.modelName.match(letters)) {
             this.service.createModel(this.modelName).subscribe(result => {
                 this.modelName = '';
+                this.model.listModels = {};
+                $('#dataTableModels').DataTable().destroy();
                 this.getModelList();
                 this.toastr.success('Model ' + result.modelName, 'CREATED', {
                     timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
@@ -1813,11 +1897,9 @@ let ManageModelsComponent = class ManageModelsComponent {
             this.toastr.success('Model ' + this.model.name + ' deleted', 'DELETED', {
                 timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
             });
-            for (const key of this.objectKeys(this.model.listModels)) {
-                if (key.indexOf(this.model.name + '-') === 0) {
-                    delete this.model.listModels[key];
-                }
-            }
+            this.model.listModels = {};
+            $('#dataTableModels').DataTable().destroy();
+            this.getModelList();
             this.model.name = undefined;
             this.model.version = undefined;
         }, error => {
@@ -1829,7 +1911,12 @@ let ManageModelsComponent = class ManageModelsComponent {
             this.toastr.success('Model ' + this.model.name + '.v' + this.model.version + ' deleted', 'DELETED', {
                 timeOut: 4000, positionClass: 'toast-top-right'
             });
-            delete this.model.listModels[this.model.name + '-' + this.model.version];
+            const table = $('#dataTableModels').DataTable();
+            table.row('.selected').remove().draw(false);
+            $('#dataTableModels').DataTable().destroy();
+            this.getModelList();
+            this.model.name = undefined;
+            this.model.version = undefined;
         }, error => {
             console.log(error);
             this.toastr.error('Model ' + this.model.name + '.v' + this.model.version + ' NOT deleted', 'ERROR', {
@@ -1842,13 +1929,15 @@ let ManageModelsComponent = class ManageModelsComponent {
             this.toastr.success('Model \'' + result['modelName'] + ' v.' + result['version'] + '\'', 'CREATED SUCCESFULLY', {
                 timeOut: 5000, positionClass: 'toast-top-right'
             });
+            this.model.listModels = {};
+            $('#dataTableModels').DataTable().destroy();
             this.getModelList();
         }, error => {
             alert('Error cloning');
         });
     }
     exportModel() {
-        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].baseUrl_manage + 'model/' + this.manage.name + '/export';
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].baseUrl_manage + 'model/' + this.model.name + '/export';
         window.open(url);
     }
     importModel(fileList) {
@@ -1859,6 +1948,8 @@ let ManageModelsComponent = class ManageModelsComponent {
                 timeOut: 5000, positionClass: 'toast-top-right'
             });
             this.manage.file = undefined;
+            this.model.listModels = {};
+            $('#dataTableModels').DataTable().destroy();
             this.getModelList();
         }, error => {
             this.toastr.error('Model \'' + error.error.Model + '\' already exist', 'ERROR IMPORTING', {
@@ -1896,6 +1987,9 @@ let ManageModelsComponent = class ManageModelsComponent {
                     });
                 }
             }
+            setTimeout(() => {
+                $('#dataTableModels').DataTable();
+            }, 500);
         }, error => {
             console.log(error.message);
             alert(error.message);
@@ -2058,12 +2152,15 @@ let ManagePredictionsComponent = class ManagePredictionsComponent {
         const modalRef = this.modalService.open(_predictor_predictor_component__WEBPACK_IMPORTED_MODULE_9__["PredictorComponent"], { size: 'lg' });
     }
     deletePrediction() {
-        const table = $('#dataTable').DataTable();
-        table.row('.selected').remove().draw(false);
         this.service.deletePrediction(this.prediction.name).subscribe(result => {
+            const table = $('#dataTablePredictions').DataTable();
+            table.row('.selected').remove().draw(false);
+            // $('#dataTablePredictions').DataTable().destroy();
+            // $('#dataTablePredictions').DataTable();
             this.toastr.success('Prediction "' + this.prediction.name + '" deleted', 'DELETED', {
                 timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
             });
+            this.prediction.name = undefined;
         }, error => {
             this.toastr.error(error.error.error, 'ERROR', {
                 timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
@@ -2147,7 +2244,7 @@ ManagePredictionsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    padding-left: 1px;\n    padding-right: 1px;\n    background: #B8DCED;\n    color:#0076a3;\n}\n.table td {\n    padding-left: 1px;\n    padding-right: 1px;\n    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/\n    border-bottom: 2px solid #B8DCED;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\ntr.version td {\n    border: none\n}\ntd {\n    padding-left: 4px;\n    padding-right: 4px;\n    padding: 4px;\n    vertical-align: middle;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjs7R0FFdEIscUJBQXFCO0lBQ3BCLHNCQUFzQjs7O0FBRzFCO0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLG1CQUFtQjtJQUNuQixhQUFhO0FBQ2pCO0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLG9EQUFvRDtJQUNwRCxnQ0FBZ0M7QUFDcEM7QUFDQTtJQUNJLGVBQWU7QUFDbkI7QUFHQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksbUJBQW1CO0FBQ3ZCO0FBQ0E7SUFDSTtBQUNKO0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWixzQkFBc0I7QUFDMUI7QUFFQTtJQUNJLGdCQUFnQjtJQUNoQixpQkFBaUI7QUFDckI7QUFDQTtJQUNJLGdCQUFnQjtJQUNoQixjQUFjO0FBQ2xCIiwiZmlsZSI6InNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpIHtcbiAgICBtYXJnaW4tcmlnaHQ6IDVweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG4udGFibGUge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIC8qYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KHRvIGxlZnQsICNGN0Y3RjcgMCUsICNGN0Y3RjcgMTAwJSk7Ki9cbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgICBjb2xvcjogIzIyNTc3QTtcbiAgICAvKmJvcmRlcjogMXB4IHNvbGlkOyovXG4gICAgXG4gICAvKiBtYXgtaGVpZ2h0OiA4MHZoOyovXG4gICAgLypvdmVyZmxvdy15OiBzY3JvbGw7Ki9cbiAgICBcbiAgICBcbn1cbi50YWJsZSB0aHtcbiAgICBwYWRkaW5nLWxlZnQ6IDFweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxcHg7XG4gICAgYmFja2dyb3VuZDogI0I4RENFRDtcbiAgICBjb2xvcjojMDA3NmEzO1xufVxuLnRhYmxlIHRkIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDFweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxcHg7XG4gICAgLypmb250LWZhbWlseTogVmVyZGFuYSwgR2VuZXZhLCBUYWhvbWEsIHNhbnMtc2VyaWY7Ki9cbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgI0I4RENFRDtcbn1cbnRyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cblxudHIuc2VsZWN0ZWQge1xuICAgIGJhY2tncm91bmQ6ICNmN2Y5ZWE7XG59XG4udGFibGUgdGJvZHkgdHI6aG92ZXIge1xuICAgIGJhY2tncm91bmQ6ICNmN2Y5ZWE7XG59XG50ci52ZXJzaW9uIHRkIHtcbiAgICBib3JkZXI6IG5vbmVcbn1cbnRkIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDRweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiA0cHg7XG4gICAgcGFkZGluZzogNHB4O1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG5cbi5tb2RlbC1jb250ZW50IHtcbiAgICBtYXgtd2lkdGg6IDM1MHB4O1xuICAgIG1heC1oZWlnaHQ6IDM1MHB4O1xufVxuLnNjcm9sbHRhYmxle1xuICAgIG1heC1oZWlnaHQ6IDkwdmg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cblxuIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n}\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\ntd {\n    padding: 4px;\n    vertical-align: middle;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjs7R0FFdEIscUJBQXFCO0lBQ3BCLHNCQUFzQjs7O0FBRzFCO0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIseUJBQXlCO0lBQ3pCLGFBQWE7QUFDakI7QUFFQTtJQUNJLFlBQVk7SUFDWixnREFBZ0Q7SUFDaEQsZ0NBQWdDO0FBQ3BDO0FBQ0E7SUFDSSxlQUFlO0FBQ25CO0FBR0E7SUFDSSxtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtBQUMxQjtBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGNBQWM7QUFDbEI7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9tb2RlbC1saXN0L21vZGVsLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImkge1xuICAgIG1hcmdpbi1yaWdodDogNXB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbi50YWJsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgLypiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gbGVmdCwgI0Y3RjdGNyAwJSwgI0Y3RjdGNyAxMDAlKTsqL1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIGNvbG9yOiAjMjI1NzdBO1xuICAgIC8qYm9yZGVyOiAxcHggc29saWQ7Ki9cbiAgICBcbiAgIC8qIG1heC1oZWlnaHQ6IDgwdmg7Ki9cbiAgICAvKm92ZXJmbG93LXk6IHNjcm9sbDsqL1xuICAgIFxuICAgIFxufVxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsgKi9cbiAgICBjb2xvcjojMDA3NmEzO1xufVxuXG4udGFibGUgdGQge1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICBmb250LWZhbWlseTogJ0JhcmxvdyBTZW1pIENvbmRlbnNlZCcsIHNhbnMtc2VyaWY7XG4gICAgYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkICNCOERDRUQ7XG59XG50ciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxudGQge1xuICAgIHBhZGRpbmc6IDRweDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuXG4ubW9kZWwtY29udGVudCB7XG4gICAgbWF4LXdpZHRoOiAzNTBweDtcbiAgICBtYXgtaGVpZ2h0OiAzNTBweDtcbn1cbi5zY3JvbGx0YWJsZXtcbiAgICBtYXgtaGVpZ2h0OiA5MHZoO1xuICAgIG92ZXJmbG93OiBhdXRvO1xufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn1cblxuIl19 */");
 
 /***/ }),
 
@@ -2166,9 +2263,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common.service */ "./src/app/common.service.ts");
 /* harmony import */ var _model_list_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model-list.service */ "./src/app/model-list/model-list.service.ts");
 /* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Globals */ "./src/app/Globals.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _validations_validations_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../validations/validations.component */ "./src/app/validations/validations.component.ts");
-
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
@@ -2176,22 +2272,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ModelListComponent = class ModelListComponent {
-    constructor(service, commonService, model, modalService) {
+    constructor(service, commonService, model, prediction) {
         this.service = service;
         this.commonService = commonService;
         this.model = model;
-        this.modalService = modalService;
+        this.prediction = prediction;
         this.objectKeys = Object.keys;
+        this.tableVisible = false;
     }
     ngOnInit() {
+        this.prediction.name = undefined;
+        this.model.name = undefined;
+        this.model.version = undefined;
         this.getModelList();
     }
-    openValidation(name, version) {
-        const modalRef = this.modalService.open(_validations_validations_component__WEBPACK_IMPORTED_MODULE_6__["ValidationsComponent"], { windowClass: "modalClass" });
-        modalRef.componentInstance.name = name;
-        modalRef.componentInstance.version = version;
-    }
     getModelList() {
+        this.tableVisible = false;
         this.commonService.getModelList().subscribe(result => {
             // result = JSON.parse(result[1]);
             this.model.trained_models = [];
@@ -2221,6 +2317,13 @@ let ModelListComponent = class ModelListComponent {
                     });
                 }
             }
+            setTimeout(() => {
+                this.tableVisible = true;
+                const table = $('#dataTableModels').DataTable({
+                    /* No ordering applied by DataTables during initialisation */
+                    order: []
+                });
+            }, 500);
         }, error => {
             console.log(error.message);
             alert(error.message);
@@ -2244,7 +2347,7 @@ ModelListComponent.ctorParameters = () => [
     { type: _model_list_service__WEBPACK_IMPORTED_MODULE_3__["ModelListService"] },
     { type: _common_service__WEBPACK_IMPORTED_MODULE_2__["CommonService"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Model"] },
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"] }
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Prediction"] }
 ];
 ModelListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2255,7 +2358,7 @@ ModelListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_model_list_service__WEBPACK_IMPORTED_MODULE_3__["ModelListService"],
         _common_service__WEBPACK_IMPORTED_MODULE_2__["CommonService"],
         _Globals__WEBPACK_IMPORTED_MODULE_4__["Model"],
-        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"]])
+        _Globals__WEBPACK_IMPORTED_MODULE_4__["Prediction"]])
 ], ModelListComponent);
 
 
@@ -2306,7 +2409,7 @@ ModelListService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".display-3 {\n    color: #E69400;\n}\n.main {\n    /*min-height: 100vh;*/\n    /*max-height: 90vh;*/\n    overflow: auto;\n    padding-bottom: 10px;\n    background-color:#FAFAFA;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background:#FAFAFA;\n    color:#0076a3;\n}\nul {\n    background: #22577a;\n}\nul li a {\n    background: #22577a;\n    color: #B8DCED;\n}\nul li a.active{\n    background: #e59300;\n    color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWxpbmctc2lkZWJhci9tb2RlbGluZy1zaWRlYmFyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxjQUFjO0FBQ2xCO0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsb0JBQW9CO0lBQ3BCLGNBQWM7SUFDZCxvQkFBb0I7SUFDcEIsd0JBQXdCO0lBQ3hCLGtFQUFrRTtJQUNsRSxrQkFBa0I7SUFDbEIsYUFBYTtBQUNqQjtBQUVBO0lBQ0ksbUJBQW1CO0FBQ3ZCO0FBQ0E7SUFDSSxtQkFBbUI7SUFDbkIsY0FBYztBQUNsQjtBQUVBO0lBQ0ksbUJBQW1CO0lBQ25CLFlBQVk7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9tb2RlbGluZy1zaWRlYmFyL21vZGVsaW5nLXNpZGViYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kaXNwbGF5LTMge1xuICAgIGNvbG9yOiAjRTY5NDAwO1xufVxuLm1haW4ge1xuICAgIC8qbWluLWhlaWdodDogMTAwdmg7Ki9cbiAgICAvKm1heC1oZWlnaHQ6IDkwdmg7Ki9cbiAgICBvdmVyZmxvdzogYXV0bztcbiAgICBwYWRkaW5nLWJvdHRvbTogMTBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiNGQUZBRkE7XG4gICAgLypiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gbGVmdCwgI0Y3RjdGNyAwJSwgI0Y3RjdGNyAxMDAlKTsqL1xuICAgIGJhY2tncm91bmQ6I0ZBRkFGQTtcbiAgICBjb2xvcjojMDA3NmEzO1xufVxuXG51bCB7XG4gICAgYmFja2dyb3VuZDogIzIyNTc3YTtcbn1cbnVsIGxpIGEge1xuICAgIGJhY2tncm91bmQ6ICMyMjU3N2E7XG4gICAgY29sb3I6ICNCOERDRUQ7XG59XG5cbnVsIGxpIGEuYWN0aXZle1xuICAgIGJhY2tncm91bmQ6ICNlNTkzMDA7XG4gICAgY29sb3I6IHdoaXRlO1xufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n\nul li a {\n    background: #E7E6E6;\n    color: white;\n}\n\nul li a.active{\n    background: #22577a;\n    color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWxpbmctc2lkZWJhci9tb2RlbGluZy1zaWRlYmFyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQTtJQUNJLG1CQUFtQjtJQUNuQixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksbUJBQW1CO0lBQ25CLFlBQVk7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9tb2RlbGluZy1zaWRlYmFyL21vZGVsaW5nLXNpZGViYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuXG51bCBsaSBhIHtcbiAgICBiYWNrZ3JvdW5kOiAjRTdFNkU2O1xuICAgIGNvbG9yOiB3aGl0ZTtcbn1cblxudWwgbGkgYS5hY3RpdmV7XG4gICAgYmFja2dyb3VuZDogIzIyNTc3YTtcbiAgICBjb2xvcjogd2hpdGU7XG59Il19 */");
 
 /***/ }),
 
@@ -2406,7 +2509,7 @@ NewSimilarityComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n}\n\n.table th{\n    padding-left: 1px;\n    padding-right: 1px;\n    background: #B8DCED;\n    color:#0076a3;\n}\n\n.table td {\n    padding-left: 1px;\n    padding-right: 1px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\n\ntr {\n    cursor: pointer;\n}\n\ntr.selected {\n    background: #f7f9ea;\n}\n\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n\n.blink {\n    -webkit-animation: blinker 0.6s linear infinite;\n            animation: blinker 0.6s linear infinite;\n}\n\n@-webkit-keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n@keyframes blinker {  \n    100% { opacity: 0; }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi1saXN0L3ByZWRpY3Rpb24tbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsa0VBQWtFO0lBQ2xFLGlCQUFpQjtJQUNqQixjQUFjO0lBQ2QscUJBQXFCO0dBQ3RCLHFCQUFxQjtJQUNwQixzQkFBc0I7QUFDMUI7O0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLG1CQUFtQjtJQUNuQixhQUFhO0FBQ2pCOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixnREFBZ0Q7SUFDaEQsZ0NBQWdDO0FBQ3BDOztBQUNBO0lBQ0ksZUFBZTtBQUNuQjs7QUFDQTtJQUNJLG1CQUFtQjtBQUN2Qjs7QUFDQTtJQUNJLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJLCtDQUF1QztZQUF2Qyx1Q0FBdUM7QUFDM0M7O0FBQ0E7SUFDSSxPQUFPLFVBQVUsRUFBRTtBQUN2Qjs7QUFGQTtJQUNJLE9BQU8sVUFBVSxFQUFFO0FBQ3ZCIiwiZmlsZSI6InNyYy9hcHAvcHJlZGljdGlvbi1saXN0L3ByZWRpY3Rpb24tbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaSB7XG4gICAgbWFyZ2luLXJpZ2h0OiA1cHg7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4udGFibGUge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIC8qYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KHRvIGxlZnQsICNGN0Y3RjcgMCUsICNGN0Y3RjcgMTAwJSk7Ki9cbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgICBjb2xvcjogIzIyNTc3QTtcbiAgICAvKmJvcmRlcjogMXB4IHNvbGlkOyovXG4gICAvKiBtYXgtaGVpZ2h0OiA4MHZoOyovXG4gICAgLypvdmVyZmxvdy15OiBzY3JvbGw7Ki9cbn1cbi50YWJsZSB0aHtcbiAgICBwYWRkaW5nLWxlZnQ6IDFweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxcHg7XG4gICAgYmFja2dyb3VuZDogI0I4RENFRDtcbiAgICBjb2xvcjojMDA3NmEzO1xufVxuLnRhYmxlIHRkIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDFweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxcHg7XG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCBzYW5zLXNlcmlmO1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjQjhEQ0VEO1xufVxudHIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuXG4uYmxpbmsge1xuICAgIGFuaW1hdGlvbjogYmxpbmtlciAwLjZzIGxpbmVhciBpbmZpbml0ZTtcbn1cbkBrZXlmcmFtZXMgYmxpbmtlciB7ICBcbiAgICAxMDAlIHsgb3BhY2l0eTogMDsgfVxufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n\n.table {\n    background-color: white;\n    background: white;\n    color: #22577A;\n}\n\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED;*/\n    color:#0076a3;\n    vertical-align: middle;\n}\n\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\n\ntr {\n    cursor: pointer;\n}\n\ntr.selected {\n    background: #f7f9ea;\n}\n\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n\n.blink {\n    -webkit-animation: blinker 0.6s linear infinite;\n            animation: blinker 0.6s linear infinite;\n}\n\n@-webkit-keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n@keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi1saXN0L3ByZWRpY3Rpb24tbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsaUJBQWlCO0lBQ2pCLGNBQWM7QUFDbEI7O0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIsd0JBQXdCO0lBQ3hCLGFBQWE7SUFDYixzQkFBc0I7QUFDMUI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osZ0RBQWdEO0lBQ2hELGdDQUFnQztBQUNwQzs7QUFDQTtJQUNJLGVBQWU7QUFDbkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSwrQ0FBdUM7WUFBdkMsdUNBQXVDO0FBQzNDOztBQUNBO0lBQ0ksT0FBTyxVQUFVLEVBQUU7QUFDdkI7O0FBRkE7SUFDSSxPQUFPLFVBQVUsRUFBRTtBQUN2Qjs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9wcmVkaWN0aW9uLWxpc3QvcHJlZGljdGlvbi1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpIHtcbiAgICBtYXJnaW4tcmlnaHQ6IDVweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi50YWJsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgY29sb3I6ICMyMjU3N0E7XG59XG4udGFibGUgdGh7XG4gICAgLypwYWRkaW5nLWxlZnQ6IDFweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxcHg7Ki9cbiAgICAvKiBiYWNrZ3JvdW5kOiAjQjhEQ0VEOyovXG4gICAgY29sb3I6IzAwNzZhMztcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuLnRhYmxlIHRkIHtcbiAgICBwYWRkaW5nOiA1cHg7XG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCBzYW5zLXNlcmlmO1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjQjhEQ0VEO1xufVxudHIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuXG4uYmxpbmsge1xuICAgIGFuaW1hdGlvbjogYmxpbmtlciAwLjZzIGxpbmVhciBpbmZpbml0ZTtcbn1cbkBrZXlmcmFtZXMgYmxpbmtlciB7ICBcbiAgICAxMDAlIHsgb3BhY2l0eTogMDsgfVxufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn0iXX0= */");
 
 /***/ }),
 
@@ -2424,43 +2527,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common.service */ "./src/app/common.service.ts");
 /* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Globals */ "./src/app/Globals.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _prediction_prediction_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../prediction/prediction.component */ "./src/app/prediction/prediction.component.ts");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_6__);
-
-
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 
 let PredictionListComponent = class PredictionListComponent {
-    constructor(commonService, prediction, modalService) {
+    constructor(commonService, prediction, model) {
         this.commonService = commonService;
         this.prediction = prediction;
-        this.modalService = modalService;
+        this.model = model;
         this.objectKeys = Object.keys;
+        this.tableVisible = false;
     }
     ngOnInit() {
+        this.prediction.name = undefined;
+        this.model.name = undefined;
+        this.model.version = undefined;
+        this.model.trained = false;
         this.getPredictionList();
     }
-    selectPrediction(name) {
+    selectPrediction(name, modelName, modelVersion, date) {
         this.prediction.name = name;
-    }
-    openPredcition(predictionName) {
-        const modalRef = this.modalService.open(_prediction_prediction_component__WEBPACK_IMPORTED_MODULE_5__["PredictionComponent"], { windowClass: 'modalClass' });
-        modalRef.componentInstance.predictionName = predictionName;
+        this.prediction.modelName = modelName;
+        this.prediction.modelVersion = modelVersion;
+        this.prediction.date = date;
     }
     getPredictionList() {
+        this.tableVisible = false;
         this.commonService.getPredictionList().subscribe(result => {
             this.prediction.predictions = result;
             setTimeout(() => {
-                const table = $('#dataTable').DataTable();
-                $('#dataTable tbody').on('click', 'tr', function () {
+                const table = $('#dataTablePredictions').DataTable({
+                    /* No ordering applied by DataTables during initialisation */
+                    order: [[4, 'asc']]
+                });
+                $('#dataTablePredictions tbody').on('click', 'tr', function () {
                     $('tr').removeClass('selected'); // removes all highlights from tr's
                     $(this).addClass('selected'); // adds the highlight to this row
                 });
+                this.tableVisible = true;
             }, 100);
         }, error => {
             alert(error.message);
@@ -2470,7 +2578,7 @@ let PredictionListComponent = class PredictionListComponent {
 PredictionListComponent.ctorParameters = () => [
     { type: _common_service__WEBPACK_IMPORTED_MODULE_2__["CommonService"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_3__["Prediction"] },
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModal"] }
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_3__["Model"] }
 ];
 PredictionListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2480,7 +2588,7 @@ PredictionListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_common_service__WEBPACK_IMPORTED_MODULE_2__["CommonService"],
         _Globals__WEBPACK_IMPORTED_MODULE_3__["Prediction"],
-        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModal"]])
+        _Globals__WEBPACK_IMPORTED_MODULE_3__["Model"]])
 ], PredictionListComponent);
 
 
@@ -2496,7 +2604,7 @@ PredictionListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/* @import '../../assets/css/dataTables.material.min.css';\n@import '../../assets/css/material.min.css'; */\n\n.table th{\n    color: #22577A;\n}\n\n.table td {\n    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/\n}\n\n.table td, .table th {\n    border-top: 4px solid rgba(0,0,0,.06);\n}\n\n/* rotating circle to show progress */\n\n.loading {\n    position: absolute;\n    left: 50%;\n    /* top: 50%; */ /* center vertically */\n    z-index: 1; \n    width: 120px;\n    height: 120px;\n    /* margin: -75px 0 0 -75px; */\n    margin: 0 0 0 -60px;\n    /* border: 20px solid #f3f3f3; */\n    border: 20px solid #e6901a;\n\n    border-radius: 60%;\n    /* border-top: 20px solid #3498db; */\n    border-top: 20px solid #165379;\n    -webkit-animation: spin 2s linear infinite;\n    animation: spin 2s linear infinite;\n  }\n\n/* Safari */\n\n@-webkit-keyframes spin {\n    0% { -webkit-transform: rotate(0deg); }\n    100% { -webkit-transform: rotate(360deg); }\n  }\n\n@keyframes spin {\n    0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }\n    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }\n  }\n\n.TP {\n  background-color: rgba(0,255,0,0.3);\n}\n\n.FP {\n  background-color:rgba(235,143,3,0.3);\n}\n\n.TN {\n  background-color:rgba(3,49,155,0.3);\n}\n\n.FN {\n  background-color:rgba(255,0,0,0.3);\n}\n\n.card-header {\n  background: #B8DCED;\n  background-color: #B8DCED;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi9wcmVkaWN0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7OENBQzhDOztBQUU5QztJQUNJLGNBQWM7QUFDbEI7O0FBQ0E7SUFDSSxvREFBb0Q7QUFDeEQ7O0FBQ0E7SUFDSSxxQ0FBcUM7QUFDekM7O0FBRUEscUNBQXFDOztBQUVyQztJQUNJLGtCQUFrQjtJQUNsQixTQUFTO0lBQ1QsY0FBYyxFQUFFLHNCQUFzQjtJQUN0QyxVQUFVO0lBQ1YsWUFBWTtJQUNaLGFBQWE7SUFDYiw2QkFBNkI7SUFDN0IsbUJBQW1CO0lBQ25CLGdDQUFnQztJQUNoQywwQkFBMEI7O0lBRTFCLGtCQUFrQjtJQUNsQixvQ0FBb0M7SUFDcEMsOEJBQThCO0lBQzlCLDBDQUEwQztJQUMxQyxrQ0FBa0M7RUFDcEM7O0FBRUEsV0FBVzs7QUFDWDtJQUNFLEtBQUssK0JBQStCLEVBQUU7SUFDdEMsT0FBTyxpQ0FBaUMsRUFBRTtFQUM1Qzs7QUFFQTtJQUNFLEtBQUssK0JBQXVCLEVBQXZCLHVCQUF1QixFQUFFO0lBQzlCLE9BQU8saUNBQXlCLEVBQXpCLHlCQUF5QixFQUFFO0VBQ3BDOztBQUVGO0VBQ0UsbUNBQW1DO0FBQ3JDOztBQUNBO0VBQ0Usb0NBQW9DO0FBQ3RDOztBQUNBO0VBQ0UsbUNBQW1DO0FBQ3JDOztBQUNBO0VBQ0Usa0NBQWtDO0FBQ3BDOztBQUNBO0VBQ0UsbUJBQW1CO0VBQ25CLHlCQUF5QjtBQUMzQiIsImZpbGUiOiJzcmMvYXBwL3ByZWRpY3Rpb24vcHJlZGljdGlvbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogQGltcG9ydCAnLi4vLi4vYXNzZXRzL2Nzcy9kYXRhVGFibGVzLm1hdGVyaWFsLm1pbi5jc3MnO1xuQGltcG9ydCAnLi4vLi4vYXNzZXRzL2Nzcy9tYXRlcmlhbC5taW4uY3NzJzsgKi9cblxuLnRhYmxlIHRoe1xuICAgIGNvbG9yOiAjMjI1NzdBO1xufVxuLnRhYmxlIHRkIHtcbiAgICAvKmZvbnQtZmFtaWx5OiBWZXJkYW5hLCBHZW5ldmEsIFRhaG9tYSwgc2Fucy1zZXJpZjsqL1xufVxuLnRhYmxlIHRkLCAudGFibGUgdGgge1xuICAgIGJvcmRlci10b3A6IDRweCBzb2xpZCByZ2JhKDAsMCwwLC4wNik7XG59XG5cbi8qIHJvdGF0aW5nIGNpcmNsZSB0byBzaG93IHByb2dyZXNzICovXG5cbi5sb2FkaW5nIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgbGVmdDogNTAlO1xuICAgIC8qIHRvcDogNTAlOyAqLyAvKiBjZW50ZXIgdmVydGljYWxseSAqL1xuICAgIHotaW5kZXg6IDE7IFxuICAgIHdpZHRoOiAxMjBweDtcbiAgICBoZWlnaHQ6IDEyMHB4O1xuICAgIC8qIG1hcmdpbjogLTc1cHggMCAwIC03NXB4OyAqL1xuICAgIG1hcmdpbjogMCAwIDAgLTYwcHg7XG4gICAgLyogYm9yZGVyOiAyMHB4IHNvbGlkICNmM2YzZjM7ICovXG4gICAgYm9yZGVyOiAyMHB4IHNvbGlkICNlNjkwMWE7XG5cbiAgICBib3JkZXItcmFkaXVzOiA2MCU7XG4gICAgLyogYm9yZGVyLXRvcDogMjBweCBzb2xpZCAjMzQ5OGRiOyAqL1xuICAgIGJvcmRlci10b3A6IDIwcHggc29saWQgIzE2NTM3OTtcbiAgICAtd2Via2l0LWFuaW1hdGlvbjogc3BpbiAycyBsaW5lYXIgaW5maW5pdGU7XG4gICAgYW5pbWF0aW9uOiBzcGluIDJzIGxpbmVhciBpbmZpbml0ZTtcbiAgfVxuXG4gIC8qIFNhZmFyaSAqL1xuICBALXdlYmtpdC1rZXlmcmFtZXMgc3BpbiB7XG4gICAgMCUgeyAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDBkZWcpOyB9XG4gICAgMTAwJSB7IC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTsgfVxuICB9XG5cbiAgQGtleWZyYW1lcyBzcGluIHtcbiAgICAwJSB7IHRyYW5zZm9ybTogcm90YXRlKDBkZWcpOyB9XG4gICAgMTAwJSB7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IH1cbiAgfVxuXG4uVFAge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsMjU1LDAsMC4zKTtcbn1cbi5GUCB7XG4gIGJhY2tncm91bmQtY29sb3I6cmdiYSgyMzUsMTQzLDMsMC4zKTtcbn1cbi5UTiB7XG4gIGJhY2tncm91bmQtY29sb3I6cmdiYSgzLDQ5LDE1NSwwLjMpO1xufVxuLkZOIHtcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDI1NSwwLDAsMC4zKTtcbn1cbi5jYXJkLWhlYWRlciB7XG4gIGJhY2tncm91bmQ6ICNCOERDRUQ7XG4gIGJhY2tncm91bmQtY29sb3I6ICNCOERDRUQ7XG59XG4iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("/* @import '../../assets/css/dataTables.material.min.css';\n@import '../../assets/css/material.min.css'; */\n\n.table th{\n    color: #22577A;\n}\n\n.table td {\n    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/\n}\n\n.table td, .table th {\n    border-top: 4px solid rgba(0,0,0,.06);\n}\n\nul li.nav-item a {\n  background:white;\n  color: #6C757D;\n}\n\nul li.nav-item a.active{\n  background: #F0F0F0;\n  color: #6C757D;\n}\n\n/* rotating circle to show progress */\n\n.TP {\n  background-color: rgba(0,255,0,0.3);\n}\n\n.FP {\n  background-color:rgba(235,143,3,0.3);\n}\n\n.TN {\n  background-color:rgba(3,49,155,0.3);\n}\n\n.FN {\n  background-color:rgba(255,0,0,0.3);\n}\n\n.card-header {\n  background: #B8DCED;\n  background-color: #B8DCED;\n}\n\n.spinner-border {\n  display: block;\n  position: absolute;\n  z-index: 1031;\n  top: 25%; /* where ... is the element's height */\n  right: 45%; /* where ... is the element's width */\n}\n\n#overlay {\n  position: absolute;\n  /*display: none;*/\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #FAFAFA;\n  opacity: 0.7;\n  z-index: 2;\n  cursor: pointer;\n}\n\n/*END LOADING*/\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi9wcmVkaWN0aW9uLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7OENBQzhDOztBQUU5QztJQUNJLGNBQWM7QUFDbEI7O0FBQ0E7SUFDSSxvREFBb0Q7QUFDeEQ7O0FBQ0E7SUFDSSxxQ0FBcUM7QUFDekM7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQixjQUFjO0FBQ2hCOztBQUVBLHFDQUFxQzs7QUFFckM7RUFDRSxtQ0FBbUM7QUFDckM7O0FBQ0E7RUFDRSxvQ0FBb0M7QUFDdEM7O0FBQ0E7RUFDRSxtQ0FBbUM7QUFDckM7O0FBQ0E7RUFDRSxrQ0FBa0M7QUFDcEM7O0FBQ0E7RUFDRSxtQkFBbUI7RUFDbkIseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UsY0FBYztFQUNkLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsUUFBUSxFQUFFLHNDQUFzQztFQUNoRCxVQUFVLEVBQUUscUNBQXFDO0FBQ25EOztBQUdBO0VBQ0Usa0JBQWtCO0VBQ2xCLGlCQUFpQjtFQUNqQixNQUFNO0VBQ04sT0FBTztFQUNQLFFBQVE7RUFDUixTQUFTO0VBQ1QseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixVQUFVO0VBQ1YsZUFBZTtBQUNqQjs7QUFDQSxjQUFjIiwiZmlsZSI6InNyYy9hcHAvcHJlZGljdGlvbi9wcmVkaWN0aW9uLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBAaW1wb3J0ICcuLi8uLi9hc3NldHMvY3NzL2RhdGFUYWJsZXMubWF0ZXJpYWwubWluLmNzcyc7XG5AaW1wb3J0ICcuLi8uLi9hc3NldHMvY3NzL21hdGVyaWFsLm1pbi5jc3MnOyAqL1xuXG4udGFibGUgdGh7XG4gICAgY29sb3I6ICMyMjU3N0E7XG59XG4udGFibGUgdGQge1xuICAgIC8qZm9udC1mYW1pbHk6IFZlcmRhbmEsIEdlbmV2YSwgVGFob21hLCBzYW5zLXNlcmlmOyovXG59XG4udGFibGUgdGQsIC50YWJsZSB0aCB7XG4gICAgYm9yZGVyLXRvcDogNHB4IHNvbGlkIHJnYmEoMCwwLDAsLjA2KTtcbn1cblxudWwgbGkubmF2LWl0ZW0gYSB7XG4gIGJhY2tncm91bmQ6d2hpdGU7XG4gIGNvbG9yOiAjNkM3NTdEO1xufVxuXG51bCBsaS5uYXYtaXRlbSBhLmFjdGl2ZXtcbiAgYmFja2dyb3VuZDogI0YwRjBGMDtcbiAgY29sb3I6ICM2Qzc1N0Q7XG59XG5cbi8qIHJvdGF0aW5nIGNpcmNsZSB0byBzaG93IHByb2dyZXNzICovXG5cbi5UUCB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwyNTUsMCwwLjMpO1xufVxuLkZQIHtcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDIzNSwxNDMsMywwLjMpO1xufVxuLlROIHtcbiAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDMsNDksMTU1LDAuMyk7XG59XG4uRk4ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMjU1LDAsMCwwLjMpO1xufVxuLmNhcmQtaGVhZGVyIHtcbiAgYmFja2dyb3VuZDogI0I4RENFRDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI0I4RENFRDtcbn1cblxuLnNwaW5uZXItYm9yZGVyIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgei1pbmRleDogMTAzMTtcbiAgdG9wOiAyNSU7IC8qIHdoZXJlIC4uLiBpcyB0aGUgZWxlbWVudCdzIGhlaWdodCAqL1xuICByaWdodDogNDUlOyAvKiB3aGVyZSAuLi4gaXMgdGhlIGVsZW1lbnQncyB3aWR0aCAqL1xufVxuXG5cbiNvdmVybGF5IHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICAvKmRpc3BsYXk6IG5vbmU7Ki9cbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgYm90dG9tOiAwO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjRkFGQUZBO1xuICBvcGFjaXR5OiAwLjc7XG4gIHotaW5kZXg6IDI7XG4gIGN1cnNvcjogcG9pbnRlcjtcbn1cbi8qRU5EIExPQURJTkcqLyJdfQ== */");
 
 /***/ }),
 
@@ -2515,17 +2623,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Globals */ "./src/app/Globals.ts");
 /* harmony import */ var smiles_drawer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! smiles-drawer */ "./node_modules/smiles-drawer/app.js");
 /* harmony import */ var smiles_drawer__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(smiles_drawer__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _prediction_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./prediction.service */ "./src/app/prediction/prediction.service.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
-/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! jspdf-autotable */ "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js");
-/* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(jspdf_autotable__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
-/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_9__);
-
+/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common.service */ "./src/app/common.service.ts");
+/* harmony import */ var _prediction_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./prediction.service */ "./src/app/prediction/prediction.service.ts");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jspdf-autotable */ "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js");
+/* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jspdf_autotable__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.js");
+/* harmony import */ var xlsx__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(xlsx__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -2536,17 +2641,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PredictionComponent = class PredictionComponent {
-    constructor(prediction, service, activeModal) {
+    constructor(prediction, service, commonService) {
         this.prediction = prediction;
         this.service = service;
-        this.activeModal = activeModal;
+        this.commonService = commonService;
         this.objectKeys = Object.keys;
+        this.predictionVisible = false;
+        this.q_measures = ['TP', 'FP', 'TN', 'FN'];
+        this.table = undefined;
         this.info = [];
         this.head = [];
-        this.predictionResult = undefined;
+        this.modelDocumentation = undefined;
+        this.i = 0;
+        this.noNext = false;
+        this.noPrevious = true;
         this.modelBuildInfo = {};
         this.modelValidationInfo = {};
-        this.quantitative = true;
         // PolarArea
         this.polarChartOptions = {
             responsive: true,
@@ -2571,9 +2681,96 @@ let PredictionComponent = class PredictionComponent {
             },
         ];
     }
-    ngOnInit() {
+    Next() {
+        this.i++;
+        this.noPrevious = false;
+        if ((this.predictionResult.SMILES.length - 1) === this.i) {
+            this.noNext = true;
+        }
+        const options = { 'width': 600, 'height': 300 };
+        const smilesDrawer = new smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"](options);
+        smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](this.predictionResult.SMILES[this.i], function (tree) {
+            // Draw to the canvas
+            smilesDrawer.draw(tree, 'one_canvas', 'light', false);
+        }, function (err) {
+            console.log(err);
+        });
+    }
+    Previous() {
+        this.i--;
+        this.noNext = false;
+        if (this.i === 0) {
+            this.noPrevious = true;
+        }
+        const options = { 'width': 600, 'height': 300 };
+        const smilesDrawer = new smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"](options);
+        smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](this.predictionResult.SMILES[this.i], function (tree) {
+            // Draw to the canvas
+            smilesDrawer.draw(tree, 'one_canvas', 'light', false);
+        }, function (err) {
+            console.log(err);
+        });
+    }
+    ngOnChanges() {
+        this.modelBuildInfo = {};
+        this.getInfo();
+        this.getParameters();
+        this.getDocumentation();
+        this.getPrediction();
+    }
+    getParameters() {
+        this.commonService.getParameters(this.prediction.modelName, this.prediction.modelVersion).subscribe(result => {
+            this.prediction.modelParameters = result;
+            this.modelBuildInfo['quantitative'] = result.quantitative.value;
+            this.modelBuildInfo['conformal'] = result.conformal.value;
+            this.modelBuildInfo['ensemble'] = false;
+            if (result.input_type.value === 'model_ensemble') {
+                this.modelBuildInfo['ensemble'] = true;
+            }
+        }, error => {
+            alert(error.status + ' : ' + error.statusText);
+        }, () => {
+            // console.log('actual parameters.yaml \n', parameters);
+        });
+    }
+    getInfo() {
+        this.commonService.getModel(this.prediction.modelName, this.prediction.modelVersion).subscribe(result => {
+            for (const info of result) {
+                this.modelBuildInfo[info[0]] = info[2];
+            }
+        }, error => {
+        });
+    }
+    getDocumentation() {
+        this.service.getDocumentation(this.prediction.modelName, this.prediction.modelVersion).subscribe(result => {
+            this.modelDocumentation = result;
+        }, error => {
+            this.modelDocumentation = undefined;
+        });
+    }
+    castValue(value) {
+        if (this.modelBuildInfo['quantitative']) {
+            return value.toFixed(3);
+        }
+        else {
+            if (value === 0) {
+                return 'Negative';
+            }
+            else if (value === 1) {
+                return 'Positive';
+            }
+            else {
+                return 'Uncertain';
+            }
+        }
+    }
+    getPrediction() {
+        this.predictionVisible = false;
+        this.predictionResult = undefined;
+        $('#prediction').DataTable().destroy();
+        $('#predictionOne').DataTable().destroy();
+        this.modelValidationInfo = {};
         this.service.getPrediction(this.predictionName).subscribe(result => {
-            console.log(result);
             this.predictionResult = result;
             if ('external-validation' in this.predictionResult) {
                 for (const modelInfo of this.predictionResult['external-validation']) {
@@ -2585,24 +2782,39 @@ let PredictionComponent = class PredictionComponent {
                     }
                 }
             }
+            if ('TP' in this.modelValidationInfo) {
+                this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
+                    this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
+            }
             setTimeout(() => {
-                if (this.components !== undefined) {
-                    this.components.forEach((child) => {
-                        const options = { 'width': 300, 'height': 150 };
+                this.components.forEach((child) => {
+                    const options = { 'width': 300, 'height': 150 };
+                    const smilesDrawer = new smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"](options);
+                    smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](child.nativeElement.textContent, function (tree) {
+                        smilesDrawer.draw(tree, child.nativeElement.id, 'light', false);
+                    }, function (err) {
+                        console.log(err);
+                    });
+                });
+                const table = $('#prediction').DataTable({
+                    /* No ordering applied by DataTables during initialisation */
+                    order: []
+                });
+                this.predictionVisible = true;
+                const me = this;
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                    if (e.target.id === 'pills-one-tab') {
+                        const options = { 'width': 600, 'height': 300 };
                         const smilesDrawer = new smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"](options);
-                        smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](child.nativeElement.textContent, function (tree) {
-                            smilesDrawer.draw(tree, child.nativeElement.id, 'light', false);
+                        smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](me.predictionResult.SMILES[me.i], function (tree) {
+                            // Draw to the canvas
+                            smilesDrawer.draw(tree, 'one_canvas', 'light', false);
                         }, function (err) {
                             console.log(err);
                         });
-                    });
-                    const table = $('#predictionTable').DataTable();
-                }
-                if ('TP' in this.modelValidationInfo) {
-                    this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
-                        this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
-                }
-            }, 10);
+                    }
+                });
+            }, 0);
         });
     }
     existKey(obj, key) {
@@ -2615,15 +2827,15 @@ let PredictionComponent = class PredictionComponent {
         const xls = Object.assign([], this.info);
         xls.splice(0, 0, this.head);
         /* generate worksheet */
-        const ws = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].aoa_to_sheet(xls);
+        const ws = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].aoa_to_sheet(xls);
         /* generate workbook and add the worksheet */
-        const wb = xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_new();
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["utils"].book_append_sheet(wb, ws, 'Sheet1');
+        const wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, ws, 'Sheet1');
         /* save to file */
-        xlsx__WEBPACK_IMPORTED_MODULE_9__["writeFile"](wb, this.prediction.name + '.xlsx');
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, this.prediction.name + '.xlsx');
     }
     savePDF() {
-        const pdf = new jspdf__WEBPACK_IMPORTED_MODULE_7___default.a();
+        const pdf = new jspdf__WEBPACK_IMPORTED_MODULE_6___default.a();
         pdf.autoTable({
             head: [this.head],
             body: this.info,
@@ -2641,8 +2853,6 @@ let PredictionComponent = class PredictionComponent {
         pdf.save(this.prediction.name + '.pdf');
     }
     ngAfterViewInit() {
-        const table = $('#info');
-        this.dataTable = table.DataTable();
         // pdf.autoTable({html: '#info'});
         this.info = [];
         this.head = ['Name', 'Mol'];
@@ -2707,8 +2917,8 @@ let PredictionComponent = class PredictionComponent {
 };
 PredictionComponent.ctorParameters = () => [
     { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"] },
-    { type: _prediction_service__WEBPACK_IMPORTED_MODULE_4__["PredictionService"] },
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbActiveModal"] }
+    { type: _prediction_service__WEBPACK_IMPORTED_MODULE_5__["PredictionService"] },
+    { type: _common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -2718,6 +2928,10 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])('cmp'),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["QueryList"])
 ], PredictionComponent.prototype, "components", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])('cmpone'),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["QueryList"])
+], PredictionComponent.prototype, "componentOne", void 0);
 PredictionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-prediction',
@@ -2725,8 +2939,8 @@ PredictionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./prediction.component.css */ "./src/app/prediction/prediction.component.css")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"],
-        _prediction_service__WEBPACK_IMPORTED_MODULE_4__["PredictionService"],
-        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbActiveModal"]])
+        _prediction_service__WEBPACK_IMPORTED_MODULE_5__["PredictionService"],
+        _common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"]])
 ], PredictionComponent);
 
 
@@ -2757,6 +2971,10 @@ let PredictionService = class PredictionService {
     }
     getPrediction(predictionName) {
         const url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl_manage + 'prediction/' + predictionName;
+        return this.http.get(url);
+    }
+    getDocumentation(modelName, modelVersion) {
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].baseUrl_manage + 'model/' + modelName + '/version/' + modelVersion + '/documentation';
         return this.http.get(url);
     }
 };
@@ -2846,7 +3064,7 @@ let PredictorComponent = class PredictorComponent {
     predictNameChange() {
         this.isvalid = true;
         const letters = /^[A-Za-z0-9_]+$/;
-        if (!(this.predictName.match(letters)) || this.predictName in this.predictionsNames) {
+        if (!(this.predictName.match(letters)) || this.predictName in this.predictionsNames || this.predictName.startsWith('ensemble')) {
             this.isvalid = false;
         }
     }
@@ -2871,8 +3089,7 @@ let PredictorComponent = class PredictorComponent {
         this.commonService.getPredictionList().subscribe(result => {
             this.prediction.predictions = result;
             setTimeout(() => {
-                const table = $('#dataTable').DataTable();
-                table.order(4, 'desc');
+                const table = $('#dataTablePredictions').DataTable();
             }, 100);
         }, error => {
             alert(error.message);
@@ -2897,6 +3114,7 @@ let PredictorComponent = class PredictorComponent {
                         timeOut: 10000, positionClass: 'toast-top-right'
                     });
                     delete this.prediction.predicting[this.predictName];
+                    $('#dataTablePredictions').DataTable().destroy();
                     this.getPredictionList();
                 }
                 iter += 1;
@@ -2915,6 +3133,7 @@ let PredictorComponent = class PredictorComponent {
             });
             clearInterval(intervalId);
             delete this.prediction.predicting[this.predictName];
+            $('#dataTablePredictions').DataTable().destroy();
             this.getPredictionList();
         }, error => {
         });
@@ -3054,13 +3273,12 @@ let QualitConformalComponent = class QualitConformalComponent {
             },
         ];
     }
-    ngOnInit() {
+    ngOnChanges() {
         this.getValidation();
     }
     getValidation() {
-        this.service.getValidation(this.model.name, this.model.version).subscribe(result => {
+        this.service.getValidation(this.modelName, this.modelVersion).subscribe(result => {
             const info = result;
-            console.log(info);
             // INFO ABOUT MODEL
             for (const modelInfo of info['model_build_info']) {
                 if (typeof modelInfo[2] === 'number') {
@@ -3082,8 +3300,6 @@ let QualitConformalComponent = class QualitConformalComponent {
                     this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
                         this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
                 }
-                this.polarAreaChartData2 = [this.modelValidationInfo['TPpred'][1], this.modelValidationInfo['FPpred'][1],
-                    this.modelValidationInfo['TNpred'][1], this.modelValidationInfo['FNpred'][1]];
             }, 50);
         }, error => {
             alert('Error getting model');
@@ -3094,6 +3310,14 @@ QualitConformalComponent.ctorParameters = () => [
     { type: _qualit_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QualitConformalService"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_3__["Model"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QualitConformalComponent.prototype, "modelName", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QualitConformalComponent.prototype, "modelVersion", void 0);
 QualitConformalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-qualit-conformal',
@@ -3158,7 +3382,7 @@ QualitConformalService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".TP {\n    background-color: rgba(0,255,0,0.3);\n}\n.FP {\n    background-color:rgba(235,143,3,0.3);\n}\n.TN {\n    background-color:rgba(3,49,155,0.3);\n}\n.FN {\n    background-color:rgba(255,0,0,0.3);\n}\n.card-header {\n    background: #B8DCED;\n    background-color: #B8DCED;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcXVhbGl0LW5vLWNvbmZvcm1hbC9xdWFsaXQtbm8tY29uZm9ybWFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQ0FBbUM7QUFDdkM7QUFDQTtJQUNJLG9DQUFvQztBQUN4QztBQUNBO0lBQ0ksbUNBQW1DO0FBQ3ZDO0FBQ0E7SUFDSSxrQ0FBa0M7QUFDdEM7QUFDQTtJQUNJLG1CQUFtQjtJQUNuQix5QkFBeUI7QUFDN0IiLCJmaWxlIjoic3JjL2FwcC9xdWFsaXQtbm8tY29uZm9ybWFsL3F1YWxpdC1uby1jb25mb3JtYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5UUCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLDI1NSwwLDAuMyk7XG59XG4uRlAge1xuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgyMzUsMTQzLDMsMC4zKTtcbn1cbi5UTiB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDMsNDksMTU1LDAuMyk7XG59XG4uRk4ge1xuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgyNTUsMCwwLDAuMyk7XG59XG4uY2FyZC1oZWFkZXIge1xuICAgIGJhY2tncm91bmQ6ICNCOERDRUQ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0I4RENFRDtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".TP {\n    background-color: rgba(0,255,0,0.3);\n}\n.FP {\n    background-color:rgba(235,143,3,0.3);\n}\n.TN {\n    background-color:rgba(3,49,155,0.3);\n}\n.FN {\n    background-color:rgba(255,0,0,0.3);\n}\n.card-header {\n    background: #B8DCED;\n    background-color: #B8DCED;\n}\n#matrix * {\n  padding: 0px;\n  text-align: center;\n}\n.rotate > span {\n  -webkit-transform: rotate(-90deg);\n          transform: rotate(-90deg);\n  position:absolute;\n  left:10;\n  right:0;\n  top: 10px;\n  margin:auto;\n  \n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcXVhbGl0LW5vLWNvbmZvcm1hbC9xdWFsaXQtbm8tY29uZm9ybWFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQ0FBbUM7QUFDdkM7QUFDQTtJQUNJLG9DQUFvQztBQUN4QztBQUNBO0lBQ0ksbUNBQW1DO0FBQ3ZDO0FBQ0E7SUFDSSxrQ0FBa0M7QUFDdEM7QUFDQTtJQUNJLG1CQUFtQjtJQUNuQix5QkFBeUI7QUFDN0I7QUFDQTtFQUNFLFlBQVk7RUFDWixrQkFBa0I7QUFDcEI7QUFFQTtFQUNFLGlDQUF5QjtVQUF6Qix5QkFBeUI7RUFDekIsaUJBQWlCO0VBQ2pCLE9BQU87RUFDUCxPQUFPO0VBQ1AsU0FBUztFQUNULFdBQVc7O0FBRWIiLCJmaWxlIjoic3JjL2FwcC9xdWFsaXQtbm8tY29uZm9ybWFsL3F1YWxpdC1uby1jb25mb3JtYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5UUCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLDI1NSwwLDAuMyk7XG59XG4uRlAge1xuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgyMzUsMTQzLDMsMC4zKTtcbn1cbi5UTiB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjpyZ2JhKDMsNDksMTU1LDAuMyk7XG59XG4uRk4ge1xuICAgIGJhY2tncm91bmQtY29sb3I6cmdiYSgyNTUsMCwwLDAuMyk7XG59XG4uY2FyZC1oZWFkZXIge1xuICAgIGJhY2tncm91bmQ6ICNCOERDRUQ7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI0I4RENFRDtcbn1cbiNtYXRyaXggKiB7XG4gIHBhZGRpbmc6IDBweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4ucm90YXRlID4gc3BhbiB7XG4gIHRyYW5zZm9ybTogcm90YXRlKC05MGRlZyk7XG4gIHBvc2l0aW9uOmFic29sdXRlO1xuICBsZWZ0OjEwO1xuICByaWdodDowO1xuICB0b3A6IDEwcHg7XG4gIG1hcmdpbjphdXRvO1xuICBcbn1cbiJdfQ== */");
 
 /***/ }),
 
@@ -3212,11 +3436,11 @@ let QualitNoConformalComponent = class QualitNoConformalComponent {
             },
         ];
     }
-    ngOnInit() {
+    ngOnChanges() {
         this.getValidation();
     }
     getValidation() {
-        this.service.getValidation(this.model.name, this.model.version).subscribe(result => {
+        this.service.getValidation(this.modelName, this.modelVersion).subscribe(result => {
             const info = result;
             console.log(info);
             // INFO ABOUT MODEL
@@ -3240,8 +3464,10 @@ let QualitNoConformalComponent = class QualitNoConformalComponent {
                     this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
                         this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
                 }
-                this.polarAreaChartData2 = [this.modelValidationInfo['TPpred'][1], this.modelValidationInfo['FPpred'][1],
-                    this.modelValidationInfo['TNpred'][1], this.modelValidationInfo['FNpred'][1]];
+                if (this.modelValidationInfo['TPpred']) {
+                    this.polarAreaChartData2 = [this.modelValidationInfo['TPpred'][1], this.modelValidationInfo['FPpred'][1],
+                        this.modelValidationInfo['TNpred'][1], this.modelValidationInfo['FNpred'][1]];
+                }
             }, 50);
         }, error => {
             alert('Error getting model');
@@ -3252,6 +3478,14 @@ QualitNoConformalComponent.ctorParameters = () => [
     { type: _qualit_no_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QualitNoConformalService"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_3__["Model"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QualitNoConformalComponent.prototype, "modelName", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QualitNoConformalComponent.prototype, "modelVersion", void 0);
 QualitNoConformalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-qualit-no-conformal',
@@ -3461,11 +3695,11 @@ let QuantitConformalComponent = class QuantitConformalComponent {
         ];
         this.ChartType = 'line';
     }
-    ngOnInit() {
+    ngOnChanges() {
         this.getValidation();
     }
     getValidation() {
-        this.service.getValidation(this.model.name, this.model.version).subscribe(result => {
+        this.service.getValidation(this.modelName, this.modelVersion).subscribe(result => {
             const info = result;
             console.log(info);
             for (const modelInfo of info['model_build_info']) {
@@ -3495,9 +3729,10 @@ let QuantitConformalComponent = class QuantitConformalComponent {
                     // this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
                     // this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
                     this.ChartDataFitted[0].data[i] = { x: info['ymatrix'][i], y: this.modelConformal['Conformal_interval_medians'][i] };
-                    this.ChartDataFitted[0].errorBars[info['obj_nam'][i]] =
-                        { plus: this.modelConformal['Conformal_prediction_ranges'][i][0],
-                            minus: this.modelConformal['Conformal_prediction_ranges'][i][1] };
+                    this.ChartDataFitted[0].errorBars[info['obj_nam'][i]] = {
+                        plus: this.modelConformal['Conformal_prediction_ranges'][i][0],
+                        minus: this.modelConformal['Conformal_prediction_ranges'][i][1]
+                    };
                     this.ChartDataFitted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i] };
                     if (max) {
                         if (max < this.modelConformal['Conformal_prediction_ranges'][i][0]) {
@@ -3530,6 +3765,14 @@ QuantitConformalComponent.ctorParameters = () => [
     { type: _quantit_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QuantitConformalService"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_3__["Model"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QuantitConformalComponent.prototype, "modelName", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QuantitConformalComponent.prototype, "modelVersion", void 0);
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('QuantitConformalChart', { static: false }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
@@ -3565,7 +3808,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-;
 let QuantitConformalService = class QuantitConformalService {
     constructor(http) {
         this.http = http;
@@ -3734,24 +3976,15 @@ let QuantitNoConformalComponent = class QuantitNoConformalComponent {
         ];
         this.ChartType = 'line';
     }
-    ngOnInit() {
+    ngOnChanges() {
         this.getValidation();
     }
     getValidation() {
-        this.service.getValidation(this.model.name, this.model.version).subscribe(result => {
-            console.log(result);
+        this.service.getValidation(this.modelName, this.modelVersion).subscribe(result => {
             const info = result;
-            for (const modelInfo of info['model_build_info']) {
-                if (typeof modelInfo[2] === 'number') {
-                    modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
-                    // do something
-                }
-                this.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-            }
             for (const modelInfo of info['model_valid_info']) {
                 if (typeof modelInfo[2] === 'number') {
                     modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
-                    // do something
                 }
                 if (typeof modelInfo[2] !== 'object') {
                     this.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
@@ -3778,6 +4011,14 @@ QuantitNoConformalComponent.ctorParameters = () => [
     { type: _quantit_no_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QuantitNoConformalService"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_3__["Model"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QuantitNoConformalComponent.prototype, "modelName", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], QuantitNoConformalComponent.prototype, "modelVersion", void 0);
 QuantitNoConformalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-quantit-no-conformal',
@@ -3896,51 +4137,6 @@ SidebarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/similarity-sidebar/similarity-sidebar.component.css":
-/*!*********************************************************************!*\
-  !*** ./src/app/similarity-sidebar/similarity-sidebar.component.css ***!
-  \*********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpbWlsYXJpdHktc2lkZWJhci9zaW1pbGFyaXR5LXNpZGViYXIuY29tcG9uZW50LmNzcyJ9 */");
-
-/***/ }),
-
-/***/ "./src/app/similarity-sidebar/similarity-sidebar.component.ts":
-/*!********************************************************************!*\
-  !*** ./src/app/similarity-sidebar/similarity-sidebar.component.ts ***!
-  \********************************************************************/
-/*! exports provided: SimilaritySidebarComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SimilaritySidebarComponent", function() { return SimilaritySidebarComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let SimilaritySidebarComponent = class SimilaritySidebarComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-SimilaritySidebarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-similarity-sidebar',
-        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./similarity-sidebar.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/similarity-sidebar/similarity-sidebar.component.html")).default,
-        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./similarity-sidebar.component.css */ "./src/app/similarity-sidebar/similarity-sidebar.component.css")).default]
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], SimilaritySidebarComponent);
-
-
-
-/***/ }),
-
 /***/ "./src/app/similarity/similarity.component.css":
 /*!*****************************************************!*\
   !*** ./src/app/similarity/similarity.component.css ***!
@@ -3950,7 +4146,7 @@ SimilaritySidebarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpbWlsYXJpdHkvc2ltaWxhcml0eS5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("button.disabled {\n    cursor: not-allowed;\n    pointer-events: none !important;\n}\n\nlabel.disabled {\n    cursor: not-allowed;\n    pointer-events: none !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2ltaWxhcml0eS9zaW1pbGFyaXR5LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQkFBbUI7SUFDbkIsK0JBQStCO0FBQ25DOztBQUVBO0lBQ0ksbUJBQW1CO0lBQ25CLCtCQUErQjtBQUNuQyIsImZpbGUiOiJzcmMvYXBwL3NpbWlsYXJpdHkvc2ltaWxhcml0eS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYnV0dG9uLmRpc2FibGVkIHtcbiAgICBjdXJzb3I6IG5vdC1hbGxvd2VkO1xuICAgIHBvaW50ZXItZXZlbnRzOiBub25lICFpbXBvcnRhbnQ7XG59XG5cbmxhYmVsLmRpc2FibGVkIHtcbiAgICBjdXJzb3I6IG5vdC1hbGxvd2VkO1xuICAgIHBvaW50ZXItZXZlbnRzOiBub25lICFpbXBvcnRhbnQ7XG59Il19 */");
 
 /***/ }),
 
@@ -3970,7 +4166,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _similarity_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./similarity.service */ "./src/app/similarity/similarity.service.ts");
 /* harmony import */ var smiles_drawer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! smiles-drawer */ "./node_modules/smiles-drawer/app.js");
 /* harmony import */ var smiles_drawer__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(smiles_drawer__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -3978,28 +4176,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let SimilarityComponent = class SimilarityComponent {
-    constructor(similarity, service, toastr) {
+    constructor(similarity, service, prediction, model) {
         this.similarity = similarity;
         this.service = service;
-        this.toastr = toastr;
+        this.prediction = prediction;
+        this.model = model;
         this.num_cutoff = '10';
         this.dist_cutoff = '0.7';
         this.objectKeys = Object.keys;
+        this.space = undefined;
+        this.molsXspace = {};
+        this.version = undefined;
         this.predicting = false;
         this.result = [];
         this.smileSrc = [];
         this.nameSrc = [];
     }
     ngOnInit() {
+        this.prediction.name = undefined;
+        this.model.name = undefined;
+        this.model.version = undefined;
+        this.model.trained = false;
         this.spaces = {};
         this.service.getSpaces().subscribe(result => {
             for (const space of result) {
-                this.spaces[space.spacename] = [];
                 for (const version of space.versions) {
-                    this.spaces[space.spacename].push(version);
+                    this.service.getInfo(space.spacename, version).subscribe(result2 => {
+                        if (!(space.spacename in this.spaces)) {
+                            this.spaces[space.spacename] = [];
+                        }
+                        this.spaces[space.spacename].push(version);
+                        this.molsXspace[space.spacename] = result2[0][2];
+                    }, error => {
+                        this.molsXspace[space.spacename] = 0;
+                    });
                 }
             }
-            console.log(this.spaces);
         }, error => {
             console.log(error.message);
             alert(error.message);
@@ -4070,6 +4282,7 @@ let SimilarityComponent = class SimilarityComponent {
     }
     ngAfterViewInit() {
         this.components.changes.subscribe(() => {
+            $('#simlarityTable').DataTable().destroy();
             if (this.components !== undefined) {
                 this.components.forEach((child) => {
                     const options = { 'width': 300, 'height': 150 };
@@ -4080,6 +4293,12 @@ let SimilarityComponent = class SimilarityComponent {
                         console.log(err);
                     });
                 });
+                $('#simlarityTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
             }
         });
     }
@@ -4087,7 +4306,8 @@ let SimilarityComponent = class SimilarityComponent {
 SimilarityComponent.ctorParameters = () => [
     { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Similarity"] },
     { type: _similarity_service__WEBPACK_IMPORTED_MODULE_3__["SimilarityService"] },
-    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"] }
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"] },
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Model"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChildren"])('cmp'),
@@ -4101,7 +4321,8 @@ SimilarityComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Globals__WEBPACK_IMPORTED_MODULE_2__["Similarity"],
         _similarity_service__WEBPACK_IMPORTED_MODULE_3__["SimilarityService"],
-        ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"]])
+        _Globals__WEBPACK_IMPORTED_MODULE_2__["Prediction"],
+        _Globals__WEBPACK_IMPORTED_MODULE_2__["Model"]])
 ], SimilarityComponent);
 
 
@@ -4139,6 +4360,10 @@ let SimilarityService = class SimilarityService {
     }
     getSearch(label) {
         const url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl_smanage + 'search/' + label;
+        return this.http.get(url);
+    }
+    getInfo(label, version) {
+        const url = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseUrl_smanage + 'space/' + label + '/version/' + version;
         return this.http.get(url);
     }
     search(space_name, version, num_cutoff, dist_cutoff) {
@@ -4279,35 +4504,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Globals */ "./src/app/Globals.ts");
 /* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common.service */ "./src/app/common.service.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-
 
 
 
 
 let ValidationsComponent = class ValidationsComponent {
-    constructor(model, commonService, activeModal) {
+    constructor(model, commonService) {
         this.model = model;
         this.commonService = commonService;
-        this.activeModal = activeModal;
     }
-    ngOnInit() {
+    ngOnChanges() {
+        this.model.parameters = undefined;
         this.getParameters();
     }
     getParameters() {
         this.commonService.getParameters(this.name, this.version).subscribe(result => {
             this.model.parameters = result;
         }, error => {
+            alert('get paramaeters validation');
             alert(error.status + ' : ' + error.statusText);
-        }, () => {
-            // console.log('actual parameters.yaml \n', parameters);
         });
     }
 };
 ValidationsComponent.ctorParameters = () => [
     { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Model"] },
-    { type: _common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"] },
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"] }
+    { type: _common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -4324,8 +4545,7 @@ ValidationsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./validations.component.css */ "./src/app/validations/validations.component.css")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_Globals__WEBPACK_IMPORTED_MODULE_2__["Model"],
-        _common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"],
-        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbActiveModal"]])
+        _common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"]])
 ], ValidationsComponent);
 
 
