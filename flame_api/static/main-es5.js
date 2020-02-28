@@ -1427,6 +1427,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.trainig_models = [];
       this.listModels = {};
       this.trained_models = [];
+      this.selectedItems = [];
     };
 
     Model = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], Model);
@@ -2993,13 +2994,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {
           this.selectedItems = [];
-          console.log(this.model.parameters);
 
-          if (this.model.parameters['ensemble_names'].value) {
+          if (this.model.parameters['ensemble_names'] !== undefined && this.model.parameters['ensemble_names'].value !== null) {
             for (var _i5 = 0, _Object$keys5 = Object.keys(this.model.parameters['ensemble_names'].value); _i5 < _Object$keys5.length; _i5++) {
               var index = _Object$keys5[_i5];
               var _name = this.model.parameters['ensemble_names'].value[index];
-              var version = this.model.parameters['ensemble_versions'].value[index];
+              var version = 0;
+
+              if (this.model.parameters['ensemble_versions'].value !== null) {
+                version = this.model.parameters['ensemble_versions'].value[index];
+              }
+
               this.selectedItems.push(_name + ' v.' + version);
             }
           }
