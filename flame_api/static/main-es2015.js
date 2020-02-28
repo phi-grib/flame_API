@@ -1596,6 +1596,7 @@ let ConfigModelComponent = class ConfigModelComponent {
         this.infoModel = ['imbalance'];
         this.parametersModel = {
             RF: 'RF_parameters',
+            XGBOOST: 'XGBOOST_parameters',
             PLSDA: 'PLSDA_parameters',
             PLSR: 'PLSR_parameters',
             GNB: 'GNB_parameters',
@@ -1603,15 +1604,16 @@ let ConfigModelComponent = class ConfigModelComponent {
         };
         this.optimizeModel = {
             RF: 'RF_optimize',
+            XGBOOST: 'XGBOOST_optimize',
             PLSDA: 'PLSDA_optimize',
             PLSR: 'PLSR_optimize',
             GNB: 'GNB_optimize',
             SVM: 'SVM_optimize'
         };
         this.type_models = {
-            data: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
-            molecule: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
-            model_ensemble: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM', 'mean', 'median', 'majority']
+            data: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
+            molecule: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
+            model_ensemble: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM', 'mean', 'median', 'majority']
         };
     }
     ngOnInit() {
