@@ -874,6 +874,7 @@ let Model = class Model {
         this.trainig_models = [];
         this.listModels = {};
         this.trained_models = [];
+        this.selectedItems = [];
     }
 };
 Model = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1752,11 +1753,13 @@ let ConfigTrainingComponent = class ConfigTrainingComponent {
     }
     ngOnInit() {
         this.selectedItems = [];
-        console.log(this.model.parameters);
-        if (this.model.parameters['ensemble_names'].value) {
+        if (this.model.parameters['ensemble_names'] !== undefined && this.model.parameters['ensemble_names'].value !== null) {
             for (const index of Object.keys(this.model.parameters['ensemble_names'].value)) {
                 const name = this.model.parameters['ensemble_names'].value[index];
-                const version = this.model.parameters['ensemble_versions'].value[index];
+                let version = 0;
+                if (this.model.parameters['ensemble_versions'].value !== null) {
+                    version = this.model.parameters['ensemble_versions'].value[index];
+                }
                 this.selectedItems.push(name + ' v.' + version);
             }
         }
