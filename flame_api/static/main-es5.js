@@ -2751,6 +2751,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.infoModel = ['imbalance'];
         this.parametersModel = {
           RF: 'RF_parameters',
+          XGBOOST: 'XGBOOST_parameters',
           PLSDA: 'PLSDA_parameters',
           PLSR: 'PLSR_parameters',
           GNB: 'GNB_parameters',
@@ -2758,15 +2759,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         };
         this.optimizeModel = {
           RF: 'RF_optimize',
+          XGBOOST: 'XGBOOST_optimize',
           PLSDA: 'PLSDA_optimize',
           PLSR: 'PLSR_optimize',
           GNB: 'GNB_optimize',
           SVM: 'SVM_optimize'
         };
         this.type_models = {
-          data: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
-          molecule: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
-          model_ensemble: ['RF', 'PLSDA', 'PLSR', 'GNB', 'SVM', 'mean', 'median', 'majority']
+          data: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
+          molecule: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
+          model_ensemble: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM', 'mean', 'median', 'majority']
         };
       }
 
