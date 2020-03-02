@@ -1,3 +1,9 @@
+supervisor*
+app.sock
+nginx-app.conf
+uwsgi_params
+uwsgi.ini
+*__pycache__*
 *.vscode
 .idea
 # Byte-compiled / optimized / DLL files
