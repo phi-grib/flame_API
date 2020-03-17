@@ -30,7 +30,7 @@ class ListModels(APIView):
     def get(self, request):
         models = manage.action_dir()
         # TODO: fix what flame returns
-        return Response(json.loads(models[1]), 200)
+        return Response(models[1], 200)
 
 class ListPredictions(APIView):
     """
@@ -41,7 +41,7 @@ class ListPredictions(APIView):
         predictions = manage.action_predictions_list()
         print (predictions)
         # TODO: fix what flame returns
-        return Response(json.loads(predictions[1]), 200)
+        return Response(predictions[1], 200)
 
 class ManageModels(APIView):
     """
@@ -58,7 +58,7 @@ class ManageModels(APIView):
         # TODO: FIX model info and metadata for  whole endpoint in flame
         flame_status = manage.action_info(modelname, 0,output='JSON')
         if flame_status[0]:
-            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
             
@@ -117,7 +117,7 @@ class ManagePredictions(APIView):
         """
         flame_status = manage.action_predictions_result(predictionName)
         if flame_status[0]:
-            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
     
@@ -148,7 +148,7 @@ class ManageDocumentation(APIView):
         # TODO: FIX model info and metadata for  whole endpoint in flame
         flame_status = manage.action_documentation(modelname, version, oformat='JSON')
         if flame_status[0]:
-            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
@@ -165,7 +165,7 @@ class ManageVersions(APIView):
         flame_status = manage.action_info(modelname, version,
         output='JSON')
         if flame_status[0]:
-            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
@@ -190,19 +190,19 @@ class ManageParameters(APIView):
         """
         flame_status = manage.action_parameters(modelname,version,"JSON")       
         if flame_status[0]:
-            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
 class ManageValidation(APIView):
 
-    def get(self,request,modelname,version):
+    def get(self,request,modelname,version):    
         """
         Retrieve parameters of model version
         """
         flame_status = manage.action_results(modelname,version,"JSON")
         if flame_status[0]:
-            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
         #print(flame_status)

@@ -399,7 +399,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n<div class =\"text-center spinner-table\" *ngIf = \"!this.globals.tableModelVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.globals.tableModelVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th width=\"5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th width=\"30%\">Name</th>\n          <th width=\"10%\">Version</th>\n          <th width=\"10%\">#Molecules</th>\n          <th width=\"10%\">#Variables</th>\n          <th width=\"30%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('matrix') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td >{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n  {{num_models}}\n<div class =\"text-center spinner-table\" *ngIf = \"!this.globals.tableModelVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.globals.tableModelVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th width=\"5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th width=\"30%\">Name</th>\n          <th width=\"10%\">Version</th>\n          <th width=\"10%\">#Molecules</th>\n          <th width=\"10%\">#Variables</th>\n          <th width=\"30%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type,model.listModels[key].qualitative\n          , model.listModels[key].conformal, model.listModels[key].ensemble)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('matrix') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td >{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n");
 
 /***/ }),
 
@@ -413,19 +413,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("\n<ul class=\"nav nav-pills\" role=\"tablist\">\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"predict-tab\" data-toggle=\"tab\" href=\"#predict\" role=\"tab\" aria-controls=\"predict\" aria-selected=\"true\" [routerLink]=\"['/predictions']\" [class.active]=\"isActive('predictions')\">Predictions</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"build-tab\" data-toggle=\"tab\" href=\"#build\" role=\"tab\" aria-controls=\"build\" aria-selected=\"false\" [routerLink]=\"['/models']\" [class.active]=\"isActive('models')\">Models</a>\n  </li>\n  <li class=\"nav-item\">\n    <a class=\"nav-link\" id=\"similarity-tab\" data-toggle=\"tab\" href=\"#similarity\" role=\"tab\" aria-controls=\"similarity\" aria-selected=\"false\" [routerLink]=\"['/similarity']\" [class.active]=\"isActive('similarity')\">Similarity</a>\n  </li>\n</ul>\n");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/new-similarity/new-similarity.component.html":
-/*!****************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/new-similarity/new-similarity.component.html ***!
-  \****************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>\n  new-similarity works!\n</p>\n");
 
 /***/ }),
 
@@ -546,19 +533,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/tableorder/tableorder.component.html":
-/*!********************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/tableorder/tableorder.component.html ***!
-  \********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<table id=\"example\" class=\"table table-striped table-bordered\" style=\"width:100%\">\n        <thead>\n            <tr>\n                <th>Name</th>\n                <th>Position</th>\n                <th>Office</th>\n                <th>Age</th>\n                <th>Start date</th>\n                <th>Salary</th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr>\n                <td>Tiger Nixon</td>\n                <td>System Architect</td>\n                <td>Edinburgh</td>\n                <td>61</td>\n                <td>2011/04/25</td>\n                <td>$320,800</td>\n            </tr>\n            <tr>\n                <td>Garrett Winters</td>\n                <td>Accountant</td>\n                <td>Tokyo</td>\n                <td>63</td>\n                <td>2011/07/25</td>\n                <td>$170,750</td>\n            </tr>\n            <tr>\n                <td>Ashton Cox</td>\n                <td>Junior Technical Author</td>\n                <td>San Francisco</td>\n                <td>66</td>\n                <td>2009/01/12</td>\n                <td>$86,000</td>\n            </tr>\n            <tr>\n                <td>Cedric Kelly</td>\n                <td>Senior Javascript Developer</td>\n                <td>Edinburgh</td>\n                <td>22</td>\n                <td>2012/03/29</td>\n                <td>$433,060</td>\n            </tr>\n            <tr>\n                <td>Airi Satou</td>\n                <td>Accountant</td>\n                <td>Tokyo</td>\n                <td>33</td>\n                <td>2008/11/28</td>\n                <td>$162,700</td>\n            </tr>\n            <tr>\n                <td>Brielle Williamson</td>\n                <td>Integration Specialist</td>\n                <td>New York</td>\n                <td>61</td>\n                <td>2012/12/02</td>\n                <td>$372,000</td>\n            </tr>\n            <tr>\n                <td>Herrod Chandler</td>\n                <td>Sales Assistant</td>\n                <td>San Francisco</td>\n                <td>59</td>\n                <td>2012/08/06</td>\n                <td>$137,500</td>\n            </tr>\n            <tr>\n                <td>Rhona Davidson</td>\n                <td>Integration Specialist</td>\n                <td>Tokyo</td>\n                <td>55</td>\n                <td>2010/10/14</td>\n                <td>$327,900</td>\n            </tr>\n            <tr>\n                <td>Colleen Hurst</td>\n                <td>Javascript Developer</td>\n                <td>San Francisco</td>\n                <td>39</td>\n                <td>2009/09/15</td>\n                <td>$205,500</td>\n            </tr>\n            <tr>\n                <td>Sonya Frost</td>\n                <td>Software Engineer</td>\n                <td>Edinburgh</td>\n                <td>23</td>\n                <td>2008/12/13</td>\n                <td>$103,600</td>\n            </tr>\n            <tr>\n                <td>Jena Gaines</td>\n                <td>Office Manager</td>\n                <td>London</td>\n                <td>30</td>\n                <td>2008/12/19</td>\n                <td>$90,560</td>\n            </tr>\n            <tr>\n                <td>Quinn Flynn</td>\n                <td>Support Lead</td>\n                <td>Edinburgh</td>\n                <td>22</td>\n                <td>2013/03/03</td>\n                <td>$342,000</td>\n            </tr>\n            <tr>\n                <td>Charde Marshall</td>\n                <td>Regional Director</td>\n                <td>San Francisco</td>\n                <td>36</td>\n                <td>2008/10/16</td>\n                <td>$470,600</td>\n            </tr>\n            <tr>\n                <td>Haley Kennedy</td>\n                <td>Senior Marketing Designer</td>\n                <td>London</td>\n                <td>43</td>\n                <td>2012/12/18</td>\n                <td>$313,500</td>\n            </tr>\n            <tr>\n                <td>Tatyana Fitzpatrick</td>\n                <td>Regional Director</td>\n                <td>London</td>\n                <td>19</td>\n                <td>2010/03/17</td>\n                <td>$385,750</td>\n            </tr>\n            <tr>\n                <td>Michael Silva</td>\n                <td>Marketing Designer</td>\n                <td>London</td>\n                <td>66</td>\n                <td>2012/11/27</td>\n                <td>$198,500</td>\n            </tr>\n            <tr>\n                <td>Paul Byrd</td>\n                <td>Chief Financial Officer (CFO)</td>\n                <td>New York</td>\n                <td>64</td>\n                <td>2010/06/09</td>\n                <td>$725,000</td>\n            </tr>\n            <tr>\n                <td>Gloria Little</td>\n                <td>Systems Administrator</td>\n                <td>New York</td>\n                <td>59</td>\n                <td>2009/04/10</td>\n                <td>$237,500</td>\n            </tr>\n            <tr>\n                <td>Bradley Greer</td>\n                <td>Software Engineer</td>\n                <td>London</td>\n                <td>41</td>\n                <td>2012/10/13</td>\n                <td>$132,000</td>\n            </tr>\n            <tr>\n                <td>Dai Rios</td>\n                <td>Personnel Lead</td>\n                <td>Edinburgh</td>\n                <td>35</td>\n                <td>2012/09/26</td>\n                <td>$217,500</td>\n            </tr>\n            <tr>\n                <td>Jenette Caldwell</td>\n                <td>Development Lead</td>\n                <td>New York</td>\n                <td>30</td>\n                <td>2011/09/03</td>\n                <td>$345,000</td>\n            </tr>\n            <tr>\n                <td>Yuri Berry</td>\n                <td>Chief Marketing Officer (CMO)</td>\n                <td>New York</td>\n                <td>40</td>\n                <td>2009/06/25</td>\n                <td>$675,000</td>\n            </tr>\n            <tr>\n                <td>Caesar Vance</td>\n                <td>Pre-Sales Support</td>\n                <td>New York</td>\n                <td>21</td>\n                <td>2011/12/12</td>\n                <td>$106,450</td>\n            </tr>\n            <tr>\n                <td>Doris Wilder</td>\n                <td>Sales Assistant</td>\n                <td>Sydney</td>\n                <td>23</td>\n                <td>2010/09/20</td>\n                <td>$85,600</td>\n            </tr>\n            <tr>\n                <td>Angelica Ramos</td>\n                <td>Chief Executive Officer (CEO)</td>\n                <td>London</td>\n                <td>47</td>\n                <td>2009/10/09</td>\n                <td>$1,200,000</td>\n            </tr>\n            <tr>\n                <td>Gavin Joyce</td>\n                <td>Developer</td>\n                <td>Edinburgh</td>\n                <td>42</td>\n                <td>2010/12/22</td>\n                <td>$92,575</td>\n            </tr>\n            <tr>\n                <td>Jennifer Chang</td>\n                <td>Regional Director</td>\n                <td>Singapore</td>\n                <td>28</td>\n                <td>2010/11/14</td>\n                <td>$357,650</td>\n            </tr>\n            <tr>\n                <td>Brenden Wagner</td>\n                <td>Software Engineer</td>\n                <td>San Francisco</td>\n                <td>28</td>\n                <td>2011/06/07</td>\n                <td>$206,850</td>\n            </tr>\n            <tr>\n                <td>Fiona Green</td>\n                <td>Chief Operating Officer (COO)</td>\n                <td>San Francisco</td>\n                <td>48</td>\n                <td>2010/03/11</td>\n                <td>$850,000</td>\n            </tr>\n            <tr>\n                <td>Shou Itou</td>\n                <td>Regional Marketing</td>\n                <td>Tokyo</td>\n                <td>20</td>\n                <td>2011/08/14</td>\n                <td>$163,000</td>\n            </tr>\n            <tr>\n                <td>Michelle House</td>\n                <td>Integration Specialist</td>\n                <td>Sydney</td>\n                <td>37</td>\n                <td>2011/06/02</td>\n                <td>$95,400</td>\n            </tr>\n            <tr>\n                <td>Suki Burks</td>\n                <td>Developer</td>\n                <td>London</td>\n                <td>53</td>\n                <td>2009/10/22</td>\n                <td>$114,500</td>\n            </tr>\n            <tr>\n                <td>Prescott Bartlett</td>\n                <td>Technical Author</td>\n                <td>London</td>\n                <td>27</td>\n                <td>2011/05/07</td>\n                <td>$145,000</td>\n            </tr>\n            <tr>\n                <td>Gavin Cortez</td>\n                <td>Team Leader</td>\n                <td>San Francisco</td>\n                <td>22</td>\n                <td>2008/10/26</td>\n                <td>$235,500</td>\n            </tr>\n            <tr>\n                <td>Martena Mccray</td>\n                <td>Post-Sales support</td>\n                <td>Edinburgh</td>\n                <td>46</td>\n                <td>2011/03/09</td>\n                <td>$324,050</td>\n            </tr>\n            <tr>\n                <td>Unity Butler</td>\n                <td>Marketing Designer</td>\n                <td>San Francisco</td>\n                <td>47</td>\n                <td>2009/12/09</td>\n                <td>$85,675</td>\n            </tr>\n            <tr>\n                <td>Howard Hatfield</td>\n                <td>Office Manager</td>\n                <td>San Francisco</td>\n                <td>51</td>\n                <td>2008/12/16</td>\n                <td>$164,500</td>\n            </tr>\n            <tr>\n                <td>Hope Fuentes</td>\n                <td>Secretary</td>\n                <td>San Francisco</td>\n                <td>41</td>\n                <td>2010/02/12</td>\n                <td>$109,850</td>\n            </tr>\n            <tr>\n                <td>Vivian Harrell</td>\n                <td>Financial Controller</td>\n                <td>San Francisco</td>\n                <td>62</td>\n                <td>2009/02/14</td>\n                <td>$452,500</td>\n            </tr>\n            <tr>\n                <td>Timothy Mooney</td>\n                <td>Office Manager</td>\n                <td>London</td>\n                <td>37</td>\n                <td>2008/12/11</td>\n                <td>$136,200</td>\n            </tr>\n            <tr>\n                <td>Jackson Bradshaw</td>\n                <td>Director</td>\n                <td>New York</td>\n                <td>65</td>\n                <td>2008/09/26</td>\n                <td>$645,750</td>\n            </tr>\n            <tr>\n                <td>Olivia Liang</td>\n                <td>Support Engineer</td>\n                <td>Singapore</td>\n                <td>64</td>\n                <td>2011/02/03</td>\n                <td>$234,500</td>\n            </tr>\n            <tr>\n                <td>Bruno Nash</td>\n                <td>Software Engineer</td>\n                <td>London</td>\n                <td>38</td>\n                <td>2011/05/03</td>\n                <td>$163,500</td>\n            </tr>\n            <tr>\n                <td>Sakura Yamamoto</td>\n                <td>Support Engineer</td>\n                <td>Tokyo</td>\n                <td>37</td>\n                <td>2009/08/19</td>\n                <td>$139,575</td>\n            </tr>\n            <tr>\n                <td>Thor Walton</td>\n                <td>Developer</td>\n                <td>New York</td>\n                <td>61</td>\n                <td>2013/08/11</td>\n                <td>$98,540</td>\n            </tr>\n            <tr>\n                <td>Finn Camacho</td>\n                <td>Support Engineer</td>\n                <td>San Francisco</td>\n                <td>47</td>\n                <td>2009/07/07</td>\n                <td>$87,500</td>\n            </tr>\n            <tr>\n                <td>Serge Baldwin</td>\n                <td>Data Coordinator</td>\n                <td>Singapore</td>\n                <td>64</td>\n                <td>2012/04/09</td>\n                <td>$138,575</td>\n            </tr>\n            <tr>\n                <td>Zenaida Frank</td>\n                <td>Software Engineer</td>\n                <td>New York</td>\n                <td>63</td>\n                <td>2010/01/04</td>\n                <td>$125,250</td>\n            </tr>\n            <tr>\n                <td>Zorita Serrano</td>\n                <td>Software Engineer</td>\n                <td>San Francisco</td>\n                <td>56</td>\n                <td>2012/06/01</td>\n                <td>$115,000</td>\n            </tr>\n            <tr>\n                <td>Jennifer Acosta</td>\n                <td>Junior Javascript Developer</td>\n                <td>Edinburgh</td>\n                <td>43</td>\n                <td>2013/02/01</td>\n                <td>$75,650</td>\n            </tr>\n            <tr>\n                <td>Cara Stevens</td>\n                <td>Sales Assistant</td>\n                <td>New York</td>\n                <td>46</td>\n                <td>2011/12/06</td>\n                <td>$145,600</td>\n            </tr>\n            <tr>\n                <td>Hermione Butler</td>\n                <td>Regional Director</td>\n                <td>London</td>\n                <td>47</td>\n                <td>2011/03/21</td>\n                <td>$356,250</td>\n            </tr>\n            <tr>\n                <td>Lael Greer</td>\n                <td>Systems Administrator</td>\n                <td>London</td>\n                <td>21</td>\n                <td>2009/02/27</td>\n                <td>$103,500</td>\n            </tr>\n            <tr>\n                <td>Jonas Alexander</td>\n                <td>Developer</td>\n                <td>San Francisco</td>\n                <td>30</td>\n                <td>2010/07/14</td>\n                <td>$86,500</td>\n            </tr>\n            <tr>\n                <td>Shad Decker</td>\n                <td>Regional Director</td>\n                <td>Edinburgh</td>\n                <td>51</td>\n                <td>2008/11/13</td>\n                <td>$183,000</td>\n            </tr>\n            <tr>\n                <td>Michael Bruce</td>\n                <td>Javascript Developer</td>\n                <td>Singapore</td>\n                <td>29</td>\n                <td>2011/06/27</td>\n                <td>$183,000</td>\n            </tr>\n            <tr>\n                <td>Donna Snider</td>\n                <td>Customer Support</td>\n                <td>New York</td>\n                <td>27</td>\n                <td>2011/01/25</td>\n                <td>$112,000</td>\n            </tr>\n        </tbody>\n        <tfoot>\n            <tr>\n                <th>Name</th>\n                <th>Position</th>\n                <th>Office</th>\n                <th>Age</th>\n                <th>Start date</th>\n                <th>Salary</th>\n            </tr>\n        </tfoot>\n    </table>");
-
-/***/ }),
-
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/training-series/training-series.component.html":
 /*!******************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/training-series/training-series.component.html ***!
@@ -581,7 +555,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"m-3\" *ngIf=\"this.model.parameters !=undefined\">\n    <div *ngIf=\"!this.model.parameters.quantitative.value && !this.model.parameters.conformal.value\">\n        <app-qualit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-no-conformal>\n    </div>\n    <div *ngIf=\"!this.model.parameters.quantitative.value && this.model.parameters.conformal.value\">\n        <app-qualit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-conformal>\n    </div>\n    <div *ngIf=\"this.model.parameters.quantitative.value && !this.model.parameters.conformal.value\">\n        <app-quantit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-no-conformal>\n    </div>\n    <div *ngIf=\"this.model.parameters.quantitative.value && this.model.parameters.conformal.value\">\n        <app-quantit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-conformal>\n    </div>\n</div>\n\n                \n<!--END Modal Documentation-->\n\n\n\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"m-3\" *ngIf=\"this.model.name !=undefined\">\n    <div *ngIf=\"!this.model.quantitative && !this.model.conformal\">\n        <app-qualit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-no-conformal>\n    </div>\n    <div *ngIf=\"!this.model.quantitative && this.model.conformal\">\n        <app-qualit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && !this.model.conformal\">\n        <app-quantit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-no-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && this.model.conformal\">\n        <app-quantit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-conformal>\n    </div>\n</div>\n\n                \n<!--END Modal Documentation-->\n\n\n\n\n");
 
 /***/ }),
 
@@ -865,6 +839,7 @@ let Model = class Model {
         this.file_fields = undefined;
         this.quantitative = undefined;
         this.conformal = undefined;
+        this.ensemble = undefined;
         /*
         Delta parameters, empty by default, fills on clicking the parameters tab.
         When you change anything on the formulary, automatically changes the value for that key
@@ -1132,15 +1107,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ng-multiselect-dropdown */ "./node_modules/ng-multiselect-dropdown/fesm2015/ng-multiselect-dropdown.js");
 /* harmony import */ var _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./similarity/similarity.component */ "./src/app/similarity/similarity.component.ts");
 /* harmony import */ var _modeling_sidebar_modeling_sidebar_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./modeling-sidebar/modeling-sidebar.component */ "./src/app/modeling-sidebar/modeling-sidebar.component.ts");
-/* harmony import */ var _new_similarity_new_similarity_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./new-similarity/new-similarity.component */ "./src/app/new-similarity/new-similarity.component.ts");
-/* harmony import */ var _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./prediction-list/prediction-list.component */ "./src/app/prediction-list/prediction-list.component.ts");
-/* harmony import */ var _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./manage-models/manage-models.component */ "./src/app/manage-models/manage-models.component.ts");
-/* harmony import */ var _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./manage-predictions/manage-predictions.component */ "./src/app/manage-predictions/manage-predictions.component.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./confusion-matrix/confusion-matrix.component */ "./src/app/confusion-matrix/confusion-matrix.component.ts");
-/* harmony import */ var _tableorder_tableorder_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./tableorder/tableorder.component */ "./src/app/tableorder/tableorder.component.ts");
-
-
+/* harmony import */ var _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./prediction-list/prediction-list.component */ "./src/app/prediction-list/prediction-list.component.ts");
+/* harmony import */ var _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./manage-models/manage-models.component */ "./src/app/manage-models/manage-models.component.ts");
+/* harmony import */ var _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./manage-predictions/manage-predictions.component */ "./src/app/manage-predictions/manage-predictions.component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./confusion-matrix/confusion-matrix.component */ "./src/app/confusion-matrix/confusion-matrix.component.ts");
 
 
 
@@ -1197,12 +1168,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _prediction_prediction_component__WEBPACK_IMPORTED_MODULE_25__["PredictionComponent"],
             _similarity_similarity_component__WEBPACK_IMPORTED_MODULE_27__["SimilarityComponent"],
             _modeling_sidebar_modeling_sidebar_component__WEBPACK_IMPORTED_MODULE_28__["ModelingSidebarComponent"],
-            _new_similarity_new_similarity_component__WEBPACK_IMPORTED_MODULE_29__["NewSimilarityComponent"],
-            _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_30__["PredictionListComponent"],
-            _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_31__["ManageModelsComponent"],
-            _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_32__["ManagePredictionsComponent"],
-            _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_34__["ConfusionMatrixComponent"],
-            _tableorder_tableorder_component__WEBPACK_IMPORTED_MODULE_35__["TableorderComponent"]
+            _prediction_list_prediction_list_component__WEBPACK_IMPORTED_MODULE_29__["PredictionListComponent"],
+            _manage_models_manage_models_component__WEBPACK_IMPORTED_MODULE_30__["ManageModelsComponent"],
+            _manage_predictions_manage_predictions_component__WEBPACK_IMPORTED_MODULE_31__["ManagePredictionsComponent"],
+            _confusion_matrix_confusion_matrix_component__WEBPACK_IMPORTED_MODULE_33__["ConfusionMatrixComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -1214,7 +1183,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_26__["NgMultiSelectDropDownModule"].forRoot(),
             angular_checklist__WEBPACK_IMPORTED_MODULE_17__["ChecklistModule"],
             ng2_charts__WEBPACK_IMPORTED_MODULE_18__["ChartsModule"],
-            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_33__["NgbModule"]
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_32__["NgbModule"]
         ],
         providers: [_Globals__WEBPACK_IMPORTED_MODULE_12__["Model"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Prediction"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Globals"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Manager"], _Globals__WEBPACK_IMPORTED_MODULE_12__["Similarity"]],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -1256,6 +1225,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _common_functions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common.functions */ "./src/app/common.functions.ts");
+
 
 
 
@@ -1265,13 +1236,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let BuilderComponent = class BuilderComponent {
-    constructor(model, service, commonService, router, toastr, activeModal) {
+    constructor(model, service, commonService, router, toastr, activeModal, func) {
         this.model = model;
         this.service = service;
         this.commonService = commonService;
         this.router = router;
         this.toastr = toastr;
         this.activeModal = activeModal;
+        this.func = func;
     }
     ngOnInit() {
         this.getParameters();
@@ -1318,7 +1290,7 @@ let BuilderComponent = class BuilderComponent {
         });
         this.activeModal.close('Close click');
         this.service.buildModel().subscribe(result => {
-            this.getModelList();
+            this.func.getModelList();
             let iter = 0;
             const intervalId = setInterval(() => {
                 if (iter < 15) {
@@ -1347,75 +1319,41 @@ let BuilderComponent = class BuilderComponent {
             this.toastr.error('Model ' + name + '.v' + version + ' \n ' + error.error, 'ERROR!', {
                 timeOut: 10000, positionClass: 'toast-top-right'
             });
-            this.getModelList();
+            this.func.getModelList();
         });
         this.router.navigate(['/models']);
-    }
-    getModelList() {
-        this.commonService.getModelList().subscribe(result => {
-            // result = JSON.parse(result[1]);
-            for (const model of result) {
-                const modelName = model.modelname;
-                for (const version of model.versions) {
-                    // INFO OF EACH MODEL
-                    this.commonService.getModel(modelName, version).subscribe(result2 => {
-                        // True is trained
-                        const dict_info = {};
-                        for (const info of result2) {
-                            dict_info[info[0]] = info[2];
-                        }
-                        const quality = {};
-                        for (const info of (Object.keys(dict_info))) {
-                            if ((info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
-                                && (info !== 'Conformal_interval_medians') && (info !== 'Conformal_prediction_ranges')
-                                && (info !== 'Y_adj') && (info !== 'Y_pred')) {
-                                quality[info] = parseFloat(dict_info[info].toFixed(3));
-                            }
-                        }
-                        this.model.listModels[modelName + '-' + version] = { name: modelName, version: version,
-                            trained: true, numMols: dict_info['nobj'], variables: dict_info['nvarx'],
-                            type: dict_info['model'], quality: quality };
-                    }, error => {
-                        this.model.listModels[modelName + '-' + version] = { name: modelName, version: version, trained: false, numMols: '-',
-                            variables: '-', type: '-', quality: {} };
-                    });
-                }
-            }
-        }, error => {
-            alert(error.message);
-        });
     }
     // Periodic function to check model
     checkModel(name, version, inserted, intervalId) {
         this.commonService.getModel(name, version).subscribe(result => {
             const dict_info = {};
-            for (const info of result) {
-                dict_info[info[0]] = info[2];
+            for (const aux of result) {
+                dict_info[aux[0]] = aux[2];
             }
             const quality = {};
             for (const info of (Object.keys(dict_info))) {
-                if ((info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
-                    && (info !== 'Conformal_interval_medians') && (info !== 'Conformal_prediction_ranges')
-                    && (info !== 'Y_adj') && (info !== 'Y_pred')) {
+                if (typeof (dict_info[info]) === 'number') {
                     quality[info] = parseFloat(dict_info[info].toFixed(3));
                 }
             }
+            this.model.trained_models.push(name + ' .v' + version);
             const index = this.model.trainig_models.indexOf(name + '-' + version, 0);
             if (index > -1) {
                 this.model.trainig_models.splice(index, 1);
             }
             this.toastr.clear(inserted.toastId);
             this.model.listModels[name + '-' + version] = { name: name, version: version, trained: true,
-                numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality };
+                numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality,
+                quantitative: dict_info['quantitative'], conformal: dict_info['conformal'], ensemble: dict_info['ensemble'] };
             this.model.trained_models.push(name + ' .v' + version);
             this.toastr.success('Model ' + name + '.v' + version + ' created', 'MODEL CREATED', {
                 timeOut: 5000, positionClass: 'toast-top-right'
             });
             clearInterval(intervalId);
-            this.getModelList();
+            this.func.getModelList();
         }, error => {
             this.model.listModels[name + '-' + version] = { name: name, version: version, trained: false, numMols: '-',
-                variables: '-', type: '-', quality: {} };
+                variables: '-', type: '-', quality: {}, quantitative: false, conformal: false, ensemble: false };
         });
     }
 };
@@ -1425,7 +1363,8 @@ BuilderComponent.ctorParameters = () => [
     { type: _common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
     { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastrService"] },
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbActiveModal"] }
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbActiveModal"] },
+    { type: _common_functions__WEBPACK_IMPORTED_MODULE_8__["CommonFunctions"] }
 ];
 BuilderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1438,7 +1377,8 @@ BuilderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _common_service__WEBPACK_IMPORTED_MODULE_4__["CommonService"],
         _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
         ngx_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastrService"],
-        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbActiveModal"]])
+        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbActiveModal"],
+        _common_functions__WEBPACK_IMPORTED_MODULE_8__["CommonFunctions"]])
 ], BuilderComponent);
 
 
@@ -1488,6 +1428,114 @@ BuilderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _Globals__WEBPACK_IMPORTED_MODULE_4__["Model"]])
 ], BuilderService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/common.functions.ts":
+/*!*************************************!*\
+  !*** ./src/app/common.functions.ts ***!
+  \*************************************/
+/*! exports provided: CommonFunctions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CommonFunctions", function() { return CommonFunctions; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common.service */ "./src/app/common.service.ts");
+/* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Globals */ "./src/app/Globals.ts");
+
+
+
+
+
+let CommonFunctions = class CommonFunctions {
+    constructor(http, commonService, model, globals, prediction) {
+        this.http = http;
+        this.commonService = commonService;
+        this.model = model;
+        this.globals = globals;
+        this.prediction = prediction;
+        this.objectKeys = Object.keys;
+    }
+    getModelList() {
+        this.globals.tableModelVisible = false;
+        let num_models = 0;
+        this.commonService.getModelList().subscribe(result => {
+            // result = JSON.parse(result[1]);
+            this.model.trained_models = [];
+            for (const model of result) {
+                const modelName = model.modelname;
+                const version = model.version;
+                // INFO OF EACH MODEL
+                console.log(typeof (model.info));
+                num_models++;
+                if (typeof (model.info) !== 'string') {
+                    const dict_info = {};
+                    for (const aux of model.info) {
+                        dict_info[aux[0]] = aux[2];
+                    }
+                    const quality = {};
+                    for (const info of (Object.keys(dict_info))) {
+                        if (typeof (dict_info[info]) === 'number') {
+                            quality[info] = parseFloat(dict_info[info].toFixed(3));
+                        }
+                    }
+                    this.model.listModels[modelName + '-' + version] = { name: modelName, version: version, trained: true,
+                        numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality,
+                        quantitative: dict_info['quantitative'], conformal: dict_info['conformal'], ensemble: dict_info['ensemble'] };
+                    this.model.trained_models.push(modelName + ' .v' + version);
+                    num_models--;
+                }
+                else {
+                    this.model.listModels[modelName + '-' + version] = { name: modelName, version: version, trained: false, numMols: '-',
+                        variables: '-', type: '-', quality: {}, quantitative: false, conformal: false, ensemble: false };
+                    num_models--;
+                }
+            }
+            const intervalId = setInterval(() => {
+                console.log(num_models);
+                if (num_models <= 0) {
+                    if (this.objectKeys(this.model.listModels).length > 0) {
+                        const a = this.objectKeys(this.model.listModels).sort();
+                        this.model.name = this.model.listModels[a[0]].name;
+                        this.model.version = this.model.listModels[a[0]].version;
+                        this.model.trained = this.model.listModels[a[0]].trained;
+                    }
+                    const table = $('#dataTableModels').DataTable();
+                    this.globals.tableModelVisible = true;
+                    clearInterval(intervalId);
+                }
+            }, 10);
+        }, error => {
+            /*this.model.listModels[modelName + '-' + version] = {name: modelName, version: version, trained: false, numMols: '-',
+                    variables: '-', type: '-', quality: {}};
+                    num_models--;*/
+            console.log(error);
+        });
+    }
+};
+CommonFunctions.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"] },
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Model"] },
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Globals"] },
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Prediction"] }
+];
+CommonFunctions = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"],
+        _common_service__WEBPACK_IMPORTED_MODULE_3__["CommonService"],
+        _Globals__WEBPACK_IMPORTED_MODULE_4__["Model"],
+        _Globals__WEBPACK_IMPORTED_MODULE_4__["Globals"],
+        _Globals__WEBPACK_IMPORTED_MODULE_4__["Prediction"]])
+], CommonFunctions);
 
 
 
@@ -1895,6 +1943,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
 /* harmony import */ var _builder_builder_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../builder/builder.component */ "./src/app/builder/builder.component.ts");
+/* harmony import */ var _common_functions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../common.functions */ "./src/app/common.functions.ts");
+
 
 
 
@@ -1905,7 +1955,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ManageModelsComponent = class ManageModelsComponent {
-    constructor(manage, commonService, service, model, globals, toastr, modalService) {
+    constructor(manage, commonService, service, model, globals, toastr, modalService, func) {
         this.manage = manage;
         this.commonService = commonService;
         this.service = service;
@@ -1913,6 +1963,7 @@ let ManageModelsComponent = class ManageModelsComponent {
         this.globals = globals;
         this.toastr = toastr;
         this.modalService = modalService;
+        this.func = func;
         this.objectKeys = Object.keys;
     }
     ngOnInit() {
@@ -1932,7 +1983,7 @@ let ManageModelsComponent = class ManageModelsComponent {
                 this.modelName = '';
                 this.model.listModels = {};
                 $('#dataTableModels').DataTable().destroy();
-                this.getModelList();
+                this.func.getModelList();
                 this.toastr.success('Model ' + result.modelName, 'CREATED', {
                     timeOut: 4000, positionClass: 'toast-top-right', progressBar: true
                 });
@@ -1953,7 +2004,7 @@ let ManageModelsComponent = class ManageModelsComponent {
             });
             this.model.listModels = {};
             $('#dataTableModels').DataTable().destroy();
-            this.getModelList();
+            this.func.getModelList();
             this.model.name = undefined;
             this.model.version = undefined;
         }, error => {
@@ -1968,7 +2019,7 @@ let ManageModelsComponent = class ManageModelsComponent {
             const table = $('#dataTableModels').DataTable();
             table.row('.selected').remove().draw(false);
             $('#dataTableModels').DataTable().destroy();
-            this.getModelList();
+            this.func.getModelList();
             this.model.name = undefined;
             this.model.version = undefined;
         }, error => {
@@ -1985,7 +2036,7 @@ let ManageModelsComponent = class ManageModelsComponent {
             });
             this.model.listModels = {};
             $('#dataTableModels').DataTable().destroy();
-            this.getModelList();
+            this.func.getModelList();
         }, error => {
             alert('Error cloning');
         });
@@ -2004,56 +2055,11 @@ let ManageModelsComponent = class ManageModelsComponent {
             this.manage.file = undefined;
             this.model.listModels = {};
             $('#dataTableModels').DataTable().destroy();
-            this.getModelList();
+            this.func.getModelList();
         }, error => {
             this.toastr.error('Model \'' + error.error.Model + '\' already exist', 'ERROR IMPORTING', {
                 timeOut: 5000, positionClass: 'toast-top-right'
             });
-        });
-    }
-    getModelList() {
-        this.globals.tableModelVisible = false;
-        this.commonService.getModelList().subscribe(result => {
-            // result = JSON.parse(result[1]);
-            this.model.trained_models = [];
-            for (const model of result) {
-                const modelName = model.modelname;
-                for (const version of model.versions) {
-                    // INFO OF EACH MODEL
-                    this.commonService.getModel(modelName, version).subscribe(result2 => {
-                        const dict_info = {};
-                        for (const info of result2) {
-                            dict_info[info[0]] = info[2];
-                        }
-                        const quality = {};
-                        for (const info of (Object.keys(dict_info))) {
-                            if ((info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
-                                && (info !== 'Conformal_interval_medians') && (info !== 'Conformal_prediction_ranges')
-                                && (info !== 'Y_adj') && (info !== 'Y_pred')) {
-                                quality[info] = parseFloat(dict_info[info].toFixed(3));
-                            }
-                        }
-                        this.model.listModels[modelName + '-' + version] = { name: modelName, version: version, trained: true,
-                            numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality };
-                        this.model.trained_models.push(modelName + ' .v' + version);
-                    }, error => {
-                        this.model.listModels[modelName + '-' + version] = { name: modelName, version: version, trained: false, numMols: '-',
-                            variables: '-', type: '-', quality: {} };
-                    });
-                }
-            }
-            this.globals.tableModelVisible = true;
-            setTimeout(() => {
-                const a = this.objectKeys(this.model.listModels).sort();
-                this.model.name = this.model.listModels[a[0]].name;
-                this.model.version = this.model.listModels[a[0]].version;
-                this.model.trained = this.model.listModels[a[0]].trained;
-                this.globals.tableModelVisible = true;
-                //$('#dataTableModels').DataTable();
-            }, 1500);
-        }, error => {
-            console.log(error.message);
-            alert(error.message);
         });
     }
 };
@@ -2064,7 +2070,8 @@ ManageModelsComponent.ctorParameters = () => [
     { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Model"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_2__["Globals"] },
     { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"] },
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbModal"] }
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbModal"] },
+    { type: _common_functions__WEBPACK_IMPORTED_MODULE_9__["CommonFunctions"] }
 ];
 ManageModelsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2078,7 +2085,8 @@ ManageModelsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _Globals__WEBPACK_IMPORTED_MODULE_2__["Model"],
         _Globals__WEBPACK_IMPORTED_MODULE_2__["Globals"],
         ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"],
-        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbModal"]])
+        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbModal"],
+        _common_functions__WEBPACK_IMPORTED_MODULE_9__["CommonFunctions"]])
 ], ManageModelsComponent);
 
 
@@ -2310,7 +2318,7 @@ ManagePredictionsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n}\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    /*border-bottom: 2px solid #B8DCED;*/\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\ntd {\n    padding: 4px;\n    vertical-align: middle;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n.scrolltable { \n    max-height: 90vh;\n    overflow: auto;\n}\n.scrolltable thead th { \n    position: -webkit-sticky; \n    position: sticky; \n    top: 0; \n    background-color:white;\n}\n.scrolltable,\n.scrolltable td {\nbox-shadow: inset 0 0, 0 1px  #B8DCED;\n}\n.scrolltable th {\n    box-shadow: inset 0 0, 0 1px  #B8DCED;\n    }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjs7R0FFdEIscUJBQXFCO0lBQ3BCLHNCQUFzQjs7O0FBRzFCO0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIseUJBQXlCO0lBQ3pCLGFBQWE7QUFDakI7QUFFQTtJQUNJLFlBQVk7SUFDWixnREFBZ0Q7SUFDaEQsb0NBQW9DO0FBQ3hDO0FBQ0E7SUFDSSxlQUFlO0FBQ25CO0FBR0E7SUFDSSxtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtBQUMxQjtBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjtBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLFVBQVU7SUFDVixRQUFRO0lBQ1IsYUFBYTtBQUNqQjtBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGNBQWM7QUFDbEI7QUFDQTtJQUNJLHdCQUFnQjtJQUFoQixnQkFBZ0I7SUFDaEIsTUFBTTtJQUNOLHNCQUFzQjtBQUMxQjtBQUVBOztBQUVBLHFDQUFxQztBQUNyQztBQUNBO0lBQ0kscUNBQXFDO0lBQ3JDIiwiZmlsZSI6InNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpIHtcbiAgICBtYXJnaW4tcmlnaHQ6IDVweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG4udGFibGUge1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICAgIC8qYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KHRvIGxlZnQsICNGN0Y3RjcgMCUsICNGN0Y3RjcgMTAwJSk7Ki9cbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgICBjb2xvcjogIzIyNTc3QTtcbiAgICAvKmJvcmRlcjogMXB4IHNvbGlkOyovXG4gICAgXG4gICAvKiBtYXgtaGVpZ2h0OiA4MHZoOyovXG4gICAgLypvdmVyZmxvdy15OiBzY3JvbGw7Ki9cbiAgICBcbiAgICBcbn1cbi50YWJsZSB0aHtcbiAgICAvKnBhZGRpbmctbGVmdDogMXB4O1xuICAgIHBhZGRpbmctcmlnaHQ6IDFweDsqL1xuICAgIC8qIGJhY2tncm91bmQ6ICNCOERDRUQ7ICovXG4gICAgY29sb3I6IzAwNzZhMztcbn1cblxuLnRhYmxlIHRkIHtcbiAgICBwYWRkaW5nOiA1cHg7XG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCBzYW5zLXNlcmlmO1xuICAgIC8qYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkICNCOERDRUQ7Ki9cbn1cbnRyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cblxudHIuc2VsZWN0ZWQge1xuICAgIGJhY2tncm91bmQ6ICNmN2Y5ZWE7XG59XG4udGFibGUgdGJvZHkgdHI6aG92ZXIge1xuICAgIGJhY2tncm91bmQ6ICNmN2Y5ZWE7XG59XG50ZCB7XG4gICAgcGFkZGluZzogNHB4O1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG5cbi5tb2RlbC1jb250ZW50IHtcbiAgICBtYXgtd2lkdGg6IDM1MHB4O1xuICAgIG1heC1oZWlnaHQ6IDM1MHB4O1xufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn1cblxuLnNjcm9sbHRhYmxlIHsgXG4gICAgbWF4LWhlaWdodDogOTB2aDtcbiAgICBvdmVyZmxvdzogYXV0bztcbn1cbi5zY3JvbGx0YWJsZSB0aGVhZCB0aCB7IFxuICAgIHBvc2l0aW9uOiBzdGlja3k7IFxuICAgIHRvcDogMDsgXG4gICAgYmFja2dyb3VuZC1jb2xvcjp3aGl0ZTtcbn1cblxuLnNjcm9sbHRhYmxlLFxuLnNjcm9sbHRhYmxlIHRkIHtcbmJveC1zaGFkb3c6IGluc2V0IDAgMCwgMCAxcHggICNCOERDRUQ7XG59XG4uc2Nyb2xsdGFibGUgdGgge1xuICAgIGJveC1zaGFkb3c6IGluc2V0IDAgMCwgMCAxcHggICNCOERDRUQ7XG4gICAgfVxuIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n}\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\ntd {\n    padding: 4px;\n    vertical-align: middle;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjs7R0FFdEIscUJBQXFCO0lBQ3BCLHNCQUFzQjs7O0FBRzFCO0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIseUJBQXlCO0lBQ3pCLGFBQWE7QUFDakI7QUFFQTtJQUNJLFlBQVk7SUFDWixnREFBZ0Q7SUFDaEQsZ0NBQWdDO0FBQ3BDO0FBQ0E7SUFDSSxlQUFlO0FBQ25CO0FBR0E7SUFDSSxtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtBQUMxQjtBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGNBQWM7QUFDbEI7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9tb2RlbC1saXN0L21vZGVsLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImkge1xuICAgIG1hcmdpbi1yaWdodDogNXB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbi50YWJsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgLypiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gbGVmdCwgI0Y3RjdGNyAwJSwgI0Y3RjdGNyAxMDAlKTsqL1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIGNvbG9yOiAjMjI1NzdBO1xuICAgIC8qYm9yZGVyOiAxcHggc29saWQ7Ki9cbiAgICBcbiAgIC8qIG1heC1oZWlnaHQ6IDgwdmg7Ki9cbiAgICAvKm92ZXJmbG93LXk6IHNjcm9sbDsqL1xuICAgIFxuICAgIFxufVxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsgKi9cbiAgICBjb2xvcjojMDA3NmEzO1xufVxuXG4udGFibGUgdGQge1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICBmb250LWZhbWlseTogJ0JhcmxvdyBTZW1pIENvbmRlbnNlZCcsIHNhbnMtc2VyaWY7XG4gICAgYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkICNCOERDRUQ7XG59XG50ciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxudGQge1xuICAgIHBhZGRpbmc6IDRweDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuXG4ubW9kZWwtY29udGVudCB7XG4gICAgbWF4LXdpZHRoOiAzNTBweDtcbiAgICBtYXgtaGVpZ2h0OiAzNTBweDtcbn1cbi5zY3JvbGx0YWJsZXtcbiAgICBtYXgtaGVpZ2h0OiA5MHZoO1xuICAgIG92ZXJmbG93OiBhdXRvO1xufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn0iXX0= */");
 
 /***/ }),
 
@@ -2331,6 +2339,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Globals */ "./src/app/Globals.ts");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _common_functions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../common.functions */ "./src/app/common.functions.ts");
+
 
 
 
@@ -2338,73 +2348,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ModelListComponent = class ModelListComponent {
-    constructor(service, commonService, model, globals, prediction) {
+    constructor(service, commonService, model, globals, prediction, func) {
         this.service = service;
         this.commonService = commonService;
         this.model = model;
         this.globals = globals;
         this.prediction = prediction;
+        this.func = func;
         this.objectKeys = Object.keys;
     }
     ngOnInit() {
         this.prediction.name = undefined;
         this.model.name = undefined;
         this.model.version = undefined;
-        this.getModelList();
+        this.func.getModelList();
     }
-    getModelList() {
-        this.globals.tableModelVisible = false;
-        this.commonService.getModelList().subscribe(result => {
-            // result = JSON.parse(result[1]);
-            this.model.trained_models = [];
-            for (const model of result) {
-                const modelName = model.modelname;
-                for (const version of model.versions) {
-                    // INFO OF EACH MODEL
-                    this.commonService.getModel(modelName, version).subscribe(result2 => {
-                        const dict_info = {};
-                        for (const info of result2) {
-                            dict_info[info[0]] = info[2];
-                        }
-                        const quality = {};
-                        for (const info of (Object.keys(dict_info))) {
-                            if ((info !== 'nobj') && (info !== 'nvarx') && (info !== 'model') // HARCODED: NEED TO IMPROVE
-                                && (info !== 'Conformal_interval_medians') && (info !== 'Conformal_prediction_ranges')
-                                && (info !== 'Y_adj') && (info !== 'Y_pred')) {
-                                quality[info] = parseFloat(dict_info[info].toFixed(3));
-                            }
-                        }
-                        this.model.listModels[modelName + '-' + version] = { name: modelName, version: version, trained: true,
-                            numMols: dict_info['nobj'], variables: dict_info['nvarx'], type: dict_info['model'], quality: quality };
-                        this.model.trained_models.push(modelName + ' .v' + version);
-                    }, error => {
-                        this.model.listModels[modelName + '-' + version] = { name: modelName, version: version, trained: false, numMols: '-',
-                            variables: '-', type: '-', quality: {} };
-                    });
-                }
-            }
-            this.globals.tableModelVisible = true;
-            setTimeout(() => {
-                const a = this.objectKeys(this.model.listModels).sort();
-                this.model.name = this.model.listModels[a[0]].name;
-                this.model.version = this.model.listModels[a[0]].version;
-                this.model.trained = this.model.listModels[a[0]].trained;
-                /*const table = $('#dataTableModels').DataTable({
-                  paging: false
-                });*/
-            }, 1500);
-        }, error => {
-            console.log(error.message);
-            alert(error.message);
-        });
-    }
-    selectModel(name, version, trained, type) {
+    selectModel(name, version, trained, type, quantitative, conformal, ensemble) {
         if (version === '-' || version === 'dev') {
             version = '0';
         }
         this.model.name = name;
         this.model.version = version;
         this.model.trained = trained;
+        this.model.conformal = conformal;
+        this.model.quantitative = quantitative;
+        this.model.ensemble = ensemble;
         this.model.type = type;
         this.model.file = undefined;
         this.model.file_info = undefined;
@@ -2417,7 +2385,8 @@ ModelListComponent.ctorParameters = () => [
     { type: _common_service__WEBPACK_IMPORTED_MODULE_2__["CommonService"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Model"] },
     { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Globals"] },
-    { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Prediction"] }
+    { type: _Globals__WEBPACK_IMPORTED_MODULE_4__["Prediction"] },
+    { type: _common_functions__WEBPACK_IMPORTED_MODULE_6__["CommonFunctions"] }
 ];
 ModelListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2429,7 +2398,8 @@ ModelListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _common_service__WEBPACK_IMPORTED_MODULE_2__["CommonService"],
         _Globals__WEBPACK_IMPORTED_MODULE_4__["Model"],
         _Globals__WEBPACK_IMPORTED_MODULE_4__["Globals"],
-        _Globals__WEBPACK_IMPORTED_MODULE_4__["Prediction"]])
+        _Globals__WEBPACK_IMPORTED_MODULE_4__["Prediction"],
+        _common_functions__WEBPACK_IMPORTED_MODULE_6__["CommonFunctions"]])
 ], ModelListComponent);
 
 
@@ -2526,51 +2496,6 @@ ModelingSidebarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/new-similarity/new-similarity.component.css":
-/*!*************************************************************!*\
-  !*** ./src/app/new-similarity/new-similarity.component.css ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL25ldy1zaW1pbGFyaXR5L25ldy1zaW1pbGFyaXR5LmNvbXBvbmVudC5jc3MifQ== */");
-
-/***/ }),
-
-/***/ "./src/app/new-similarity/new-similarity.component.ts":
-/*!************************************************************!*\
-  !*** ./src/app/new-similarity/new-similarity.component.ts ***!
-  \************************************************************/
-/*! exports provided: NewSimilarityComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewSimilarityComponent", function() { return NewSimilarityComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let NewSimilarityComponent = class NewSimilarityComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-NewSimilarityComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-new-similarity',
-        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./new-similarity.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/new-similarity/new-similarity.component.html")).default,
-        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./new-similarity.component.css */ "./src/app/new-similarity/new-similarity.component.css")).default]
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], NewSimilarityComponent);
-
-
-
-/***/ }),
-
 /***/ "./src/app/prediction-list/prediction-list.component.css":
 /*!***************************************************************!*\
   !*** ./src/app/prediction-list/prediction-list.component.css ***!
@@ -2636,10 +2561,12 @@ let PredictionListComponent = class PredictionListComponent {
                     order: [[4, 'desc']],
                     columnDefs: [{ 'type': 'date', 'targets': 4 }]
                 });
-                this.prediction.name = $('#dataTablePredictions tbody tr:first td:first').text();
-                this.prediction.modelName = $('#dataTablePredictions tbody tr:first td:eq(1)').text();
-                this.prediction.modelVersion = $('#dataTablePredictions tbody tr:first td:eq(2)').text();
-                this.prediction.date = $('#dataTablePredictions tbody tr:first td:eq(4)').text();
+                if (result.length > 0) {
+                    this.prediction.name = $('#dataTablePredictions tbody tr:first td:first').text();
+                    this.prediction.modelName = $('#dataTablePredictions tbody tr:first td:eq(1)').text();
+                    this.prediction.modelVersion = $('#dataTablePredictions tbody tr:first td:eq(2)').text();
+                    this.prediction.date = $('#dataTablePredictions tbody tr:first td:eq(4)').text();
+                }
                 $('#dataTablePredictions tbody').on('click', 'tr', function () {
                     $('tr').removeClass('selected'); // removes all highlights from tr's
                     $(this).addClass('selected'); // adds the highlight to this row
@@ -2820,13 +2747,12 @@ let PredictionComponent = class PredictionComponent {
         this.submodelsIndex = 0;
         this.modelBuildInfo = {};
         this.getInfo();
-        this.getParameters();
+        // this.getParameters();
         this.getDocumentation();
         this.getPrediction();
     }
     getParameters() {
         this.commonService.getParameters(this.prediction.modelName, this.prediction.modelVersion).subscribe(result => {
-            this.prediction.modelParameters = result;
             this.modelBuildInfo['quantitative'] = result.quantitative.value;
             this.modelBuildInfo['conformal'] = result.conformal.value;
             this.modelBuildInfo['ensemble'] = false;
@@ -2862,6 +2788,28 @@ let PredictionComponent = class PredictionComponent {
         this.commonService.getModel(this.prediction.modelName, this.prediction.modelVersion).subscribe(result => {
             for (const info of result) {
                 this.modelBuildInfo[info[0]] = info[2];
+            }
+            if (this.modelBuildInfo['ensemble']) {
+                let version = '0';
+                this.submodels = [];
+                this.modelBuildInfo['ensemble_names'].forEach((submodel, index) => {
+                    if (this.modelBuildInfo['ensemble_names']) {
+                        version = '0';
+                    }
+                    else {
+                        version = this.modelBuildInfo['ensemble_versions'][index];
+                    }
+                    this.submodels[index] = {};
+                    this.submodels[index]['name'] = submodel;
+                    this.submodels[index]['version'] = version;
+                    console.log(this.submodels);
+                    this.commonService.getModel(submodel, version).subscribe(result3 => {
+                        for (const info of result3) {
+                            this.submodels[index][info[0]] = info[2];
+                        }
+                    }, error => {
+                    });
+                });
             }
         }, error => {
         });
@@ -3176,7 +3124,7 @@ let PredictorComponent = class PredictorComponent {
     }
     ngOnInit() {
         this.models = {};
-        this.getModelList();
+        this.getModelListPredict();
         for (const name of this.prediction.predictions) {
             this.predictionsNames[name[0]] = true;
         }
@@ -3202,19 +3150,16 @@ let PredictorComponent = class PredictorComponent {
             this.isvalid = false;
         }
     }
-    getModelList() {
+    getModelListPredict() {
         this.commonService.getModelList().subscribe(result => {
             // result = JSON.parse(result[1]);
             for (const model of result) {
                 const modelName = model.modelname;
-                for (const version of model.versions) {
-                    // INFO OF EACH MODEL
-                    this.commonService.getModel(modelName, version).subscribe(result2 => {
-                        if (!(modelName in this.models)) {
-                            this.models[modelName] = [];
-                        }
-                        this.models[modelName].push(version);
-                    });
+                if (!(modelName in this.models)) {
+                    this.models[modelName] = [];
+                }
+                if (model.info) {
+                    this.models[modelName].push(model.version);
                 }
             }
         });
@@ -4674,63 +4619,6 @@ SimilarityService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
-/***/ "./src/app/tableorder/tableorder.component.css":
-/*!*****************************************************!*\
-  !*** ./src/app/tableorder/tableorder.component.css ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3RhYmxlb3JkZXIvdGFibGVvcmRlci5jb21wb25lbnQuY3NzIn0= */");
-
-/***/ }),
-
-/***/ "./src/app/tableorder/tableorder.component.ts":
-/*!****************************************************!*\
-  !*** ./src/app/tableorder/tableorder.component.ts ***!
-  \****************************************************/
-/*! exports provided: TableorderComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TableorderComponent", function() { return TableorderComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var datatables_net_bs4__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
-/* harmony import */ var datatables_net_bs4__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(datatables_net_bs4__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var datatables_net_buttons_bs4__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! datatables.net-buttons-bs4 */ "./node_modules/datatables.net-buttons-bs4/js/buttons.bootstrap4.js");
-/* harmony import */ var datatables_net_buttons_bs4__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(datatables_net_buttons_bs4__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-let TableorderComponent = class TableorderComponent {
-    ngOnInit() {
-        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-        var settingsObj = {
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'excel', 'pdf'
-            ]
-        };
-        var table = $('#example').DataTable(settingsObj);
-    }
-};
-TableorderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-tableorder',
-        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./tableorder.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/tableorder/tableorder.component.html")).default,
-        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./tableorder.component.css */ "./src/app/tableorder/tableorder.component.css")).default]
-    })
-], TableorderComponent);
-
-
-
-/***/ }),
-
 /***/ "./src/app/training-series/training-series.component.css":
 /*!***************************************************************!*\
   !*** ./src/app/training-series/training-series.component.css ***!
@@ -4855,16 +4743,6 @@ let ValidationsComponent = class ValidationsComponent {
     }
     ngOnChanges() {
         this.modelDocumentation = undefined;
-        this.model.parameters = undefined;
-        this.getParameters();
-    }
-    getParameters() {
-        this.commonService.getParameters(this.name, this.version).subscribe(result => {
-            this.model.parameters = result;
-        }, error => {
-            alert('get paramaeters validation');
-            alert(error.status + ' : ' + error.statusText);
-        });
     }
 };
 ValidationsComponent.ctorParameters = () => [
@@ -4908,7 +4786,14 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// Add here your keycloak setup infos
+const keycloakConfig = {
+    url: 'KEYCLOAK-INSTANCE-URL',
+    realm: 'REALM-NAME',
+    clientId: 'CLIENT-ID-NAME'
+};
 const environment = {
+    keycloakConfig,
     production: false,
     baseUrl: 'http://localhost:8000/api/v1',
     baseUrl_manage: 'http://localhost:8000/api/v1/manage/',
@@ -4968,7 +4853,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ignacio/Projects/flameWeb2/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/gemmaportaramirez/Desktop/work/Projects/flameWeb2/src/main.ts */"./src/main.ts");
 
 
 /***/ }),
