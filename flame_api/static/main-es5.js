@@ -433,7 +433,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"btn-toolbar mt-3 mb-3 ml-4\" role=\"toolbar\" aria-label=\"Toolbar with button groups\">\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"First group\">\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" data-toggle=\"modal\" data-target=\"#newModal\">New</button>\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" [ngClass]=\"{'disabled': model.name === undefined}\" (click)=\"buildModel(model.name, model.version)\">Build</button>\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" [ngClass]=\"{'disabled': model.name === undefined}\" (click)=\"cloneModel()\">Clone</button>\n  </div>\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"second group\">\n    <button type=\"button\" class=\"btn btn-outline-success btn-lg\"  (click)=\"exportModel()\" [ngClass]=\"{'disabled': model.name === undefined}\">Export</button>\n    <label class=\"btn btn-outline-success btn-lg mb-0\" for=\"manager\">\n            <input id=\"manager\" type=\"file\" style=\"display:none;\" (change)=\"importModel($event.target.files)\">\n            Import\n          </label>\n  </div>\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"third group\">\n    <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deleteModel\" [ngClass]=\"{'disabled': model.name === undefined || model.version != '0'}\">Delete Model </button>\n    <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deleteVersion\"[ngClass]=\"{'disabled': model.name === undefined || model.version == '0'}\">Delete Version</button>\n  </div>    \n</div>\n\n\n\n<!-- New Model -->\n<div  class=\"modal fade\" id=\"newModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"newModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"newModalLabel\">New Model</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <div class=\"row form-inline\" >\n              <div class=\"form-group mx-sm-3 mb-2\">\n                <label for=\"model_name\">Model name: </label>\n                <input type=\"text\" class=\"form-control ml-2\" [(ngModel)]=\"modelName\" placeholder=\"name\">\n              </div>\n            </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-outline-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-etransafe\" data-dismiss=\"modal\" (click)=\"createModel()\">Create</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Delete Model-->\n<div class=\"modal fade\" id=\"deleteModel\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete model '{{this.model.name}}'</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this model?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deleteModel()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Delete Version-->\n<div class=\"modal fade\" id=\"deleteVersion\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete model '{{this.model.name}} v.{{this.model.version}}'</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this model version?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deleteVersion()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n";
+    __webpack_exports__["default"] = "<div class=\"btn-toolbar mt-3 mb-3 ml-4\" role=\"toolbar\" aria-label=\"Toolbar with button groups\">\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"First group\">\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" data-toggle=\"modal\" data-target=\"#newModal\">New</button>\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" [ngClass]=\"{'disabled': model.name === undefined || model.version != '0'}\" (click)=\"buildModel(model.name, model.version)\">Build</button>\n    <button type=\"button\" class=\"btn btn-outline-primary btn-lg\" [ngClass]=\"{'disabled': model.name === undefined}\" (click)=\"cloneModel()\">Clone</button>\n  </div>\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"second group\">\n    <button type=\"button\" class=\"btn btn-outline-success btn-lg\"  (click)=\"exportModel()\" [ngClass]=\"{'disabled': model.name === undefined}\">Export</button>\n    <label class=\"btn btn-outline-success btn-lg mb-0\" for=\"manager\">\n            <input id=\"manager\" type=\"file\" style=\"display:none;\" (change)=\"importModel($event.target.files)\">\n            Import\n          </label>\n  </div>\n  <div class=\"btn-group mr-2\" role=\"group\" aria-label=\"third group\">\n    <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deleteModel\" [ngClass]=\"{'disabled': model.name === undefined || model.version != '0'}\">Delete Model </button>\n    <button type=\"button\" class=\"btn btn-outline-danger btn-lg\" data-toggle=\"modal\" data-target=\"#deleteVersion\"[ngClass]=\"{'disabled': model.name === undefined || model.version == '0'}\">Delete Version</button>\n  </div>    \n</div>\n\n\n\n<!-- New Model -->\n<div  class=\"modal fade\" id=\"newModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"newModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"newModalLabel\">New Model</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n          <div class=\"row form-inline\" >\n              <div class=\"form-group mx-sm-3 mb-2\">\n                <label for=\"model_name\">Model name: </label>\n                <input type=\"text\" class=\"form-control ml-2\" [(ngModel)]=\"modelName\" placeholder=\"name\">\n              </div>\n            </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-outline-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-etransafe\" data-dismiss=\"modal\" (click)=\"createModel()\">Create</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Delete Model-->\n<div class=\"modal fade\" id=\"deleteModel\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete model '{{this.model.name}}'</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this model?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deleteModel()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- Delete Version-->\n<div class=\"modal fade\" id=\"deleteVersion\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Delete model '{{this.model.name}} v.{{this.model.version}}'</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Are you sure you want to delete this model version?</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-primary\" id =\"action\" data-dismiss=\"modal\" (click)=\"deleteVersion()\">Delete</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n\n";
     /***/
   },
 
@@ -473,7 +473,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n  {{num_models}}\n<div class =\"text-center spinner-table\" *ngIf = \"!this.globals.tableModelVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.globals.tableModelVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th width=\"5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th width=\"30%\">Name</th>\n          <th width=\"10%\">Version</th>\n          <th width=\"10%\">#Molecules</th>\n          <th width=\"10%\">#Variables</th>\n          <th width=\"30%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type,model.listModels[key].qualitative\n          , model.listModels[key].conformal, model.listModels[key].ensemble)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('matrix') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td >{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n";
+    __webpack_exports__["default"] = "\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n  {{num_models}}\n<div class =\"text-center spinner-table\" *ngIf = \"!this.globals.tableModelVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.globals.tableModelVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th style=\"width: 5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th style=\"width: 35%\">Name</th>\n          <th style=\"width: 10%\">Version</th>\n          <th style=\"width: 12.5%\">#Molecules</th>\n          <th style=\"width: 12.5%\">#Variables</th>3\n          <th style=\"width: 25%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type,model.listModels[key].quantitative\n          , model.listModels[key].conformal, model.listModels[key].ensemble)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('matrix') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td class=\"text-truncate iffyTip hideText2\">{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize text-truncate\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n";
     /***/
   },
 
@@ -573,7 +573,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2 mt-1\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Sensitivity'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Sensitivity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Specificity'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Specificity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCC'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCC'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Conformal_coverage'][0]}}\"><strong>Conformal coverage:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Conformal_coverage'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Conformal_accuracy'][0]}}\"><strong>Conformal accuracy:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Conformal_accuracy'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-5\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n                    <!--CONFUSION MATRIX-->\n                    <app-confusion-matrix  \n                        [TP] = \"this.modelValidationInfo['TP'][1]\"\n                        [FP] = \"this.modelValidationInfo['FP'][1]\"\n                        [FN] = \"this.modelValidationInfo['FN'][1]\"\n                        [TN] = \"this.modelValidationInfo['TN'][1]\"\n                    > </app-confusion-matrix>\n                </div>\n                <div class=\"col-5\">\n                        <div style=\"display: block\">\n                        <canvas baseChart\n                                [data]=\"polarAreaChartData\"\n                                [options]=\"polarChartOptions\"\n                                [labels]=\"polarAreaChartLabels\"\n                                [legend]=\"polarAreaLegend\"\n                                [colors]=\"polarAreaChartColors\"\n                                [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"this.modelDocumentation !== undefined\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Documentation</u></small>\n            </div>\n            <br>\n            <div class=\"row\">\n                <table class=\"table table-striped documentation\">\n                    <tbody>\n                        <tr *ngFor=\"let key of this.orderDocumentation\">\n                            <td>{{key}}</td>\n                            <ng-container *ngIf=\"this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td *ngIf=\"this.modelDocumentation[key].value && !isObject(this.modelDocumentation[key].value)\">{{this.modelDocumentation[key].value}}</td>\n                                <td *ngIf=\"this.modelDocumentation[key].value && isObject(this.modelDocumentation[key].value)\">   \n                                    <div class=\"accordion\" id=\"accordionExample\">\n                                        <div>        \n                                            <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" [attr.data-target]=\"'#' + key\" aria-expanded=\"false\" >\n                                             INFO\n                                            </button>\n                                            <div id=\"{{key}}\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\n                                                <div class=\"card-body\">\n                                                    <table class=\"table table-striped\">\n                                                        <tbody>\n                                                            <tr *ngFor=\"let key2 of this.objectKeys(this.modelDocumentation[key].value)\">\n                                                                <td>{{key2}}</td>\n                                                                <td *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].value}}</td>\n                                                                <td *ngIf=\"!isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2]}}</td>\n                                                                <td class=\"text-right font-italic\" *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].description}}</td>\n                                                            </tr>\n                                                        </tbody>\n                                                    </table> \n                                                </div>\n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n                                </td>\n                                <td *ngIf=\"!this.modelDocumentation[key].value\">-</td>\n                                <td class=\"text-right font-italic\" >{{this.modelDocumentation[key].description}}</td>\n                            </ng-container>\n                            <ng-container *ngIf=\"!this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td>NO INFO</td>\n                                <td class=\"text-right font-italic\">NO INFO</td>\n                           </ng-container>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n        </div>\n    </div>\n</div> ";
+    __webpack_exports__["default"] = "<p>QUALITATIVE CONFORMAL</p>\n<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2 mt-1\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Sensitivity'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Sensitivity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Specificity'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Specificity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCC'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCC'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Conformal_coverage'][0]}}\"><strong>Conformal coverage:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Conformal_coverage'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Conformal_accuracy'][0]}}\"><strong>Conformal accuracy:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Conformal_accuracy'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-5\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n                    <!--CONFUSION MATRIX-->\n                    <app-confusion-matrix  \n                        [TP] = \"this.modelValidationInfo['TP'][1]\"\n                        [FP] = \"this.modelValidationInfo['FP'][1]\"\n                        [FN] = \"this.modelValidationInfo['FN'][1]\"\n                        [TN] = \"this.modelValidationInfo['TN'][1]\"\n                    > </app-confusion-matrix>\n                </div>\n                <div class=\"col-5\">\n                        <div style=\"display: block\">\n                        <canvas baseChart\n                                [data]=\"polarAreaChartData\"\n                                [options]=\"polarChartOptions\"\n                                [labels]=\"polarAreaChartLabels\"\n                                [legend]=\"polarAreaLegend\"\n                                [colors]=\"polarAreaChartColors\"\n                                [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"this.modelDocumentation !== undefined\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Documentation</u></small>\n            </div>\n            <br>\n            <div class=\"row\">\n                <table class=\"table table-striped documentation\">\n                    <tbody>\n                        <tr *ngFor=\"let key of this.orderDocumentation\">\n                            <td>{{key}}</td>\n                            <ng-container *ngIf=\"this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td *ngIf=\"this.modelDocumentation[key].value && !isObject(this.modelDocumentation[key].value)\">{{this.modelDocumentation[key].value}}</td>\n                                <td *ngIf=\"this.modelDocumentation[key].value && isObject(this.modelDocumentation[key].value)\">   \n                                    <div class=\"accordion\" id=\"accordionExample\">\n                                        <div>        \n                                            <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" [attr.data-target]=\"'#' + key\" aria-expanded=\"false\" >\n                                             INFO\n                                            </button>\n                                            <div id=\"{{key}}\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\n                                                <div class=\"card-body\">\n                                                    <table class=\"table table-striped\">\n                                                        <tbody>\n                                                            <tr *ngFor=\"let key2 of this.objectKeys(this.modelDocumentation[key].value)\">\n                                                                <td>{{key2}}</td>\n                                                                <td *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].value}}</td>\n                                                                <td *ngIf=\"!isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2]}}</td>\n                                                                <td class=\"text-right font-italic\" *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].description}}</td>\n                                                            </tr>\n                                                        </tbody>\n                                                    </table> \n                                                </div>\n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n                                </td>\n                                <td *ngIf=\"!this.modelDocumentation[key].value\">-</td>\n                                <td class=\"text-right font-italic\" >{{this.modelDocumentation[key].description}}</td>\n                            </ng-container>\n                            <ng-container *ngIf=\"!this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td>NO INFO</td>\n                                <td class=\"text-right font-italic\">NO INFO</td>\n                           </ng-container>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n        </div>\n    </div>\n</div> ";
     /***/
   },
 
@@ -593,7 +593,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"row mt-3\" *ngIf=\"this.modelValidationInfo['TPpred']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\"> \n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SensitivityPed'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SensitivityPed'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SpecificityPred'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SpecificityPred'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCCpred'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCCpred'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                <div class=\"col-5\">\n                  <!--CONFUSION MATRIX-->\n                 <app-confusion-matrix \n                        [TP] = \"this.modelValidationInfo['TPpred'][1]\"\n                        [FP] = \"this.modelValidationInfo['FPpred'][1]\"\n                        [FN] = \"this.modelValidationInfo['FNpred'][1]\"\n                        [TN] = \"this.modelValidationInfo['TNpred'][1]\"\n                    ></app-confusion-matrix>                 \n                </div>\n                <div class=\"col-5\">\n                     <div style=\"display: block\">\n                        <canvas baseChart\n                            [data]=\"polarAreaChartData2\"\n                            [options]=\"polarChartOptions\"\n                            [labels]=\"polarAreaChartLabels\"\n                            [legend]=\"polarAreaLegend\"\n                            [colors]=\"polarAreaChartColors\"\n                            [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row mt-3\" *ngIf=\"this.modelValidationInfo['TP']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Sensitivity'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Sensitivity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Specificity'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Specificity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCC'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCC'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-5\">\n                    <!--CONFUSION MATRIX-->\n                     <app-confusion-matrix \n                        [TP] = \"this.modelValidationInfo['TP'][1]\"\n                        [FP] = \"this.modelValidationInfo['FP'][1]\"\n                        [FN] = \"this.modelValidationInfo['FN'][1]\"\n                        [TN] = \"this.modelValidationInfo['TN'][1]\"\n                    ></app-confusion-matrix>\n                </div>\n                <div class=\"col-5\">\n                     <div style=\"display: block\">\n                        <canvas baseChart\n                                [data]=\"polarAreaChartData\"\n                                [options]=\"polarChartOptions\"\n                                [labels]=\"polarAreaChartLabels\"\n                                [legend]=\"polarAreaLegend\"\n                                [colors]=\"polarAreaChartColors\"\n                                [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"this.modelDocumentation !== undefined\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Documentation</u></small>\n            </div>\n            <br>\n            <div class=\"row\">\n                <table class=\"table table-striped documentation\">\n                    <tbody>\n                        <tr *ngFor=\"let key of this.orderDocumentation\">\n                            <td>{{key}}</td>\n                            <ng-container *ngIf=\"this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td *ngIf=\"this.modelDocumentation[key].value && !isObject(this.modelDocumentation[key].value)\">{{this.modelDocumentation[key].value}}</td>\n                                <td *ngIf=\"this.modelDocumentation[key].value && isObject(this.modelDocumentation[key].value)\">   \n                                    <div class=\"accordion\" id=\"accordionExample\">\n                                        <div>        \n                                            <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" [attr.data-target]=\"'#' + key\" aria-expanded=\"false\" >\n                                             INFO\n                                            </button>\n                                            <div id=\"{{key}}\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\n                                                <div class=\"card-body\">\n                                                    <table class=\"table table-striped\">\n                                                        <tbody>\n                                                            <tr *ngFor=\"let key2 of this.objectKeys(this.modelDocumentation[key].value)\">\n                                                                <td>{{key2}}</td>\n                                                                <td *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].value}}</td>\n                                                                <td *ngIf=\"!isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2]}}</td>\n                                                                <td class=\"text-right font-italic\" *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].description}}</td>\n                                                            </tr>\n                                                        </tbody>\n                                                    </table> \n                                                </div>\n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n                                </td>\n                                <td *ngIf=\"!this.modelDocumentation[key].value\">-</td>\n                                <td class=\"text-right font-italic\" >{{this.modelDocumentation[key].description}}</td>\n                            </ng-container>\n                            <ng-container *ngIf=\"!this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td>-</td>\n                                <td class=\"text-right font-italic\">-</td>\n                           </ng-container>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n        </div>\n    </div>\n</div> ";
+    __webpack_exports__["default"] = "<p>QUALITATIVE NO CONFORMAL</p>\n<div class=\"row mt-3\" *ngIf=\"this.modelValidationInfo['TPpred']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\"> \n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SensitivityPed'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SensitivityPed'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SpecificityPred'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SpecificityPred'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCCpred'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCCpred'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                <div class=\"col-5\">\n                  <!--CONFUSION MATRIX-->\n                 <app-confusion-matrix \n                        [TP] = \"this.modelValidationInfo['TPpred'][1]\"\n                        [FP] = \"this.modelValidationInfo['FPpred'][1]\"\n                        [FN] = \"this.modelValidationInfo['FNpred'][1]\"\n                        [TN] = \"this.modelValidationInfo['TNpred'][1]\"\n                    ></app-confusion-matrix>                 \n                </div>\n                <div class=\"col-5\">\n                     <div style=\"display: block\">\n                        <canvas baseChart\n                            [data]=\"polarAreaChartData2\"\n                            [options]=\"polarChartOptions\"\n                            [labels]=\"polarAreaChartLabels\"\n                            [legend]=\"polarAreaLegend\"\n                            [colors]=\"polarAreaChartColors\"\n                            [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"row mt-3\" *ngIf=\"this.modelValidationInfo['TP']\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row align-items-center\">\n                <div class=\"col-2\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Sensitivity'][0]}}\"><strong>Sensitivity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Sensitivity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Specificity'][0]}}\"><strong>Specificity:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Specificity'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['MCC'][0]}}\"><strong>MCC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['MCC'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-5\">\n                    <!--CONFUSION MATRIX-->\n                     <app-confusion-matrix \n                        [TP] = \"this.modelValidationInfo['TP'][1]\"\n                        [FP] = \"this.modelValidationInfo['FP'][1]\"\n                        [FN] = \"this.modelValidationInfo['FN'][1]\"\n                        [TN] = \"this.modelValidationInfo['TN'][1]\"\n                    ></app-confusion-matrix>\n                </div>\n                <div class=\"col-5\">\n                     <div style=\"display: block\">\n                        <canvas baseChart\n                                [data]=\"polarAreaChartData\"\n                                [options]=\"polarChartOptions\"\n                                [labels]=\"polarAreaChartLabels\"\n                                [legend]=\"polarAreaLegend\"\n                                [colors]=\"polarAreaChartColors\"\n                                [chartType]=\"polarAreaChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"this.modelDocumentation !== undefined\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Documentation</u></small>\n            </div>\n            <br>\n            <div class=\"row\">\n                <table class=\"table table-striped documentation\">\n                    <tbody>\n                        <tr *ngFor=\"let key of this.orderDocumentation\">\n                            <td>{{key}}</td>\n                            <ng-container *ngIf=\"this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td *ngIf=\"this.modelDocumentation[key].value && !isObject(this.modelDocumentation[key].value)\">{{this.modelDocumentation[key].value}}</td>\n                                <td *ngIf=\"this.modelDocumentation[key].value && isObject(this.modelDocumentation[key].value)\">   \n                                    <div class=\"accordion\" id=\"accordionExample\">\n                                        <div>        \n                                            <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" [attr.data-target]=\"'#' + key\" aria-expanded=\"false\" >\n                                             INFO\n                                            </button>\n                                            <div id=\"{{key}}\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\n                                                <div class=\"card-body\">\n                                                    <table class=\"table table-striped\">\n                                                        <tbody>\n                                                            <tr *ngFor=\"let key2 of this.objectKeys(this.modelDocumentation[key].value)\">\n                                                                <td>{{key2}}</td>\n                                                                <td *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].value}}</td>\n                                                                <td *ngIf=\"!isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2]}}</td>\n                                                                <td class=\"text-right font-italic\" *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].description}}</td>\n                                                            </tr>\n                                                        </tbody>\n                                                    </table> \n                                                </div>\n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n                                </td>\n                                <td *ngIf=\"!this.modelDocumentation[key].value\">-</td>\n                                <td class=\"text-right font-italic\" >{{this.modelDocumentation[key].description}}</td>\n                            </ng-container>\n                            <ng-container *ngIf=\"!this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td>-</td>\n                                <td class=\"text-right font-italic\">-</td>\n                           </ng-container>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n        </div>\n    </div>\n</div> ";
     /***/
   },
 
@@ -613,7 +613,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!-------------------------->\n<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr *ngFor = \"let key of objectKeys(modelValidationInfo)\">\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo[key][0]}}\"><strong>{{key}}:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo[key][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                         <canvas baseChart #QuantitConformalChart\n                            [datasets]=\"ChartDataFitted\"\n                            [options]=\"ChartOptionsFitted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"this.modelDocumentation !== undefined\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Documentation</u></small>\n            </div>\n            <br>\n            <div class=\"row\">\n                <table class=\"table table-striped documentation\">\n                    <tbody>\n                        <tr *ngFor=\"let key of this.orderDocumentation\">\n                            <td>{{key}}</td>\n                            <ng-container *ngIf=\"this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td *ngIf=\"this.modelDocumentation[key].value && !isObject(this.modelDocumentation[key].value)\">{{this.modelDocumentation[key].value}}</td>\n                                <td *ngIf=\"this.modelDocumentation[key].value && isObject(this.modelDocumentation[key].value)\">   \n                                    <div class=\"accordion\" id=\"accordionExample\">\n                                        <div>        \n                                            <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" [attr.data-target]=\"'#' + key\" aria-expanded=\"false\" >\n                                             INFO\n                                            </button>\n                                            <div id=\"{{key}}\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\n                                                <div class=\"card-body\">\n                                                    <table class=\"table table-striped\">\n                                                        <tbody>\n                                                            <tr *ngFor=\"let key2 of this.objectKeys(this.modelDocumentation[key].value)\">\n                                                                <td>{{key2}}</td>\n                                                                <td *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].value}}</td>\n                                                                <td *ngIf=\"!isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2]}}</td>\n                                                                <td class=\"text-right font-italic\" *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].description}}</td>\n                                                            </tr>\n                                                        </tbody>\n                                                    </table> \n                                                </div>\n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n                                </td>\n                                <td *ngIf=\"!this.modelDocumentation[key].value\">-</td>\n                                <td class=\"text-right font-italic\" >{{this.modelDocumentation[key].description}}</td>\n                            </ng-container>\n                            <ng-container *ngIf=\"!this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td>-</td>\n                                <td class=\"text-right font-italic\">-</td>\n                           </ng-container>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n        </div>\n    </div>\n</div> ";
+    __webpack_exports__["default"] = "<!-------------------------->\n<p>QUANTITATIVE CONFORMAL</p>\n<div class=\"row mt-3\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr *ngFor = \"let key of objectKeys(modelValidationInfo)\">\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo[key][0]}}\"><strong>{{key}}:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo[key][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                         <canvas baseChart #QuantitConformalChart\n                            [datasets]=\"ChartDataFitted\"\n                            [options]=\"ChartOptionsFitted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"this.modelDocumentation !== undefined\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Documentation</u></small>\n            </div>\n            <br>\n            <div class=\"row\">\n                <table class=\"table table-striped documentation\">\n                    <tbody>\n                        <tr *ngFor=\"let key of this.orderDocumentation\">\n                            <td>{{key}}</td>\n                            <ng-container *ngIf=\"this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td *ngIf=\"this.modelDocumentation[key].value && !isObject(this.modelDocumentation[key].value)\">{{this.modelDocumentation[key].value}}</td>\n                                <td *ngIf=\"this.modelDocumentation[key].value && isObject(this.modelDocumentation[key].value)\">   \n                                    <div class=\"accordion\" id=\"accordionExample\">\n                                        <div>        \n                                            <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" [attr.data-target]=\"'#' + key\" aria-expanded=\"false\" >\n                                             INFO\n                                            </button>\n                                            <div id=\"{{key}}\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\n                                                <div class=\"card-body\">\n                                                    <table class=\"table table-striped\">\n                                                        <tbody>\n                                                            <tr *ngFor=\"let key2 of this.objectKeys(this.modelDocumentation[key].value)\">\n                                                                <td>{{key2}}</td>\n                                                                <td *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].value}}</td>\n                                                                <td *ngIf=\"!isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2]}}</td>\n                                                                <td class=\"text-right font-italic\" *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].description}}</td>\n                                                            </tr>\n                                                        </tbody>\n                                                    </table> \n                                                </div>\n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n                                </td>\n                                <td *ngIf=\"!this.modelDocumentation[key].value\">-</td>\n                                <td class=\"text-right font-italic\" >{{this.modelDocumentation[key].description}}</td>\n                            </ng-container>\n                            <ng-container *ngIf=\"!this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td>-</td>\n                                <td class=\"text-right font-italic\">-</td>\n                           </ng-container>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n        </div>\n    </div>\n</div> ";
     /***/
   },
 
@@ -633,7 +633,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<!------------------------------------------------------------------------>\n<div class=\"row mt-3\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Fitting</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringR'][0]}}\"><strong>Scoring:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringR'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['R2'][0]}}\"><strong>R2:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['R2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEC'][0]}}\"><strong>SDEC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEC'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                         <canvas baseChart\n                            [datasets]=\"ChartDataFitted\"\n                            [options]=\"ChartOptionsFitted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"ChartDataPredicted[0].data.length>0\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    \n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringP'][0]}}\"><strong>Scoring:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringP'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Q2'][0]}}\"><strong>Q2:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Q2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEP'][0]}}\"><strong>SDEP:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEP'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                \n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                        <canvas baseChart\n                            [datasets]=\"ChartDataPredicted\"\n                            [options]=\"ChartOptionsPredicted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>  \n<div class=\"row mt-3\" *ngIf=\"this.modelDocumentation !== undefined\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Documentation</u></small>\n            </div>\n            <br>\n            <div class=\"row\">\n                <table class=\"table table-striped documentation\">\n                    <tbody>\n                        <tr *ngFor=\"let key of this.orderDocumentation\">\n                            <td>{{key}}</td>\n                            <ng-container *ngIf=\"this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td *ngIf=\"this.modelDocumentation[key].value && !isObject(this.modelDocumentation[key].value)\">{{this.modelDocumentation[key].value}}</td>\n                                <td *ngIf=\"this.modelDocumentation[key].value && isObject(this.modelDocumentation[key].value)\">   \n                                    <div class=\"accordion\" id=\"accordionExample\">\n                                        <div>        \n                                            <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" [attr.data-target]=\"'#' + key\" aria-expanded=\"false\" >\n                                             INFO\n                                            </button>\n                                            <div id=\"{{key}}\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\n                                                <div class=\"card-body\">\n                                                    <table class=\"table table-striped\">\n                                                        <tbody>\n                                                            <tr *ngFor=\"let key2 of this.objectKeys(this.modelDocumentation[key].value)\">\n                                                                <td>{{key2}}</td>\n                                                                <td *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].value}}</td>\n                                                                <td *ngIf=\"!isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2]}}</td>\n                                                                <td class=\"text-right font-italic\" *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].description}}</td>\n                                                            </tr>\n                                                        </tbody>\n                                                    </table> \n                                                </div>\n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n                                </td>\n                                <td *ngIf=\"!this.modelDocumentation[key].value\">-</td>\n                                <td class=\"text-right font-italic\" >{{this.modelDocumentation[key].description}}</td>\n                            </ng-container>\n                            <ng-container *ngIf=\"!this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td>-</td>\n                                <td class=\"text-right font-italic\">-</td>\n                           </ng-container>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n        </div>\n    </div>\n</div> ";
+    __webpack_exports__["default"] = "\n<!------------------------------------------------------------------------>\n<p>QUANTITATIVE NO CONFORMAL</p>\n<div class=\"row mt-3\" *ngIf=\"objectKeys(this.modelValidationInfo).length > 0\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Fitting</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Fitting</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringR'][0]}}\"><strong>Scoring:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringR'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['R2'][0]}}\"><strong>R2:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['R2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEC'][0]}}\"><strong>SDEC:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEC'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table>    \n                </div>\n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                         <canvas baseChart\n                            [datasets]=\"ChartDataFitted\"\n                            [options]=\"ChartOptionsFitted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class=\"row mt-3\" *ngIf=\"ChartDataPredicted[0].data.length>0\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Prediction (cross-validation)</u></small>\n            </div>\n            <div class=\"row justify-content-between\">\n                <div class=\"col-3 mt-1\">\n                    \n                    <table class=\"table table-sm mt-4\">\n                        <tbody>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['scoringP'][0]}}\"><strong>Scoring:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['scoringP'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['Q2'][0]}}\"><strong>Q2:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['Q2'][1]}}</td>\n                            </tr>\n                            <tr>\n                                <td class=\"text-left text-capitalize\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"{{modelValidationInfo['SDEP'][0]}}\"><strong>SDEP:</strong></td>\n                                <td class=\"text-right text-capitalize\">{{modelValidationInfo['SDEP'][1]}}</td>\n                            </tr>\n                        </tbody>\n                    </table> \n                </div>\n                \n                <div class=\"col-9\">\n                    <div style=\"display: block\">\n                        <canvas baseChart\n                            [datasets]=\"ChartDataPredicted\"\n                            [options]=\"ChartOptionsPredicted\"\n                            [labels]=\"ChartLabels\"\n                            [chartType]=\"ChartType\">\n                        </canvas>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>  \n<div class=\"row mt-3\" *ngIf=\"this.modelDocumentation !== undefined\">\n    <div class=\"card w-100\" style=\"width: 18rem;\">\n        <!--<div class=\"card-header\"><h5>Prediction (cross-validation)</h5></div>-->\n        <div class=\"card-body\">\n            <div class=\"row ml-2\">\n                <small class=\"h2 text-muted\"><u>Documentation</u></small>\n            </div>\n            <br>\n            <div class=\"row\">\n                <table class=\"table table-striped documentation\">\n                    <tbody>\n                        <tr *ngFor=\"let key of this.orderDocumentation\">\n                            <td>{{key}}</td>\n                            <ng-container *ngIf=\"this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td *ngIf=\"this.modelDocumentation[key].value && !isObject(this.modelDocumentation[key].value)\">{{this.modelDocumentation[key].value}}</td>\n                                <td *ngIf=\"this.modelDocumentation[key].value && isObject(this.modelDocumentation[key].value)\">   \n                                    <div class=\"accordion\" id=\"accordionExample\">\n                                        <div>        \n                                            <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" [attr.data-target]=\"'#' + key\" aria-expanded=\"false\" >\n                                             INFO\n                                            </button>\n                                            <div id=\"{{key}}\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\n                                                <div class=\"card-body\">\n                                                    <table class=\"table table-striped\">\n                                                        <tbody>\n                                                            <tr *ngFor=\"let key2 of this.objectKeys(this.modelDocumentation[key].value)\">\n                                                                <td>{{key2}}</td>\n                                                                <td *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].value}}</td>\n                                                                <td *ngIf=\"!isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2]}}</td>\n                                                                <td class=\"text-right font-italic\" *ngIf=\"isObject(this.modelDocumentation[key].value[key2])\">{{this.modelDocumentation[key].value[key2].description}}</td>\n                                                            </tr>\n                                                        </tbody>\n                                                    </table> \n                                                </div>\n                                            </div>\n                                        </div>\n                                        \n                                    </div>\n                                </td>\n                                <td *ngIf=\"!this.modelDocumentation[key].value\">-</td>\n                                <td class=\"text-right font-italic\" >{{this.modelDocumentation[key].description}}</td>\n                            </ng-container>\n                            <ng-container *ngIf=\"!this.objectKeys(this.modelDocumentation).includes(key)\">\n                                <td>-</td>\n                                <td class=\"text-right font-italic\">-</td>\n                           </ng-container>\n                        </tr>\n                    </tbody>\n                </table> \n            </div>\n        </div>\n    </div>\n</div> ";
     /***/
   },
 
@@ -693,7 +693,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"container m-3\">\n  <div class=\"row\">\n    <div *ngIf=\"this.model.file_info!==undefined\" class=\"col-4 card p-0 mb-0 mr-4\">\n      <div class=\"card-header p-2\"><h5>FILE INFO</h5></div>\n      <ul class=\"list-group\">\n          <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" >\n              <strong>File name: </strong> \n            {{this.model.file_info['name']}}\n            </li>\n        <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" >\n          <strong>Type file: </strong> \n          {{this.model.file_info['type_file']}}\n        </li>\n        <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" >\n            <strong>Size: </strong> \n            {{this.model.file_info['size_M']}} MB\n          </li>\n        <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" >\n          <strong>Number of molecules: </strong> \n          <span class=\"badge badge-primary badge-pill\">{{this.model.file_info['num_mols']}}</span>\n        </li>\n      </ul>\n    </div>\n    <div *ngIf=\"this.model.file_fields!==undefined\" class=\"col-4 card p-0\">\n      <div class=\"card-header p-2\"><h5>SDFILE FIELDS</h5></div>\n      <ul class=\"list-group\">\n        <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" *ngFor=\"let key of objectKeys(this.model.file_fields)\">\n          <strong>{{key}}</strong>\n          <span class=\"badge badge-primary badge-pill\">{{this.model.file_fields[key]}}</span>\n        </li>\n      </ul>\n    </div>\n  </div>\n\n  <div class=\"row mt-4\">\n    <div class=\"col-3\">\n      <label class=\"btn btn-outline-primary btn-lg\" for=\"my-file-selector\">\n          <input id=\"my-file-selector\" type=\"file\" style=\"display:none;\" accept=\".sdf\" (change)=\"onChange($event.target.files)\">\n          BROWSE FILE\n      </label>\n    </div>\n  </div> \n</div>";
+    __webpack_exports__["default"] = "<div class=\"container m-3\">\n  <div class=\"row\">\n    <div *ngIf=\"this.model.file_info!==undefined\" class=\"col-4 card p-0 mb-0 mr-4\">\n      <div class=\"card-header p-2\"><h5>FILE INFO</h5></div>\n      <ul class=\"list-group\">\n          <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" >\n              <strong>File name: </strong> \n            {{this.model.file_info['name']}}\n            </li>\n        <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" >\n          <strong>Type file: </strong> \n          {{this.model.file_info['type_file']}}\n        </li>\n        <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" >\n            <strong>Size: </strong> \n            {{this.model.file_info['size_M']}} MB\n          </li>\n        <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" >\n          <strong>Number of molecules: </strong> \n          <span class=\"badge badge-primary badge-pill\">{{this.model.file_info['num_mols']}}</span>\n        </li>\n      </ul>\n    </div>\n    <div *ngIf=\"this.model.file_fields!==undefined\" class=\"col-4 card p-0\">\n      <div class=\"card-header p-2\"><h5>SDFILE FIELDS</h5></div>\n      <ul class=\"list-group\">\n        <li class=\"list-group-item d-flex justify-content-between align-items-left p-1\" *ngFor=\"let key of objectKeys(this.model.file_fields)\">\n          <strong>{{key}}</strong>\n          <span class=\"badge badge-primary badge-pill\">{{this.model.file_fields[key]}}</span>\n        </li>\n      </ul>\n    </div>\n  </div>\n  <div class=\"row mt-4\">\n    <div class=\"col-3\">\n      <div class=\"form-check\">\n          <input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"incremental\" value=\"incremental\">\n          <label class=\"control-label\" for=\"incremental\">\n           Incremental\n          </label>\n        </div>\n        <div class=\"form-check\">\n          <input class=\"form-check-input\" type=\"radio\" name=\"exampleRadios\" id=\"new\" value=\"new\" checked>\n          <label class=\"control-label\" for=\"new\">\n            New\n          </label>\n        </div>  \n    </div>\n    <div class=\"col-3\">\n      <label class=\"btn btn-outline-primary btn-lg\" for=\"my-file-selector\">\n          <input id=\"my-file-selector\" type=\"file\" style=\"display:none;\" accept=\".sdf\" (change)=\"onChange($event.target.files)\">\n          BROWSE FILE\n      </label>\n    </div>\n  </div> \n</div>";
     /***/
   },
 
@@ -713,7 +713,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<div class=\"m-3\" *ngIf=\"this.model.name !=undefined\">\n    <div *ngIf=\"!this.model.quantitative && !this.model.conformal\">\n        <app-qualit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-no-conformal>\n    </div>\n    <div *ngIf=\"!this.model.quantitative && this.model.conformal\">\n        <app-qualit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && !this.model.conformal\">\n        <app-quantit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-no-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && this.model.conformal\">\n        <app-quantit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-conformal>\n    </div>\n</div>\n\n                \n<!--END Modal Documentation-->\n\n\n\n\n";
+    __webpack_exports__["default"] = "\n<div class=\"m-3\" *ngIf=\"this.model.name !=undefined\">\n    <div *ngIf=\"!this.model.quantitative && !this.model.conformal\">\n        <app-qualit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-no-conformal>\n    </div>\n    <div *ngIf=\"!this.model.quantitative && this.model.conformal\">\n        <app-qualit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && !this.model.conformal\">\n        <app-quantit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-no-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && this.model.conformal\">\n        <app-quantit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-conformal>\n    </div>\n</div>             \n<!--END Modal Documentation-->\n\n\n\n\n";
     /***/
   },
 
@@ -2151,6 +2151,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
           this.activeModal.close('Close click');
           this.service.buildModel().subscribe(function (result) {
+            $('#dataTableModels').DataTable().destroy();
+
             _this2.func.getModelList();
 
             var iter = 0;
@@ -2177,6 +2179,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               iter += 1;
             }, 10000);
           }, function (error) {
+            $('#dataTableModels').DataTable().destroy();
+
             var index = _this2.model.trainig_models.indexOf(name + '-' + version, 0);
 
             if (index > -1) {
@@ -2203,6 +2207,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this3 = this;
 
           this.commonService.getModel(name, version).subscribe(function (result) {
+            $('#dataTableModels').DataTable().destroy();
             var dict_info = {};
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
@@ -2589,9 +2594,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   _this4.model.name = _this4.model.listModels[a[0]].name;
                   _this4.model.version = _this4.model.listModels[a[0]].version;
                   _this4.model.trained = _this4.model.listModels[a[0]].trained;
+                  _this4.model.conformal = _this4.model.listModels[a[0]].conformal;
+                  _this4.model.quantitative = _this4.model.listModels[a[0]].quantitative;
+                  _this4.model.ensemble = _this4.model.listModels[a[0]].ensemble;
                 }
 
-                var table = $('#dataTableModels').DataTable();
+                var table = $('#dataTableModels').DataTable({
+                  'autoWidth': false
+                });
                 _this4.globals.tableModelVisible = true;
                 clearInterval(intervalId);
               }
@@ -3933,7 +3943,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n}\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\ntd {\n    padding: 4px;\n    vertical-align: middle;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjs7R0FFdEIscUJBQXFCO0lBQ3BCLHNCQUFzQjs7O0FBRzFCO0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIseUJBQXlCO0lBQ3pCLGFBQWE7QUFDakI7QUFFQTtJQUNJLFlBQVk7SUFDWixnREFBZ0Q7SUFDaEQsZ0NBQWdDO0FBQ3BDO0FBQ0E7SUFDSSxlQUFlO0FBQ25CO0FBR0E7SUFDSSxtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtBQUMxQjtBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGNBQWM7QUFDbEI7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9tb2RlbC1saXN0L21vZGVsLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImkge1xuICAgIG1hcmdpbi1yaWdodDogNXB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbi50YWJsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgLypiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gbGVmdCwgI0Y3RjdGNyAwJSwgI0Y3RjdGNyAxMDAlKTsqL1xuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgIGNvbG9yOiAjMjI1NzdBO1xuICAgIC8qYm9yZGVyOiAxcHggc29saWQ7Ki9cbiAgICBcbiAgIC8qIG1heC1oZWlnaHQ6IDgwdmg7Ki9cbiAgICAvKm92ZXJmbG93LXk6IHNjcm9sbDsqL1xuICAgIFxuICAgIFxufVxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsgKi9cbiAgICBjb2xvcjojMDA3NmEzO1xufVxuXG4udGFibGUgdGQge1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICBmb250LWZhbWlseTogJ0JhcmxvdyBTZW1pIENvbmRlbnNlZCcsIHNhbnMtc2VyaWY7XG4gICAgYm9yZGVyLWJvdHRvbTogMnB4IHNvbGlkICNCOERDRUQ7XG59XG50ciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxudGQge1xuICAgIHBhZGRpbmc6IDRweDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuXG4ubW9kZWwtY29udGVudCB7XG4gICAgbWF4LXdpZHRoOiAzNTBweDtcbiAgICBtYXgtaGVpZ2h0OiAzNTBweDtcbn1cbi5zY3JvbGx0YWJsZXtcbiAgICBtYXgtaGVpZ2h0OiA5MHZoO1xuICAgIG92ZXJmbG93OiBhdXRvO1xufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn0iXX0= */";
+    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    table-layout: fixed;\n    width: 100%;\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n   \n}\n.table td {\n    padding: 5px;\n   \n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n    vertical-align: middle;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n.iffyTip {\n  overflow:hidden;\n  white-space:nowrap;\n  text-overflow:ellipsis;\n}\n.hideText2{\nmax-width:200px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjtJQUNyQixtQkFBbUI7SUFDbkIsV0FBVzs7R0FFWixxQkFBcUI7SUFDcEIsc0JBQXNCOzs7QUFHMUI7QUFFQTtJQUNJO3dCQUNvQjtJQUNwQix5QkFBeUI7SUFDekIsYUFBYTs7QUFFakI7QUFFQTtJQUNJLFlBQVk7O0lBRVosZ0RBQWdEO0lBQ2hELGdDQUFnQztJQUNoQyxzQkFBc0I7QUFDMUI7QUFDQTtJQUNJLGVBQWU7QUFDbkI7QUFHQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksbUJBQW1CO0FBQ3ZCO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsaUJBQWlCO0FBQ3JCO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsY0FBYztBQUNsQjtBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLFVBQVU7SUFDVixRQUFRO0lBQ1IsYUFBYTtBQUNqQjtBQUVBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtFQUNsQixzQkFBc0I7QUFDeEI7QUFDQTtBQUNBLGVBQWU7QUFDZiIsImZpbGUiOiJzcmMvYXBwL21vZGVsLWxpc3QvbW9kZWwtbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaSB7XG4gICAgbWFyZ2luLXJpZ2h0OiA1cHg7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuLnRhYmxlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICAvKmJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byBsZWZ0LCAjRjdGN0Y3IDAlLCAjRjdGN0Y3IDEwMCUpOyovXG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgY29sb3I6ICMyMjU3N0E7XG4gICAgLypib3JkZXI6IDFweCBzb2xpZDsqL1xuICAgIHRhYmxlLWxheW91dDogZml4ZWQ7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgXG4gICAvKiBtYXgtaGVpZ2h0OiA4MHZoOyovXG4gICAgLypvdmVyZmxvdy15OiBzY3JvbGw7Ki9cbiAgICBcbiAgICBcbn1cblxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsgKi9cbiAgICBjb2xvcjojMDA3NmEzO1xuICAgXG59XG5cbi50YWJsZSB0ZCB7XG4gICAgcGFkZGluZzogNXB4O1xuICAgXG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCBzYW5zLXNlcmlmO1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjQjhEQ0VEO1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG50ciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLm1vZGVsLWNvbnRlbnQge1xuICAgIG1heC13aWR0aDogMzUwcHg7XG4gICAgbWF4LWhlaWdodDogMzUwcHg7XG59XG4uc2Nyb2xsdGFibGV7XG4gICAgbWF4LWhlaWdodDogOTB2aDtcbiAgICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnNwaW5uZXItdGFibGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsgXG4gICAgcmlnaHQ6IDQ1JTsgXG4gICAgdG9wOiAzMCU7IFxuICAgIHotaW5kZXg6IDEwMzE7XG59XG5cbi5pZmZ5VGlwIHtcbiAgb3ZlcmZsb3c6aGlkZGVuO1xuICB3aGl0ZS1zcGFjZTpub3dyYXA7XG4gIHRleHQtb3ZlcmZsb3c6ZWxsaXBzaXM7XG59XG4uaGlkZVRleHQye1xubWF4LXdpZHRoOjIwMHB4O1xufSJdfQ== */";
     /***/
   },
 
@@ -4667,135 +4677,77 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.molIndex = 0;
           this.submodelsIndex = 0;
           this.modelBuildInfo = {};
-          this.getInfo(); // this.getParameters();
-
+          this.getInfo();
           this.getDocumentation();
           this.getPrediction();
         }
       }, {
-        key: "getParameters",
-        value: function getParameters() {
+        key: "getInfo",
+        value: function getInfo() {
           var _this12 = this;
 
-          this.commonService.getParameters(this.prediction.modelName, this.prediction.modelVersion).subscribe(function (result) {
-            _this12.modelBuildInfo['quantitative'] = result.quantitative.value;
-            _this12.modelBuildInfo['conformal'] = result.conformal.value;
-            _this12.modelBuildInfo['ensemble'] = false;
+          this.commonService.getModel(this.prediction.modelName, this.prediction.modelVersion).subscribe(function (result) {
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
 
-            if (result.input_type.value === 'model_ensemble') {
-              _this12.modelBuildInfo['ensemble'] = true;
+            try {
+              for (var _iterator5 = result[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                var info = _step5.value;
+                _this12.modelBuildInfo[info[0]] = info[2];
+              }
+            } catch (err) {
+              _didIteratorError5 = true;
+              _iteratorError5 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+                  _iterator5.return();
+                }
+              } finally {
+                if (_didIteratorError5) {
+                  throw _iteratorError5;
+                }
+              }
+            }
+
+            if (_this12.modelBuildInfo['ensemble']) {
               var version = '0';
               _this12.submodels = [];
-              result.ensemble_names.value.forEach(function (submodel, index) {
-                if (result.ensemble_names.value) {
+
+              _this12.modelBuildInfo['ensemble_names'].forEach(function (submodel, index) {
+                if (_this12.modelBuildInfo['ensemble_names']) {
                   version = '0';
                 } else {
-                  version = result.ensemble_versions.value[index];
+                  version = _this12.modelBuildInfo['ensemble_versions'][index];
                 }
 
                 _this12.submodels[index] = {};
                 _this12.submodels[index]['name'] = submodel;
                 _this12.submodels[index]['version'] = version;
+                console.log(_this12.submodels);
 
                 _this12.commonService.getModel(submodel, version).subscribe(function (result3) {
-                  var _iteratorNormalCompletion5 = true;
-                  var _didIteratorError5 = false;
-                  var _iteratorError5 = undefined;
+                  var _iteratorNormalCompletion6 = true;
+                  var _didIteratorError6 = false;
+                  var _iteratorError6 = undefined;
 
                   try {
-                    for (var _iterator5 = result3[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                      var info = _step5.value;
+                    for (var _iterator6 = result3[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                      var info = _step6.value;
                       _this12.submodels[index][info[0]] = info[2];
                     }
                   } catch (err) {
-                    _didIteratorError5 = true;
-                    _iteratorError5 = err;
+                    _didIteratorError6 = true;
+                    _iteratorError6 = err;
                   } finally {
                     try {
-                      if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
-                        _iterator5.return();
+                      if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+                        _iterator6.return();
                       }
                     } finally {
-                      if (_didIteratorError5) {
-                        throw _iteratorError5;
-                      }
-                    }
-                  }
-                }, function (error) {});
-              });
-            }
-          }, function (error) {
-            alert(error.status + ' : ' + error.statusText);
-          }, function () {// console.log('actual parameters.yaml \n', parameters);
-          });
-        }
-      }, {
-        key: "getInfo",
-        value: function getInfo() {
-          var _this13 = this;
-
-          this.commonService.getModel(this.prediction.modelName, this.prediction.modelVersion).subscribe(function (result) {
-            var _iteratorNormalCompletion6 = true;
-            var _didIteratorError6 = false;
-            var _iteratorError6 = undefined;
-
-            try {
-              for (var _iterator6 = result[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                var info = _step6.value;
-                _this13.modelBuildInfo[info[0]] = info[2];
-              }
-            } catch (err) {
-              _didIteratorError6 = true;
-              _iteratorError6 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
-                  _iterator6.return();
-                }
-              } finally {
-                if (_didIteratorError6) {
-                  throw _iteratorError6;
-                }
-              }
-            }
-
-            if (_this13.modelBuildInfo['ensemble']) {
-              var version = '0';
-              _this13.submodels = [];
-
-              _this13.modelBuildInfo['ensemble_names'].forEach(function (submodel, index) {
-                if (_this13.modelBuildInfo['ensemble_names']) {
-                  version = '0';
-                } else {
-                  version = _this13.modelBuildInfo['ensemble_versions'][index];
-                }
-
-                _this13.submodels[index] = {};
-                _this13.submodels[index]['name'] = submodel;
-                _this13.submodels[index]['version'] = version;
-                console.log(_this13.submodels);
-
-                _this13.commonService.getModel(submodel, version).subscribe(function (result3) {
-                  var _iteratorNormalCompletion7 = true;
-                  var _didIteratorError7 = false;
-                  var _iteratorError7 = undefined;
-
-                  try {
-                    for (var _iterator7 = result3[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                      var info = _step7.value;
-                      _this13.submodels[index][info[0]] = info[2];
-                    }
-                  } catch (err) {
-                    _didIteratorError7 = true;
-                    _iteratorError7 = err;
-                  } finally {
-                    try {
-                      if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
-                        _iterator7.return();
-                      }
-                    } finally {
-                      if (_didIteratorError7) {
-                        throw _iteratorError7;
+                      if (_didIteratorError6) {
+                        throw _iteratorError6;
                       }
                     }
                   }
@@ -4807,12 +4759,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getDocumentation",
         value: function getDocumentation() {
-          var _this14 = this;
+          var _this13 = this;
 
           this.commonService.getDocumentation(this.prediction.modelName, this.prediction.modelVersion).subscribe(function (result) {
-            _this14.modelDocumentation = result;
+            _this13.modelDocumentation = result;
           }, function (error) {
-            _this14.modelDocumentation = undefined;
+            _this13.modelDocumentation = undefined;
           });
         }
       }, {
@@ -4833,7 +4785,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getPrediction",
         value: function getPrediction() {
-          var _this15 = this;
+          var _this14 = this;
 
           this.predictionVisible = false;
           this.predictionResult = undefined;
@@ -4841,47 +4793,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           $('#predictionOne').DataTable().destroy();
           this.modelValidationInfo = {};
           this.commonService.getPrediction(this.predictionName).subscribe(function (result) {
-            _this15.predictionResult = result;
+            _this14.predictionResult = result;
 
-            if ('external-validation' in _this15.predictionResult) {
-              var _iteratorNormalCompletion8 = true;
-              var _didIteratorError8 = false;
-              var _iteratorError8 = undefined;
+            if ('external-validation' in _this14.predictionResult) {
+              var _iteratorNormalCompletion7 = true;
+              var _didIteratorError7 = false;
+              var _iteratorError7 = undefined;
 
               try {
-                for (var _iterator8 = _this15.predictionResult['external-validation'][Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                  var modelInfo = _step8.value;
+                for (var _iterator7 = _this14.predictionResult['external-validation'][Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                  var modelInfo = _step7.value;
 
                   if (typeof modelInfo[2] === 'number') {
                     modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
                   }
 
                   if (typeof modelInfo[2] !== 'object') {
-                    _this15.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+                    _this14.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
                   }
                 }
               } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
               } finally {
                 try {
-                  if (!_iteratorNormalCompletion8 && _iterator8.return != null) {
-                    _iterator8.return();
+                  if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
+                    _iterator7.return();
                   }
                 } finally {
-                  if (_didIteratorError8) {
-                    throw _iteratorError8;
+                  if (_didIteratorError7) {
+                    throw _iteratorError7;
                   }
                 }
               }
             }
 
-            if ('TP' in _this15.modelValidationInfo) {
-              _this15.polarAreaChartData = [_this15.modelValidationInfo['TP'][1], _this15.modelValidationInfo['FP'][1], _this15.modelValidationInfo['TN'][1], _this15.modelValidationInfo['FN'][1]];
+            if ('TP' in _this14.modelValidationInfo) {
+              _this14.polarAreaChartData = [_this14.modelValidationInfo['TP'][1], _this14.modelValidationInfo['FP'][1], _this14.modelValidationInfo['TN'][1], _this14.modelValidationInfo['FN'][1]];
             }
 
             setTimeout(function () {
-              _this15.components.forEach(function (child) {
+              _this14.components.forEach(function (child) {
                 var options = {
                   'width': 300,
                   'height': 150
@@ -4920,8 +4872,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 order: []
               };
               var table = $('#prediction').DataTable(settingsObj);
-              _this15.predictionVisible = true;
-              var me = _this15;
+              _this14.predictionVisible = true;
+              var me = _this14;
               $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 if (e.target.id === 'pills-one-tab') {
                   var options = {
@@ -5294,26 +5246,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           this.models = {};
           this.getModelListPredict();
-          var _iteratorNormalCompletion9 = true;
-          var _didIteratorError9 = false;
-          var _iteratorError9 = undefined;
+          var _iteratorNormalCompletion8 = true;
+          var _didIteratorError8 = false;
+          var _iteratorError8 = undefined;
 
           try {
-            for (var _iterator9 = this.prediction.predictions[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-              var _name2 = _step9.value;
+            for (var _iterator8 = this.prediction.predictions[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+              var _name2 = _step8.value;
               this.predictionsNames[_name2[0]] = true;
             }
           } catch (err) {
-            _didIteratorError9 = true;
-            _iteratorError9 = err;
+            _didIteratorError8 = true;
+            _iteratorError8 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion9 && _iterator9.return != null) {
-                _iterator9.return();
+              if (!_iteratorNormalCompletion8 && _iterator8.return != null) {
+                _iterator8.return();
               }
             } finally {
-              if (_didIteratorError9) {
-                throw _iteratorError9;
+              if (_didIteratorError8) {
+                throw _iteratorError8;
               }
             }
           }
@@ -5351,38 +5303,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getModelListPredict",
         value: function getModelListPredict() {
-          var _this16 = this;
+          var _this15 = this;
 
           this.commonService.getModelList().subscribe(function (result) {
             // result = JSON.parse(result[1]);
-            var _iteratorNormalCompletion10 = true;
-            var _didIteratorError10 = false;
-            var _iteratorError10 = undefined;
+            var _iteratorNormalCompletion9 = true;
+            var _didIteratorError9 = false;
+            var _iteratorError9 = undefined;
 
             try {
-              for (var _iterator10 = result[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
-                var model = _step10.value;
-                var modelName = model.modelname;
+              for (var _iterator9 = result[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+                var model = _step9.value;
 
-                if (!(modelName in _this16.models)) {
-                  _this16.models[modelName] = [];
-                }
+                if (typeof model.info === 'object') {
+                  var modelName = model.modelname;
 
-                if (model.info) {
-                  _this16.models[modelName].push(model.version);
+                  if (!(modelName in _this15.models)) {
+                    _this15.models[modelName] = [];
+                  }
+
+                  if (model.info) {
+                    _this15.models[modelName].push(model.version);
+                  }
                 }
               }
             } catch (err) {
-              _didIteratorError10 = true;
-              _iteratorError10 = err;
+              _didIteratorError9 = true;
+              _iteratorError9 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion10 && _iterator10.return != null) {
-                  _iterator10.return();
+                if (!_iteratorNormalCompletion9 && _iterator9.return != null) {
+                  _iterator9.return();
                 }
               } finally {
-                if (_didIteratorError10) {
-                  throw _iteratorError10;
+                if (_didIteratorError9) {
+                  throw _iteratorError9;
                 }
               }
             }
@@ -5391,10 +5346,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getPredictionList",
         value: function getPredictionList() {
-          var _this17 = this;
+          var _this16 = this;
 
           this.commonService.getPredictionList().subscribe(function (result) {
-            _this17.prediction.predictions = result;
+            _this16.prediction.predictions = result;
             setTimeout(function () {
               var table = $('#dataTablePredictions').DataTable({
                 /*Ordering by date */
@@ -5404,10 +5359,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   'targets': 4
                 }]
               });
-              _this17.prediction.name = $('#dataTablePredictions tbody tr:first td:first').text();
-              _this17.prediction.modelName = $('#dataTablePredictions tbody tr:first td:eq(1)').text();
-              _this17.prediction.modelVersion = $('#dataTablePredictions tbody tr:first td:eq(2)').text();
-              _this17.prediction.date = $('#dataTablePredictions tbody tr:first td:eq(4)').text();
+              _this16.prediction.name = $('#dataTablePredictions tbody tr:first td:first').text();
+              _this16.prediction.modelName = $('#dataTablePredictions tbody tr:first td:eq(1)').text();
+              _this16.prediction.modelVersion = $('#dataTablePredictions tbody tr:first td:eq(2)').text();
+              _this16.prediction.date = $('#dataTablePredictions tbody tr:first td:eq(4)').text();
             }, 100);
           }, function (error) {
             alert(error.message);
@@ -5416,7 +5371,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "predict",
         value: function predict() {
-          var _this18 = this;
+          var _this17 = this;
 
           this.activeModal.close('Close click');
           var inserted = this.toastr.info('Running!', 'Prediction ' + this.predictName, {
@@ -5428,21 +5383,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var iter = 0;
             var intervalId = setInterval(function () {
               if (iter < 15) {
-                _this18.checkPrediction(_this18.predictName, inserted, intervalId);
+                _this17.checkPrediction(_this17.predictName, inserted, intervalId);
               } else {
                 clearInterval(intervalId);
 
-                _this18.toastr.clear(inserted.toastId);
+                _this17.toastr.clear(inserted.toastId);
 
-                _this18.toastr.error('Prediction ' + name + ' \n ', 'ERROR!', {
+                _this17.toastr.error('Prediction ' + name + ' \n ', 'ERROR!', {
                   timeOut: 10000,
                   positionClass: 'toast-top-right'
                 });
 
-                delete _this18.prediction.predicting[_this18.predictName];
+                delete _this17.prediction.predicting[_this17.predictName];
                 $('#dataTablePredictions').DataTable().destroy();
 
-                _this18.getPredictionList();
+                _this17.getPredictionList();
               }
 
               iter += 1;
@@ -5455,23 +5410,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkPrediction",
         value: function checkPrediction(name, inserted, intervalId) {
-          var _this19 = this;
+          var _this18 = this;
 
           this.commonService.getPrediction(name).subscribe(function (result) {
             console.log(result);
 
-            _this19.toastr.clear(inserted.toastId);
+            _this18.toastr.clear(inserted.toastId);
 
-            _this19.toastr.success('Prediction ' + name + ' created', 'PREDICTION CREATED', {
+            _this18.toastr.success('Prediction ' + name + ' created', 'PREDICTION CREATED', {
               timeOut: 5000,
               positionClass: 'toast-top-right'
             });
 
             clearInterval(intervalId);
-            delete _this19.prediction.predicting[_this19.predictName];
+            delete _this18.prediction.predicting[_this18.predictName];
             $('#dataTablePredictions').DataTable().destroy();
 
-            _this19.getPredictionList();
+            _this18.getPredictionList();
           }, function (error) {});
         }
       }]);
@@ -5713,26 +5668,57 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getValidation",
         value: function getValidation() {
-          var _this20 = this;
+          var _this19 = this;
 
           this.service.getValidation(this.modelName, this.modelVersion).subscribe(function (result) {
             var info = result; // INFO ABOUT MODEL
+
+            var _iteratorNormalCompletion10 = true;
+            var _didIteratorError10 = false;
+            var _iteratorError10 = undefined;
+
+            try {
+              for (var _iterator10 = info['model_build_info'][Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+                var modelInfo = _step10.value;
+
+                if (typeof modelInfo[2] === 'number') {
+                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
+                }
+
+                _this19.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+              } // INFO ABOUT VALIDATION
+
+            } catch (err) {
+              _didIteratorError10 = true;
+              _iteratorError10 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion10 && _iterator10.return != null) {
+                  _iterator10.return();
+                }
+              } finally {
+                if (_didIteratorError10) {
+                  throw _iteratorError10;
+                }
+              }
+            }
 
             var _iteratorNormalCompletion11 = true;
             var _didIteratorError11 = false;
             var _iteratorError11 = undefined;
 
             try {
-              for (var _iterator11 = info['model_build_info'][Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
-                var modelInfo = _step11.value;
+              for (var _iterator11 = info['model_valid_info'][Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                var _modelInfo = _step11.value;
 
-                if (typeof modelInfo[2] === 'number') {
-                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
+                if (typeof _modelInfo[2] === 'number') {
+                  _modelInfo[2] = parseFloat(_modelInfo[2].toFixed(3));
                 }
 
-                _this20.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-              } // INFO ABOUT VALIDATION
-
+                if (typeof _modelInfo[2] !== 'object') {
+                  _this19.modelValidationInfo[_modelInfo[0]] = [_modelInfo[1], _modelInfo[2]];
+                }
+              }
             } catch (err) {
               _didIteratorError11 = true;
               _iteratorError11 = err;
@@ -5748,40 +5734,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
-            var _iteratorNormalCompletion12 = true;
-            var _didIteratorError12 = false;
-            var _iteratorError12 = undefined;
-
-            try {
-              for (var _iterator12 = info['model_valid_info'][Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
-                var _modelInfo = _step12.value;
-
-                if (typeof _modelInfo[2] === 'number') {
-                  _modelInfo[2] = parseFloat(_modelInfo[2].toFixed(3));
-                }
-
-                if (typeof _modelInfo[2] !== 'object') {
-                  _this20.modelValidationInfo[_modelInfo[0]] = [_modelInfo[1], _modelInfo[2]];
-                }
-              }
-            } catch (err) {
-              _didIteratorError12 = true;
-              _iteratorError12 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion12 && _iterator12.return != null) {
-                  _iterator12.return();
-                }
-              } finally {
-                if (_didIteratorError12) {
-                  throw _iteratorError12;
-                }
-              }
-            }
-
             setTimeout(function () {
-              if (_this20.modelValidationInfo['TP']) {
-                _this20.polarAreaChartData = [_this20.modelValidationInfo['TP'][1], _this20.modelValidationInfo['FP'][1], _this20.modelValidationInfo['TN'][1], _this20.modelValidationInfo['FN'][1]];
+              if (_this19.modelValidationInfo['TP']) {
+                _this19.polarAreaChartData = [_this19.modelValidationInfo['TP'][1], _this19.modelValidationInfo['FP'][1], _this19.modelValidationInfo['TN'][1], _this19.modelValidationInfo['FN'][1]];
               }
             }, 50);
           }, function (error) {
@@ -5791,13 +5746,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getDocumentation",
         value: function getDocumentation() {
-          var _this21 = this;
+          var _this20 = this;
 
           this.commonService.getDocumentation(this.modelName, this.modelVersion).subscribe(function (result) {
-            _this21.modelDocumentation = result;
-            console.log(_this21.modelDocumentation);
+            _this20.modelDocumentation = result;
+            console.log(_this20.modelDocumentation);
           }, function (error) {
-            _this21.modelDocumentation = undefined;
+            _this20.modelDocumentation = undefined;
           });
         }
       }]);
@@ -6033,27 +5988,58 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getValidation",
         value: function getValidation() {
-          var _this22 = this;
+          var _this21 = this;
 
           this.service.getValidation(this.modelName, this.modelVersion).subscribe(function (result) {
             var info = result;
             console.log(info); // INFO ABOUT MODEL
+
+            var _iteratorNormalCompletion12 = true;
+            var _didIteratorError12 = false;
+            var _iteratorError12 = undefined;
+
+            try {
+              for (var _iterator12 = info['model_build_info'][Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                var modelInfo = _step12.value;
+
+                if (typeof modelInfo[2] === 'number') {
+                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
+                }
+
+                _this21.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+              } // INFO ABOUT VALIDATION
+
+            } catch (err) {
+              _didIteratorError12 = true;
+              _iteratorError12 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion12 && _iterator12.return != null) {
+                  _iterator12.return();
+                }
+              } finally {
+                if (_didIteratorError12) {
+                  throw _iteratorError12;
+                }
+              }
+            }
 
             var _iteratorNormalCompletion13 = true;
             var _didIteratorError13 = false;
             var _iteratorError13 = undefined;
 
             try {
-              for (var _iterator13 = info['model_build_info'][Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
-                var modelInfo = _step13.value;
+              for (var _iterator13 = info['model_valid_info'][Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                var _modelInfo2 = _step13.value;
 
-                if (typeof modelInfo[2] === 'number') {
-                  modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
+                if (typeof _modelInfo2[2] === 'number') {
+                  _modelInfo2[2] = parseFloat(_modelInfo2[2].toFixed(3));
                 }
 
-                _this22.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
-              } // INFO ABOUT VALIDATION
-
+                if (typeof _modelInfo2[2] !== 'object') {
+                  _this21.modelValidationInfo[_modelInfo2[0]] = [_modelInfo2[1], _modelInfo2[2]];
+                }
+              }
             } catch (err) {
               _didIteratorError13 = true;
               _iteratorError13 = err;
@@ -6069,44 +6055,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
-            var _iteratorNormalCompletion14 = true;
-            var _didIteratorError14 = false;
-            var _iteratorError14 = undefined;
-
-            try {
-              for (var _iterator14 = info['model_valid_info'][Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
-                var _modelInfo2 = _step14.value;
-
-                if (typeof _modelInfo2[2] === 'number') {
-                  _modelInfo2[2] = parseFloat(_modelInfo2[2].toFixed(3));
-                }
-
-                if (typeof _modelInfo2[2] !== 'object') {
-                  _this22.modelValidationInfo[_modelInfo2[0]] = [_modelInfo2[1], _modelInfo2[2]];
-                }
-              }
-            } catch (err) {
-              _didIteratorError14 = true;
-              _iteratorError14 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion14 && _iterator14.return != null) {
-                  _iterator14.return();
-                }
-              } finally {
-                if (_didIteratorError14) {
-                  throw _iteratorError14;
-                }
-              }
-            }
-
             setTimeout(function () {
-              if (_this22.modelValidationInfo['TP']) {
-                _this22.polarAreaChartData = [_this22.modelValidationInfo['TP'][1], _this22.modelValidationInfo['FP'][1], _this22.modelValidationInfo['TN'][1], _this22.modelValidationInfo['FN'][1]];
+              if (_this21.modelValidationInfo['TP']) {
+                _this21.polarAreaChartData = [_this21.modelValidationInfo['TP'][1], _this21.modelValidationInfo['FP'][1], _this21.modelValidationInfo['TN'][1], _this21.modelValidationInfo['FN'][1]];
               }
 
-              if (_this22.modelValidationInfo['TPpred']) {
-                _this22.polarAreaChartData2 = [_this22.modelValidationInfo['TPpred'][1], _this22.modelValidationInfo['FPpred'][1], _this22.modelValidationInfo['TNpred'][1], _this22.modelValidationInfo['FNpred'][1]];
+              if (_this21.modelValidationInfo['TPpred']) {
+                _this21.polarAreaChartData2 = [_this21.modelValidationInfo['TPpred'][1], _this21.modelValidationInfo['FPpred'][1], _this21.modelValidationInfo['TNpred'][1], _this21.modelValidationInfo['FNpred'][1]];
               }
             }, 50);
           }, function (error) {
@@ -6116,12 +6071,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getDocumentation",
         value: function getDocumentation() {
-          var _this23 = this;
+          var _this22 = this;
 
           this.commonService.getDocumentation(this.modelName, this.modelVersion).subscribe(function (result) {
-            _this23.modelDocumentation = result;
+            _this22.modelDocumentation = result;
           }, function (error) {
-            _this23.modelDocumentation = undefined;
+            _this22.modelDocumentation = undefined;
           });
         }
       }]);
@@ -6462,24 +6417,57 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getValidation",
         value: function getValidation() {
-          var _this24 = this;
+          var _this23 = this;
 
           this.service.getValidation(this.modelName, this.modelVersion).subscribe(function (result) {
             var info = result;
             console.log(info);
-            var _iteratorNormalCompletion15 = true;
-            var _didIteratorError15 = false;
-            var _iteratorError15 = undefined;
+            var _iteratorNormalCompletion14 = true;
+            var _didIteratorError14 = false;
+            var _iteratorError14 = undefined;
 
             try {
-              for (var _iterator15 = info['model_build_info'][Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
-                var modelInfo = _step15.value;
+              for (var _iterator14 = info['model_build_info'][Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+                var modelInfo = _step14.value;
 
                 if (typeof modelInfo[2] === 'number') {
                   modelInfo[2] = parseFloat(modelInfo[2].toFixed(3)); // do something
                 }
 
-                _this24.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+                _this23.modelBuildInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+              }
+            } catch (err) {
+              _didIteratorError14 = true;
+              _iteratorError14 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion14 && _iterator14.return != null) {
+                  _iterator14.return();
+                }
+              } finally {
+                if (_didIteratorError14) {
+                  throw _iteratorError14;
+                }
+              }
+            }
+
+            var _iteratorNormalCompletion15 = true;
+            var _didIteratorError15 = false;
+            var _iteratorError15 = undefined;
+
+            try {
+              for (var _iterator15 = info['model_valid_info'][Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+                var _modelInfo3 = _step15.value;
+
+                if (typeof _modelInfo3[2] === 'number') {
+                  _modelInfo3[2] = parseFloat(_modelInfo3[2].toFixed(3)); // do something
+                }
+
+                if (typeof _modelInfo3[2] !== 'object') {
+                  _this23.modelValidationInfo[_modelInfo3[0]] = [_modelInfo3[1], _modelInfo3[2]];
+                } else {
+                  _this23.modelConformal[_modelInfo3[0]] = _modelInfo3[2];
+                }
               }
             } catch (err) {
               _didIteratorError15 = true;
@@ -6496,39 +6484,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
-            var _iteratorNormalCompletion16 = true;
-            var _didIteratorError16 = false;
-            var _iteratorError16 = undefined;
-
-            try {
-              for (var _iterator16 = info['model_valid_info'][Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
-                var _modelInfo3 = _step16.value;
-
-                if (typeof _modelInfo3[2] === 'number') {
-                  _modelInfo3[2] = parseFloat(_modelInfo3[2].toFixed(3)); // do something
-                }
-
-                if (typeof _modelInfo3[2] !== 'object') {
-                  _this24.modelValidationInfo[_modelInfo3[0]] = [_modelInfo3[1], _modelInfo3[2]];
-                } else {
-                  _this24.modelConformal[_modelInfo3[0]] = _modelInfo3[2];
-                }
-              }
-            } catch (err) {
-              _didIteratorError16 = true;
-              _iteratorError16 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion16 && _iterator16.return != null) {
-                  _iterator16.return();
-                }
-              } finally {
-                if (_didIteratorError16) {
-                  throw _iteratorError16;
-                }
-              }
-            }
-
             setTimeout(function () {
               var max = null;
               var min = null; // tslint:disable-next-line:forin
@@ -6536,36 +6491,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               for (var i in info['ymatrix']) {
                 // this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
                 // this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
-                _this24.ChartDataFitted[0].data[i] = {
+                _this23.ChartDataFitted[0].data[i] = {
                   x: info['ymatrix'][i],
-                  y: _this24.modelConformal['Conformal_interval_medians'][i]
+                  y: _this23.modelConformal['Conformal_interval_medians'][i]
                 };
-                _this24.ChartDataFitted[0].errorBars[info['obj_nam'][i]] = {
-                  plus: _this24.modelConformal['Conformal_prediction_ranges'][i][0],
-                  minus: _this24.modelConformal['Conformal_prediction_ranges'][i][1]
+                _this23.ChartDataFitted[0].errorBars[info['obj_nam'][i]] = {
+                  plus: _this23.modelConformal['Conformal_prediction_ranges'][i][0],
+                  minus: _this23.modelConformal['Conformal_prediction_ranges'][i][1]
                 };
-                _this24.ChartDataFitted[1].data[i] = {
+                _this23.ChartDataFitted[1].data[i] = {
                   x: info['ymatrix'][i],
                   y: info['ymatrix'][i]
                 };
 
                 if (max) {
-                  if (max < _this24.modelConformal['Conformal_prediction_ranges'][i][0]) {
-                    max = _this24.modelConformal['Conformal_prediction_ranges'][i][0];
+                  if (max < _this23.modelConformal['Conformal_prediction_ranges'][i][0]) {
+                    max = _this23.modelConformal['Conformal_prediction_ranges'][i][0];
                   }
                 } else {
-                  max = _this24.modelConformal['Conformal_prediction_ranges'][i][0];
+                  max = _this23.modelConformal['Conformal_prediction_ranges'][i][0];
                 }
 
                 if (min) {
-                  if (min > _this24.modelConformal['Conformal_prediction_ranges'][i][1]) {
-                    min = _this24.modelConformal['Conformal_prediction_ranges'][i][1];
+                  if (min > _this23.modelConformal['Conformal_prediction_ranges'][i][1]) {
+                    min = _this23.modelConformal['Conformal_prediction_ranges'][i][1];
                   }
                 } else {
-                  min = _this24.modelConformal['Conformal_prediction_ranges'][i][1];
+                  min = _this23.modelConformal['Conformal_prediction_ranges'][i][1];
                 }
 
-                _this24.ChartLabels[i] = info['obj_nam'][i];
+                _this23.ChartLabels[i] = info['obj_nam'][i];
               } // this.ChartOptionsFitted.scales.yAxes[0].ticks.min = min - 1 ;
               // this.ChartOptionsFitted.scales.yAxes[0].ticks.max = max + 1;
               // console.log(this.QuantitConformalChart.nativeElement);
@@ -6578,12 +6533,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getDocumentation",
         value: function getDocumentation() {
-          var _this25 = this;
+          var _this24 = this;
 
           this.commonService.getDocumentation(this.modelName, this.modelVersion).subscribe(function (result) {
-            _this25.modelDocumentation = result;
+            _this24.modelDocumentation = result;
           }, function (error) {
-            _this25.modelDocumentation = undefined;
+            _this24.modelDocumentation = undefined;
           });
         }
       }]);
@@ -6898,37 +6853,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getValidation",
         value: function getValidation() {
-          var _this26 = this;
+          var _this25 = this;
 
           this.service.getValidation(this.modelName, this.modelVersion).subscribe(function (result) {
             var info = result;
-            var _iteratorNormalCompletion17 = true;
-            var _didIteratorError17 = false;
-            var _iteratorError17 = undefined;
+            var _iteratorNormalCompletion16 = true;
+            var _didIteratorError16 = false;
+            var _iteratorError16 = undefined;
 
             try {
-              for (var _iterator17 = info['model_valid_info'][Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
-                var modelInfo = _step17.value;
+              for (var _iterator16 = info['model_valid_info'][Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+                var modelInfo = _step16.value;
 
                 if (typeof modelInfo[2] === 'number') {
                   modelInfo[2] = parseFloat(modelInfo[2].toFixed(3));
                 }
 
                 if (typeof modelInfo[2] !== 'object') {
-                  _this26.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
+                  _this25.modelValidationInfo[modelInfo[0]] = [modelInfo[1], modelInfo[2]];
                 }
               }
             } catch (err) {
-              _didIteratorError17 = true;
-              _iteratorError17 = err;
+              _didIteratorError16 = true;
+              _iteratorError16 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion17 && _iterator17.return != null) {
-                  _iterator17.return();
+                if (!_iteratorNormalCompletion16 && _iterator16.return != null) {
+                  _iterator16.return();
                 }
               } finally {
-                if (_didIteratorError17) {
-                  throw _iteratorError17;
+                if (_didIteratorError16) {
+                  throw _iteratorError16;
                 }
               }
             }
@@ -6937,25 +6892,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               // tslint:disable-next-line:forin
               for (var i in info['ymatrix']) {
                 if ('Y_pred' in info) {
-                  _this26.ChartDataPredicted[0].data[i] = {
+                  _this25.ChartDataPredicted[0].data[i] = {
                     x: info['ymatrix'][i],
                     y: info['Y_pred'][i]
                   };
-                  _this26.ChartDataPredicted[1].data[i] = {
+                  _this25.ChartDataPredicted[1].data[i] = {
                     x: info['ymatrix'][i],
                     y: info['ymatrix'][i]
                   };
                 }
 
-                _this26.ChartDataFitted[0].data[i] = {
+                _this25.ChartDataFitted[0].data[i] = {
                   x: info['ymatrix'][i],
                   y: info['Y_adj'][i]
                 };
-                _this26.ChartDataFitted[1].data[i] = {
+                _this25.ChartDataFitted[1].data[i] = {
                   x: info['ymatrix'][i],
                   y: info['ymatrix'][i]
                 };
-                _this26.ChartLabels[i] = info['obj_nam'][i];
+                _this25.ChartLabels[i] = info['obj_nam'][i];
               }
             }, 50);
           }, function (error) {
@@ -6965,12 +6920,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getDocumentation",
         value: function getDocumentation() {
-          var _this27 = this;
+          var _this26 = this;
 
           this.commonService.getDocumentation(this.modelName, this.modelVersion).subscribe(function (result) {
-            _this27.modelDocumentation = result;
+            _this26.modelDocumentation = result;
           }, function (error) {
-            _this27.modelDocumentation = undefined;
+            _this26.modelDocumentation = undefined;
           });
         }
       }]);
@@ -7308,7 +7263,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(SimilarityComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this28 = this;
+          var _this27 = this;
 
           this.prediction.name = undefined;
           this.model.name = undefined;
@@ -7316,67 +7271,67 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.model.trained = false;
           this.spaces = {};
           this.service.getSpaces().subscribe(function (result) {
-            var _iteratorNormalCompletion18 = true;
-            var _didIteratorError18 = false;
-            var _iteratorError18 = undefined;
+            var _iteratorNormalCompletion17 = true;
+            var _didIteratorError17 = false;
+            var _iteratorError17 = undefined;
 
             try {
               var _loop = function _loop() {
-                var space = _step18.value;
-                var _iteratorNormalCompletion19 = true;
-                var _didIteratorError19 = false;
-                var _iteratorError19 = undefined;
+                var space = _step17.value;
+                var _iteratorNormalCompletion18 = true;
+                var _didIteratorError18 = false;
+                var _iteratorError18 = undefined;
 
                 try {
                   var _loop2 = function _loop2() {
-                    var version = _step19.value;
+                    var version = _step18.value;
 
-                    _this28.service.getInfo(space.spacename, version).subscribe(function (result2) {
-                      if (!(space.spacename in _this28.spaces)) {
-                        _this28.spaces[space.spacename] = [];
+                    _this27.service.getInfo(space.spacename, version).subscribe(function (result2) {
+                      if (!(space.spacename in _this27.spaces)) {
+                        _this27.spaces[space.spacename] = [];
                       }
 
-                      _this28.spaces[space.spacename].push(version);
+                      _this27.spaces[space.spacename].push(version);
 
-                      _this28.molsXspace[space.spacename] = result2[0][2];
+                      _this27.molsXspace[space.spacename] = result2[0][2];
                     }, function (error) {
-                      _this28.molsXspace[space.spacename] = 0;
+                      _this27.molsXspace[space.spacename] = 0;
                     });
                   };
 
-                  for (var _iterator19 = space.versions[Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
+                  for (var _iterator18 = space.versions[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
                     _loop2();
                   }
                 } catch (err) {
-                  _didIteratorError19 = true;
-                  _iteratorError19 = err;
+                  _didIteratorError18 = true;
+                  _iteratorError18 = err;
                 } finally {
                   try {
-                    if (!_iteratorNormalCompletion19 && _iterator19.return != null) {
-                      _iterator19.return();
+                    if (!_iteratorNormalCompletion18 && _iterator18.return != null) {
+                      _iterator18.return();
                     }
                   } finally {
-                    if (_didIteratorError19) {
-                      throw _iteratorError19;
+                    if (_didIteratorError18) {
+                      throw _iteratorError18;
                     }
                   }
                 }
               };
 
-              for (var _iterator18 = result[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
+              for (var _iterator17 = result[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
                 _loop();
               }
             } catch (err) {
-              _didIteratorError18 = true;
-              _iteratorError18 = err;
+              _didIteratorError17 = true;
+              _iteratorError17 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion18 && _iterator18.return != null) {
-                  _iterator18.return();
+                if (!_iteratorNormalCompletion17 && _iterator17.return != null) {
+                  _iterator17.return();
                 }
               } finally {
-                if (_didIteratorError18) {
-                  throw _iteratorError18;
+                if (_didIteratorError17) {
+                  throw _iteratorError17;
                 }
               }
             }
@@ -7388,7 +7343,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "search",
         value: function search() {
-          var _this29 = this;
+          var _this28 = this;
 
           // CAST VERSION
           this.result = [];
@@ -7400,7 +7355,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log(result);
             var intervalId = setInterval(function () {
               if (iter < 15) {
-                _this29.checkSearch(result, intervalId);
+                _this28.checkSearch(result, intervalId);
               } else {
                 clearInterval(intervalId);
               }
@@ -7416,12 +7371,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkSearch",
         value: function checkSearch(searchName, intervalId) {
-          var _this30 = this;
+          var _this29 = this;
 
           this.service.getSearch(searchName).subscribe(function (result) {
-            _this30.result = result.search_results;
-            _this30.nameSrc = result.obj_nam;
-            _this30.smileSrc = result.SMILES;
+            _this29.result = result.search_results;
+            _this29.nameSrc = result.obj_nam;
+            _this29.smileSrc = result.SMILES;
             clearInterval(intervalId);
           }, function (error) {
             console.log(error.message);
@@ -7445,13 +7400,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             self.similarity.file_info['num_mols'] = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
             var res_array = self.fileContent.match(/>( )*<(.*)>/g);
             var res_dict = {};
-            var _iteratorNormalCompletion20 = true;
-            var _didIteratorError20 = false;
-            var _iteratorError20 = undefined;
+            var _iteratorNormalCompletion19 = true;
+            var _didIteratorError19 = false;
+            var _iteratorError19 = undefined;
 
             try {
-              for (var _iterator20 = res_array[Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
-                var variable = _step20.value;
+              for (var _iterator19 = res_array[Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
+                var variable = _step19.value;
                 var value = variable.replace(/[<> ]*/g, '');
 
                 if (value in res_dict) {
@@ -7461,16 +7416,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             } catch (err) {
-              _didIteratorError20 = true;
-              _iteratorError20 = err;
+              _didIteratorError19 = true;
+              _iteratorError19 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion20 && _iterator20.return != null) {
-                  _iterator20.return();
+                if (!_iteratorNormalCompletion19 && _iterator19.return != null) {
+                  _iterator19.return();
                 }
               } finally {
-                if (_didIteratorError20) {
-                  throw _iteratorError20;
+                if (_didIteratorError19) {
+                  throw _iteratorError19;
                 }
               }
             }
@@ -7483,13 +7438,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          var _this31 = this;
+          var _this30 = this;
 
           this.components.changes.subscribe(function () {
             $('#simlarityTable').DataTable().destroy();
 
-            if (_this31.components !== undefined) {
-              _this31.components.forEach(function (child) {
+            if (_this30.components !== undefined) {
+              _this30.components.forEach(function (child) {
                 var options = {
                   'width': 300,
                   'height': 150
@@ -7762,13 +7717,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             self.model.file_info['num_mols'] = (self.fileContent.match(/(\$\$\$\$)/g) || []).length;
             var res_array = self.fileContent.match(/>( )*<(.*)>/g);
             var res_dict = {};
-            var _iteratorNormalCompletion21 = true;
-            var _didIteratorError21 = false;
-            var _iteratorError21 = undefined;
+            var _iteratorNormalCompletion20 = true;
+            var _didIteratorError20 = false;
+            var _iteratorError20 = undefined;
 
             try {
-              for (var _iterator21 = res_array[Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
-                var variable = _step21.value;
+              for (var _iterator20 = res_array[Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
+                var variable = _step20.value;
                 var value = variable.replace(/[<> ]*/g, '');
 
                 if (value in res_dict) {
@@ -7778,16 +7733,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             } catch (err) {
-              _didIteratorError21 = true;
-              _iteratorError21 = err;
+              _didIteratorError20 = true;
+              _iteratorError20 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion21 && _iterator21.return != null) {
-                  _iterator21.return();
+                if (!_iteratorNormalCompletion20 && _iterator20.return != null) {
+                  _iterator20.return();
                 }
               } finally {
-                if (_didIteratorError21) {
-                  throw _iteratorError21;
+                if (_didIteratorError20) {
+                  throw _iteratorError20;
                 }
               }
             }
