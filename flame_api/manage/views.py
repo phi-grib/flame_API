@@ -39,7 +39,6 @@ class ListPredictions(APIView):
     #permission_classes = (IsAuthenticated,)
     def get(self, request):
         predictions = manage.action_predictions_list()
-        print (predictions)
         # TODO: fix what flame returns
         return Response(predictions[1], 200)
 
@@ -60,7 +59,7 @@ class ManageModels(APIView):
         if flame_status[0]:
             return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            return JsonResponse(flame_status[1], status = status.HTTP_404_NOT_FOUND)
             
     def post(self, request, modelname):
         """
@@ -115,11 +114,11 @@ class ManagePredictions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_predictions_result(predictionName)
+        flame_status = manage.action_predictions_result(predictionName, output='JSON')
         if flame_status[0]:
             return Response(json.loads(flame_status[1].getJSON(xdata = True)), status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
+            return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
     
     def delete(self, request, predictionName):
         """
@@ -167,7 +166,7 @@ class ManageVersions(APIView):
         if flame_status[0]:
             return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
+            return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, modelname, version):
         """
