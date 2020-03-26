@@ -3271,3 +3271,23 @@ DEBUG    [2020-03-26 12:10:36,721] 123145344155648 - flame.util.utils - Y analiz
 DEBUG    [2020-03-26 12:10:36,727] 123145344155648 - flame.predict - apply child ApplyChild completed `run()`
 INFO     [2020-03-26 12:10:36,734] 123145344155648 - flame.odata - saving model results to: /Users/gemmaportaramirez/Desktop/work/Projects/flame_data/predictions/Prediction_1AAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBB
 INFO     [2020-03-26 12:10:36,735] 123145344155648 - flame.context - Prediction completed...
+DEBUG    [2020-03-26 14:21:11,691] 123145493630976 - flame.predict - Starting predict...
+INFO     [2020-03-26 14:21:11,932] 123145493630976 - flame.idata - Running with input type: molecule
+DEBUG    [2020-03-26 14:21:12,016] 123145493630976 - flame.idata - mol supplier created from /var/folders/g0/z9h3l1qj2vd145scnq3r7k7w0000gn/T/predict_data_k79sv3dq/BSEP_qualitative.sdf
+DEBUG    [2020-03-26 14:21:13,153] 123145493630976 - flame.idata - processed 529 molecules from a supplier of 529 without issues
+INFO     [2020-03-26 14:21:13,810] 123145493630976 - flame.idata - Normalizing structures with method: standardize
+DEBUG    [2020-03-26 14:21:13,810] 123145493630976 - flame.idata - mol supplier created from /var/folders/g0/z9h3l1qj2vd145scnq3r7k7w0000gn/T/tmpoi_vrqzs/BSEP_qualitative.sdf
+DEBUG    [2020-03-26 14:21:13,837] 123145493630976 - flame.idata - writing standarized molecules to /var/folders/g0/z9h3l1qj2vd145scnq3r7k7w0000gn/T/tmpoi_vrqzs/BSEP_qualitative_std.sdf
+INFO     [2020-03-26 14:21:18,121] 123145493630976 - flame.idata - Computing molecular descriptors with methods: ['RDKit_properties']
+INFO     [2020-03-26 14:21:18,122] 123145493630976 - flame.chem.compute_md - Computing RDKit properties...
+DEBUG    [2020-03-26 14:21:19,141] 123145493630976 - flame.chem.compute_md - computed RDKit properties matrix with shape (529, 25)
+DEBUG    [2020-03-26 14:21:19,167] 123145493630976 - flame.predict - idata child IdataChild completed `run()`
+DEBUG    [2020-03-26 14:21:19,167] 123145493630976 - flame.apply - Loading model from pickle file, path: /Users/gemmaportaramirez/Desktop/work/Projects/flame_data/models/AA/dev/preprocessing.pkl
+DEBUG    [2020-03-26 14:21:19,939] 123145493630976 - flame.stats.RF - Initialize BaseEstimator parent class
+DEBUG    [2020-03-26 14:21:19,939] 123145493630976 - flame.apply - Recognized learner: RF
+DEBUG    [2020-03-26 14:21:19,939] 123145493630976 - flame.stats.base_model - Loading model from pickle file, path: /Users/gemmaportaramirez/Desktop/work/Projects/flame_data/models/AA/dev/estimator.pkl
+DEBUG    [2020-03-26 14:21:20,081] 123145493630976 - flame.apply - Loading model from pickle file
+DEBUG    [2020-03-26 14:21:20,223] 123145493630976 - flame.util.utils - Y analized. Found 405 negative, 124 positive, 0 NaN and 0 others objects
+DEBUG    [2020-03-26 14:21:20,527] 123145493630976 - flame.predict - apply child ApplyChild completed `run()`
+INFO     [2020-03-26 14:21:20,533] 123145493630976 - flame.odata - saving model results to: /Users/gemmaportaramirez/Desktop/work/Projects/flame_data/predictions/Prediction_1
+INFO     [2020-03-26 14:21:20,534] 123145493630976 - flame.context - Prediction completed...

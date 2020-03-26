@@ -3160,7 +3160,7 @@ let PredictorComponent = class PredictorComponent {
                 const table = $('#dataTablePredictions').DataTable({
                     /*Ordering by date */
                     order: [[4, 'desc']],
-                    columnDefs: [{ 'type': 'date', 'targets': 4 }]
+                    columnDefs: [{ 'type': 'date-euro', 'targets': 4 }]
                 });
                 this.prediction.name = $('#dataTablePredictions tbody tr:first td:first').text();
                 this.prediction.modelName = $('#dataTablePredictions tbody tr:first td:eq(1)').text();
