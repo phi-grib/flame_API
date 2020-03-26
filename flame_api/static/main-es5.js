@@ -5376,7 +5376,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 /*Ordering by date */
                 order: [[4, 'desc']],
                 columnDefs: [{
-                  'type': 'date',
+                  'type': 'date-euro',
                   'targets': 4
                 }]
               });
