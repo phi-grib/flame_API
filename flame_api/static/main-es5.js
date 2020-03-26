@@ -313,7 +313,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<!--<div class=\"page-header border-bottom mb-3\">\n  <div class=\"d-flex\">\n        <div class=\"mr-auto p-2\">\n            <ul class=\"nav nav-pills nav-fill\" id=\"myTab\" role=\"tablist\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link active\" routerLink=\"/modeling\"  data-toggle=\"pill\" role=\"tab\">Modeling</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" routerLink=\"/similarity\" data-toggle=\"pill\" role=\"tab\">Similarity</a>\n                </li>\n            </ul>\n        </div>\n        <div class=\"p-2\">\n            <!--<a target=\"_blank\">\n                <img [src]=\"imageSource\" data-holder-rendered=\"true\" height=\"40\"/>\n            </a>\n        </div>\n    </div>\n</div>-->\n<div class=\"row\">\n    <div class=\"col p-0\">\n        <div class=\"\">\n            <app-sidebar></app-sidebar>\n        </div>\n        <div class=\"pr-3\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    <div class=\"col-6 border-left info v-100 scrollable\" *ngIf=\"!isActive('similarity')\">\n        <div *ngIf=\"(this.prediction.name != undefined && this.model.name == undefined && isActive('predictions'))\">\n            <app-prediction [predictionName]=this.prediction.name></app-prediction>\n        </div>\n        <div *ngIf=\"(this.model.name != undefined && this.model.trained && this.prediction.name == undefined && isActive('models'))\">\n            <app-validations [name] = this.model.name [version] = this.model.version></app-validations>\n        </div>\n    </div>\n    <!--<div class=\"col-6 border-left info  v-100\" *ngIf=\"isActive('similarity')\">\n        <p>SIMILARITY</p>\n    </div>-->\n</div>\n\n\n\n";
+    __webpack_exports__["default"] = "\n<!--<div class=\"page-header border-bottom mb-3\">\n  <div class=\"d-flex\">\n        <div class=\"mr-auto p-2\">\n            <ul class=\"nav nav-pills nav-fill\" id=\"myTab\" role=\"tablist\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link active\" routerLink=\"/modeling\"  data-toggle=\"pill\" role=\"tab\">Modeling</a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" routerLink=\"/similarity\" data-toggle=\"pill\" role=\"tab\">Similarity</a>\n                </li>\n            </ul>\n        </div>\n        <div class=\"p-2\">\n            <!--<a target=\"_blank\">\n                <img [src]=\"imageSource\" data-holder-rendered=\"true\" height=\"40\"/>\n            </a>\n        </div>\n    </div>\n</div>-->\n<div class=\"row\">\n    <div class=\"col p-0\">\n        <div class=\"\">\n            <app-sidebar></app-sidebar>\n        </div>\n        <div class=\"pr-3\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n    <div class=\"col-6 border-left info v-100 scrollable\" *ngIf=\"!isActive('similarity')\">\n        <div *ngIf=\"(this.prediction.name != undefined && this.model.name == undefined && isActive('predictions'))\">\n            <app-prediction [predictionName]=this.prediction.name></app-prediction>\n        </div>\n        <div *ngIf=\"(this.model.name != undefined && this.prediction.name == undefined && isActive('models'))\">\n          <div  *ngIf=\"\"></div>\n            <app-validations [name] = this.model.name [version] = this.model.version></app-validations>\n        </div>\n    </div>\n    <!--<div class=\"col-6 border-left info  v-100\" *ngIf=\"isActive('similarity')\">\n        <p>SIMILARITY</p>\n    </div>-->\n</div>\n\n\n\n";
     /***/
   },
 
@@ -473,7 +473,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n  {{num_models}}\n<div class =\"text-center spinner-table\" *ngIf = \"!this.globals.tableModelVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.globals.tableModelVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th style=\"width: 5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th style=\"width: 35%\">Name</th>\n          <th style=\"width: 10%\">Version</th>\n          <th style=\"width: 12.5%\">#Molecules</th>\n          <th style=\"width: 12.5%\">#Variables</th>3\n          <th style=\"width: 25%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type,model.listModels[key].quantitative\n          , model.listModels[key].conformal, model.listModels[key].ensemble)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('matrix') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td class=\"text-truncate iffyTip hideText2\">{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize text-truncate\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n";
+    __webpack_exports__["default"] = "\n<hr class=\"my-0\">\n\n<app-manage-models></app-manage-models>\n  <!-- Extra large modal -->\n  {{num_models}}\n<div class =\"text-center spinner-table\" *ngIf = \"!this.globals.tableModelVisible\">\n  <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n    <span class=\"sr-only\">Loading...</span>\n  </div>\n</div>\n<div class =\"ml-3 mr-3\" [hidden] = \"!this.globals.tableModelVisible\">\n  <div class=\"col-12 scrolltable\">\n    <table id =\"dataTableModels\" class=\"table\">\n      <thead>\n        <tr>\n          <th style=\"width: 5%\" class=\"text-center\"></th>\n          <!--<th width=\"5%\"></th>-->\n          <th style=\"width: 35%\">Name</th>\n          <th style=\"width: 10%\">Version</th>\n          <th style=\"width: 12.5%\">#Molecules</th>\n          <th style=\"width: 12.5%\">#Variables</th>3\n          <th style=\"width: 25%\">Type</th>\n         \n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let key of objectKeys(model.listModels).sort()\" \n          [ngClass]=\"{'selected': (model.listModels[key].name===this.model.name) && (model.listModels[key].version===this.model.version),\n                      'version': model.listModels[key].version > 0}\"\n          (click)= \"selectModel(model.listModels[key].name, model.listModels[key].version, model.listModels[key].trained,model.listModels[key].type,model.listModels[key].quantitative\n          , model.listModels[key].conformal, model.listModels[key].ensemble, model.listModels[key].error)\">\n           <!--\"{'background-color': style1 ? 'red' : (style2 ? 'blue' : null) }\" fas fa-circle, fas fa-square -->\n          <td class=\"text-center\">\n            <i class = \"fas\" [ngClass]=\"{'fa-grip-lines': model.listModels[key].type.indexOf('qualitative') > -1 ||\n                                                        model.listModels[key].type.indexOf('majority') > -1,\n                        'fa-circle': model.listModels[key].type.indexOf('quantitative') >-1 ||\n                                     model.listModels[key].type.indexOf('mean') > -1 ||\n                                     model.listModels[key].type.indexOf('matrix') > -1 ||\n                                     model.listModels[key].type.indexOf('median') > -1,\n                        'fa-times': model.listModels[key].type == '-',\n                        'faa-flash animated': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version)}\"\n                        [ngStyle]=\"{'color': this.model.trainig_models.includes(model.listModels[key].name + '-' + model.listModels[key].version) ? '#E69400' : (model.listModels[key].trained ? '#51cf66' : 'red' ) }\" \n                        aria-hidden=\"true\"></i> \n         \n                        \n          </td>\n          <!--<td scope=\"row\" class=\"text-left\">\n\n            <button class=\"btn p-0\" (click)=\"openValidation(model.listModels[key].name,model.listModels[key].version)\"\n              *ngIf=\"model.listModels[key].type != '-'\">\n                <i class=\"far fa-chart-bar\" title=\"Validation\" ></i>\n            </button>\n\n            <button *ngIf=\"model.listModels[key].type != '-'\"\n              class=\"btn p-0\" \n              id =\"collapse_{{model.listModels[key].name}}_{{model.listModels[key].version}}\" \n              [ngbPopover]=\"popContent\" [popoverTitle]=\"popTitle\"\n              placement=\"right\"\n              [autoClose]=\"'inside'\"\n              > <i class=\"far fa-eye\" title=\"Quality\" ></i>\n            </button>-->\n                \n            <!-- Content poppover--> \n             <!--<ng-template #popTitle>Info</ng-template>   \n            <ng-template #popContent>\n              <table class=\"table\">\n                <tbody>\n                  <tr style =\"border-bottom: 2px solid #B8DCED;\" *ngFor=\"let key2 of objectKeys(model.listModels[key].quality)\">\n                    <td class=\"text-left\"><strong>{{key2}}: </strong></td>\n                    <td class=\"text-right\">{{model.listModels[key].quality[key2]}}</td>\n                  </tr>\n\n                </tbody>\n              </table>\n            </ng-template>     \n          </td>-->\n          <td class=\"text-truncate iffyTip hideText\">{{model.listModels[key].name}}</td>\n          <td>{{model.listModels[key].version}}</td>\n          <td>{{model.listModels[key].numMols}}</td>\n          <td>{{model.listModels[key].variables}}</td>\n          <td class=\"text-capitalize text-truncate iffyTip hideText\">{{model.listModels[key].type}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n\n\n\n \n\n\n\n";
     /***/
   },
 
@@ -513,7 +513,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<hr class=\"my-0\">\n\n<app-manage-predictions></app-manage-predictions>\n<div class=\"ml-3 mr-3\">\n  <div class =\"text-center spinner-table\" *ngIf = \"!this.tableVisible\">\n    <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n      <span class=\"sr-only\">Loading...</span>\n    </div>\n  </div>\n  <div class=\"col-12\"  [hidden] = \"!this.tableVisible\">\n    <table class=\"table\" id=\"dataTablePredictions\" width=\"100%\" cellspacing=\"0\">\n      <thead>\n        <tr>\n          <th>Name</th>\n          <th>Models</th>\n          <th>Version</th>\n          <th>Prediction Set</th>\n          <th>Date</th>\n        </tr>\n      </thead>\n      <tbody>\n          <tr class=\"blink\" *ngFor=\"let key of objectKeys(this.prediction.predicting)\">\n              <td >{{key}}</td>\n              <td>{{this.prediction.predicting[key][0]}}</td>\n              <td>{{this.prediction.predicting[key][1]}}</td>\n              <td>{{this.prediction.predicting[key][2].substring(this.prediction.predicting[key][2].lastIndexOf('/') + 1)}}</td>\n              <td>-</td>         \n            </tr>\n        <tr *ngFor=\"let info of this.prediction.predictions\" (click)= \"selectPrediction(info[0], info[1], info[2], info[3])\"\n        [ngClass]=\"{'selected': this.prediction.name=== info[0]}\">\n          <td>{{info[0]}}</td>\n          <td>{{info[1]}}</td>\n          <td>{{info[2]}}</td>\n          <td>{{info[4].substring(info[4].lastIndexOf('/') + 1)}}</td>\n          <td>{{info[3]}}</td>         \n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>";
+    __webpack_exports__["default"] = "<hr class=\"my-0\">\n\n<app-manage-predictions></app-manage-predictions>\n<div class=\"ml-3 mr-3\">\n  <div class =\"text-center spinner-table\" *ngIf = \"!this.tableVisible\">\n    <div class=\"spinner-border text-primary\"  style=\"width: 10rem; height: 10rem;\"  role=\"status\">\n      <span class=\"sr-only\">Loading...</span>\n    </div>\n  </div>\n  <div class=\"col-12\"  [hidden] = \"!this.tableVisible\">\n    <table class=\"table\" id=\"dataTablePredictions\">\n      <thead>\n        <tr>\n          <th style=\"width: 40%\">Name</th>\n          <th style=\"width: 5%\">Models</th>\n          <th style=\"width: 5%\">Version</th>\n          <th style=\"width: 20%\">Prediction Set</th>\n          <th style=\"width: 30%\" >Date</th>\n        </tr>\n      </thead>\n      <tbody>\n          <tr class=\"blink\" *ngFor=\"let key of objectKeys(this.prediction.predicting)\">\n              <td >{{key}}</td>\n              <td>{{this.prediction.predicting[key][0]}}</td>\n              <td>{{this.prediction.predicting[key][1]}}</td>\n              <td>{{this.prediction.predicting[key][2].substring(this.prediction.predicting[key][2].lastIndexOf('/') + 1)}}</td>\n              <td>-</td>         \n            </tr>\n        <tr *ngFor=\"let info of this.prediction.predictions\" (click)= \"selectPrediction(info[0], info[1], info[2], info[3])\"\n        [ngClass]=\"{'selected': this.prediction.name=== info[0]}\">\n          <td class=\"text-truncate iffyTip hideText\">{{info[0]}}</td>\n          <td>{{info[1]}}</td>\n          <td>{{info[2]}}</td>\n          <td class=\"text-truncate iffyTip hideText\">{{info[4].substring(info[4].lastIndexOf('/') + 1)}}</td>\n          <td class=\"text-truncate iffyTip hideText\">{{info[3]}}</td>         \n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>";
     /***/
   },
 
@@ -713,7 +713,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<div class=\"m-3\" *ngIf=\"this.model.name !=undefined\">\n    <div *ngIf=\"!this.model.quantitative && !this.model.conformal\">\n        <app-qualit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-no-conformal>\n    </div>\n    <div *ngIf=\"!this.model.quantitative && this.model.conformal\">\n        <app-qualit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && !this.model.conformal\">\n        <app-quantit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-no-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && this.model.conformal\">\n        <app-quantit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-conformal>\n    </div>\n</div>             \n<!--END Modal Documentation-->\n\n\n\n\n";
+    __webpack_exports__["default"] = "\n<div class=\"m-3\" *ngIf=\"this.model.name !=undefined && this.model.trained\">\n    <div *ngIf=\"!this.model.quantitative && !this.model.conformal\">\n        <app-qualit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-no-conformal>\n    </div>\n    <div *ngIf=\"!this.model.quantitative && this.model.conformal\">\n        <app-qualit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-qualit-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && !this.model.conformal\">\n        <app-quantit-no-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-no-conformal>\n    </div>\n    <div *ngIf=\"this.model.quantitative && this.model.conformal\">\n        <app-quantit-conformal [modelName]=\"this.model.name\" [modelVersion]= \"this.model.version\"></app-quantit-conformal>\n    </div>\n</div> \n<div class=\"m-3\" *ngIf=\"this.model.name !=undefined && this.model.error!=undefined  && !this.model.trained\">\n  <div *ngIf=\"this.model.error!='Info file not found'\"class=\"alert alert-danger text-center\" role=\"alert\">\n      <span class=\"font-weight-bolder\">ERROR: </span>{{this.model.error}}!\n  </div>\n  <div *ngIf=\"this.model.error=='Info file not found'\"class=\"alert alert-warning text-center\" role=\"alert\">\n      <span class=\"font-weight-bolder\">WARNING: </span> the model remains to be trained.\n</div>               \n<!--END Modal Documentation-->\n\n\n                \n\n";
     /***/
   },
 
@@ -1379,6 +1379,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.conformal = undefined;
       this.ensemble = undefined;
       this.incremental = false;
+      this.error = undefined;
       /*
       Delta parameters, empty by default, fills on clicking the parameters tab.
       When you change anything on the formulary, automatically changes the value for that key
@@ -2164,8 +2165,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
           this.activeModal.close('Close click');
           this.service.buildModel().subscribe(function (result) {
-            //$('#dataTableModels').DataTable().destroy();
-            //this.func.getModelList();
             var iter = 0;
             var intervalId = setInterval(function () {
               if (iter < 15) {
@@ -2288,7 +2287,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _this3.func.getModelList();
           }, function (error) {
-            if (error.error.code != 0) {
+            if (error.error.code !== 0) {
               $('#dataTableModels').DataTable().destroy();
 
               var index = _this3.model.trainig_models.indexOf(name + '-' + version, 0);
@@ -2569,7 +2568,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     quality: quality,
                     quantitative: dict_info['quantitative'],
                     conformal: dict_info['conformal'],
-                    ensemble: dict_info['ensemble']
+                    ensemble: dict_info['ensemble'],
+                    error: undefined
                   };
 
                   _this4.model.trained_models.push(modelName + ' .v' + version);
@@ -2586,7 +2586,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     quality: {},
                     quantitative: false,
                     conformal: false,
-                    ensemble: false
+                    ensemble: false,
+                    error: model.info
                   };
                   num_models--;
                 }
@@ -2607,8 +2608,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
 
             var intervalId = setInterval(function () {
-              console.log(num_models);
-
               if (num_models <= 0) {
                 if (_this4.objectKeys(_this4.model.listModels).length > 0) {
                   var a = _this4.objectKeys(_this4.model.listModels).sort();
@@ -2619,6 +2618,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   _this4.model.conformal = _this4.model.listModels[a[0]].conformal;
                   _this4.model.quantitative = _this4.model.listModels[a[0]].quantitative;
                   _this4.model.ensemble = _this4.model.listModels[a[0]].ensemble;
+                  _this4.model.error = _this4.model.listModels[a[0]].error;
                 }
 
                 var table = $('#dataTableModels').DataTable({
@@ -3965,7 +3965,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    table-layout: fixed;\n    width: 100%;\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n   \n}\n.table td {\n    padding: 5px;\n   \n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n    vertical-align: middle;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n.iffyTip {\n  overflow:hidden;\n  white-space:nowrap;\n  text-overflow:ellipsis;\n}\n.hideText2{\nmax-width:200px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjtJQUNyQixtQkFBbUI7SUFDbkIsV0FBVzs7R0FFWixxQkFBcUI7SUFDcEIsc0JBQXNCOzs7QUFHMUI7QUFFQTtJQUNJO3dCQUNvQjtJQUNwQix5QkFBeUI7SUFDekIsYUFBYTs7QUFFakI7QUFFQTtJQUNJLFlBQVk7O0lBRVosZ0RBQWdEO0lBQ2hELGdDQUFnQztJQUNoQyxzQkFBc0I7QUFDMUI7QUFDQTtJQUNJLGVBQWU7QUFDbkI7QUFHQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksbUJBQW1CO0FBQ3ZCO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsaUJBQWlCO0FBQ3JCO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsY0FBYztBQUNsQjtBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLFVBQVU7SUFDVixRQUFRO0lBQ1IsYUFBYTtBQUNqQjtBQUVBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtFQUNsQixzQkFBc0I7QUFDeEI7QUFDQTtBQUNBLGVBQWU7QUFDZiIsImZpbGUiOiJzcmMvYXBwL21vZGVsLWxpc3QvbW9kZWwtbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaSB7XG4gICAgbWFyZ2luLXJpZ2h0OiA1cHg7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuLnRhYmxlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICAvKmJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byBsZWZ0LCAjRjdGN0Y3IDAlLCAjRjdGN0Y3IDEwMCUpOyovXG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgY29sb3I6ICMyMjU3N0E7XG4gICAgLypib3JkZXI6IDFweCBzb2xpZDsqL1xuICAgIHRhYmxlLWxheW91dDogZml4ZWQ7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgXG4gICAvKiBtYXgtaGVpZ2h0OiA4MHZoOyovXG4gICAgLypvdmVyZmxvdy15OiBzY3JvbGw7Ki9cbiAgICBcbiAgICBcbn1cblxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsgKi9cbiAgICBjb2xvcjojMDA3NmEzO1xuICAgXG59XG5cbi50YWJsZSB0ZCB7XG4gICAgcGFkZGluZzogNXB4O1xuICAgXG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCBzYW5zLXNlcmlmO1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjQjhEQ0VEO1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG50ciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLm1vZGVsLWNvbnRlbnQge1xuICAgIG1heC13aWR0aDogMzUwcHg7XG4gICAgbWF4LWhlaWdodDogMzUwcHg7XG59XG4uc2Nyb2xsdGFibGV7XG4gICAgbWF4LWhlaWdodDogOTB2aDtcbiAgICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnNwaW5uZXItdGFibGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsgXG4gICAgcmlnaHQ6IDQ1JTsgXG4gICAgdG9wOiAzMCU7IFxuICAgIHotaW5kZXg6IDEwMzE7XG59XG5cbi5pZmZ5VGlwIHtcbiAgb3ZlcmZsb3c6aGlkZGVuO1xuICB3aGl0ZS1zcGFjZTpub3dyYXA7XG4gIHRleHQtb3ZlcmZsb3c6ZWxsaXBzaXM7XG59XG4uaGlkZVRleHQye1xubWF4LXdpZHRoOjIwMHB4O1xufSJdfQ== */";
+    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n.table {\n    background-color: white;\n    /*background: linear-gradient(to left, #F7F7F7 0%, #F7F7F7 100%);*/\n    background: white;\n    color: #22577A;\n    /*border: 1px solid;*/\n    table-layout: fixed;\n    width: 100%;\n    \n   /* max-height: 80vh;*/\n    /*overflow-y: scroll;*/\n    \n    \n}\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED; */\n    color:#0076a3;\n   \n}\n.table td {\n    padding: 5px;\n   \n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n    vertical-align: middle;\n}\ntr {\n    cursor: pointer;\n}\ntr.selected {\n    background: #f7f9ea;\n}\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n.model-content {\n    max-width: 350px;\n    max-height: 350px;\n}\n.scrolltable{\n    max-height: 90vh;\n    overflow: auto;\n}\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n.iffyTip {\n  overflow:hidden;\n  white-space:nowrap;\n  text-overflow:ellipsis;\n}\n.hideText{\nmax-width:200px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kZWwtbGlzdC9tb2RlbC1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGtFQUFrRTtJQUNsRSxpQkFBaUI7SUFDakIsY0FBYztJQUNkLHFCQUFxQjtJQUNyQixtQkFBbUI7SUFDbkIsV0FBVzs7R0FFWixxQkFBcUI7SUFDcEIsc0JBQXNCOzs7QUFHMUI7QUFFQTtJQUNJO3dCQUNvQjtJQUNwQix5QkFBeUI7SUFDekIsYUFBYTs7QUFFakI7QUFFQTtJQUNJLFlBQVk7O0lBRVosZ0RBQWdEO0lBQ2hELGdDQUFnQztJQUNoQyxzQkFBc0I7QUFDMUI7QUFDQTtJQUNJLGVBQWU7QUFDbkI7QUFHQTtJQUNJLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksbUJBQW1CO0FBQ3ZCO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsaUJBQWlCO0FBQ3JCO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsY0FBYztBQUNsQjtBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLFVBQVU7SUFDVixRQUFRO0lBQ1IsYUFBYTtBQUNqQjtBQUVBO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQjtFQUNsQixzQkFBc0I7QUFDeEI7QUFDQTtBQUNBLGVBQWU7QUFDZiIsImZpbGUiOiJzcmMvYXBwL21vZGVsLWxpc3QvbW9kZWwtbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaSB7XG4gICAgbWFyZ2luLXJpZ2h0OiA1cHg7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuLnRhYmxlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICAvKmJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCh0byBsZWZ0LCAjRjdGN0Y3IDAlLCAjRjdGN0Y3IDEwMCUpOyovXG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgY29sb3I6ICMyMjU3N0E7XG4gICAgLypib3JkZXI6IDFweCBzb2xpZDsqL1xuICAgIHRhYmxlLWxheW91dDogZml4ZWQ7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgXG4gICAvKiBtYXgtaGVpZ2h0OiA4MHZoOyovXG4gICAgLypvdmVyZmxvdy15OiBzY3JvbGw7Ki9cbiAgICBcbiAgICBcbn1cblxuLnRhYmxlIHRoe1xuICAgIC8qcGFkZGluZy1sZWZ0OiAxcHg7XG4gICAgcGFkZGluZy1yaWdodDogMXB4OyovXG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsgKi9cbiAgICBjb2xvcjojMDA3NmEzO1xuICAgXG59XG5cbi50YWJsZSB0ZCB7XG4gICAgcGFkZGluZzogNXB4O1xuICAgXG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCBzYW5zLXNlcmlmO1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjQjhEQ0VEO1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG50ciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG5cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLm1vZGVsLWNvbnRlbnQge1xuICAgIG1heC13aWR0aDogMzUwcHg7XG4gICAgbWF4LWhlaWdodDogMzUwcHg7XG59XG4uc2Nyb2xsdGFibGV7XG4gICAgbWF4LWhlaWdodDogOTB2aDtcbiAgICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnNwaW5uZXItdGFibGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTsgXG4gICAgcmlnaHQ6IDQ1JTsgXG4gICAgdG9wOiAzMCU7IFxuICAgIHotaW5kZXg6IDEwMzE7XG59XG5cbi5pZmZ5VGlwIHtcbiAgb3ZlcmZsb3c6aGlkZGVuO1xuICB3aGl0ZS1zcGFjZTpub3dyYXA7XG4gIHRleHQtb3ZlcmZsb3c6ZWxsaXBzaXM7XG59XG4uaGlkZVRleHR7XG5tYXgtd2lkdGg6MjAwcHg7XG59Il19 */";
     /***/
   },
 
@@ -4062,7 +4062,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "selectModel",
-        value: function selectModel(name, version, trained, type, quantitative, conformal, ensemble) {
+        value: function selectModel(name, version, trained, type, quantitative, conformal, ensemble, error) {
           if (version === '-' || version === 'dev') {
             version = '0';
           }
@@ -4073,7 +4073,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.model.conformal = conformal;
           this.model.quantitative = quantitative;
           this.model.ensemble = ensemble;
-          this.model.type = type;
+          this.model.error = error;
           this.model.file = undefined;
           this.model.file_info = undefined;
           this.model.file_fields = undefined;
@@ -4282,7 +4282,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n\n.table {\n    background-color: white;\n    background: white;\n    color: #22577A;\n}\n\n.table th{\n    /*padding-left: 1px;\n    padding-right: 1px;*/\n    /* background: #B8DCED;*/\n    color:#0076a3;\n    vertical-align: middle;\n}\n\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n}\n\ntr {\n    cursor: pointer;\n}\n\ntr.selected {\n    background: #f7f9ea;\n}\n\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n\n.blink {\n    -webkit-animation: blinker 0.6s linear infinite;\n            animation: blinker 0.6s linear infinite;\n}\n\n@-webkit-keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n@keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi1saXN0L3ByZWRpY3Rpb24tbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsaUJBQWlCO0lBQ2pCLGNBQWM7QUFDbEI7O0FBQ0E7SUFDSTt3QkFDb0I7SUFDcEIsd0JBQXdCO0lBQ3hCLGFBQWE7SUFDYixzQkFBc0I7QUFDMUI7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osZ0RBQWdEO0lBQ2hELGdDQUFnQztBQUNwQzs7QUFDQTtJQUNJLGVBQWU7QUFDbkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSwrQ0FBdUM7WUFBdkMsdUNBQXVDO0FBQzNDOztBQUNBO0lBQ0ksT0FBTyxVQUFVLEVBQUU7QUFDdkI7O0FBRkE7SUFDSSxPQUFPLFVBQVUsRUFBRTtBQUN2Qjs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9wcmVkaWN0aW9uLWxpc3QvcHJlZGljdGlvbi1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpIHtcbiAgICBtYXJnaW4tcmlnaHQ6IDVweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5cbi50YWJsZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgY29sb3I6ICMyMjU3N0E7XG59XG4udGFibGUgdGh7XG4gICAgLypwYWRkaW5nLWxlZnQ6IDFweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxcHg7Ki9cbiAgICAvKiBiYWNrZ3JvdW5kOiAjQjhEQ0VEOyovXG4gICAgY29sb3I6IzAwNzZhMztcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxuLnRhYmxlIHRkIHtcbiAgICBwYWRkaW5nOiA1cHg7XG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCBzYW5zLXNlcmlmO1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjQjhEQ0VEO1xufVxudHIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuXG4uYmxpbmsge1xuICAgIGFuaW1hdGlvbjogYmxpbmtlciAwLjZzIGxpbmVhciBpbmZpbml0ZTtcbn1cbkBrZXlmcmFtZXMgYmxpbmtlciB7ICBcbiAgICAxMDAlIHsgb3BhY2l0eTogMDsgfVxufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn0iXX0= */";
+    __webpack_exports__["default"] = "i {\n    margin-right: 5px;\n    cursor: pointer;\n}\n\n.table {\n    background-color: white;\n    background: white;\n    color: #22577A;\n    /*table-layout: fixed;*/\n    width: 100%;\n}\n\n.table th{\n    padding-left: 1px;\n    padding-right: 1px;\n    /* background: #B8DCED;*/\n    color:#0076a3;\n    vertical-align: middle;\n}\n\n.table td {\n    padding: 5px;\n    font-family: 'Barlow Semi Condensed', sans-serif;\n    border-bottom: 2px solid #B8DCED;\n    vertical-align: middle;\n}\n\ntr {\n    cursor: pointer;\n}\n\ntr.selected {\n    background: #f7f9ea;\n}\n\n.table tbody tr:hover {\n    background: #f7f9ea;\n}\n\n.blink {\n    -webkit-animation: blinker 0.6s linear infinite;\n            animation: blinker 0.6s linear infinite;\n}\n\n@-webkit-keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n@keyframes blinker {  \n    100% { opacity: 0; }\n}\n\n.spinner-table {\n    position: absolute; \n    right: 45%; \n    top: 30%; \n    z-index: 1031;\n}\n\n.iffyTip {\n  overflow:hidden;\n  white-space:nowrap;\n  text-overflow:ellipsis;\n}\n\n.hideText{\nmax-width:200px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdGlvbi1saXN0L3ByZWRpY3Rpb24tbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0lBQ2pCLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsaUJBQWlCO0lBQ2pCLGNBQWM7SUFDZCx1QkFBdUI7SUFDdkIsV0FBVztBQUNmOztBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQix3QkFBd0I7SUFDeEIsYUFBYTtJQUNiLHNCQUFzQjtBQUMxQjs7QUFDQTtJQUNJLFlBQVk7SUFDWixnREFBZ0Q7SUFDaEQsZ0NBQWdDO0lBQ2hDLHNCQUFzQjtBQUMxQjs7QUFDQTtJQUNJLGVBQWU7QUFDbkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBQ0E7SUFDSSxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSwrQ0FBdUM7WUFBdkMsdUNBQXVDO0FBQzNDOztBQUNBO0lBQ0ksT0FBTyxVQUFVLEVBQUU7QUFDdkI7O0FBRkE7SUFDSSxPQUFPLFVBQVUsRUFBRTtBQUN2Qjs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLGFBQWE7QUFDakI7O0FBRUE7RUFDRSxlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLHNCQUFzQjtBQUN4Qjs7QUFDQTtBQUNBLGVBQWU7QUFDZiIsImZpbGUiOiJzcmMvYXBwL3ByZWRpY3Rpb24tbGlzdC9wcmVkaWN0aW9uLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImkge1xuICAgIG1hcmdpbi1yaWdodDogNXB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuLnRhYmxlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgICBjb2xvcjogIzIyNTc3QTtcbiAgICAvKnRhYmxlLWxheW91dDogZml4ZWQ7Ki9cbiAgICB3aWR0aDogMTAwJTtcbn1cbi50YWJsZSB0aHtcbiAgICBwYWRkaW5nLWxlZnQ6IDFweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAxcHg7XG4gICAgLyogYmFja2dyb3VuZDogI0I4RENFRDsqL1xuICAgIGNvbG9yOiMwMDc2YTM7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cbi50YWJsZSB0ZCB7XG4gICAgcGFkZGluZzogNXB4O1xuICAgIGZvbnQtZmFtaWx5OiAnQmFybG93IFNlbWkgQ29uZGVuc2VkJywgc2Fucy1zZXJpZjtcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgI0I4RENFRDtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xufVxudHIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cbnRyLnNlbGVjdGVkIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kOiAjZjdmOWVhO1xufVxuXG4uYmxpbmsge1xuICAgIGFuaW1hdGlvbjogYmxpbmtlciAwLjZzIGxpbmVhciBpbmZpbml0ZTtcbn1cbkBrZXlmcmFtZXMgYmxpbmtlciB7ICBcbiAgICAxMDAlIHsgb3BhY2l0eTogMDsgfVxufVxuXG4uc3Bpbm5lci10YWJsZSB7XG4gICAgcG9zaXRpb246IGFic29sdXRlOyBcbiAgICByaWdodDogNDUlOyBcbiAgICB0b3A6IDMwJTsgXG4gICAgei1pbmRleDogMTAzMTtcbn1cblxuLmlmZnlUaXAge1xuICBvdmVyZmxvdzpoaWRkZW47XG4gIHdoaXRlLXNwYWNlOm5vd3JhcDtcbiAgdGV4dC1vdmVyZmxvdzplbGxpcHNpcztcbn1cbi5oaWRlVGV4dHtcbm1heC13aWR0aDoyMDBweDtcbn0iXX0= */";
     /***/
   },
 
@@ -4385,7 +4385,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 /*Ordering by date */
                 order: [[4, 'desc']],
                 columnDefs: [{
-                  'type': 'date',
+                  'type': 'date-euro',
                   'targets': 4
                 }]
               });
@@ -4739,15 +4739,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               _this12.modelBuildInfo['ensemble_names'].forEach(function (submodel, index) {
                 if (_this12.modelBuildInfo['ensemble_names']) {
-                  version = '0';
-                } else {
                   version = _this12.modelBuildInfo['ensemble_versions'][index];
+                } else {
+                  version = '0';
                 }
 
                 _this12.submodels[index] = {};
                 _this12.submodels[index]['name'] = submodel;
                 _this12.submodels[index]['version'] = version;
-                console.log(_this12.submodels);
 
                 _this12.commonService.getModel(submodel, version).subscribe(function (result3) {
                   var _iteratorNormalCompletion6 = true;
@@ -5450,7 +5449,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _this18.getPredictionList();
           }, function (error) {
-            if (error.error.code != 0) {
+            if (error.error.code !== 0) {
               _this18.toastr.clear(inserted.toastId);
 
               _this18.toastr.error('Prediction ' + name + ' \n ' + error.error.message, 'ERROR!', {
@@ -5690,6 +5689,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(QualitConformalComponent, [{
         key: "ngOnChanges",
         value: function ngOnChanges() {
+          this.polarAreaChartData = [0, 0, 0, 0];
           this.getDocumentation();
           this.getValidation();
         }
@@ -6008,8 +6008,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(QualitNoConformalComponent, [{
         key: "ngOnChanges",
         value: function ngOnChanges() {
-          var a = null;
-          console.log(a === null);
+          this.polarAreaChartData = [0, 0, 0, 0];
+          this.polarAreaChartData2 = [0, 0, 0, 0];
           this.getDocumentation();
           this.getValidation();
         }
@@ -6430,6 +6430,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(QuantitConformalComponent, [{
         key: "ngOnChanges",
         value: function ngOnChanges() {
+          this.ChartDataFitted[0].data = [];
+          this.ChartDataFitted[1].data = [];
+          this.ChartLabels = [];
           this.getDocumentation();
           this.getValidation();
           var toggler = document.getElementsByClassName('caret');
@@ -6875,6 +6878,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(QuantitNoConformalComponent, [{
         key: "ngOnChanges",
         value: function ngOnChanges() {
+          this.ChartDataFitted[0].data = [];
+          this.ChartDataFitted[1].data = [];
+          this.ChartDataPredicted[0].data = [];
+          this.ChartDataPredicted[1].data = [];
+          this.ChartLabels = [];
           this.getDocumentation();
           this.getValidation();
         }
@@ -7422,7 +7430,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this29.smileSrc = result.SMILES;
             clearInterval(intervalId);
           }, function (error) {
-            if (error.error.code != 0) {
+            if (error.error.code !== 0) {
               _this29.predicting = false;
               _this29.error = true;
               _this29.error_message = error.error.message;
