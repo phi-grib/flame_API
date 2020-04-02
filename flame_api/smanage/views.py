@@ -105,7 +105,7 @@ class ManageVersions(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = smanage.action_info(spacename, version, output='JSON')
+        flame_status = smanage.action_info(spacename, version, output='bin')
         
         if flame_status[0]:
             # return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
@@ -133,7 +133,7 @@ class ManageParameters(APIView):
         """
         Retrieve parameters of space version
         """
-        flame_status = smanage.action_parameters(spacename, version,"JSON")       
+        flame_status = smanage.action_parameters(spacename, version, output = "bin")       
         if flame_status[0]:
             return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
         else:
@@ -147,7 +147,7 @@ class ManageSearches(APIView):
         Retrieve info of sesrch
         """
 
-        flame_status = smanage.action_searches_result(searchName, output = "JSON")
+        flame_status = smanage.action_searches_result(searchName, output = "bin")
         if flame_status[0]:
             return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)
           

@@ -38,16 +38,16 @@ class BuildModel(APIView):
      
         params = request.POST.get('parameters')  
         incremental = request.POST.get('incremental') 
-        print ("---------------------------")
-        print ("Incremental before", incremental)
-        print ("Incremental before type", type(incremental))
+        # print ("---------------------------")
+        # print ("Incremental before", incremental)
+        # print ("Incremental before type", type(incremental))
         if incremental == 'true':
           incremental = True
         else:
           incremental = False
-        print ("Incremental after", incremental)
-        print ("Incremental after type", type(incremental))
-        print ("---------------------------")
+        # print ("Incremental after", incremental)
+        # print ("Incremental after type", type(incremental))
+        # print ("---------------------------")
         training_data = None     
         # Set the temp filesystem storage
         if not isinstance(file_obj, bool):
