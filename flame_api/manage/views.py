@@ -30,7 +30,12 @@ class ListModels(APIView):
     def get(self, request):
         models = manage.action_dir()
         # TODO: fix what flame returns
-        return Response(models[1], 200)
+        if models[0]:
+            return Response(models[1], 200)
+        else:
+            # return Response(models[1], status = status.HTTP_404_NOT_FOUND)
+            return Response('error list', status = status.HTTP_404_NOT_FOUND)
+
 
 class ListPredictions(APIView):
     """
@@ -55,7 +60,7 @@ class ManageModels(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = manage.action_info(modelname, 0,output='JSON')
+        flame_status = manage.action_info(modelname, 0,output='bin')
         if flame_status[0]:
             return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
@@ -114,7 +119,7 @@ class ManagePredictions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_predictions_result(predictionName, output='JSON')
+        flame_status = manage.action_predictions_result(predictionName, output='bin')
         if flame_status[0]:
             return Response(json.loads(flame_status[1].getJSON(xdata = True)), status=status.HTTP_200_OK)
         else:
@@ -145,7 +150,7 @@ class ManageDocumentation(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = manage.action_documentation(modelname, version, oformat='JSON')
+        flame_status = manage.action_documentation(modelname, version, oformat='bin')
         if flame_status[0]:
             return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         else:
@@ -161,8 +166,7 @@ class ManageVersions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_info(modelname, version,
-        output='JSON')
+        flame_status = manage.action_info(modelname, version, output='bin')
         if flame_status[0]:
             return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
@@ -187,7 +191,7 @@ class ManageParameters(APIView):
         """
         Retrieve parameters of model version
         """
-        flame_status = manage.action_parameters(modelname,version,"JSON")       
+        flame_status = manage.action_parameters(modelname,version,oformat='bin')       
         if flame_status[0]:
             return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         else:
@@ -199,7 +203,7 @@ class ManageValidation(APIView):
         """
         Retrieve parameters of model version
         """
-        flame_status = manage.action_results(modelname,version,"JSON")
+        flame_status = manage.action_results(modelname, version, True)
         if flame_status[0]:
             return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)
         else:
@@ -232,7 +236,8 @@ class ManageImport(APIView):
         except MultiValueDictKeyError:
             response = {"error": "Model to import not provided"}
             return JsonResponse(response, status = status.HTTP_400_BAD_REQUEST)
-        print (file_obj)
+        
+        # print (file_obj)
         model_name = file_obj.name.split('.')
         extension = model_name[1]
         model_name = model_name[0]
