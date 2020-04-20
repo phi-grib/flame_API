@@ -29,12 +29,10 @@ class ListModels(APIView):
     #permission_classes = (IsAuthenticated,)
     def get(self, request):
         models = manage.action_dir()
-        # TODO: fix what flame returns
-        if models[0]:
-            return Response(models[1], 200)
-        else:
-            # return Response(models[1], status = status.HTTP_404_NOT_FOUND)
-            return Response('error list', status = status.HTTP_404_NOT_FOUND)
+        return Response(models, 200)
+
+        # else:
+        #     return Response(models[1], status = status.HTTP_404_NOT_FOUND)
 
 
 class ListPredictions(APIView):
@@ -44,8 +42,10 @@ class ListPredictions(APIView):
     #permission_classes = (IsAuthenticated,)
     def get(self, request):
         predictions = manage.action_predictions_list()
-        # TODO: fix what flame returns
-        return Response(predictions[1], 200)
+        return Response(predictions, 200)
+
+        # else:
+        #     return Response(predictions[1], status = status.HTTP_404_NOT_FOUND)
 
 class ManageModels(APIView):
     """
