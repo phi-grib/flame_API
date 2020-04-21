@@ -6119,7 +6119,7 @@ var PredictorComponent = /** @class */ (function () {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.version);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx.models[ctx.modelName]);
-        } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["SelectControlValueAccessor"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["ɵangular_packages_forms_forms_x"]], styles: ["a[_ngcontent-%COMP%]:hover {\r\n\r\n    background: #E7E7E7;\r\n}\r\n\r\na.active[_ngcontent-%COMP%] {\r\n    background: #EBAB39;\r\n    border-bottom: 2px solid #0076a3;\r\n}\r\n\r\na[_ngcontent-%COMP%] {\r\n    \r\n    background:#22577a;\r\n    color: #f7f9ea;\r\n    border-bottom: 2px solid #0076a3;\r\n   \r\n}\r\n\r\n.wrap[_ngcontent-%COMP%] {\r\n    cursor:not-allowed;\r\n}\r\n\r\na.disabled[_ngcontent-%COMP%]{\r\n    background:#22577a;\r\n    pointer-events: none;\r\n    color: #f7f9ea; \r\n}\r\n\r\n.loading[_ngcontent-%COMP%] {\r\n    position: relative;\r\n    left: 50%;\r\n    z-index: 1;\r\n    width: 20px;\r\n    height: 20px;\r\n    margin: 0 0 0 0px;\r\n    border: 5px solid #e6901a;\r\n    border-radius: 60%;\r\n    border-top: 5px solid #B8DCED;\r\n    -webkit-animation: spin 2s linear infinite;\r\n    animation: spin 1s linear infinite;\r\n  }\r\n\r\n\r\n\r\n@-webkit-keyframes spin {\r\n    0% { -webkit-transform: rotate(0deg); }\r\n    100% { -webkit-transform: rotate(360deg); }\r\n  }\r\n\r\n@keyframes spin {\r\n    0% { transform: rotate(0deg); }\r\n    100% { transform: rotate(360deg); }\r\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdG9yL3ByZWRpY3Rvci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztJQUVJLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJLG1CQUFtQjtJQUNuQixnQ0FBZ0M7QUFDcEM7O0FBQ0E7O0lBRUksa0JBQWtCO0lBQ2xCLGNBQWM7SUFDZCxnQ0FBZ0M7O0FBRXBDOztBQUNBO0lBQ0ksa0JBQWtCO0FBQ3RCOztBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLG9CQUFvQjtJQUNwQixjQUFjO0FBQ2xCOztBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLFNBQVM7SUFDVCxVQUFVO0lBQ1YsV0FBVztJQUNYLFlBQVk7SUFDWixpQkFBaUI7SUFDakIseUJBQXlCO0lBQ3pCLGtCQUFrQjtJQUNsQiw2QkFBNkI7SUFDN0IsMENBQTBDO0lBQzFDLGtDQUFrQztFQUNwQzs7QUFFQSxXQUFXOztBQUNYO0lBQ0UsS0FBSywrQkFBK0IsRUFBRTtJQUN0QyxPQUFPLGlDQUFpQyxFQUFFO0VBQzVDOztBQUVBO0lBQ0UsS0FBSyx1QkFBdUIsRUFBRTtJQUM5QixPQUFPLHlCQUF5QixFQUFFO0VBQ3BDIiwiZmlsZSI6InNyYy9hcHAvcHJlZGljdG9yL3ByZWRpY3Rvci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYTpob3ZlciB7XHJcblxyXG4gICAgYmFja2dyb3VuZDogI0U3RTdFNztcclxufVxyXG5cclxuYS5hY3RpdmUge1xyXG4gICAgYmFja2dyb3VuZDogI0VCQUIzOTtcclxuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjMDA3NmEzO1xyXG59XHJcbmEge1xyXG4gICAgXHJcbiAgICBiYWNrZ3JvdW5kOiMyMjU3N2E7XHJcbiAgICBjb2xvcjogI2Y3ZjllYTtcclxuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjMDA3NmEzO1xyXG4gICBcclxufVxyXG4ud3JhcCB7XHJcbiAgICBjdXJzb3I6bm90LWFsbG93ZWQ7XHJcbn1cclxuYS5kaXNhYmxlZHtcclxuICAgIGJhY2tncm91bmQ6IzIyNTc3YTtcclxuICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xyXG4gICAgY29sb3I6ICNmN2Y5ZWE7IFxyXG59XHJcbi5sb2FkaW5nIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIGxlZnQ6IDUwJTtcclxuICAgIHotaW5kZXg6IDE7XHJcbiAgICB3aWR0aDogMjBweDtcclxuICAgIGhlaWdodDogMjBweDtcclxuICAgIG1hcmdpbjogMCAwIDAgMHB4O1xyXG4gICAgYm9yZGVyOiA1cHggc29saWQgI2U2OTAxYTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDYwJTtcclxuICAgIGJvcmRlci10b3A6IDVweCBzb2xpZCAjQjhEQ0VEO1xyXG4gICAgLXdlYmtpdC1hbmltYXRpb246IHNwaW4gMnMgbGluZWFyIGluZmluaXRlO1xyXG4gICAgYW5pbWF0aW9uOiBzcGluIDFzIGxpbmVhciBpbmZpbml0ZTtcclxuICB9XHJcblxyXG4gIC8qIFNhZmFyaSAqL1xyXG4gIEAtd2Via2l0LWtleWZyYW1lcyBzcGluIHtcclxuICAgIDAlIHsgLXdlYmtpdC10cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTsgfVxyXG4gICAgMTAwJSB7IC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTsgfVxyXG4gIH1cclxuXHJcbiAgQGtleWZyYW1lcyBzcGluIHtcclxuICAgIDAlIHsgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH1cclxuICAgIDEwMCUgeyB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyB9XHJcbiAgfVxyXG4iXX0= */"] });
+        } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["RequiredValidator"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["SelectControlValueAccessor"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_9__["ɵangular_packages_forms_forms_x"]], styles: ["a[_ngcontent-%COMP%]:hover {\r\n\r\n    background: #E7E7E7;\r\n}\r\n\r\na.active[_ngcontent-%COMP%] {\r\n    background: #EBAB39;\r\n    border-bottom: 2px solid #0076a3;\r\n}\r\n\r\na[_ngcontent-%COMP%] {\r\n    \r\n    background:#22577a;\r\n    color: #f7f9ea;\r\n    border-bottom: 2px solid #0076a3;\r\n}\r\n\r\n.formControl[_ngcontent-%COMP%]{\r\n    font-family: 'Barlow Semi Condensed', 'sans-serif';\r\n    font-size: 20px;\r\n}\r\n\r\n.wrap[_ngcontent-%COMP%] {\r\n    cursor:not-allowed;\r\n}\r\n\r\na.disabled[_ngcontent-%COMP%]{\r\n    background:#22577a;\r\n    pointer-events: none;\r\n    color: #f7f9ea; \r\n}\r\n\r\n.loading[_ngcontent-%COMP%] {\r\n    position: relative;\r\n    left: 50%;\r\n    z-index: 1;\r\n    width: 20px;\r\n    height: 20px;\r\n    margin: 0 0 0 0px;\r\n    border: 5px solid #e6901a;\r\n    border-radius: 60%;\r\n    border-top: 5px solid #B8DCED;\r\n    -webkit-animation: spin 2s linear infinite;\r\n    animation: spin 1s linear infinite;\r\n  }\r\n\r\n\r\n\r\n@-webkit-keyframes spin {\r\n    0% { -webkit-transform: rotate(0deg); }\r\n    100% { -webkit-transform: rotate(360deg); }\r\n  }\r\n\r\n@keyframes spin {\r\n    0% { transform: rotate(0deg); }\r\n    100% { transform: rotate(360deg); }\r\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcHJlZGljdG9yL3ByZWRpY3Rvci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztJQUVJLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJLG1CQUFtQjtJQUNuQixnQ0FBZ0M7QUFDcEM7O0FBQ0E7O0lBRUksa0JBQWtCO0lBQ2xCLGNBQWM7SUFDZCxnQ0FBZ0M7QUFDcEM7O0FBRUE7SUFDSSxrREFBa0Q7SUFDbEQsZUFBZTtBQUNuQjs7QUFDQTtJQUNJLGtCQUFrQjtBQUN0Qjs7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixvQkFBb0I7SUFDcEIsY0FBYztBQUNsQjs7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixTQUFTO0lBQ1QsVUFBVTtJQUNWLFdBQVc7SUFDWCxZQUFZO0lBQ1osaUJBQWlCO0lBQ2pCLHlCQUF5QjtJQUN6QixrQkFBa0I7SUFDbEIsNkJBQTZCO0lBQzdCLDBDQUEwQztJQUMxQyxrQ0FBa0M7RUFDcEM7O0FBRUEsV0FBVzs7QUFDWDtJQUNFLEtBQUssK0JBQStCLEVBQUU7SUFDdEMsT0FBTyxpQ0FBaUMsRUFBRTtFQUM1Qzs7QUFFQTtJQUNFLEtBQUssdUJBQXVCLEVBQUU7SUFDOUIsT0FBTyx5QkFBeUIsRUFBRTtFQUNwQyIsImZpbGUiOiJzcmMvYXBwL3ByZWRpY3Rvci9wcmVkaWN0b3IuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImE6aG92ZXIge1xyXG5cclxuICAgIGJhY2tncm91bmQ6ICNFN0U3RTc7XHJcbn1cclxuXHJcbmEuYWN0aXZlIHtcclxuICAgIGJhY2tncm91bmQ6ICNFQkFCMzk7XHJcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgIzAwNzZhMztcclxufVxyXG5hIHtcclxuICAgIFxyXG4gICAgYmFja2dyb3VuZDojMjI1NzdhO1xyXG4gICAgY29sb3I6ICNmN2Y5ZWE7XHJcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgIzAwNzZhMztcclxufVxyXG4gICBcclxuLmZvcm1Db250cm9se1xyXG4gICAgZm9udC1mYW1pbHk6ICdCYXJsb3cgU2VtaSBDb25kZW5zZWQnLCAnc2Fucy1zZXJpZic7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxuLndyYXAge1xyXG4gICAgY3Vyc29yOm5vdC1hbGxvd2VkO1xyXG59XHJcbmEuZGlzYWJsZWR7XHJcbiAgICBiYWNrZ3JvdW5kOiMyMjU3N2E7XHJcbiAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcclxuICAgIGNvbG9yOiAjZjdmOWVhOyBcclxufVxyXG4ubG9hZGluZyB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBsZWZ0OiA1MCU7XHJcbiAgICB6LWluZGV4OiAxO1xyXG4gICAgd2lkdGg6IDIwcHg7XHJcbiAgICBoZWlnaHQ6IDIwcHg7XHJcbiAgICBtYXJnaW46IDAgMCAwIDBweDtcclxuICAgIGJvcmRlcjogNXB4IHNvbGlkICNlNjkwMWE7XHJcbiAgICBib3JkZXItcmFkaXVzOiA2MCU7XHJcbiAgICBib3JkZXItdG9wOiA1cHggc29saWQgI0I4RENFRDtcclxuICAgIC13ZWJraXQtYW5pbWF0aW9uOiBzcGluIDJzIGxpbmVhciBpbmZpbml0ZTtcclxuICAgIGFuaW1hdGlvbjogc3BpbiAxcyBsaW5lYXIgaW5maW5pdGU7XHJcbiAgfVxyXG5cclxuICAvKiBTYWZhcmkgKi9cclxuICBALXdlYmtpdC1rZXlmcmFtZXMgc3BpbiB7XHJcbiAgICAwJSB7IC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH1cclxuICAgIDEwMCUgeyAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IH1cclxuICB9XHJcblxyXG4gIEBrZXlmcmFtZXMgc3BpbiB7XHJcbiAgICAwJSB7IHRyYW5zZm9ybTogcm90YXRlKDBkZWcpOyB9XHJcbiAgICAxMDAlIHsgdHJhbnNmb3JtOiByb3RhdGUoMzYwZGVnKTsgfVxyXG4gIH1cclxuIl19 */"] });
     return PredictorComponent;
 }());
 
@@ -7268,9 +7268,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import { ChartDataSets, ChartType, ChartOptions } from 'chart.js';
-// import { Label, BaseChartDirective } from 'ng2-charts';
-// import 'chartjs-plugin-error-bars';
 
 
 
@@ -7494,157 +7491,6 @@ var QuantitConformalComponent = /** @class */ (function () {
         this.modelBuildInfo = {};
         this.modelValidationInfo = {};
         this.modelConformal = {};
-        // // Options
-        // public ChartOptions: ChartOptions = {
-        //   responsive: true,
-        //   animation: {
-        //     duration: 0
-        //   }, 
-        //   tooltips: {
-        //     callbacks: {
-        //       label: function(tooltipItem, data) {
-        //           // var label = data.datasets[tooltipItem.datasetIndex].label || '';
-        //           // if (label) {
-        //           //     label += ': ';
-        //           // }
-        //           // var labelx = Math.round(tooltipItem.xLabel * 100) / 100;
-        //           // var labely = Math.round(tooltipItem.yLabel * 100) / 100;
-        //           // return '(' + labelx + ', ' + labely + ')';
-        //           return '(' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
-        //       },
-        //       title: function(tooltipItem, data) {
-        //         const label = data.labels[tooltipItem[0].index];
-        //         return label;
-        //       }
-        //     },
-        //     titleFontSize: 16,
-        //     bodyFontSize: 14
-        //   },
-        //   scales: {
-        //     xAxes: [{
-        //       type: 'linear',
-        //       position: 'bottom',
-        //       scaleLabel: {
-        //         display: true,
-        //         fontSize: 20,
-        //         labelString: 'Experimental'
-        //       }
-        //     }],
-        //     yAxes: [{
-        //       scaleLabel: {
-        //         display: true,
-        //         fontSize: 20,
-        //         labelString: 'Model'
-        //       },
-        //       ticks: {
-        //         fontSize: 15
-        //       }
-        //     }]
-        //   },
-        //   legend: {
-        //     display: false
-        //   },
-        //   plugins: {
-        //     chartJsPluginErrorBars: {
-        //       color: 'rgba(0,0,0,0.2)',
-        //       lineWidth: 2,
-        //       absoluteValues: true
-        //     }
-        //   }
-        // };
-        // public ChartOptionsFitted: ChartOptions = {
-        //   responsive: true,
-        //   animation: {
-        //     duration: 0
-        //   }, 
-        //   tooltips: {
-        //     callbacks: {
-        //        label: function(tooltipItem, data) {
-        //           return '(' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
-        //        },
-        //        title: function(tooltipItem, data) {
-        //         const label = data.labels[tooltipItem[0].index];
-        //         return label;
-        //        }
-        //     }
-        //   },
-        //  scales: {
-        //     xAxes: [{
-        //       type: 'linear',
-        //       position: 'bottom',
-        //       scaleLabel: {
-        //         display: true,
-        //         labelString: 'experimental'
-        //       }
-        //     }],
-        //     yAxes: [{
-        //       position: 'bottom',
-        //       scaleLabel: {
-        //         display: true,
-        //         labelString: 'Fitted'
-        //       }/*,
-        //       ticks: {
-        //         min: -10,
-        //         max: 0,
-        //       }*/
-        //     }]
-        //   },
-        //   legend: {
-        //     display: false
-        //   },
-        //   plugins: {
-        //     chartJsPluginErrorBars: {
-        //       color: '#666',
-        //       lineWidth: 2,
-        //       absoluteValues: true
-        //     }
-        //   }
-        // };
-        // public ChartLabels: Label[] = [];
-        // public ChartDataPredicted: ChartDataSets[] = [
-        //   {
-        //     data: [],
-        //     pointRadius: 5,
-        //     pointBorderWidth: 2,
-        //     pointBorderColor: 'rgba(255,0,0,1)',
-        //     pointBackgroundColor: 'rgba(255,0,0,0.2)',
-        //     type: 'scatter',
-        //     showLine: false,
-        //     fill: true
-        //   },
-        //   {
-        //     data: [],
-        //     borderColor: 'rgba(0,0,0,0.8)',
-        //     type: 'line',
-        //     showLine: true,
-        //     fill: false,
-        //     pointRadius: 0,
-        //     borderWidth: 3
-        //   },
-        // ];
-        // public ChartDataFitted: any[] = [
-        //   {
-        //     errorBars : {},
-        //     data: [],
-        //     pointRadius: 5,
-        //     pointBorderWidth: 2,
-        //     pointBorderColor: 'rgba(255,0,0,1)',
-        //     pointBackgroundColor: 'rgba(255,0,0,0.2)',
-        //     type: 'scatter',
-        //     showLine: false,
-        //     fill: true
-        //   },
-        //   {
-        //     data: [],
-        //     borderColor: 'rgba(0,0,0,0.8)',
-        //     type: 'line',
-        //     showLine: true,
-        //     fill: false,
-        //     pointRadius: 0,
-        //     borderWidth: 3
-        //   },
-        // ];
-        // public ChartType: ChartType = 'line';
         this.plotFittedConf = {
             data: [
                 { x: [],
@@ -7662,6 +7508,7 @@ var QuantitConformalComponent = /** @class */ (function () {
                     },
                     error_y: {
                         type: 'data',
+                        color: 'rgba(0,0,0,0.2)',
                         symmetric: false,
                         array: [],
                         arrayminus: []
@@ -7695,6 +7542,7 @@ var QuantitConformalComponent = /** @class */ (function () {
                     },
                     error_y: {
                         type: 'data',
+                        color: 'rgba(0,0,0,0.2)',
                         symmetric: false,
                         array: [],
                         arrayminus: []
@@ -7723,6 +7571,8 @@ var QuantitConformalComponent = /** @class */ (function () {
                 showlegend: false,
                 showtitle: false,
                 xaxis: {
+                    hoverformat: '.2f',
+                    zeroline: false,
                     showgrid: true,
                     showline: true,
                     gridwidth: 1,
@@ -7739,6 +7589,8 @@ var QuantitConformalComponent = /** @class */ (function () {
                     },
                 },
                 yaxis: {
+                    hoverformat: '.2f',
+                    zeroline: false,
                     showgrid: true,
                     showline: true,
                     gridwidth: 1,
@@ -7758,7 +7610,7 @@ var QuantitConformalComponent = /** @class */ (function () {
             config: {
                 // responsive: true,
                 displaylogo: false,
-                modeBarButtonsToRemove: ['lasso2d', 'autoScale2d']
+                modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d']
             }
         };
     }
@@ -7769,19 +7621,8 @@ var QuantitConformalComponent = /** @class */ (function () {
         this.plotPredictedConf.data[0].x = [];
         this.plotPredictedConf.data[0].y = [];
         this.plotPredictedConf.data[0].text = [];
-        // this.ChartDataFitted[0].data = [];
-        // this.ChartDataFitted[1].data = [];
-        // this.ChartLabels = [];
         this.getDocumentation();
         this.getValidation();
-        // const toggler = document.getElementsByClassName('caret');
-        // let i;
-        // for (i = 0; i < toggler.length; i++) {
-        //   toggler[i].addEventListener('click', function() {
-        //     this.parentElement.querySelector('.nested').classList.toggle('active');
-        //     this.classList.toggle('caret-down');
-        //   });
-        // }
     };
     QuantitConformalComponent.prototype.isObject = function (val) {
         if (val === null) {
@@ -7834,61 +7675,19 @@ var QuantitConformalComponent = /** @class */ (function () {
                 }
                 finally { if (e_2) throw e_2.error; }
             }
-            console.log(info['Y_pred']);
-            console.log(_this.modelConformal['Conformal_prediction_ranges']);
             setTimeout(function () {
-                // tslint:disable-next-line:forin
-                // if ('Y_adj' in info) {
-                //   this.plotFitted.data[0].x = info['ymatrix'] ;
-                //   this.plotFitted.data[0].y = info['Y_adj'];
-                //   this.plotFitted.data[0].text = info['obj_nam'];
-                //   this.plotFitted.data[1].x = [ Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])]  ;
-                //   this.plotFitted.data[1].y = [ Math.min.apply(Math, info['Y_adj']), Math.max.apply(Math, info['Y_adj'])]  ;
-                // }
-                if ('Y_pred' in info) {
-                    _this.plotPredictedConf.data[0].x = info['ymatrix'];
-                    _this.plotPredictedConf.data[0].y = info['Y_pred'];
-                    // for (const i in info['ymatrix']) {
-                    //   this.plotPredicted.data[0].error_y.array[i] = this.modelConformal['Conformal_prediction_ranges'][i][0];
-                    //   this.plotPredicted.data[0].error_y.arrayminus[i] = this.modelConformal['Conformal_prediction_ranges'][i][1];
-                    // }
-                    _this.plotPredictedConf.data[0].text = info['obj_nam'];
-                    _this.plotPredictedConf.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
-                    _this.plotPredictedConf.data[1].y = [Math.min.apply(Math, info['Y_pred']), Math.max.apply(Math, info['Y_pred'])];
+                var ymean = _this.modelConformal['Conformal_interval_medians'];
+                var yint = _this.modelConformal['Conformal_prediction_ranges']; // (min, max)
+                _this.plotPredictedConf.data[0].x = info['ymatrix'];
+                _this.plotPredictedConf.data[0].y = ymean;
+                for (var i in info['ymatrix']) {
+                    _this.plotPredictedConf.data[0].error_y.array[i] = yint[i][1] - ymean[i];
+                    _this.plotPredictedConf.data[0].error_y.arrayminus[i] = ymean[i] - yint[i][0];
                 }
+                _this.plotPredictedConf.data[0].text = info['obj_nam'];
+                _this.plotPredictedConf.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
+                _this.plotPredictedConf.data[1].y = [Math.min.apply(Math, ymean), Math.max.apply(Math, ymean)];
             }, 50);
-            // setTimeout(() => {
-            //   let max: number = null;
-            //   let min: number = null;
-            //   // tslint:disable-next-line:forin
-            //   for (const i in info['ymatrix']) {
-            //     // this.ChartDataPredicted[0].data[i] = { x: info['ymatrix'][i], y: info['Y_pred'][i]};
-            //     // this.ChartDataPredicted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
-            //     this.ChartDataFitted[0].data[i] = { x: info['ymatrix'][i], y: this.modelConformal['Conformal_interval_medians'][i]};
-            //     this.ChartDataFitted[0].errorBars[info['obj_nam'][i]] = {
-            //       plus: this.modelConformal['Conformal_prediction_ranges'][i][0],
-            //       minus: this.modelConformal['Conformal_prediction_ranges'][i][1]};
-            //     this.ChartDataFitted[1].data[i] = { x: info['ymatrix'][i], y: info['ymatrix'][i]};
-            //     if (max) {
-            //       if (max < this.modelConformal['Conformal_prediction_ranges'][i][0]) {
-            //           max = this.modelConformal['Conformal_prediction_ranges'][i][0];
-            //       }
-            //     } else {
-            //       max = this.modelConformal['Conformal_prediction_ranges'][i][0];
-            //     }
-            //     if (min) {
-            //       if (min > this.modelConformal['Conformal_prediction_ranges'][i][1]) {
-            //           min = this.modelConformal['Conformal_prediction_ranges'][i][1];
-            //       }
-            //     } else {
-            //       min = this.modelConformal['Conformal_prediction_ranges'][i][1];
-            //     }
-            //     this.ChartLabels[i] = info['obj_nam'][i];
-            //   }
-            //   // this.ChartOptionsFitted.scales.yAxes[0].ticks.min = min - 1 ;
-            //   // this.ChartOptionsFitted.scales.yAxes[0].ticks.max = max + 1;
-            //   // console.log(this.QuantitConformalChart.nativeElement);
-            // }, 50);
         }, function (error) {
             alert('Error getting model');
         });
@@ -8463,6 +8262,8 @@ var QuantitNoConformalComponent = /** @class */ (function () {
                 showlegend: false,
                 showtitle: false,
                 xaxis: {
+                    hoverformat: '.2f',
+                    zeroline: false,
                     showgrid: true,
                     showline: true,
                     gridwidth: 1,
@@ -8479,6 +8280,8 @@ var QuantitNoConformalComponent = /** @class */ (function () {
                     },
                 },
                 yaxis: {
+                    hoverformat: '.2f',
+                    zeroline: false,
                     showgrid: true,
                     showline: true,
                     gridwidth: 1,
@@ -8498,7 +8301,7 @@ var QuantitNoConformalComponent = /** @class */ (function () {
             config: {
                 // responsive: true,
                 displaylogo: false,
-                modeBarButtonsToRemove: ['lasso2d', 'autoScale2d']
+                modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d']
             }
         };
     }
@@ -8542,7 +8345,6 @@ var QuantitNoConformalComponent = /** @class */ (function () {
                 finally { if (e_1) throw e_1.error; }
             }
             setTimeout(function () {
-                // tslint:disable-next-line:forin
                 _this.plotFitted.data[0].x = info['ymatrix'];
                 _this.plotFitted.data[0].y = info['Y_adj'];
                 _this.plotFitted.data[0].text = info['obj_nam'];
