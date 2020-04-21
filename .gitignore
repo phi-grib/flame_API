@@ -12,3 +12,8 @@ uwsgi.ini
 __pycache__/
 */__pycache__/
 *.ipynb
+flame_api/flame.log
+scores.tsv
+pca-scores12.png
+flame.log
+flame_api/flame.log
