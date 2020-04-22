@@ -3859,13 +3859,14 @@ var PredictionListComponent = /** @class */ (function () {
         this.commonService.getPredictionList().subscribe(function (result) {
             if (result[0]) {
                 _this.prediction.predictions = result[1];
+                console.log(result[1]);
                 setTimeout(function () {
                     var table = $('#dataTablePredictions').DataTable({
                         /*Ordering by date */
                         order: [[4, 'desc']],
                         columnDefs: [{ 'type': 'date-euro', 'targets': 4 }]
                     });
-                    if (result.length > 0) {
+                    if (result[1].length > 0) {
                         _this.prediction.name = $('#dataTablePredictions tbody tr:first td:first').text();
                         _this.prediction.modelName = $('#dataTablePredictions tbody tr:first td:eq(1)').text();
                         _this.prediction.modelVersion = $('#dataTablePredictions tbody tr:first td:eq(2)').text();
@@ -5089,31 +5090,6 @@ var PredictionComponent = /** @class */ (function () {
         this.modelValidationInfo = {};
         this.submodels = [];
         this.submodelsIndex = 0;
-        // // PolarArea
-        // public polarChartOptions: any = {
-        //   responsive: true,
-        //   animation: false, 
-        //   startAngle : 1 * Math.PI,
-        //   scale: {
-        //     gridLines: {
-        //       color: 'rgba(0, 0, 0, 0.5)'
-        //     },
-        //     ticks: {
-        //       color: 'rgba(0, 0, 0, 0.5)',
-        //       // fontStyle : 'bold'
-        //     }
-        //   }
-        // };
-        // public polarAreaChartLabels: Label[] = ['TP', 'FP', 'TN', 'FN'];
-        // public polarAreaChartData: SingleDataSet = [0, 0, 0, 0];
-        // public polarAreaLegend = true;
-        // public polarAreaChartType: ChartType = 'polarArea';
-        // public polarAreaChartColors = [
-        //   {
-        //     // backgroundColor: ['rgba(0,255,0,0.3)', 'rgba(235,143,3,0.3)', 'rgba(3,49,155,0.3)', 'rgba(255,0,0,0.3)'],
-        //     backgroundColor: ['rgba(0,255,0,0.8)', 'rgba(255,153,3,0.8)', 'rgba(80,190,25,0.8)', 'rgba(255,80,75,0.8)'],
-        //   },
-        // ];
         this.predictData = [{
                 offset: 45,
                 r: [],
@@ -5719,18 +5695,25 @@ var PredictorComponent = /** @class */ (function () {
     PredictorComponent.prototype.getPredictionList = function () {
         var _this = this;
         this.commonService.getPredictionList().subscribe(function (result) {
-            _this.prediction.predictions = result;
-            setTimeout(function () {
-                var table = $('#dataTablePredictions').DataTable({
-                    /*Ordering by date */
-                    order: [[4, 'desc']],
-                    columnDefs: [{ 'type': 'date-euro', 'targets': 4 }]
-                });
-                _this.prediction.name = $('#dataTablePredictions tbody tr:first td:first').text();
-                _this.prediction.modelName = $('#dataTablePredictions tbody tr:first td:eq(1)').text();
-                _this.prediction.modelVersion = $('#dataTablePredictions tbody tr:first td:eq(2)').text();
-                _this.prediction.date = $('#dataTablePredictions tbody tr:first td:eq(4)').text();
-            }, 100);
+            if (result[0]) {
+                _this.prediction.predictions = result[1];
+                setTimeout(function () {
+                    var table = $('#dataTablePredictions').DataTable({
+                        /*Ordering by date */
+                        order: [[4, 'desc']],
+                        columnDefs: [{ 'type': 'date-euro', 'targets': 4 }]
+                    });
+                    if (result[1].length > 0) {
+                        _this.prediction.name = $('#dataTablePredictions tbody tr:first td:first').text();
+                        _this.prediction.modelName = $('#dataTablePredictions tbody tr:first td:eq(1)').text();
+                        _this.prediction.modelVersion = $('#dataTablePredictions tbody tr:first td:eq(2)').text();
+                        _this.prediction.date = $('#dataTablePredictions tbody tr:first td:eq(4)').text();
+                    }
+                }, 100);
+            }
+            else {
+                alert(result[1]);
+            }
         }, function (error) {
             alert(error.message);
         });
