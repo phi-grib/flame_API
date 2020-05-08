@@ -146,15 +146,26 @@ class ManageDocumentation(APIView):
         
         """
         Retrieves model documentation
-        TODO: dont use hardcoded 0 version
-        TODO: haandle info errors 
         """
-        # TODO: FIX model info and metadata for  whole endpoint in flame
         flame_status = manage.action_documentation(modelname, version, oformat='bin')
         if flame_status[0]:
             return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
+    def post(self, request, modelname, version):
+        
+        """
+        Updates model documentation
+        """
+        documentation = request.POST.get('documentation') 
+        flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
+        if flame_status[0]:
+            # return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
+            return Response(flame_status[0], status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
 
 class ManageVersions(APIView):
     """
