@@ -27,7 +27,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*!****************************!*\
   !*** ./src/app/Globals.ts ***!
   \****************************/
-/*! exports provided: Model, Prediction, Manager, Globals, Similarity */
+/*! exports provided: Model, Prediction, Manager, Globals, Similarity, CustomHTMLElement */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -37,7 +37,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Manager", function() { return Manager; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Globals", function() { return Globals; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Similarity", function() { return Similarity; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomHTMLElement", function() { return CustomHTMLElement; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
+
 
 
 var Model = /** @class */ (function () {
@@ -65,12 +68,12 @@ var Model = /** @class */ (function () {
         this.selectedItems = [];
     }
     Model.ɵfac = function Model_Factory(t) { return new (t || Model)(); };
-    Model.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: Model, factory: Model.ɵfac });
+    Model.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: Model, factory: Model.ɵfac });
     return Model;
 }());
 
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Model, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](Model, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"]
     }], null, null); })();
 var Prediction = /** @class */ (function () {
     function Prediction() {
@@ -86,12 +89,12 @@ var Prediction = /** @class */ (function () {
         this.date = undefined;
     }
     Prediction.ɵfac = function Prediction_Factory(t) { return new (t || Prediction)(); };
-    Prediction.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: Prediction, factory: Prediction.ɵfac });
+    Prediction.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: Prediction, factory: Prediction.ɵfac });
     return Prediction;
 }());
 
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Prediction, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](Prediction, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"]
     }], null, null); })();
 var Manager = /** @class */ (function () {
     function Manager() {
@@ -100,12 +103,12 @@ var Manager = /** @class */ (function () {
         this.file = undefined; // Name of file uploaded in the second step
     }
     Manager.ɵfac = function Manager_Factory(t) { return new (t || Manager)(); };
-    Manager.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: Manager, factory: Manager.ɵfac });
+    Manager.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: Manager, factory: Manager.ɵfac });
     return Manager;
 }());
 
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Manager, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](Manager, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"]
     }], null, null); })();
 var Globals = /** @class */ (function () {
     function Globals() {
@@ -113,12 +116,12 @@ var Globals = /** @class */ (function () {
         this.tablePredictionVisible = false;
     }
     Globals.ɵfac = function Globals_Factory(t) { return new (t || Globals)(); };
-    Globals.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: Globals, factory: Globals.ɵfac });
+    Globals.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: Globals, factory: Globals.ɵfac });
     return Globals;
 }());
 
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Globals, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](Globals, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"]
     }], null, null); })();
 var Similarity = /** @class */ (function () {
     function Similarity() {
@@ -133,13 +136,28 @@ var Similarity = /** @class */ (function () {
         this.smileSrc = undefined;
     }
     Similarity.ɵfac = function Similarity_Factory(t) { return new (t || Similarity)(); };
-    Similarity.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: Similarity, factory: Similarity.ɵfac });
+    Similarity.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: Similarity, factory: Similarity.ɵfac });
     return Similarity;
 }());
 
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](Similarity, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](Similarity, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"]
     }], null, null); })();
+var CustomHTMLElement = /** @class */ (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(CustomHTMLElement, _super);
+    function CustomHTMLElement() {
+        return _super.call(this) || this;
+    }
+    CustomHTMLElement.prototype.on = function (event_type, cb) {
+    };
+    CustomHTMLElement.ɵfac = function CustomHTMLElement_Factory(t) { return new (t || CustomHTMLElement)(); };
+    CustomHTMLElement.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: CustomHTMLElement, factory: CustomHTMLElement.ɵfac });
+    return CustomHTMLElement;
+}(HTMLElement));
+
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](CustomHTMLElement, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"]
+    }], function () { return []; }, null); })();
 
 
 /***/ }),
@@ -7680,9 +7698,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm5/core.js");
 /* harmony import */ var _quantit_conformal_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./quantit-conformal.service */ "./src/app/quantit-conformal/quantit-conformal.service.ts");
-/* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Globals */ "./src/app/Globals.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/common.js");
-/* harmony import */ var angular_plotly_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angular-plotly.js */ "./node_modules/angular-plotly.js/__ivy_ngcc__/fesm5/angular-plotly.js.js");
+/* harmony import */ var smiles_drawer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! smiles-drawer */ "./node_modules/smiles-drawer/app.js");
+/* harmony import */ var smiles_drawer__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(smiles_drawer__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! plotly.js/dist/plotly.js */ "./node_modules/plotly.js/dist/plotly.js");
+/* harmony import */ var plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Globals__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Globals */ "./src/app/Globals.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm5/common.js");
+/* harmony import */ var angular_plotly_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-plotly.js */ "./node_modules/angular-plotly.js/__ivy_ngcc__/fesm5/angular-plotly.js.js");
+
+
 
 
 
@@ -8260,6 +8284,33 @@ var QuantitConformalComponent = /** @class */ (function () {
                 //       const context = canvas.getContext('2d');
                 //       context.clearRect(0, 0, canvas.width, canvas.height);
                 //   });
+                var options = { 'width': 300, 'height': 300 };
+                var smilesDrawer = new smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"](options);
+                //       myPlot.on('plotly_hover', function(eventdata){ 
+                //         var points = eventdata.points[0];
+                //         SmilesDrawer.parse(info['SMILES'][points.pointNumber], function(tree) {
+                //           smilesDrawer.draw(tree, 'scatter_canvas', 'light', false);
+                //   });
+                // })
+                // .on('plotly_unhover', function(data){
+                //   // const context = canvas.getContext('2d');
+                //   // context.clearRect(0, 0, canvas.width, canvas.height);
+                // });
+                setTimeout(function () {
+                    // Plotly.newPlot(this.plotContainerId, this.plotdata, this.ploylayout,{displayModeBar: false});
+                    plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_4__["newPlot"]('scatterDIV', _this.plotScores.data, _this.plotCommonScores.layout, _this.plotCommonScores.config);
+                    var myPlot = document.getElementById('scatterDIV');
+                    myPlot.on('plotly_hover', function (eventdata) {
+                        var points = eventdata.points[0];
+                        smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](info['SMILES'][points.pointNumber], function (tree) {
+                            smilesDrawer.draw(tree, 'scatter_canvas', 'light', false);
+                        });
+                    });
+                    // .on('plotly_unhover', function(data){
+                    //   // const context = canvas.getContext('2d');
+                    //   // context.clearRect(0, 0, canvas.width, canvas.height);
+                    // });
+                }, 1);
                 _this.plotViolin.data[0].y = info['ymatrix'];
                 _this.plotViolin.data[0].text = info['obj_nam'];
                 // predicted data
@@ -8313,7 +8364,7 @@ var QuantitConformalComponent = /** @class */ (function () {
         });
     };
     ;
-    QuantitConformalComponent.ɵfac = function QuantitConformalComponent_Factory(t) { return new (t || QuantitConformalComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_quantit_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QuantitConformalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_Globals__WEBPACK_IMPORTED_MODULE_3__["Model"])); };
+    QuantitConformalComponent.ɵfac = function QuantitConformalComponent_Factory(t) { return new (t || QuantitConformalComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_quantit_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QuantitConformalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_Globals__WEBPACK_IMPORTED_MODULE_5__["Model"])); };
     QuantitConformalComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: QuantitConformalComponent, selectors: [["app-quantit-conformal"]], inputs: { modelName: "modelName", modelVersion: "modelVersion" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"]], decls: 49, vars: 21, consts: [[1, "row"], [1, "card", "w-100"], ["id", "pills-tab", "role", "tablist", 1, "nav", "nav-pills", "mb-3"], [1, "nav-item"], ["id", "pills-predict-tab", "data-toggle", "tab", "href", "#pills-predict", "role", "tab", "aria-controls", "pills-predict", "aria-selected", "true", 1, "nav-link", "active"], ["id", "pills-fitting-tab", "data-toggle", "tab", "href", "#pills-fitting", "role", "tab", "aria-controls", "pills-fitting", "aria-selected", "false", 1, "nav-link"], ["id", "pills-two-tab", "data-toggle", "tab", "href", "#pills-two", "role", "tab", "aria-controls", "pills-two", "aria-selected", "false", 1, "nav-link"], ["id", "pills-tabContent", 1, "tab-content"], ["id", "pills-predict", "role", "tabpanel", "aria-labelledby", "pills-predict-tab", 1, "tab-pane", "fade", "show", "active"], [1, "card-body"], [1, "row", "justify-content-between"], [1, "col-3", "mt-1"], [1, "table", "table-sm", "mt-4"], [4, "ngIf"], [3, "data", "layout", "config"], ["id", "pills-fitting", "role", "tabpanel", "aria-labelledby", "pills-fitting-tab", 1, "tab-pane", "fade"], ["id", "pills-two", "role", "tabpanel", "aria-labelledby", "pills-two-tab", 1, "tab-pane", "fade"], ["id", "scatterDIV", 1, "row"], ["id", "scatter_draw", 3, "data", "layout", "config"], ["id", "scatter_canvas"], ["class", "row", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "left", 1, "text-left", "text-capitalize", 3, "title"], [1, "text-right", "text-capitalize"], ["role", "alert", 1, "alert", "alert-danger", "text-center"]], template: function QuantitConformalComponent_Template(rf, ctx) { if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
@@ -8423,7 +8474,7 @@ var QuantitConformalComponent = /** @class */ (function () {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", ctx.plotViolin.data)("layout", ctx.plotViolin.layout)("config", ctx.plotCommon.config);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.modelWarning != "");
-        } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["NgIf"], angular_plotly_js__WEBPACK_IMPORTED_MODULE_5__["PlotComponent"]], styles: ["ul[_ngcontent-%COMP%]   li.nav-item[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  background:white;\r\n  color: #B8DCED;\r\n}\r\n\r\nul[_ngcontent-%COMP%]   li.nav-item[_ngcontent-%COMP%]   a.active[_ngcontent-%COMP%]{\r\n  background:white;\r\n  color:#22577A;\r\n  font-weight: bold;\r\n  border-bottom: 4px solid #e59300;\r\n}\r\n\r\ntable[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\r\n  padding-top: 1px;\r\n  padding-bottom: 1px;\r\n}\r\n\r\n.card-body[_ngcontent-%COMP%] {\r\n  border-width: 0px;\r\n  padding-top: 0px;\r\n  padding-bottom: 5px;\r\n}\r\n\r\n.card[_ngcontent-%COMP%] {\r\n  border-width: 0px;\r\n}\r\n\r\n\r\n\r\n.spinner-border[_ngcontent-%COMP%] {\r\n  display: block;\r\n  position: absolute;\r\n  z-index: 1031;\r\n  top: 25%; \r\n  right: 45%; \r\n}\r\n\r\n#overlay[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  \r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  background-color: #FAFAFA;\r\n  opacity: 0.7;\r\n  z-index: 2;\r\n  cursor: pointer;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcXVhbnRpdC1jb25mb3JtYWwvcXVhbnRpdC1jb25mb3JtYWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7R0FRRzs7QUFFSDtFQUNFLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixpQkFBaUI7RUFDakIsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsaUJBQWlCO0FBQ25COztBQUVBLHFDQUFxQzs7QUFDckM7RUFDRSxjQUFjO0VBQ2Qsa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixRQUFRLEVBQUUsc0NBQXNDO0VBQ2hELFVBQVUsRUFBRSxxQ0FBcUM7QUFDbkQ7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLE1BQU07RUFDTixPQUFPO0VBQ1AsUUFBUTtFQUNSLFNBQVM7RUFDVCx5QkFBeUI7RUFDekIsWUFBWTtFQUNaLFVBQVU7RUFDVixlQUFlO0FBQ2pCIiwiZmlsZSI6InNyYy9hcHAvcXVhbnRpdC1jb25mb3JtYWwvcXVhbnRpdC1jb25mb3JtYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIHVsIGxpLm5hdi1pdGVtIGEge1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6ICM2Qzc1N0Q7XHJcbn1cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEuYWN0aXZle1xyXG4gIGJhY2tncm91bmQ6ICNGMEYwRjA7XHJcbiAgY29sb3I6ICM2Qzc1N0Q7XHJcbn0gKi9cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEge1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6ICNCOERDRUQ7XHJcbn1cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEuYWN0aXZle1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6IzIyNTc3QTtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBib3JkZXItYm90dG9tOiA0cHggc29saWQgI2U1OTMwMDtcclxufVxyXG5cclxudGFibGUgdGQge1xyXG4gIHBhZGRpbmctdG9wOiAxcHg7XHJcbiAgcGFkZGluZy1ib3R0b206IDFweDtcclxufVxyXG5cclxuLmNhcmQtYm9keSB7XHJcbiAgYm9yZGVyLXdpZHRoOiAwcHg7XHJcbiAgcGFkZGluZy10b3A6IDBweDtcclxuICBwYWRkaW5nLWJvdHRvbTogNXB4O1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgYm9yZGVyLXdpZHRoOiAwcHg7XHJcbn1cclxuXHJcbi8qIHJvdGF0aW5nIGNpcmNsZSB0byBzaG93IHByb2dyZXNzICovXHJcbi5zcGlubmVyLWJvcmRlciB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHotaW5kZXg6IDEwMzE7XHJcbiAgdG9wOiAyNSU7IC8qIHdoZXJlIC4uLiBpcyB0aGUgZWxlbWVudCdzIGhlaWdodCAqL1xyXG4gIHJpZ2h0OiA0NSU7IC8qIHdoZXJlIC4uLiBpcyB0aGUgZWxlbWVudCdzIHdpZHRoICovXHJcbn1cclxuXHJcbiNvdmVybGF5IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgLypkaXNwbGF5OiBub25lOyovXHJcbiAgdG9wOiAwO1xyXG4gIGxlZnQ6IDA7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgYm90dG9tOiAwO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNGQUZBRkE7XHJcbiAgb3BhY2l0eTogMC43O1xyXG4gIHotaW5kZXg6IDI7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiJdfQ== */"] });
+        } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], angular_plotly_js__WEBPACK_IMPORTED_MODULE_7__["PlotComponent"]], styles: ["ul[_ngcontent-%COMP%]   li.nav-item[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  background:white;\r\n  color: #B8DCED;\r\n}\r\n\r\nul[_ngcontent-%COMP%]   li.nav-item[_ngcontent-%COMP%]   a.active[_ngcontent-%COMP%]{\r\n  background:white;\r\n  color:#22577A;\r\n  font-weight: bold;\r\n  border-bottom: 4px solid #e59300;\r\n}\r\n\r\ntable[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\r\n  padding-top: 1px;\r\n  padding-bottom: 1px;\r\n}\r\n\r\n.card-body[_ngcontent-%COMP%] {\r\n  border-width: 0px;\r\n  padding-top: 0px;\r\n  padding-bottom: 5px;\r\n}\r\n\r\n.card[_ngcontent-%COMP%] {\r\n  border-width: 0px;\r\n}\r\n\r\n\r\n\r\n.spinner-border[_ngcontent-%COMP%] {\r\n  display: block;\r\n  position: absolute;\r\n  z-index: 1031;\r\n  top: 25%; \r\n  right: 45%; \r\n}\r\n\r\n#overlay[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  \r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  background-color: #FAFAFA;\r\n  opacity: 0.7;\r\n  z-index: 2;\r\n  cursor: pointer;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcXVhbnRpdC1jb25mb3JtYWwvcXVhbnRpdC1jb25mb3JtYWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7R0FRRzs7QUFFSDtFQUNFLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixpQkFBaUI7RUFDakIsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsaUJBQWlCO0FBQ25COztBQUVBLHFDQUFxQzs7QUFDckM7RUFDRSxjQUFjO0VBQ2Qsa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixRQUFRLEVBQUUsc0NBQXNDO0VBQ2hELFVBQVUsRUFBRSxxQ0FBcUM7QUFDbkQ7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLE1BQU07RUFDTixPQUFPO0VBQ1AsUUFBUTtFQUNSLFNBQVM7RUFDVCx5QkFBeUI7RUFDekIsWUFBWTtFQUNaLFVBQVU7RUFDVixlQUFlO0FBQ2pCIiwiZmlsZSI6InNyYy9hcHAvcXVhbnRpdC1jb25mb3JtYWwvcXVhbnRpdC1jb25mb3JtYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIHVsIGxpLm5hdi1pdGVtIGEge1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6ICM2Qzc1N0Q7XHJcbn1cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEuYWN0aXZle1xyXG4gIGJhY2tncm91bmQ6ICNGMEYwRjA7XHJcbiAgY29sb3I6ICM2Qzc1N0Q7XHJcbn0gKi9cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEge1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6ICNCOERDRUQ7XHJcbn1cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEuYWN0aXZle1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6IzIyNTc3QTtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBib3JkZXItYm90dG9tOiA0cHggc29saWQgI2U1OTMwMDtcclxufVxyXG5cclxudGFibGUgdGQge1xyXG4gIHBhZGRpbmctdG9wOiAxcHg7XHJcbiAgcGFkZGluZy1ib3R0b206IDFweDtcclxufVxyXG5cclxuLmNhcmQtYm9keSB7XHJcbiAgYm9yZGVyLXdpZHRoOiAwcHg7XHJcbiAgcGFkZGluZy10b3A6IDBweDtcclxuICBwYWRkaW5nLWJvdHRvbTogNXB4O1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgYm9yZGVyLXdpZHRoOiAwcHg7XHJcbn1cclxuXHJcbi8qIHJvdGF0aW5nIGNpcmNsZSB0byBzaG93IHByb2dyZXNzICovXHJcbi5zcGlubmVyLWJvcmRlciB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHotaW5kZXg6IDEwMzE7XHJcbiAgdG9wOiAyNSU7IC8qIHdoZXJlIC4uLiBpcyB0aGUgZWxlbWVudCdzIGhlaWdodCAqL1xyXG4gIHJpZ2h0OiA0NSU7IC8qIHdoZXJlIC4uLiBpcyB0aGUgZWxlbWVudCdzIHdpZHRoICovXHJcbn1cclxuXHJcbiNvdmVybGF5IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgLypkaXNwbGF5OiBub25lOyovXHJcbiAgdG9wOiAwO1xyXG4gIGxlZnQ6IDA7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgYm90dG9tOiAwO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNGQUZBRkE7XHJcbiAgb3BhY2l0eTogMC43O1xyXG4gIHotaW5kZXg6IDI7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiJdfQ== */"] });
     return QuantitConformalComponent;
 }());
 
@@ -8434,7 +8485,7 @@ var QuantitConformalComponent = /** @class */ (function () {
                 templateUrl: './quantit-conformal.component.html',
                 styleUrls: ['./quantit-conformal.component.css']
             }]
-    }], function () { return [{ type: _quantit_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QuantitConformalService"] }, { type: _Globals__WEBPACK_IMPORTED_MODULE_3__["Model"] }]; }, { modelName: [{
+    }], function () { return [{ type: _quantit_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QuantitConformalService"] }, { type: _Globals__WEBPACK_IMPORTED_MODULE_5__["Model"] }]; }, { modelName: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
         }], modelVersion: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
