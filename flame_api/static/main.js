@@ -7718,12 +7718,12 @@ __webpack_require__.r(__webpack_exports__);
 
 function QuantitConformalComponent_tr_22_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Scoring");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7736,12 +7736,12 @@ function QuantitConformalComponent_tr_22_Template(rf, ctx) { if (rf & 1) {
 } }
 function QuantitConformalComponent_tr_23_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Q2");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7754,12 +7754,12 @@ function QuantitConformalComponent_tr_23_Template(rf, ctx) { if (rf & 1) {
 } }
 function QuantitConformalComponent_tr_24_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "SDEP");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7772,12 +7772,12 @@ function QuantitConformalComponent_tr_24_Template(rf, ctx) { if (rf & 1) {
 } }
 function QuantitConformalComponent_ng_container_25_tr_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Conformal accuracy");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7790,12 +7790,12 @@ function QuantitConformalComponent_ng_container_25_tr_1_Template(rf, ctx) { if (
 } }
 function QuantitConformalComponent_ng_container_25_tr_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Mean interval");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7820,12 +7820,12 @@ function QuantitConformalComponent_ng_container_25_Template(rf, ctx) { if (rf & 
 } }
 function QuantitConformalComponent_tr_34_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Scoring");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7838,12 +7838,12 @@ function QuantitConformalComponent_tr_34_Template(rf, ctx) { if (rf & 1) {
 } }
 function QuantitConformalComponent_tr_35_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "R2");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7856,12 +7856,12 @@ function QuantitConformalComponent_tr_35_Template(rf, ctx) { if (rf & 1) {
 } }
 function QuantitConformalComponent_tr_36_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "SDEC");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7874,12 +7874,12 @@ function QuantitConformalComponent_tr_36_Template(rf, ctx) { if (rf & 1) {
 } }
 function QuantitConformalComponent_ng_container_37_tr_1_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Conformal accuracy");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7892,12 +7892,12 @@ function QuantitConformalComponent_ng_container_37_tr_1_Template(rf, ctx) { if (
 } }
 function QuantitConformalComponent_ng_container_37_tr_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Mean interval");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7924,7 +7924,7 @@ function QuantitConformalComponent_div_46_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 9);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 26);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -7940,11 +7940,44 @@ var QuantitConformalComponent = /** @class */ (function () {
         this.service = service;
         this.model = model;
         this.objectKeys = Object.keys;
-        // modelBuildInfo = {};
         this.modelValidationInfo = {};
         this.modelConformal = {};
         this.modelWarning = '';
-        this.plotFittedConf = {
+        this.plotFitted = {
+            data: [{ x: [],
+                    y: [],
+                    text: [],
+                    type: 'scatter',
+                    mode: 'markers',
+                    marker: {
+                        color: 'rgba(255,0,0,0.2)',
+                        size: 12,
+                        line: {
+                            color: 'red',
+                            width: 2
+                        },
+                    },
+                    hovertemplate: '<b>%{text}</b><br>(%{x:.2f} %{y:.2f})<extra></extra>',
+                    error_y: {
+                        type: 'data',
+                        color: 'rgba(0,0,0,0.2)',
+                        symmetric: false,
+                        array: [],
+                        arrayminus: []
+                    }
+                },
+                { x: [],
+                    y: [],
+                    type: 'scatter',
+                    mode: 'lines',
+                    line: {
+                        color: 'black',
+                        width: 2
+                    }
+                }
+            ]
+        };
+        this.plotPredicted = {
             data: [
                 { x: [],
                     y: [],
@@ -7959,6 +7992,7 @@ var QuantitConformalComponent = /** @class */ (function () {
                             width: 2
                         }
                     },
+                    hovertemplate: '<b>%{text}</b><br>(%{x:.2f} %{y:.2f})<extra></extra>',
                     error_y: {
                         type: 'data',
                         color: 'rgba(0,0,0,0.2)',
@@ -7978,122 +8012,12 @@ var QuantitConformalComponent = /** @class */ (function () {
                 }
             ],
         };
-        this.plotPredictedConf = {
-            data: [
-                { x: [],
-                    y: [],
-                    text: [],
-                    type: 'scatter',
-                    mode: 'markers',
-                    marker: {
-                        color: 'rgba(255,0,0,0.2)',
-                        size: 12,
-                        line: {
-                            color: 'red',
-                            width: 2
-                        }
-                    },
-                    error_y: {
-                        type: 'data',
-                        color: 'rgba(0,0,0,0.2)',
-                        symmetric: false,
-                        array: [],
-                        arrayminus: []
-                    }
-                },
-                { x: [],
-                    y: [],
-                    type: 'scatter',
-                    mode: 'lines',
-                    line: {
-                        color: 'black',
-                        width: 2
-                    }
-                }
-            ],
-        };
-        this.plotScores = {
-            data: [
-                { x: [],
-                    y: [],
-                    text: [],
-                    meta: [],
-                    type: 'scatter',
-                    mode: 'markers',
-                    marker: {
-                        color: [],
-                        opacity: 0.6,
-                        colorscale: 'RdBu',
-                        showscale: true,
-                        cmax: 1.0,
-                        cmin: 0.0,
-                        size: 14,
-                        // line: {
-                        //   width: 2
-                        // },
-                        colorbar: {
-                            tickfont: {
-                                family: 'Barlow Semi Condensed, sans-serif',
-                                size: 20
-                            }
-                        }
-                    },
-                    hovertemplate: '<b>%{text}</b><br>%{marker.color:.2f}<extra></extra>',
-                }
-            ],
-        };
-        this.plotViolin = {
-            data: [{
-                    type: 'violin',
-                    orientation: 'h',
-                    x: [],
-                    text: [],
-                    points: 'all',
-                    pointpos: -2,
-                    hoveron: "violins+points",
-                    box: {
-                        visible: true
-                    },
-                    boxpoints: true,
-                    hoverlabel: {
-                        bgcolor: "#22577",
-                    },
-                    line: {
-                        color: '#22577',
-                    },
-                    hovertemplate: '<b>%{text}</b><br>%{x:.2f}<extra></extra>',
-                    // fillcolor: "#0076a3",
-                    fillcolor: "#B8DCED",
-                    opacity: 0.8,
-                    meanline: {
-                        visible: true
-                    },
-                    y0: "activity"
-                }],
-            layout: {
-                width: 900,
-                height: 400,
-                hovermode: 'closest',
-                margin: {
-                    r: 10,
-                    t: 30,
-                    pad: 10
-                },
-                yaxis: {
-                    zeroline: false
-                }
-            }
-        };
-        this.plotCommon = {
+        this.plotScatter = {
             layout: {
                 width: 800,
                 height: 550,
                 hovermode: 'closest',
-                margin: {
-                    r: 10,
-                    t: 30,
-                    pad: 10
-                },
+                margin: { r: 10, t: 30, pad: 10 },
                 showlegend: false,
                 showtitle: false,
                 xaxis: {
@@ -8134,25 +8058,50 @@ var QuantitConformalComponent = /** @class */ (function () {
                 },
             },
             config: {
-                // responsive: true,
                 displaylogo: false,
+                toImageButtonOptions: {
+                    format: 'svg',
+                    filename: 'flame_scatter',
+                    width: 800,
+                    height: 550,
+                    scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
+                },
                 modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d']
             }
         };
-        this.plotCommonScores = {
+        this.plotScores = {
+            data: [
+                { x: [],
+                    y: [],
+                    text: [],
+                    meta: [],
+                    type: 'scatter',
+                    mode: 'markers',
+                    marker: {
+                        color: [],
+                        opacity: 0.6,
+                        colorscale: 'RdBu',
+                        showscale: true,
+                        cauto: true,
+                        size: 14,
+                        colorbar: {
+                            tickfont: {
+                                family: 'Barlow Semi Condensed, sans-serif',
+                                size: 20
+                            }
+                        }
+                    },
+                    hovertemplate: '<b>%{text}</b><br>%{marker.color:.2f}<extra></extra>',
+                }
+            ],
             layout: {
                 width: 800,
                 height: 550,
                 hovermode: 'closest',
-                margin: {
-                    r: 10,
-                    t: 30,
-                    pad: 0
-                },
+                margin: { r: 10, t: 30, pad: 0 },
                 showlegend: false,
                 showtitle: false,
                 xaxis: {
-                    hoverformat: '.2f',
                     zeroline: true,
                     showgrid: true,
                     showline: true,
@@ -8170,7 +8119,6 @@ var QuantitConformalComponent = /** @class */ (function () {
                     },
                 },
                 yaxis: {
-                    hoverformat: '.2f',
                     zeroline: true,
                     showgrid: true,
                     showline: true,
@@ -8189,24 +8137,74 @@ var QuantitConformalComponent = /** @class */ (function () {
                 },
             },
             config: {
-                // responsive: true,
                 displaylogo: false,
+                toImageButtonOptions: {
+                    format: 'svg',
+                    filename: 'flame_scores',
+                    width: 800,
+                    height: 550,
+                    scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
+                },
+                modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d', 'hoverCompareCartesian']
+            }
+        };
+        this.plotViolin = {
+            data: [{
+                    type: 'violin',
+                    orientation: 'h',
+                    x: [],
+                    text: [],
+                    points: 'all',
+                    pointpos: -2,
+                    hoveron: "violins+points",
+                    box: { visible: true },
+                    boxpoints: true,
+                    hoverlabel: { bgcolor: "#22577" },
+                    line: { color: '#22577' },
+                    hovertemplate: '<b>%{text}</b><br>%{x:.2f}<extra></extra>',
+                    fillcolor: "#B8DCED",
+                    opacity: 0.8,
+                    meanline: { visible: true },
+                    name: 'Activity'
+                }],
+            layout: {
+                width: 900,
+                height: 400,
+                hovermode: 'closest',
+                margin: { r: 10, t: 30, pad: 10 },
+                xaxis: {
+                    zeroline: false,
+                    tickfont: {
+                        family: 'Barlow Semi Condensed, sans-serif',
+                        size: 18,
+                    },
+                }
+            },
+            config: {
+                displaylogo: false,
+                toImageButtonOptions: {
+                    format: 'svg',
+                    filename: 'flame_violin',
+                    width: 900,
+                    height: 400,
+                    scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
+                },
                 modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d', 'hoverCompareCartesian']
             }
         };
     }
     QuantitConformalComponent.prototype.ngOnChanges = function () {
         this.modelWarning = '';
-        this.plotFittedConf.data[0].x = [];
-        this.plotFittedConf.data[0].y = [];
-        this.plotFittedConf.data[0].error_y.array = [];
-        this.plotFittedConf.data[0].error_y.arrayminus = [];
-        this.plotFittedConf.data[0].text = [];
-        this.plotPredictedConf.data[0].x = [];
-        this.plotPredictedConf.data[0].y = [];
-        this.plotPredictedConf.data[0].error_y.array = [];
-        this.plotPredictedConf.data[0].error_y.arrayminus = [];
-        this.plotPredictedConf.data[0].text = [];
+        this.plotFitted.data[0].x = [];
+        this.plotFitted.data[0].y = [];
+        this.plotFitted.data[0].error_y.array = [];
+        this.plotFitted.data[0].error_y.arrayminus = [];
+        this.plotFitted.data[0].text = [];
+        this.plotPredicted.data[0].x = [];
+        this.plotPredicted.data[0].y = [];
+        this.plotPredicted.data[0].error_y.array = [];
+        this.plotPredicted.data[0].error_y.arrayminus = [];
+        this.plotPredicted.data[0].text = [];
         this.plotScores.data[0].x = [];
         this.plotScores.data[0].y = [];
         this.plotScores.data[0].text = [];
@@ -8261,42 +8259,21 @@ var QuantitConformalComponent = /** @class */ (function () {
                     _this.plotScores.data[0].y = info['PC2'];
                     _this.plotScores.data[0].text = info['obj_nam'];
                     _this.plotScores.data[0].meta = info['SMILES'];
-                    var min = Math.min.apply(Math, info['ymatrix']);
-                    var max = Math.max.apply(Math, info['ymatrix']);
-                    _this.plotScores.data[0].marker.cmin = min;
-                    _this.plotScores.data[0].marker.cmax = max;
                     _this.plotScores.data[0].marker.color = info['ymatrix'];
                 }
-                //   const myPlot = document.getElementById('scatterDIV'),
-                //         data   = this.plotScores.data,
-                //         layout = this.plotCommonScores.layout,
-                //         config = this.plotCommonScores.config;
-                //   PlotlyJS.newPlot('scatterDIV', data, layout, config);
-                //   const options = {'width': 300, 'height': 300};
-                //   const smilesDrawer = new SmilesDrawer.Drawer(options);
-                //   myPlot.on('plotly_hover', function(eventdata){ 
-                //     var points = eventdata.points[0];
-                //     SmilesDrawer.parse(info['SMILES'][points.pointNumber], function(tree) {
-                //       smilesDrawer.draw(tree, 'scatter_canvas', 'light', false);
-                //     });
-                //   })
-                //   .on('plotly_unhover', function(data){
-                //       const context = canvas.getContext('2d');
-                //       context.clearRect(0, 0, canvas.width, canvas.height);
-                //   });
-                var canvas = document.getElementById('scatter_canvas');
-                var context = canvas.getContext('2d');
+                // common to all plots in this component
                 var options = { 'width': 300, 'height': 300 };
                 var smilesDrawer = new smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"](options);
-                // setTimeout( () => {
-                // },1);
-                plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_4__["newPlot"]('scatterDIV', _this.plotScores.data, _this.plotCommonScores.layout, _this.plotCommonScores.config);
-                var myPlot = document.getElementById('scatterDIV');
+                // scores plot                 
+                var canvas = document.getElementById('scores_canvas');
+                var context = canvas.getContext('2d');
+                plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_4__["newPlot"]('scoresDIV', _this.plotScores.data, _this.plotScores.layout, _this.plotScores.config);
+                var myPlot = document.getElementById('scoresDIV');
                 // on hover, draw the molecule
                 myPlot.on('plotly_hover', function (eventdata) {
                     var points = eventdata.points[0];
                     smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](info['SMILES'][points.pointNumber], function (tree) {
-                        smilesDrawer.draw(tree, 'scatter_canvas', 'light', false);
+                        smilesDrawer.draw(tree, 'scores_canvas', 'light', false);
                     });
                 });
                 // on onhover, clear the canvas
@@ -8307,49 +8284,81 @@ var QuantitConformalComponent = /** @class */ (function () {
                 _this.plotViolin.data[0].text = info['obj_nam'];
                 // predicted data
                 if ('Y_pred' in info) {
-                    _this.plotPredictedConf.data[0].x = info['ymatrix'];
-                    _this.plotPredictedConf.data[0].y = info['Y_pred'];
+                    _this.plotPredicted.data[0].x = info['ymatrix'];
+                    _this.plotPredicted.data[0].y = info['Y_pred'];
                     if (_this.model.conformal) {
                         var yintpred = _this.modelConformal['Conformal_prediction_ranges']; // (min, max)
                         for (var i in info['ymatrix']) {
-                            _this.plotPredictedConf.data[0].error_y.array[i] = yintpred[i][1] - info['Y_pred'][i];
-                            _this.plotPredictedConf.data[0].error_y.arrayminus[i] = info['Y_pred'][i] - yintpred[i][0];
+                            _this.plotPredicted.data[0].error_y.array[i] = yintpred[i][1] - info['Y_pred'][i];
+                            _this.plotPredicted.data[0].error_y.arrayminus[i] = info['Y_pred'][i] - yintpred[i][0];
                         }
                     }
-                    _this.plotPredictedConf.data[0].text = info['obj_nam'];
-                    _this.plotPredictedConf.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
-                    _this.plotPredictedConf.data[1].y = [Math.min.apply(Math, info['Y_pred']), Math.max.apply(Math, info['Y_pred'])];
+                    _this.plotPredicted.data[0].text = info['obj_nam'];
+                    _this.plotPredicted.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
+                    _this.plotPredicted.data[1].y = [Math.min.apply(Math, info['Y_pred']), Math.max.apply(Math, info['Y_pred'])];
                 }
                 else { // legacy method
                     if (_this.model.conformal) {
                         var ymean = _this.modelConformal['Conformal_interval_medians'];
                         var yint = _this.modelConformal['Conformal_prediction_ranges']; // (min, max)
-                        _this.plotPredictedConf.data[0].x = info['ymatrix'];
-                        _this.plotPredictedConf.data[0].y = ymean;
+                        _this.plotPredicted.data[0].x = info['ymatrix'];
+                        _this.plotPredicted.data[0].y = ymean;
                         for (var i in info['ymatrix']) {
-                            _this.plotPredictedConf.data[0].error_y.array[i] = yint[i][1] - ymean[i];
-                            _this.plotPredictedConf.data[0].error_y.arrayminus[i] = ymean[i] - yint[i][0];
+                            _this.plotPredicted.data[0].error_y.array[i] = yint[i][1] - ymean[i];
+                            _this.plotPredicted.data[0].error_y.arrayminus[i] = ymean[i] - yint[i][0];
                         }
-                        _this.plotPredictedConf.data[0].text = info['obj_nam'];
-                        _this.plotPredictedConf.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
-                        _this.plotPredictedConf.data[1].y = [Math.min.apply(Math, ymean), Math.max.apply(Math, ymean)];
+                        _this.plotPredicted.data[0].text = info['obj_nam'];
+                        _this.plotPredicted.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
+                        _this.plotPredicted.data[1].y = [Math.min.apply(Math, ymean), Math.max.apply(Math, ymean)];
                     }
                 }
                 // ajusted data
                 if ('Y_adj' in info) {
-                    _this.plotFittedConf.data[0].x = info['ymatrix'];
-                    _this.plotFittedConf.data[0].y = info['Y_adj'];
+                    _this.plotFitted.data[0].x = info['ymatrix'];
+                    _this.plotFitted.data[0].y = info['Y_adj'];
                     if (_this.model.conformal) {
                         var yintfit = _this.modelConformal['Conformal_prediction_ranges_fitting']; // (min, max)
                         for (var i in info['ymatrix']) {
-                            _this.plotFittedConf.data[0].error_y.array[i] = yintfit[i][1] - info['Y_adj'][i];
-                            _this.plotFittedConf.data[0].error_y.arrayminus[i] = info['Y_adj'][i] - yintfit[i][0];
+                            _this.plotFitted.data[0].error_y.array[i] = yintfit[i][1] - info['Y_adj'][i];
+                            _this.plotFitted.data[0].error_y.arrayminus[i] = info['Y_adj'][i] - yintfit[i][0];
                         }
                     }
-                    _this.plotFittedConf.data[0].text = info['obj_nam'];
-                    _this.plotFittedConf.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
-                    _this.plotFittedConf.data[1].y = [Math.min.apply(Math, info['Y_adj']), Math.max.apply(Math, info['Y_adj'])];
+                    _this.plotFitted.data[0].text = info['obj_nam'];
+                    _this.plotFitted.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
+                    _this.plotFitted.data[1].y = [Math.min.apply(Math, info['Y_adj']), Math.max.apply(Math, info['Y_adj'])];
                 }
+                // predicted plot                 
+                var canvas_pred = document.getElementById('scatter_pred_canvas');
+                var context_pred = canvas_pred.getContext('2d');
+                plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_4__["newPlot"]('scatterPredDIV', _this.plotPredicted.data, _this.plotScatter.layout, _this.plotScatter.config);
+                var myPlotPred = document.getElementById('scatterPredDIV');
+                // on hover, draw the molecule
+                myPlotPred.on('plotly_hover', function (eventdata) {
+                    var points = eventdata.points[0];
+                    smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](info['SMILES'][points.pointNumber], function (tree) {
+                        smilesDrawer.draw(tree, 'scatter_pred_canvas', 'light', false);
+                    });
+                });
+                // on onhover, clear the canvas
+                myPlotPred.on('plotly_unhover', function (data) {
+                    context_pred.clearRect(0, 0, canvas_pred.width, canvas_pred.height);
+                });
+                // fitted plott
+                var canvas_fit = document.getElementById('scatter_fit_canvas');
+                var context_fit = canvas_fit.getContext('2d');
+                plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_4__["newPlot"]('scatterFitDIV', _this.plotFitted.data, _this.plotScatter.layout, _this.plotScatter.config);
+                var myPlotFit = document.getElementById('scatterFitDIV');
+                // on hover, draw the molecule
+                myPlotFit.on('plotly_hover', function (eventdata) {
+                    var points = eventdata.points[0];
+                    smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](info['SMILES'][points.pointNumber], function (tree) {
+                        smilesDrawer.draw(tree, 'scatter_fit_canvas', 'light', false);
+                    });
+                });
+                // on onhover, clear the canvas
+                myPlotFit.on('plotly_unhover', function (data) {
+                    context_fit.clearRect(0, 0, canvas_fit.width, canvas_fit.height);
+                });
             }, 50);
         }, function (error) {
             alert('Error getting model');
@@ -8357,7 +8366,7 @@ var QuantitConformalComponent = /** @class */ (function () {
     };
     ;
     QuantitConformalComponent.ɵfac = function QuantitConformalComponent_Factory(t) { return new (t || QuantitConformalComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_quantit_conformal_service__WEBPACK_IMPORTED_MODULE_2__["QuantitConformalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_Globals__WEBPACK_IMPORTED_MODULE_5__["Model"])); };
-    QuantitConformalComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: QuantitConformalComponent, selectors: [["app-quantit-conformal"]], inputs: { modelName: "modelName", modelVersion: "modelVersion" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"]], decls: 47, vars: 18, consts: [[1, "row"], [1, "card", "w-100"], ["id", "pills-tab", "role", "tablist", 1, "nav", "nav-pills", "mb-3"], [1, "nav-item"], ["id", "pills-predict-tab", "data-toggle", "tab", "href", "#pills-predict", "role", "tab", "aria-controls", "pills-predict", "aria-selected", "true", 1, "nav-link", "active"], ["id", "pills-fitting-tab", "data-toggle", "tab", "href", "#pills-fitting", "role", "tab", "aria-controls", "pills-fitting", "aria-selected", "false", 1, "nav-link"], ["id", "pills-two-tab", "data-toggle", "tab", "href", "#pills-two", "role", "tab", "aria-controls", "pills-two", "aria-selected", "false", 1, "nav-link"], ["id", "pills-tabContent", 1, "tab-content"], ["id", "pills-predict", "role", "tabpanel", "aria-labelledby", "pills-predict-tab", 1, "tab-pane", "fade", "show", "active"], [1, "card-body"], [1, "row", "justify-content-between"], [1, "col-3", "mt-1"], [1, "table", "table-sm", "mt-4"], [4, "ngIf"], [3, "data", "layout", "config"], ["id", "pills-fitting", "role", "tabpanel", "aria-labelledby", "pills-fitting-tab", 1, "tab-pane", "fade"], ["id", "pills-two", "role", "tabpanel", "aria-labelledby", "pills-two-tab", 1, "tab-pane", "fade"], ["id", "scatter_canvas"], ["id", "scatterDIV"], ["class", "row", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "left", 1, "text-left", "text-capitalize", 3, "title"], [1, "text-right", "text-capitalize"], ["role", "alert", 1, "alert", "alert-danger", "text-center"]], template: function QuantitConformalComponent_Template(rf, ctx) { if (rf & 1) {
+    QuantitConformalComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: QuantitConformalComponent, selectors: [["app-quantit-conformal"]], inputs: { modelName: "modelName", modelVersion: "modelVersion" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"]], decls: 47, vars: 12, consts: [[1, "row"], [1, "card", "w-100"], ["id", "pills-tab", "role", "tablist", 1, "nav", "nav-pills", "mb-3"], [1, "nav-item"], ["id", "pills-predict-tab", "data-toggle", "tab", "href", "#pills-predict", "role", "tab", "aria-controls", "pills-predict", "aria-selected", "true", 1, "nav-link", "active"], ["id", "pills-fitting-tab", "data-toggle", "tab", "href", "#pills-fitting", "role", "tab", "aria-controls", "pills-fitting", "aria-selected", "false", 1, "nav-link"], ["id", "pills-two-tab", "data-toggle", "tab", "href", "#pills-two", "role", "tab", "aria-controls", "pills-two", "aria-selected", "false", 1, "nav-link"], ["id", "pills-tabContent", 1, "tab-content"], ["id", "pills-predict", "role", "tabpanel", "aria-labelledby", "pills-predict-tab", 1, "tab-pane", "fade", "show", "active"], [1, "card-body"], [1, "row", "justify-content-between"], [1, "col-3", "mt-1"], [1, "table", "table-sm", "mt-4"], [4, "ngIf"], ["id", "scatter_pred_canvas"], ["id", "scatterPredDIV"], ["id", "pills-fitting", "role", "tabpanel", "aria-labelledby", "pills-fitting-tab", 1, "tab-pane", "fade"], ["id", "scatter_fit_canvas"], ["id", "scatterFitDIV"], ["id", "pills-two", "role", "tabpanel", "aria-labelledby", "pills-two-tab", 1, "tab-pane", "fade"], ["id", "scores_canvas"], ["id", "scoresDIV"], [3, "data", "layout", "config"], ["class", "row", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "left", 1, "text-left", "text-capitalize", 3, "title"], [1, "text-right", "text-capitalize"], ["role", "alert", 1, "alert", "alert-danger", "text-center"]], template: function QuantitConformalComponent_Template(rf, ctx) { if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "ul", 2);
@@ -8396,14 +8405,13 @@ var QuantitConformalComponent = /** @class */ (function () {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](25, QuantitConformalComponent_ng_container_25_Template, 3, 2, "ng-container", 13);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](26, "canvas", 14);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](26, "div");
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](27, "plotly-plot", 14);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](27, "div", 15);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "div", 15);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "div", 16);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](29, "div", 9);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](30, "div", 10);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](31, "div", 11);
@@ -8415,26 +8423,25 @@ var QuantitConformalComponent = /** @class */ (function () {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](37, QuantitConformalComponent_ng_container_37_Template, 3, 2, "ng-container", 13);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](38, "canvas", 17);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](38, "div");
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](39, "plotly-plot", 14);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](39, "div", 18);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](40, "div", 16);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](40, "div", 19);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](41, "div", 9);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](42, "div", 0);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](43, "canvas", 17);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](44, "div", 18);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](43, "canvas", 20);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](44, "div", 21);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](45, "plotly-plot", 14);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](45, "plotly-plot", 22);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](46, QuantitConformalComponent_div_46_Template, 5, 1, "div", 19);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](46, QuantitConformalComponent_div_46_Template, 5, 1, "div", 23);
         } if (rf & 2) {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](22);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.modelValidationInfo["scoringP"]);
@@ -8444,9 +8451,7 @@ var QuantitConformalComponent = /** @class */ (function () {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.modelValidationInfo["SDEP"]);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.model.conformal);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", ctx.plotPredictedConf.data)("layout", ctx.plotCommon.layout)("config", ctx.plotCommon.config);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](9);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.modelValidationInfo["scoringR"]);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.modelValidationInfo["R2"]);
@@ -8454,10 +8459,8 @@ var QuantitConformalComponent = /** @class */ (function () {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.modelValidationInfo["SDEC"]);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.model.conformal);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", ctx.plotFittedConf.data)("layout", ctx.plotCommon.layout)("config", ctx.plotCommon.config);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", ctx.plotViolin.data)("layout", ctx.plotViolin.layout)("config", ctx.plotCommon.config);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](8);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", ctx.plotViolin.data)("layout", ctx.plotViolin.layout)("config", ctx.plotViolin.config);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.modelWarning != "");
         } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], angular_plotly_js__WEBPACK_IMPORTED_MODULE_7__["PlotComponent"]], styles: ["ul[_ngcontent-%COMP%]   li.nav-item[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\r\n  background:white;\r\n  color: #B8DCED;\r\n}\r\n\r\nul[_ngcontent-%COMP%]   li.nav-item[_ngcontent-%COMP%]   a.active[_ngcontent-%COMP%]{\r\n  background:white;\r\n  color:#22577A;\r\n  font-weight: bold;\r\n  border-bottom: 4px solid #e59300;\r\n}\r\n\r\ntable[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\r\n  padding-top: 1px;\r\n  padding-bottom: 1px;\r\n}\r\n\r\n.card-body[_ngcontent-%COMP%] {\r\n  border-width: 0px;\r\n  padding-top: 0px;\r\n  padding-bottom: 5px;\r\n}\r\n\r\n.card[_ngcontent-%COMP%] {\r\n  border-width: 0px;\r\n}\r\n\r\n\r\n\r\n.spinner-border[_ngcontent-%COMP%] {\r\n  display: block;\r\n  position: absolute;\r\n  z-index: 1031;\r\n  top: 25%; \r\n  right: 45%; \r\n}\r\n\r\n#overlay[_ngcontent-%COMP%] {\r\n  position: absolute;\r\n  \r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\r\n  background-color: #FAFAFA;\r\n  opacity: 0.7;\r\n  z-index: 2;\r\n  cursor: pointer;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcXVhbnRpdC1jb25mb3JtYWwvcXVhbnRpdC1jb25mb3JtYWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7Ozs7R0FRRzs7QUFFSDtFQUNFLGdCQUFnQjtFQUNoQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixpQkFBaUI7RUFDakIsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsaUJBQWlCO0FBQ25COztBQUVBLHFDQUFxQzs7QUFDckM7RUFDRSxjQUFjO0VBQ2Qsa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixRQUFRLEVBQUUsc0NBQXNDO0VBQ2hELFVBQVUsRUFBRSxxQ0FBcUM7QUFDbkQ7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLE1BQU07RUFDTixPQUFPO0VBQ1AsUUFBUTtFQUNSLFNBQVM7RUFDVCx5QkFBeUI7RUFDekIsWUFBWTtFQUNaLFVBQVU7RUFDVixlQUFlO0FBQ2pCIiwiZmlsZSI6InNyYy9hcHAvcXVhbnRpdC1jb25mb3JtYWwvcXVhbnRpdC1jb25mb3JtYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIHVsIGxpLm5hdi1pdGVtIGEge1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6ICM2Qzc1N0Q7XHJcbn1cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEuYWN0aXZle1xyXG4gIGJhY2tncm91bmQ6ICNGMEYwRjA7XHJcbiAgY29sb3I6ICM2Qzc1N0Q7XHJcbn0gKi9cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEge1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6ICNCOERDRUQ7XHJcbn1cclxuXHJcbnVsIGxpLm5hdi1pdGVtIGEuYWN0aXZle1xyXG4gIGJhY2tncm91bmQ6d2hpdGU7XHJcbiAgY29sb3I6IzIyNTc3QTtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBib3JkZXItYm90dG9tOiA0cHggc29saWQgI2U1OTMwMDtcclxufVxyXG5cclxudGFibGUgdGQge1xyXG4gIHBhZGRpbmctdG9wOiAxcHg7XHJcbiAgcGFkZGluZy1ib3R0b206IDFweDtcclxufVxyXG5cclxuLmNhcmQtYm9keSB7XHJcbiAgYm9yZGVyLXdpZHRoOiAwcHg7XHJcbiAgcGFkZGluZy10b3A6IDBweDtcclxuICBwYWRkaW5nLWJvdHRvbTogNXB4O1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgYm9yZGVyLXdpZHRoOiAwcHg7XHJcbn1cclxuXHJcbi8qIHJvdGF0aW5nIGNpcmNsZSB0byBzaG93IHByb2dyZXNzICovXHJcbi5zcGlubmVyLWJvcmRlciB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHotaW5kZXg6IDEwMzE7XHJcbiAgdG9wOiAyNSU7IC8qIHdoZXJlIC4uLiBpcyB0aGUgZWxlbWVudCdzIGhlaWdodCAqL1xyXG4gIHJpZ2h0OiA0NSU7IC8qIHdoZXJlIC4uLiBpcyB0aGUgZWxlbWVudCdzIHdpZHRoICovXHJcbn1cclxuXHJcbiNvdmVybGF5IHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgLypkaXNwbGF5OiBub25lOyovXHJcbiAgdG9wOiAwO1xyXG4gIGxlZnQ6IDA7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgYm90dG9tOiAwO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNGQUZBRkE7XHJcbiAgb3BhY2l0eTogMC43O1xyXG4gIHotaW5kZXg6IDI7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiJdfQ== */"] });
