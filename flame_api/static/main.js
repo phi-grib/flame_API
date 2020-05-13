@@ -6033,7 +6033,6 @@ var PredictionComponent = /** @class */ (function () {
                 meta: ["TP", "FN", "TN", "FP"],
                 marker: {
                     opacity: 0.8,
-                    // color: ['green','red','green','orange'],
                     color: ["#468FB8", "#F2B90F", "#9CC6DD", "#F9DB84"]
                 },
                 type: "barpolar",
@@ -6076,10 +6075,11 @@ var PredictionComponent = /** @class */ (function () {
                     mode: 'markers',
                     marker: {
                         color: [],
-                        opacity: 0.4,
+                        opacity: 0.6,
                         size: 10,
                         colorscale: 'RdBu',
                         showscale: true,
+                        cauto: true,
                         colorbar: {
                             tickfont: { family: 'Barlow Semi Condensed, sans-serif', size: 20 }
                         }
@@ -6094,18 +6094,18 @@ var PredictionComponent = /** @class */ (function () {
                     mode: 'markers+text',
                     textfont: {
                         fontStyle: 'Barlow Semi Condensed, sans-serif',
-                        color: 'black',
+                        color: '#59c427',
                         size: 16
                     },
                     textposition: 'top right',
                     marker: {
-                        color: 'black',
+                        color: '#6be831',
                         symbol: 'circle-open',
-                        opacity: 0.9,
+                        opacity: 1,
                         size: 14,
                         line: {
-                            color: 'black',
-                            width: 2
+                            color: '#6be831',
+                            width: 3
                         }
                     },
                     hovertemplate: '<b>%{text}</b><br>%{meta:.2f}<extra></extra>',
@@ -6463,6 +6463,7 @@ var PredictionComponent = /** @class */ (function () {
                 // this.polarAreaChartData = [this.modelValidationInfo['TP'][1], this.modelValidationInfo['FP'][1],
                 // this.modelValidationInfo['TN'][1], this.modelValidationInfo['FN'][1]];
             }
+            // use a long timeout because this can take a lot of time
             setTimeout(function () {
                 _this.components.forEach(function (child) {
                     var options = { 'width': 300, 'height': 150 };
@@ -6506,10 +6507,10 @@ var PredictionComponent = /** @class */ (function () {
                 var smilesDrawerScores = new smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["Drawer"](options);
                 var canvas_ref = document.getElementById('scores_canvas_ref');
                 var context_ref = canvas_ref.getContext('2d');
-                var canvas = document.getElementById('scores_canvas');
+                var canvas = document.getElementById('scores_canvas_pre');
                 var context = canvas.getContext('2d');
-                plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_5__["newPlot"]('scoresDIV', _this.plotScores.data, _this.plotScores.layout, _this.plotScores.config);
-                var myPlot = document.getElementById('scoresDIV');
+                plotly_js_dist_plotly_js__WEBPACK_IMPORTED_MODULE_5__["newPlot"]('scoresPreDIV', _this.plotScores.data, _this.plotScores.layout, _this.plotScores.config);
+                var myPlot = document.getElementById('scoresPreDIV');
                 // on hover, draw the molecule
                 myPlot.on('plotly_hover', function (eventdata) {
                     var points = eventdata.points[0];
@@ -6518,10 +6519,12 @@ var PredictionComponent = /** @class */ (function () {
                         smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](result['SMILES'][points.pointNumber], function (tree) {
                             smilesDrawerScores.draw(tree, 'scores_canvas_ref', 'light', false);
                         });
+                        context_ref.font = "30px Barlow Semi Condensed";
+                        context_ref.fillText(result['obj_nam'][points.pointNumber], 20, 50);
                     }
                     else {
                         smiles_drawer__WEBPACK_IMPORTED_MODULE_3__["parse"](points.meta, function (tree) {
-                            smilesDrawerScores.draw(tree, 'scores_canvas', 'light', false);
+                            smilesDrawerScores.draw(tree, 'scores_canvas_pre', 'light', false);
                         });
                     }
                 });
@@ -6539,7 +6542,7 @@ var PredictionComponent = /** @class */ (function () {
                     }
                 });
                 _this.predictionVisible = true;
-            }, 0);
+            }, 100);
         });
     };
     PredictionComponent.prototype.existKey = function (obj, key) {
@@ -6647,7 +6650,7 @@ var PredictionComponent = /** @class */ (function () {
             var _t;
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.components = _t);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵloadQuery"]()) && (ctx.componentOne = _t);
-        } }, inputs: { predictionName: "predictionName" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"]], decls: 4, vars: 4, consts: [["class", "row", 4, "ngIf"], [1, "row"], [1, "card", "w-100", 2, "width", "18rem"], [1, "card-body"], [2, "color", "grey"], ["id", "container"], [1, "col-3", "mt-1"], [1, "table", "table-sm", "mt-4"], [4, "ngFor", "ngForOf"], ["class", "col-4", 4, "ngIf"], ["class", "text-left text-capitalize", "data-toggle", "tooltip", "data-placement", "left", 3, "title", 4, "ngIf"], ["class", "text-right text-capitalize", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "left", 1, "text-left", "text-capitalize", 3, "title"], [1, "text-right", "text-capitalize"], [1, "col-4"], [3, "TP", "FP", "FN", "TN"], [3, "data", "layout", "config"], [1, "card", "w-100"], ["role", "alert", 1, "alert", "alert-danger", "text-center"], ["id", "overlay", 4, "ngIf"], ["id", "pills-tab", "role", "tablist", 1, "nav", "nav-pills", "mb-3"], [1, "nav-item"], ["id", "pills-all-tab", "data-toggle", "tab", "href", "#pills-all", "role", "tab", "aria-controls", "pills-home", "aria-selected", "true", 1, "nav-link", "active"], ["id", "pills-one-tab", "data-toggle", "tab", "href", "#pills-one", "role", "tab", "aria-controls", "pills-one", "aria-selected", "false", 1, "nav-link"], ["id", "pills-two-tab", "data-toggle", "tab", "href", "#pills-two", "role", "tab", "aria-controls", "pills-two", "aria-selected", "false", 1, "nav-link"], ["id", "pills-tabContent", 1, "tab-content"], ["id", "pills-all", "role", "tabpanel", "aria-labelledby", "pills-all-tab", 1, "tab-pane", "fade", "show", "active"], ["id", "prediction", 1, "table", "m-0"], ["data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Mol index", 2, "width", "5%"], ["data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Name of the molecule, as present in the input file", 2, "width", "20%"], ["data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Structure of the molecule in SMILES format", 1, "align-middle", "text-center"], ["class", "align-middle text-center", "data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Results of the prediction", 4, "ngIf"], ["class", "align-middle text-center", 4, "ngIf"], ["class", "tab-pane fade", "id", "pills-one", "role", "tabpanel", "aria-labelledby", "pills-one-tab", 4, "ngIf"], ["class", "tab-pane fade", "id", "pills-two", "role", "tabpanel", "aria-labelledby", "pills-two-tab", 4, "ngIf"], ["id", "overlay"], ["role", "status", 1, "spinner-border", "text-primary", 2, "width", "10rem", "height", "10rem"], [1, "sr-only"], ["data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Results of the prediction", 1, "align-middle", "text-center"], [4, "ngIf"], [1, "align-middle", "text-center"], [1, "align-middle"], [3, "id"], ["cmp", ""], ["id", "pills-one", "role", "tabpanel", "aria-labelledby", "pills-one-tab", 1, "tab-pane", "fade"], [1, "row", "align-items-center"], [1, "col-2", "offset-5"], [1, "col-1", "p-0", "offset-4"], ["aria-label", "Page navigation example"], [1, "pagination"], [1, "page-item", 3, "ngClass"], ["href", "javascript:void(0)", "aria-label", "Previous", 1, "page-link", 3, "click"], ["aria-hidden", "true"], ["href", "javascript:void(0)", "aria-label", "Next", 1, "page-link", 3, "click"], [1, "row", 2, "background-color", "#22577a", "color", "white"], [1, "col-3", "border"], [1, "col-6", "border"], [1, "col-9", "border"], ["id", "one_canvas"], ["class", "row bg-light", 4, "ngIf"], [1, "row", "bg-light"], ["class", "col-9 border", 4, "ngIf"], [1, "table"], ["scope", "col", 1, "pl-0", "pb-2", "pt-2", "pr-2", "text-left"], ["scope", "col", 1, "pl-0", "pb-2", "pt-2", "pr-2", "text-center"], ["scope", "col", 1, "pr-0", "pl-2", "pb-2", "pt-2", "text-left"], ["scope", "col", 1, "pr-0", "pl-2", "pb-2", "pt-2", "text-right"], [1, "p-0", "text-left"], [1, "p-0", "text-center"], [1, "p-0", "text-right"], [1, "text-capitalize"], [1, "table", "table-striped", "w-auto"], ["scope", "col", 1, "p-2", "text-center"], [1, "row", "justify-content-between"], [1, "col"], [1, "col-3", "p-0"], ["id", "pills-two", "role", "tabpanel", "aria-labelledby", "pills-two-tab", 1, "tab-pane", "fade"], ["id", "scores_canvas_ref"], ["id", "scores_canvas"], ["id", "scoresDIV"]], template: function PredictionComponent_Template(rf, ctx) { if (rf & 1) {
+        } }, inputs: { predictionName: "predictionName" }, features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"]], decls: 4, vars: 4, consts: [["class", "row", 4, "ngIf"], [1, "row"], [1, "card", "w-100", 2, "width", "18rem"], [1, "card-body"], [2, "color", "grey"], ["id", "container"], [1, "col-3", "mt-1"], [1, "table", "table-sm", "mt-4"], [4, "ngFor", "ngForOf"], ["class", "col-4", 4, "ngIf"], ["class", "text-left text-capitalize", "data-toggle", "tooltip", "data-placement", "left", 3, "title", 4, "ngIf"], ["class", "text-right text-capitalize", 4, "ngIf"], ["data-toggle", "tooltip", "data-placement", "left", 1, "text-left", "text-capitalize", 3, "title"], [1, "text-right", "text-capitalize"], [1, "col-4"], [3, "TP", "FP", "FN", "TN"], [3, "data", "layout", "config"], [1, "card", "w-100"], ["role", "alert", 1, "alert", "alert-danger", "text-center"], ["id", "overlay", 4, "ngIf"], ["id", "pills-tab", "role", "tablist", 1, "nav", "nav-pills", "mb-3"], [1, "nav-item"], ["id", "pills-all-tab", "data-toggle", "tab", "href", "#pills-all", "role", "tab", "aria-controls", "pills-home", "aria-selected", "true", 1, "nav-link", "active"], ["id", "pills-one-tab", "data-toggle", "tab", "href", "#pills-one", "role", "tab", "aria-controls", "pills-one", "aria-selected", "false", 1, "nav-link"], ["id", "pills-two-tab", "data-toggle", "tab", "href", "#pills-two", "role", "tab", "aria-controls", "pills-two", "aria-selected", "false", 1, "nav-link"], ["id", "pills-tabContent", 1, "tab-content"], ["id", "pills-all", "role", "tabpanel", "aria-labelledby", "pills-all-tab", 1, "tab-pane", "fade", "show", "active"], ["id", "prediction", 1, "table", "m-0"], ["data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Mol index", 2, "width", "5%"], ["data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Name of the molecule, as present in the input file", 2, "width", "20%"], ["data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Structure of the molecule in SMILES format", 1, "align-middle", "text-center"], ["class", "align-middle text-center", "data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Results of the prediction", 4, "ngIf"], ["class", "align-middle text-center", 4, "ngIf"], ["class", "tab-pane fade", "id", "pills-one", "role", "tabpanel", "aria-labelledby", "pills-one-tab", 4, "ngIf"], ["class", "tab-pane fade", "id", "pills-two", "role", "tabpanel", "aria-labelledby", "pills-two-tab", 4, "ngIf"], ["id", "overlay"], ["role", "status", 1, "spinner-border", "text-primary", 2, "width", "10rem", "height", "10rem"], [1, "sr-only"], ["data-toggle", "tooltip", "data-placement", "top", "data-html", "true", "title", "Results of the prediction", 1, "align-middle", "text-center"], [4, "ngIf"], [1, "align-middle", "text-center"], [1, "align-middle"], [3, "id"], ["cmp", ""], ["id", "pills-one", "role", "tabpanel", "aria-labelledby", "pills-one-tab", 1, "tab-pane", "fade"], [1, "row", "align-items-center"], [1, "col-2", "offset-5"], [1, "col-1", "p-0", "offset-4"], ["aria-label", "Page navigation example"], [1, "pagination"], [1, "page-item", 3, "ngClass"], ["href", "javascript:void(0)", "aria-label", "Previous", 1, "page-link", 3, "click"], ["aria-hidden", "true"], ["href", "javascript:void(0)", "aria-label", "Next", 1, "page-link", 3, "click"], [1, "row", 2, "background-color", "#22577a", "color", "white"], [1, "col-3", "border"], [1, "col-6", "border"], [1, "col-9", "border"], ["id", "one_canvas"], ["class", "row bg-light", 4, "ngIf"], [1, "row", "bg-light"], ["class", "col-9 border", 4, "ngIf"], [1, "table"], ["scope", "col", 1, "pl-0", "pb-2", "pt-2", "pr-2", "text-left"], ["scope", "col", 1, "pl-0", "pb-2", "pt-2", "pr-2", "text-center"], ["scope", "col", 1, "pr-0", "pl-2", "pb-2", "pt-2", "text-left"], ["scope", "col", 1, "pr-0", "pl-2", "pb-2", "pt-2", "text-right"], [1, "p-0", "text-left"], [1, "p-0", "text-center"], [1, "p-0", "text-right"], [1, "text-capitalize"], [1, "table", "table-striped", "w-auto"], ["scope", "col", 1, "p-2", "text-center"], [1, "row", "justify-content-between"], [1, "col"], [1, "col-3", "p-0"], ["id", "pills-two", "role", "tabpanel", "aria-labelledby", "pills-two-tab", 1, "tab-pane", "fade"], ["id", "scores_canvas_ref"], ["id", "scores_canvas_pre"], ["id", "scoresPreDIV"]], template: function PredictionComponent_Template(rf, ctx) { if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, PredictionComponent_div_0_Template, 12, 3, "div", 0);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, PredictionComponent_div_1_Template, 5, 1, "div", 0);
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, PredictionComponent_div_2_Template, 5, 1, "div", 0);
@@ -7581,7 +7584,7 @@ var QualitConformalComponent = /** @class */ (function () {
                 myPlot.on('plotly_unhover', function (data) {
                     context.clearRect(0, 0, canvas.width, canvas.height);
                 });
-            }, 50);
+            }, 100);
         }, function (error) {
             alert('Error getting model');
         });
@@ -8388,7 +8391,7 @@ var QuantitConformalComponent = /** @class */ (function () {
                 myPlotFit.on('plotly_unhover', function (data) {
                     context_fit.clearRect(0, 0, canvas_fit.width, canvas_fit.height);
                 });
-            }, 50);
+            }, 100);
         }, function (error) {
             alert('Error getting model');
         });
