@@ -26,7 +26,7 @@ SECRET_KEY = "ul-c_)4d4pz!g42-$-(3a^v4--prqkfzgmxels2h1_!ul(pkj!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ] 
+# ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ] 
 ALLOWED_HOSTS = ['*']
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20*1024*1024  # your size limit in bytes
@@ -121,7 +121,7 @@ USE_TZ = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = '/static/'
+STATIC_ROOT = '/static/'
 
 # CORS
 ANGULAR_APP_DIR = os.path.join(BASE_DIR, 'static')
