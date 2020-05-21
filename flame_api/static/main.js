@@ -2212,7 +2212,7 @@ var ConfigModelComponent = /** @class */ (function () {
         this.type_models = {
             data: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
             molecule: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
-            model_ensemble: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM', 'mean', 'median', 'majority']
+            model_ensemble: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM', 'mean', 'median', 'majority', 'matrix']
         };
     }
     ConfigModelComponent.prototype.ngOnInit = function () {
@@ -6959,7 +6959,6 @@ var PredictorComponent = /** @class */ (function () {
                     // remove items without a valid version
                     for (var _e = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(_this.objectKeys(_this.models)), _f = _e.next(); !_f.done; _f = _e.next()) {
                         var model = _f.value;
-                        console.log(model, _this.models[model].length);
                         if (_this.models[model].length === 0) {
                             delete (_this.models[model]);
                         }
