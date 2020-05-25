@@ -8443,22 +8443,34 @@ var QuantitConformalComponent = /** @class */ (function () {
                 if ('Y_pred' in info) {
                     _this.plotPredicted.data[0].x = info['ymatrix'];
                     _this.plotPredicted.data[0].y = info['Y_pred'];
-                    if (_this.model.conformal) {
-                        // const yintpred  = this.modelConformal['Conformal_prediction_ranges']; // (min, max)
-                        if ('Conformal_prediction_ranges' in info) {
-                            var yintpred = info['Conformal_prediction_ranges']; // (min, max)
-                            for (var i in info['ymatrix']) {
-                                _this.plotPredicted.data[0].error_y.array[i] = yintpred[i][1] - info['Y_pred'][i];
-                                _this.plotPredicted.data[0].error_y.arrayminus[i] = info['Y_pred'][i] - yintpred[i][0];
-                            }
+                    if (('upper_limit' in info) && ('lower_limit' in info)) {
+                        for (var i in info['ymatrix']) {
+                            _this.plotPredicted.data[0].error_y.array[i] = info['upper_limit'][i] - info['Y_pred'][i];
+                            _this.plotPredicted.data[0].error_y.arrayminus[i] = info['Y_pred'][i] - info['lower_limit'][i];
                         }
-                        else {
-                            console.log('CI prediction info not found, please update your model');
+                    }
+                    else {
+                        if (_this.model.conformal) {
+                            // const yintpred  = this.modelConformal['Conformal_prediction_ranges']; // (min, max)
+                            if ('Conformal_prediction_ranges' in info) {
+                                var yintpred = info['Conformal_prediction_ranges']; // (min, max)
+                                for (var i in info['ymatrix']) {
+                                    _this.plotPredicted.data[0].error_y.array[i] = yintpred[i][1] - info['Y_pred'][i];
+                                    _this.plotPredicted.data[0].error_y.arrayminus[i] = info['Y_pred'][i] - yintpred[i][0];
+                                }
+                            }
+                            else {
+                                console.log('CI prediction info not found, please update your model');
+                            }
                         }
                     }
                     _this.plotPredicted.data[0].text = info['obj_nam'];
-                    _this.plotPredicted.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
-                    _this.plotPredicted.data[1].y = [Math.min.apply(Math, info['Y_pred']), Math.max.apply(Math, info['Y_pred'])];
+                    var plot_min = Math.min(Math.min.apply(Math, info['ymatrix']), Math.min.apply(Math, info['Y_pred']));
+                    var plot_max = Math.max(Math.max.apply(Math, info['ymatrix']), Math.max.apply(Math, info['Y_pred']));
+                    _this.plotPredicted.data[1].x = [plot_min, plot_max];
+                    _this.plotPredicted.data[1].y = [plot_min, plot_max];
+                    // this.plotPredicted.data[1].x = [ Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
+                    // this.plotPredicted.data[1].y = [ Math.min.apply(Math, info['Y_pred']), Math.max.apply(Math, info['Y_pred'])];
                 }
                 // ajusted data
                 if ('Y_adj' in info) {
@@ -8478,8 +8490,12 @@ var QuantitConformalComponent = /** @class */ (function () {
                         }
                     }
                     _this.plotFitted.data[0].text = info['obj_nam'];
-                    _this.plotFitted.data[1].x = [Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
-                    _this.plotFitted.data[1].y = [Math.min.apply(Math, info['Y_adj']), Math.max.apply(Math, info['Y_adj'])];
+                    var plot_min = Math.min(Math.min.apply(Math, info['ymatrix']), Math.min.apply(Math, info['Y_adj']));
+                    var plot_max = Math.max(Math.max.apply(Math, info['ymatrix']), Math.max.apply(Math, info['Y_adj']));
+                    _this.plotFitted.data[1].x = [plot_min, plot_max];
+                    _this.plotFitted.data[1].y = [plot_min, plot_max];
+                    // this.plotFitted.data[1].x = [ Math.min.apply(Math, info['ymatrix']), Math.max.apply(Math, info['ymatrix'])];
+                    // this.plotFitted.data[1].y = [ Math.min.apply(Math, info['Y_adj']),Math.max.apply(Math, info['Y_adj'])];
                 }
                 // predicted plot                 
                 var canvas_pred = document.getElementById('scatter_pred_canvas');
