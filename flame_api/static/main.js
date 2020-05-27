@@ -2213,7 +2213,8 @@ var ConfigModelComponent = /** @class */ (function () {
             data: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
             molecule: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM'],
             model_ensemble: ['RF', 'XGBOOST', 'PLSDA', 'PLSR', 'GNB', 'SVM', 'mean', 'median', 'majority', 'matrix'],
-            combo_models: ['mean', 'median', 'majority', 'matrix']
+            combo_models: ['mean', 'median', 'majority', 'matrix'],
+            no_conformal: ['PLSDA', 'majority']
         };
     }
     ConfigModelComponent.prototype.ngOnInit = function () {
@@ -2223,6 +2224,12 @@ var ConfigModelComponent = /** @class */ (function () {
             return true;
         }
         return false;
+    };
+    ConfigModelComponent.prototype.isConformalPossible = function () {
+        if (this.type_models.no_conformal.includes(this.model.parameters['model'].value)) {
+            return false;
+        }
+        return true;
     };
     ConfigModelComponent.prototype.ngAfterContentChecked = function () {
         // CHECK DELTA DEPENDENCIES
@@ -2274,9 +2281,9 @@ var ConfigModelComponent = /** @class */ (function () {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx.model.parameters["model"].description, " ");
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.model.parameters["model"].value != "PLSDA");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.isConformalPossible());
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.model.parameters["model"].value != "PLSDA" && ctx.model.parameters["conformal"].value);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.isConformalPossible() && ctx.model.parameters["conformal"].value);
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.isComboModel());
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
