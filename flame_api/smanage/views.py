@@ -28,7 +28,6 @@ class ListSpaces(APIView):
         # return Response(json.loads(spaces[1]), 200)
         return Response(spaces[1], 200)
 
-
 class ManageSpaces(APIView):
     """
     Manage flame model (aka endpoint)
