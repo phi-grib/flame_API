@@ -242,34 +242,52 @@ class ManageImport(APIView):
 
     def post(self,request):
         
-        try:
-            file_obj = request.FILES['model']
-        except MultiValueDictKeyError:
-            response = {"error": "Model to import not provided"}
-            return JsonResponse(response, status = status.HTTP_400_BAD_REQUEST)
-        
-        # print (file_obj)
-        model_name = file_obj.name.split('.')
-        extension = model_name[1]
+        file_object = request.FILES['model']
+        model_name = file_object.name.split('.')
         model_name = model_name[0]
-        models_path = utils.model_repository_path()
+        base_path = utils.model_repository_path()
+        fs = FileSystemStorage(location=base_path) #defaults to models root
 
-        # Exist Model
+        tarname = fs.save(file_object.name, file_object)
+        tarpath = os.path.join(base_path,tarname)
+        flame_status = manage.action_import(tarpath)
+        os.remove(tarpath) 
+
+        if flame_status[0]:
+            return JsonResponse({'Model': model_name}, status=status.HTTP_200_OK)
+        else:
+            if 'WARNING' in flame_status[1]:
+                return JsonResponse({'error': flame_status[1]}, status=status.HTTP_200_OK)
+            else:
+                return JsonResponse({'error': flame_status[1]}, status=status.HTTP_409_CONFLICT)
+        # try:
+        #     file_obj = request.FILES['model']
+        # except MultiValueDictKeyError:
+        #     response = {"error": "Model to import not provided"}
+        #     return JsonResponse(response, status = status.HTTP_400_BAD_REQUEST)
+        
+        # # print (file_obj)
+        # model_name = file_obj.name.split('.')
+        # extension = model_name[1]
+        # model_name = model_name[0]
+        # models_path = utils.model_repository_path()
+
+        # # Exist Model
        
-        if os.path.isdir(models_path+ '/' +model_name+'/'):
-            return JsonResponse({'error': "Model already exist"},status=status.HTTP_409_CONFLICT)
+        # if os.path.isdir(models_path+ '/' +model_name+'/'):
+        #     return JsonResponse({'error': "Model already exist"},status=status.HTTP_409_CONFLICT)
 
-        fs = FileSystemStorage(location=models_path) #defaults to   MEDIA_ROOT  
-        tarFile = fs.save(model_name+'.'+extension, file_obj)
-        os.mkdir(models_path+ '/' +model_name)
-        tar = tarfile.open(models_path+ '/' +tarFile)
-        tar.extractall(path=models_path+ '/' +model_name+"/")
-        tar.close()
+        # fs = FileSystemStorage(location=models_path) #defaults to   MEDIA_ROOT  
+        # tarFile = fs.save(model_name+'.'+extension, file_obj)
+        # os.mkdir(models_path+ '/' +model_name)
+        # tar = tarfile.open(models_path+ '/' +tarFile)
+        # tar.extractall(path=models_path+ '/' +model_name+"/")
+        # tar.close()
        
-        os.remove(models_path+ '/' +tarFile) 
+        # os.remove(models_path+ '/' +tarFile) 
 
-        #return Response(flame_status, status=status.HTTP_200_OK)
-        return JsonResponse({'Model': model_name}, status=status.HTTP_200_OK)
+        # #return Response(flame_status, status=status.HTTP_200_OK)
+        # return JsonResponse({'Model': model_name}, status=status.HTTP_200_OK)
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
