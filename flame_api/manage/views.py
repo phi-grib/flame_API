@@ -161,11 +161,27 @@ class ManageDocumentation(APIView):
         documentation = request.POST.get('documentation') 
         flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
         if flame_status[0]:
-            # return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
             return Response(flame_status[0], status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
+class ManageLabels(APIView):
+
+    """
+    Manage flame labels (aka endpoint)
+    """
+
+    def post(self, request, modelname, version):
+        
+        """
+        Updates model documentation
+        """
+        labels = request.POST.get('labels') 
+        flame_status = manage.action_label(modelname, version, labels, oformat='JSONS')
+        if flame_status[0]:
+            return Response(flame_status[0], status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
 class ManageVersions(APIView):
     """
