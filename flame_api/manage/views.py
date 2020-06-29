@@ -60,7 +60,7 @@ class ManageModels(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = manage.action_info(modelname, 0,output='bin')
+        flame_status = manage.action_info(modelname, 0, output='bin')
         if flame_status[0]:
             return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
@@ -186,7 +186,6 @@ class ManageLabels(APIView):
 class ManageVersions(APIView):
     """
     Manage models to the version level
-    TODO: FIX and FINISH!
     """
 
     def get(self, request, modelname, version):
@@ -276,34 +275,7 @@ class ManageImport(APIView):
                 return JsonResponse({'error': flame_status[1]}, status=status.HTTP_200_OK)
             else:
                 return JsonResponse({'error': flame_status[1]}, status=status.HTTP_409_CONFLICT)
-        # try:
-        #     file_obj = request.FILES['model']
-        # except MultiValueDictKeyError:
-        #     response = {"error": "Model to import not provided"}
-        #     return JsonResponse(response, status = status.HTTP_400_BAD_REQUEST)
-        
-        # # print (file_obj)
-        # model_name = file_obj.name.split('.')
-        # extension = model_name[1]
-        # model_name = model_name[0]
-        # models_path = utils.model_repository_path()
 
-        # # Exist Model
-       
-        # if os.path.isdir(models_path+ '/' +model_name+'/'):
-        #     return JsonResponse({'error': "Model already exist"},status=status.HTTP_409_CONFLICT)
-
-        # fs = FileSystemStorage(location=models_path) #defaults to   MEDIA_ROOT  
-        # tarFile = fs.save(model_name+'.'+extension, file_obj)
-        # os.mkdir(models_path+ '/' +model_name)
-        # tar = tarfile.open(models_path+ '/' +tarFile)
-        # tar.extractall(path=models_path+ '/' +model_name+"/")
-        # tar.close()
-       
-        # os.remove(models_path+ '/' +tarFile) 
-
-        # #return Response(flame_status, status=status.HTTP_200_OK)
-        # return JsonResponse({'Model': model_name}, status=status.HTTP_200_OK)
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
