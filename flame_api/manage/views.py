@@ -16,7 +16,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 #from rest_framework.permissions import IsAuthenticated
 
 from flame import manage
-from flame.util import utils
+from flame.util import utils, config
 
 from wsgiref.util import FileWrapper
 import tarfile
@@ -204,7 +204,7 @@ class ManageVersions(APIView):
         """
         flame_status = manage.action_remove(modelname, version)
         if flame_status[0]:
-             return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
        
@@ -276,6 +276,37 @@ class ManageImport(APIView):
             else:
                 return JsonResponse({'error': flame_status[1]}, status=status.HTTP_409_CONFLICT)
 
+class ManageConfiguration(APIView):
+    """
+    Get and set Flame configuration
+    """
+
+    def get(self, request):
+        """
+        Retrieve flame configuration
+        """
+        flame_status = config.configure(None, silent=False)
+
+        if flame_status[0]:
+            model_path = flame_status[1]['model_repository_path']
+            root_path = os.path.split(model_path)[0]
+
+            return Response((root_path, flame_status[1]), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
+
+    def post(self,request):
+        """
+        Set flame configuration (path to models, predictions and spaces)
+        """
+        newpath = request.POST.get('newpath')
+        
+        flame_status = config.configure(newpath, silent=True)
+
+        if flame_status[0]:
+            return Response(flame_status[0], status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
 class TestUpload(APIView):
     parser_classes = (MultiPartParser,)
