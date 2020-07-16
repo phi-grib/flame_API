@@ -1,6 +1,6 @@
 # Flame_API
 
-Flame API is a web application designed to facilitate the use of essential features incorporated in the Flame software. It consists of a backend offering REST web services, which conform to the OpenAPI 3 specifications defined by the eTRANSAFE project, and a frontend accessing to these services. Together, they provide a complete Graphic User Interface which allows for an interactive usage of the functions of Flame, including model building and management as well as the generation of predictions. 
+Flame API is a web application designed to facilitate the use of essential features incorporated in the Flame software. It consists of a backend offering REST web services, which conform to the OpenAPI 3 specifications defined by the eTRANSAFE project, and a frontend (implemented in Angular, see flameWeb2) accessing to these services. Together, they provide a complete Graphic User Interface which allows for an interactive usage of the functions of Flame, including model building and management as well as the generation of predictions. 
 
 ## Installation
 
@@ -39,28 +39,11 @@ Alternatively, Windows users can additionally use the script `flame API.bat` whi
 If you prefer using another web browser (e.f. Edge or Chrome), edit the last line of the script accordingly. By right clicking this shortcut and editing its properties you can also customize the icon, for instance by selecting a more descriptive name (e.g. Flame API) or changing its logo (e.g. to the eTRANSAFE logo which is also included in this directory as etransafe-256px.ico).  
 
 ## Flame GUI description
+(in progress...)
 
-The flame GUI consist of 2 main areas: a control area and a visualization area.
-
-The control area is a visual demonstration of the three fundamental functions of Flame which are distributed in three tabs, namely 'Manage', 'Build', and 'Predict'. Moreover, the 'Manage' tab is further subdivided, thereby allowing for the management of  models, viz. to create, delete, import and export them. The 'Build' and 'Predict' tabs can be used to create new models and generate predictions, respectively. In both tabs, the sequence of steps which must be performed is always the same:
-
-- Select a model
-- Select a training or prediction set
-- Select the parameters desired in case of construction
-- Run a prediction or build a model
 
 ## Screenshots
-
-Areas:
-![Areas](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/areas.png)
-![Predict](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Predict.png)
-![Manage](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Manage.png)
-![Build](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Buid.png)
-![Data training uploader](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/uploader.png)
-![Validation Results](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Validation.png)
-![Prediction Results](https://raw.githubusercontent.com/phi-grib/flame_API/master/img/Prediction.png)
-
-
+(in progress...)
 
 ## flame API design explanation
 Here I'll use the base URL to be api.flame.edu/v1/ as a placeholder for the future (not yet created) base URL that respects the consortium specs.
