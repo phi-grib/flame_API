@@ -64,7 +64,7 @@ Predicted componds projected on a 2D scores plot obtained with the training seri
 
 Flame was produced at the PharmacoInformatics lab (http://phi.upf.edu), in the framework of the eTRANSAFE project (http://etransafe.eu). eTRANSAFE has received support from IMI2 Joint Undertaking under Grant Agreement No. 777365. This Joint Undertaking receives support from the European Union’s Horizon 2020 research and innovation programme and the European Federation of Pharmaceutical Industries and Associations (EFPIA). 
 
-![Alt text](images/eTRANSAFE-logo-git.png?raw=true "eTRANSAFE-logo") ![Alt text](images/imi-logo.png?raw=true "IMI logo")
+![Alt text](img/eTRANSAFE-logo-git.png?raw=true "eTRANSAFE-logo") ![Alt text](img/imi-logo.png?raw=true "IMI logo")
 
 Copyright 2018 Manuel Pastor (manuel.pastor@upf.edu)
 
