@@ -5,8 +5,7 @@ Flame API is a web application designed to facilitate the use of essential featu
 ## Installation
 
 ### Requirements
-
-Before proceeding, make sure that Flame is installed in your computer. Refer to the [flame](https://github.com/phi-grib/flame) manual for full instructions of how to create a flame conda environment and install the software. 
+Before proceeding, make sure that Flame is installed in your computer. Refer to the [flame](https://github.com/phi-grib/flame) Readme for full instructions about how to create a flame conda environment and install the software. 
 
 ### Activate the flame environment 
 
@@ -39,22 +38,28 @@ Alternatively, Windows users can additionally use the script `flame API.bat` whi
 If you prefer using another web browser (e.f. Edge or Chrome), edit the last line of the script accordingly. By right clicking this shortcut and editing its properties you can also customize the icon, for instance by selecting a more descriptive name (e.g. Flame API) or changing its logo (e.g. to the eTRANSAFE logo which is also included in this directory as Flame-icon.ico).  
 
 ## Screenshots
+
 ### Model list
 ![Alt text](img/flame-window.jpg?raw=true "Flame main window")
 Main window, showing the model summary information
 
+
 ![Alt text](img/quality-qualit.png?raw=true "Quality of qualitative model")
 Model quality information for a qualitative model
 
+
 ![Alt text](img/quality-quantit.png?raw=true "Quality of quantitative model")
 Model quality information for a quantitative model
+
 
 ### Predictions
 ![Alt text](img/prediction-list.png?raw=true "Prediction results as a list")
 Prediction results as a list
 
+
 ![Alt text](img/prediction-report.png?raw=true "Prediction report")
 Prediction report for a single compound
+
 
 ![Alt text](img/prediction-series-2.jpg?raw=true "Prediction projected on the training series")
 Predicted componds projected on a 2D scores plot obtained with the training series
@@ -66,7 +71,7 @@ Flame was produced at the PharmacoInformatics lab (http://phi.upf.edu), in the f
 
 ![Alt text](img/eTRANSAFE-logo-git.png?raw=true "eTRANSAFE-logo") ![Alt text](img/imi-logo.png?raw=true "IMI logo")
 
-Copyright 2018 Manuel Pastor (manuel.pastor@upf.edu)
+Copyright 2018-2020 Manuel Pastor (manuel.pastor@upf.edu)
 
 Flame is free software: you can redistribute it and/or modify it under the terms of the **GNU General Public License as published by the Free Software Foundation version 3**.
 
