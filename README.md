@@ -36,36 +36,46 @@ Then, open a browser and type the following address: http://localhost:8000
 
 Alternatively, Windows users can additionally use the script `flame API.bat` which is included in the main directory flame_API. In order to do so, right click this file and select 'Send to...'. This will give you an option to send a shortcut to the desktop. A double click on this icon will start the server which will be followed by an automatic opening of the GUI in a new window/tab of the Firefox browser. Due to several system checks, in some computers the server may take a few seconds to start... In this case, simply reload the GUI page.
 
-If you prefer using another web browser (e.f. Edge or Chrome), edit the last line of the script accordingly. By right clicking this shortcut and editing its properties you can also customize the icon, for instance by selecting a more descriptive name (e.g. Flame API) or changing its logo (e.g. to the eTRANSAFE logo which is also included in this directory as etransafe-256px.ico).  
-
-## Flame GUI description
-(in progress...)
-
+If you prefer using another web browser (e.f. Edge or Chrome), edit the last line of the script accordingly. By right clicking this shortcut and editing its properties you can also customize the icon, for instance by selecting a more descriptive name (e.g. Flame API) or changing its logo (e.g. to the eTRANSAFE logo which is also included in this directory as Flame-icon.ico).  
 
 ## Screenshots
-(in progress...)
+### Model list
+![Alt text](img/flame-window.jpg?raw=true "Flame main window")
+Main window, showing the model summary information
 
-## flame API design explanation
-Here I'll use the base URL to be api.flame.edu/v1/ as a placeholder for the future (not yet created) base URL that respects the consortium specs.
+![Alt text](img/quality-qualit.png?raw=true "Quality of qualitative model")
+Model quality information for a qualitative model
 
-For the sake of simplicity and given the architecture of flame this API uses 3 roots:
+![Alt text](img/quality-quantit.png?raw=true "Quality of quantitative model")
+Model quality information for a quantitative model
+
+### Predictions
+![Alt text](img/prediction-list.png?raw=true "Prediction results as a list")
+Prediction results as a list
+
+![Alt text](img/prediction-report.png?raw=true "Prediction report")
+Prediction report for a single compound
+
+![Alt text](img/prediction-series-2.jpg?raw=true "Prediction projected on the training series")
+Predicted componds projected on a 2D scores plot obtained with the training series
 
 
-```
-/manage
-/build
-/predict
-```
+## Licensing
 
-Each model is a *resource* that the client can create, modify, delete or exploit so the url structure will be:
+Flame was produced at the PharmacoInformatics lab (http://phi.upf.edu), in the framework of the eTRANSAFE project (http://etransafe.eu). eTRANSAFE has received support from IMI2 Joint Undertaking under Grant Agreement No. 777365. This Joint Undertaking receives support from the European Union’s Horizon 2020 research and innovation programme and the European Federation of Pharmaceutical Industries and Associations (EFPIA). 
 
-```
-api.flame.edu/v1/{root}/models/{modelname}
-```
+![Alt text](img/eTRANSAFE-logo-git.png?raw=true "eTRANSAFE-logo") ![Alt text](img/imi-logo.png?raw=true "IMI logo")
 
-Over this resource the client can create, delete or get info with the HTTP verbs (POST, DELETE, GET...).
+Copyright 2018 Manuel Pastor (manuel.pastor@upf.edu)
 
-----
+Flame is free software: you can redistribute it and/or modify it under the terms of the **GNU General Public License as published by the Free Software Foundation version 3**.
+
+Flame is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with Flame. If not, see <http://www.gnu.org/licenses/>.
+
+
 <!---
 ## TODO
 
