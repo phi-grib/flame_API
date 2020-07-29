@@ -1,3 +1,26 @@
+#! -*- coding: utf-8 -*-
+
+# Description    Flame API build views
+#
+# Authors:       Manuel Pastor (manuel.pastor@upf.edu)
+#                Ignacio Pasamontes 
+#
+# Copyright 2018-2020 Manuel Pastor
+#
+# This file is part of Flame
+#
+# Flame is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation version 3.
+#
+# Flame is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Flame. If not, see <http://www.gnu.org/licenses/>.
+
 import tempfile
 import os
 import yaml
@@ -56,8 +79,6 @@ class BuildModel(APIView):
             path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
             training_data = os.path.join(temp_dir, path_SDF)
 
-       
-        # TODO: implement correctly flame build
         command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params, 'incremental': incremental}
         x = threading.Thread(target=buildThread, args=(command_build,'JSON'))
             
