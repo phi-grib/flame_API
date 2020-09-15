@@ -24,6 +24,9 @@
 import tempfile
 import os
 import json
+import re
+import yaml
+
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -182,7 +185,12 @@ class ManageDocumentation(APIView):
         Updates model documentation
         """
         documentation = request.POST.get('documentation') 
-        flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
+        pattern = re.compile(r'/^\{\w+:\w+(,\w+:\w+)*\}$/')
+        match = re.search(pattern, documentation)
+        if match:
+            flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
+        else:
+            flame_status = manage.action_documentation(modelname, version, documentation, oformat='YAML')
         if flame_status[0]:
             return Response(flame_status[0], status=status.HTTP_200_OK)
         else:
