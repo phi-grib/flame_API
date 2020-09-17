@@ -168,18 +168,18 @@ class ManageDocumentation(APIView):
     """
     #permission_classes = (IsAuthenticated,)
 
-    def get(self, request, modelname, version, format):
+    def get(self, request, modelname, version, oformat):
         
         """
         Retrieves model documentation
         """
-        flame_status = manage.action_documentation(modelname, version, oformat='bin')
+        flame_status = manage.action_documentation(modelname, version, oformat='JSON')
         if flame_status[0]:
             return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
-    def post(self, request, modelname, version, format):
+    def post(self, request, modelname, version, oformat):
         
         """
         Updates model documentation
@@ -187,10 +187,8 @@ class ManageDocumentation(APIView):
         documentation = request.POST.get('documentation') 
         
         print(documentation)
-        if match:
-            flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
-        else:
-            flame_status = manage.action_documentation(modelname, version, documentation, oformat='YAML')
+        flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
+    
         if flame_status[0]:
             return Response(flame_status[0], status=status.HTTP_200_OK)
         else:
