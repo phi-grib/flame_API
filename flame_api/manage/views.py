@@ -183,7 +183,8 @@ class ManageDocumentation(APIView):
                 return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
         elif oformat=='YAML':
             print('llamada yaml')
-            flame_status = manage.action_documentation(modelname, version, oformat='JSON')
+            oformat= 'JSON'
+            flame_status = manage.action_documentation(modelname, version, oformat)
             if flame_status[0]:
                return Response(json.loads(flame_status[1].dumpYAML()), status=status.HTTP_200_OK)
             else:
