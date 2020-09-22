@@ -173,24 +173,21 @@ class ManageDocumentation(APIView):
         """
         Retrieves model documentation
         """
-        print(oformat)
         if oformat=='JSON':
-            print('llamada json')
             flame_status = manage.action_documentation(modelname, version, oformat='JSON')
             if flame_status[0]:
                 return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
             else:
+                print ('***********************', flame_status)
                 return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
         elif oformat=='YAML':
-            print('llamada yaml')
-            oformat= 'JSON'
-            flame_status = manage.action_documentation(modelname, version, oformat)
+            flame_status = manage.action_documentation(modelname, version, oformat='YAML')
             if flame_status[0]:
-               return Response(json.loads(flame_status[1].dumpYAML()), status=status.HTTP_200_OK)
+                return Response(flame_status[1].dumpYAML(), status=status.HTTP_200_OK)
             else:
                 return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
         else:
-            return 'ERROR'    #still on it
+            return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
 
     def post(self, request, modelname, version, oformat):
         
