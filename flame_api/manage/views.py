@@ -211,7 +211,8 @@ class ManageDocumentation(APIView):
                 return Response(flame_status[1], status=status.HTTP_200_OK)
             else:
                 return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)    
-
+        else:
+            return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 class ManageLabels(APIView):
 
     """
