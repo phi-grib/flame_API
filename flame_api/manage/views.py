@@ -26,6 +26,7 @@ import os
 import json
 import re
 import yaml
+import ast
 
 
 from rest_framework.decorators import api_view
@@ -178,10 +179,9 @@ class ManageDocumentation(APIView):
             if flame_status[0]:
                 return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
             else:
-                print ('***********************', flame_status)
                 return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
         elif oformat=='YAML':
-            flame_status = manage.action_documentation(modelname, version, oformat='YAML')
+            flame_status = manage.action_documentation(modelname, version, oformat='JSON')
             if flame_status[0]:
                 return Response(flame_status[1].dumpYAML(), status=status.HTTP_200_OK)
             else:
@@ -196,13 +196,21 @@ class ManageDocumentation(APIView):
         """
         documentation = request.POST.get('documentation') 
         
-        print(documentation)
-        flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
-    
-        if flame_status[0]:
-            return Response(flame_status[0], status=status.HTTP_200_OK)
-        else:
-            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+        print(type(documentation))
+        if oformat== 'JSON':
+            flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
+            print('this is jsons')
+            if flame_status[0]:
+                return Response(flame_status[1], status=status.HTTP_200_OK)
+            else:
+                return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+        elif oformat== 'YAML':
+            flame_status = manage.action_documentation(modelname, version, documentation, oformat='YAMLS')
+            print('this is yamls')
+            if flame_status[0]:
+                return Response(flame_status[1], status=status.HTTP_200_OK)
+            else:
+                return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)    
 
 class ManageLabels(APIView):
 
