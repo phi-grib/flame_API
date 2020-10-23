@@ -24,6 +24,10 @@
 import tempfile
 import os
 import json
+import re
+import yaml
+import ast
+
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -165,29 +169,50 @@ class ManageDocumentation(APIView):
     """
     #permission_classes = (IsAuthenticated,)
 
-    def get(self, request, modelname, version):
+    def get(self, request, modelname, version, oformat):
         
         """
         Retrieves model documentation
         """
-        flame_status = manage.action_documentation(modelname, version, oformat='bin')
-        if flame_status[0]:
-            return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
+        if oformat=='JSON':
+            flame_status = manage.action_documentation(modelname, version, oformat='JSON')
+            if flame_status[0]:
+                return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
+            else:
+                return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+        elif oformat=='YAML':
+            flame_status = manage.action_documentation(modelname, version, oformat='JSON')
+            if flame_status[0]:
+                return Response(flame_status[1].dumpYAML(), status=status.HTTP_200_OK)
+            else:
+                return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
         else:
-            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
 
-    def post(self, request, modelname, version):
+    def post(self, request, modelname, version, oformat):
         
         """
         Updates model documentation
         """
         documentation = request.POST.get('documentation') 
-        flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
-        if flame_status[0]:
-            return Response(flame_status[0], status=status.HTTP_200_OK)
+        
+        print(type(documentation))
+        if oformat== 'JSON':
+            flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
+            print('this is jsons')
+            if flame_status[0]:
+                return Response(flame_status[1], status=status.HTTP_200_OK)
+            else:
+                return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+        elif oformat== 'YAML':
+            flame_status = manage.action_documentation(modelname, version, documentation, oformat='YAMLS')
+            print('this is yamls')
+            if flame_status[0]:
+                return Response(flame_status[1], status=status.HTTP_200_OK)
+            else:
+                return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)    
         else:
-            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
-
+            return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 class ManageLabels(APIView):
 
     """
