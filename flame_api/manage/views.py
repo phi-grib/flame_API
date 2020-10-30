@@ -363,12 +363,15 @@ class TestUpload(APIView):
         # get the upladed file with name "file"
         return Response(request.FILES)
 
-# class ManageBuild(APIView):
-#     def get(self, request, modelName, modelVersion):
-#         #todo: transforms this.model.delta into a yaml file HR
-#         return 'hello'
+class ManageParameters2Yaml(APIView):
+    def get(self, request):
+        #todo: transforms this.model.delta into a yaml file HR
+        print('parameters2Yaml')
+        return 'yaml formated text'
 
+class ManageYaml2Parameters(APIView):
+    def post(self, request):
+        #todo: updates the parameters reading them from a yaml file
+        print('yaml2parameters')
+        return 'parameters object (complex dict)'
 
-#     def post(self, request, modelName, modelVersion):
-#         #todo: updates the parameters reading them from a yaml file
-#         return 'bye'
