@@ -364,14 +364,32 @@ class TestUpload(APIView):
         return Response(request.FILES)
 
 class ManageParameters2Yaml(APIView):
-    def get(self, request, modelname, version):
-        #todo: transforms this.model.delta into a yaml file HR
-        print('****************** parameters2Yaml')
-        return 'yaml formated text'
+    def post (self, request, modelname, version):
+
+        # retrieve delta parameters, as JSON
+        delta = request.POST.get('parameters') 
+        
+        # retrive existing parameters for this model version
+        success, param = manage.action_parameters(modelname,version,oformat='bin')
+
+        if success:
+            # apply delta to the existing paramyeres
+            param.applyDelta(json.loads(delta))
+            return Response(param.dumpYAML(), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':param},status = status.HTTP_404_NOT_FOUND)
 
 class ManageYaml2Parameters(APIView):
     def post(self, request, modelname,version):
-        #todo: updates the parameters reading them from a yaml file
-        print('******************* yaml2parameters')
-        return 'parameters object (complex dict)'
+        # retrieve delta parameters, as YAML
+        delta = request.POST.get('parameters') 
+        
+        # retrive existing parameters for this model version
+        success, param = manage.action_parameters(modelname,version,oformat='bin')
 
+        if success:
+            # apply delta to the existing paramyeres
+            param.applyDelta(yaml.safe_load(delta))
+            return Response(json.loads(param.dumpJSON()), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':param},status = status.HTTP_404_NOT_FOUND)
