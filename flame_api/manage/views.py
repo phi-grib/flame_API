@@ -366,7 +366,7 @@ class TestUpload(APIView):
 class ManageParameters2Yaml(APIView):
     def post (self, request, modelname, version):
 
-        # retrieve delta parameters, as JSON
+        # retrieve delta parameters, which were encoded as JSON
         delta = request.POST.get('parameters') 
         
         # retrive existing parameters for this model version
@@ -381,7 +381,7 @@ class ManageParameters2Yaml(APIView):
 
 class ManageYaml2Parameters(APIView):
     def post(self, request, modelname,version):
-        # retrieve delta parameters, as YAML
+        # retrieve delta parameters, as a YAML file
         delta = request.POST.get('parameters') 
         
         # retrive existing parameters for this model version
