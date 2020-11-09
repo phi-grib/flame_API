@@ -25,7 +25,7 @@ from django.urls import path
 from .views import ListModels, ManageModels, ManageVersions
 from .views import ManageParameters, ManageValidation, ManageExport, ManageImport
 from .views import ListPredictions, ManagePredictions, ManageDocumentation
-from .views import ManageLabels, ManageConfiguration
+from .views import ManageLabels, ManageConfiguration, ManageParameters2Yaml, ManageYaml2Parameters
 
 urlpatterns = [
     path("models", ListModels.as_view()),
@@ -35,6 +35,8 @@ urlpatterns = [
     path("model/<str:modelname>", ManageModels.as_view()),
     path("model/<str:modelname>/export",ManageExport.as_view()),
     path("model/<str:modelname>/version/<int:version>", ManageVersions.as_view()),
+    path("model/<str:modelname>/version/<int:version>/parameters2yaml", ManageParameters2Yaml.as_view()),
+    path("model/<str:modelname>/version/<int:version>/yaml2parameters", ManageYaml2Parameters.as_view()),
     path("model/<str:modelname>/version/<int:version>/parameters", ManageParameters.as_view()),
     path("model/<str:modelname>/version/<int:version>/oformat/<str:oformat>/documentation", ManageDocumentation.as_view()),
     path("model/<str:modelname>/version/<int:version>/validation", ManageValidation.as_view()),
