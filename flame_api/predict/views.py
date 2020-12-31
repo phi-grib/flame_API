@@ -24,6 +24,7 @@
 import tempfile
 import os
 import json
+from urllib.parse import unquote
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -38,6 +39,8 @@ from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
 from flame import predict
+
+from rdkit import Chem
 
 import flame.context as context
 import threading
@@ -96,6 +99,30 @@ class PredictName(APIView):
         path = fs.save(file_obj.name, ContentFile(file_obj.read()))
 
         predict_data = os.path.join(temp_dir, path)
+
+        command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
+        
+        x = threading.Thread(target=predictThread, args=(command_predict,'JSON'))
+        x.start()
+        return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
+
+class PredictSmiles(APIView):
+    
+    """
+    Prediction
+    """
+    def post(self, request, modelname, version, predictionName, smiles):
+
+        print ('***********************',smiles)
+        smiles = unquote(smiles)
+
+        # Set the temp filesystem storage
+        temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
+        predict_data = os.path.join(temp_dir,'moleditor.sdf')
+
+        m = Chem.MolFromSmiles(smiles)
+        with open(predict_data,'w') as f:
+            f.write(Chem.MolToMolBlock(m))
 
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
