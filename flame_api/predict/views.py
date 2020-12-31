@@ -113,13 +113,14 @@ class PredictSmiles(APIView):
     """
     def post(self, request, modelname, version, predictionName, smiles):
 
-        print ('***********************',smiles)
+        # The SMILES arrives URI encoded
         smiles = unquote(smiles)
 
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
         predict_data = os.path.join(temp_dir,'moleditor.sdf')
 
+        # Creates a simple MOLfile from the SMILES
         m = Chem.MolFromSmiles(smiles)
         with open(predict_data,'w') as f:
             f.write(Chem.MolToMolBlock(m))
