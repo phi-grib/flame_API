@@ -1,10 +1,10 @@
 {
   "realm": "KH",
-  "auth-server-url": "https://login.etransafe.eu/auth",
+  "auth-server-url": "http://localhost:8090/auth",
   "ssl-required": "external",
   "resource": "knowledge-hub",
   "credentials": {
-    "secret": "***********************"
+    "secret": "**********"
   },
   "confidential-port": 0,
   "enable-cors": true
