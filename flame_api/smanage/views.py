@@ -42,18 +42,22 @@ from flame import smanage
 # Create your views here.
 class ListSpaces(APIView):
     """
-    Model list
+    Spaces list
     """
     #permission_classes = (IsAuthenticated,)
     def get(self, request):
         spaces = smanage.action_dir()
-        # TODO: fix what flame returns
-        # return Response(json.loads(spaces[1]), 200)
-        return Response(spaces[1], 200)
+        return Response(spaces, status=status.HTTP_200_OK)
+
+        # if spaces[0]:
+        #     return Response(spaces[1], status=status.HTTP_200_OK)
+        # else:
+        #     return JsonResponse({'error':spaces[1]}, status = status.HTTP_404_NOT_FOUND)
+
 
 class ManageSpaces(APIView):
     """
-    Manage flame model (aka endpoint)
+    Manage flame space
     """
     #permission_classes = (IsAuthenticated,)
 
@@ -67,14 +71,13 @@ class ManageSpaces(APIView):
         flame_status = smanage.action_info(spacename, 0)
         
         if flame_status[0]:
-            # return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
             return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
             
     def post(self, request, spacename):
         """
-        Creates a new flame model
+        Creates a new flame space
         """
         flame_status = smanage.action_new(spacename)
         if flame_status[1] == f"Endpoint {spacename} already exists":
@@ -98,7 +101,7 @@ class ManageSpaces(APIView):
 
     def put(self, request, spacename):
         """
-        Publishes a new version of the model
+        Publishes a new version of the space
         TODO: Complete  error handling and error status
         """
         flame_status = smanage.action_publish(spacename)
@@ -122,7 +125,7 @@ class ManageVersions(APIView):
 
     def get(self, request, spacename, version):
         """
-        Retrieves model information or metadata
+        Retrieves space information or metadata
         TODO: dont use hardcoded 0 version
         TODO: haandle info errors 
         """
@@ -138,7 +141,7 @@ class ManageVersions(APIView):
 
     def delete(self, request, spacename, version):
         """
-        Delete model
+        Delete space
         """
         flame_status = smanage.action_remove(spacename, version)
         if flame_status[0]:
@@ -148,7 +151,7 @@ class ManageVersions(APIView):
 
 class ManageParameters(APIView):
     """
-    Manage model parameters
+    Manage space parameters
     """
 
     def get(self,request,spacename,version):
