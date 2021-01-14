@@ -56,37 +56,28 @@ class ListModels(APIView):
     #permission_classes = (IsAuthenticated,)
     def get(self, request):
         models = manage.action_dir()
-        return Response(models, 200)
-
-        # else:
-        #     return Response(models[1], status = status.HTTP_404_NOT_FOUND)
+        return Response(models, status=status.HTTP_200_OK)
 
 
 class ListPredictions(APIView):
     """
-    Model list
+    Predictions list
     """
     #permission_classes = (IsAuthenticated,)
     def get(self, request):
         predictions = manage.action_predictions_list()
-        return Response(predictions, 200)
-
-        # else:
-        #     return Response(predictions[1], status = status.HTTP_404_NOT_FOUND)
+        return Response(predictions, status=status.HTTP_200_OK)
 
 class ManageModels(APIView):
     """
-    Manage flame model (aka endpoint)
+    Manage flame model 
     """
     #permission_classes = (IsAuthenticated,)
 
     def get(self, request, modelname):
         """
         Retrieves model information or metadata
-        TODO: dont use hardcoded 0 version
-        TODO: haandle info errors 
         """
-        # TODO: FIX model info and metadata for  whole endpoint in flame
         flame_status = manage.action_info(modelname, 0, output='bin')
         if flame_status[0]:
             return Response(flame_status[1], status=status.HTTP_200_OK)
@@ -139,7 +130,6 @@ class ManagePredictions(APIView):
 
     """
     Manage models to the version level
-    TODO: FIX and FINISH!
     """
 
     def get(self, request, predictionName):
@@ -165,7 +155,7 @@ class ManagePredictions(APIView):
 class ManageDocumentation(APIView):
 
     """
-    Manage flame model (aka endpoint)
+    Manage model documentation
     """
     #permission_classes = (IsAuthenticated,)
 
@@ -199,20 +189,19 @@ class ManageDocumentation(APIView):
         print(type(documentation))
         if oformat== 'JSON':
             flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
-            print('this is jsons')
             if flame_status[0]:
                 return Response(flame_status[1], status=status.HTTP_200_OK)
             else:
                 return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
         elif oformat== 'YAML':
             flame_status = manage.action_documentation(modelname, version, documentation, oformat='YAMLS')
-            print('this is yamls')
             if flame_status[0]:
                 return Response(flame_status[1], status=status.HTTP_200_OK)
             else:
                 return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)    
         else:
-            return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
+
 class ManageLabels(APIView):
 
     """
