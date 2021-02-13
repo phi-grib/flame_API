@@ -186,7 +186,7 @@ class ManageDocumentation(APIView):
         """
         documentation = request.POST.get('documentation') 
         
-        print(type(documentation))
+        # print(type(documentation))
         if oformat== 'JSON':
             flame_status = manage.action_documentation(modelname, version, documentation, oformat='JSONS')
             if flame_status[0]:
