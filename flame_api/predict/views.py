@@ -111,24 +111,30 @@ class PredictSmiles(APIView):
     """
     Prediction
     """
-    def post(self, request, modelname, version, predictionName, smiles):
+    def put (self, request, modelname, version, predictionName):
 
-        # The SMILES arrives URI encoded
-        smiles = unquote(smiles)
-
+        try:
+            smiles = request.POST.get("SMILES")
+        except MultiValueDictKeyError as e:
+            return JsonResponse({'error':'SMILES not provided'}, status=status.HTTP_400_BAD_REQUEST)
+        
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
         predict_data = os.path.join(temp_dir,'moleditor.sdf')
 
         # Creates a simple MOLfile from the SMILES
-        m = Chem.MolFromSmiles(smiles)
-        with open(predict_data,'w') as f:
-            f.write(Chem.MolToMolBlock(m))
+        try:
+            m = Chem.MolFromSmiles(smiles)
+            with open(predict_data,'w') as f:
+                f.write(Chem.MolToMolBlock(m))
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
         x = threading.Thread(target=predictThread, args=(command_predict,'JSON'))
         x.start()
+
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
         
 def predictThread(command, output):

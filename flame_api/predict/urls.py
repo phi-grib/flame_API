@@ -26,4 +26,5 @@ from .views import Predict, PredictName, PredictSmiles
 urlpatterns = [
     path("model/<str:modelname>/version/<str:version>", Predict.as_view()),
     path("model/<str:modelname>/version/<str:version>/predictionName/<str:predictionName>", PredictName.as_view()),
-    path("model/<str:modelname>/version/<str:version>/predictionName/<str:predictionName>/smiles/<str:smiles>", PredictSmiles.as_view())]
+    path("model/<str:modelname>/version/<str:version>/predictionName/<str:predictionName>/smiles", PredictSmiles.as_view())
+    ]
