@@ -130,7 +130,7 @@ class ManageVersions(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = smanage.action_info(spacename, version, output='bin')
+        flame_status = smanage.action_info(spacename, version, output='JSON')
         
         if flame_status[0]:
             # return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
@@ -158,7 +158,7 @@ class ManageParameters(APIView):
         """
         Retrieve parameters of space version
         """
-        flame_status = smanage.action_parameters(spacename, version, output = "bin")       
+        flame_status = smanage.action_parameters(spacename, version, output = "JSON")       
         if flame_status[0]:
             return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
         else:
@@ -172,14 +172,8 @@ class ManageSearches(APIView):
         Retrieve info of sesrch
         """
 
-        flame_status = smanage.action_searches_result(searchName, output = "bin")
+        flame_status = smanage.action_searches_result(searchName, output = "JSON")
         if flame_status[0]:
-            return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)
-          
-            # result = json.loads(flame_status[1])
-            # result['endpoint'] = result['meta']['endpoint']
-            # del result['meta']
-            # del result['manifest']
-            # return Response(result, status=status.HTTP_200_OK)        
+            return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)      
         else:
             return JsonResponse(flame_status[1], status = status.HTTP_404_NOT_FOUND)
