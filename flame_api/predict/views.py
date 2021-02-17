@@ -23,7 +23,7 @@
 
 import tempfile
 import os
-import json
+import shutil
 from urllib.parse import unquote
 
 from rest_framework.decorators import api_view
@@ -38,52 +38,17 @@ from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
-from flame import predict
-
 from rdkit import Chem
 
 import flame.context as context
 import threading
-import time
-
-
-
+       
 class Predict(APIView):
-    """
-    Prediction
-    """
-
-    parser_classes = (MultiPartParser,)
-
-    def put(self, request, modelname, version, format=None):
-
-        # get the upladed file with name "file"
-        try:
-            file_obj = request.FILES["SDF"]
-        except MultiValueDictKeyError as e:
-            return  JsonResponse({'error':'Datatest not provided'}, status=status.HTTP_400_BAD_REQUEST)
-        
-
-        # Set the temp filesystem storage
-        temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
-        fs = FileSystemStorage(location=temp_dir)
-        # save the file to the new filesystem
-        path = fs.save(file_obj.name, ContentFile(file_obj.read()))
-
-        predict_data = os.path.join(temp_dir, path)
-
-        command_predict={'endpoint': modelname, 'version':int(version) ,'infile':predict_data}
-        
-        x = threading.Thread(target=predictThread, args=(command_predict,'JSON'))
-        x.start()
-        return Response("Predicting ", status=status.HTTP_200_OK)  
-        
-class PredictName(APIView):
     
     """
-    Prediction
+    Prediction, input file is provided as a SDFile
     """
-    def put(self, request, modelname, version, predictionName, format=None):
+    def put(self, request, modelname, version, predictionName=None):
 
         # get the upladed file with name "file"
         try:
@@ -99,19 +64,22 @@ class PredictName(APIView):
         path = fs.save(file_obj.name, ContentFile(file_obj.read()))
 
         predict_data = os.path.join(temp_dir, path)
+
+        if predictionName is None:
+            predictionName = 'temp'
 
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        x = threading.Thread(target=predictThread, args=(command_predict,'JSON'))
+        x = threading.Thread(target=predictThread, args=(command_predict,'JSON',temp_dir))
         x.start()
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
 
 class PredictSmiles(APIView):
     
     """
-    Prediction
+    Prediction, nput file is provided as a SMILES
     """
-    def put (self, request, modelname, version, predictionName):
+    def put (self, request, modelname, version, predictionName=None):
 
         try:
             smiles = request.POST.get("SMILES")
@@ -130,15 +98,19 @@ class PredictSmiles(APIView):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+        if predictionName is None:
+            predictionName = 'temp'
+
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        x = threading.Thread(target=predictThread, args=(command_predict,'JSON'))
+        x = threading.Thread(target=predictThread, args=(command_predict,'JSON',temp_dir))
         x.start()
-
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
         
-def predictThread(command, output):
+def predictThread(command, output, temp_dir=''):
 
     print ("Thread Start")
     success, results = context.predict_cmd(command, output_format=output)
+    shutil.rmtree(temp_dir)
+    # print (f"Folder {temp_dir} removed")
     print ("Thread End")
