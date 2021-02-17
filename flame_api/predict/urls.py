@@ -21,10 +21,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 from django.urls import path
-from .views import Predict, PredictName, PredictSmiles
+from .views import Predict, PredictSmiles
 
 urlpatterns = [
     path("model/<str:modelname>/version/<str:version>", Predict.as_view()),
-    path("model/<str:modelname>/version/<str:version>/predictionName/<str:predictionName>", PredictName.as_view()),
+    path("model/<str:modelname>/version/<str:version>/smiles", PredictSmiles.as_view()),
+    path("model/<str:modelname>/version/<str:version>/predictionName/<str:predictionName>", Predict.as_view()),
     path("model/<str:modelname>/version/<str:version>/predictionName/<str:predictionName>/smiles", PredictSmiles.as_view())
     ]
