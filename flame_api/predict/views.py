@@ -86,15 +86,22 @@ class PredictSmiles(APIView):
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'SMILES not provided'}, status=status.HTTP_400_BAD_REQUEST)
         
+        try:
+            molname = request.POST.get("name")
+        except MultiValueDictKeyError as e:
+            molname = "anonymous"
+
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
-        predict_data = os.path.join(temp_dir,'moleditor.sdf')
+        predict_data = os.path.join(temp_dir,molname+'.sdf')
 
         # Creates a simple MOLfile from the SMILES
         try:
             m = Chem.MolFromSmiles(smiles)
+            m.SetProp("_Name",molname)
             with open(predict_data,'w') as f:
                 f.write(Chem.MolToMolBlock(m))
+
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
