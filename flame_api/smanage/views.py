@@ -158,9 +158,9 @@ class ManageParameters(APIView):
         """
         Retrieve parameters of space version
         """
-        flame_status = smanage.action_parameters(spacename, version, output = "JSON")       
+        flame_status = smanage.action_parameters(spacename, version, oformat = "JSON")       
         if flame_status[0]:
-            return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+            return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
