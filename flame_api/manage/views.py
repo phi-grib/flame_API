@@ -21,12 +21,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
-import tempfile
 import os
+import shutil
 import json
-import re
 import yaml
-import ast
+import tempfile
 
 
 from rest_framework.decorators import api_view
@@ -46,7 +45,6 @@ from flame import manage
 from flame.util import utils, config
 
 from wsgiref.util import FileWrapper
-import tarfile
 
 
 class ListModels(APIView):
@@ -277,18 +275,26 @@ class ManageExport(APIView):
 
     def get(self,request,modelname):
         """
-        Retrieve parameters of model version
+        Creates a compressed file in a temp directory and sends it as an
+        HttpResponse
         """
-        flame_status = manage.action_export(modelname)
         current_path = os.getcwd()
-        exportfile = os.path.join(current_path,modelname+'.tgz')
-        file = open(exportfile, 'rb')
+
+        temp_dir = tempfile.mkdtemp(prefix="export_", dir=None)
+        os.chdir(temp_dir)
+        success, results = manage.action_export(modelname)
+        if not success:
+            os.chdir(current_path)
+            return JsonResponse({'error':results},status = status.HTTP_404_NOT_FOUND)
+
+        file = open(os.path.abspath(modelname+'.tgz'), 'rb')
         response = HttpResponse(FileWrapper(file), content_type='application/tgz')
         response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
-        os.remove(exportfile) 
+
+        os.chdir(current_path)
+        shutil.rmtree(temp_dir)
 
         return response
-        #return Response(flame_status, status=status.HTTP_200_OK)
 
 class ManageImport(APIView):
 
