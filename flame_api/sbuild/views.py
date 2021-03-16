@@ -24,17 +24,13 @@
 import os
 import tempfile
 import os
-import yaml
-import json
 import shutil
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser, FileUploadParser
 from rest_framework import status
 
-from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
@@ -42,12 +38,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 import flame.context as context
 import threading
-import time
 
-from flame.util import utils
-
-
-# Create your views here.
 
 class BuildSpace(APIView):
     """
@@ -77,13 +68,14 @@ class BuildSpace(APIView):
        
         # TODO: implement correctly flame build
         command_sbuild = {'space': spacename, 'infile': training_data, 'param_string': params}
-        x = threading.Thread(target=sbuildThread, args=(command_sbuild,'JSON'))
+        x = threading.Thread(target=sbuildThread, args=(command_sbuild,'JSON', temp_dir))
         x.start()
         
         return Response( spacename, status=status.HTTP_200_OK)  
 
-def sbuildThread(command, output):
+def sbuildThread(command, output, temp_dir):
 
     print ("Thread Start")
     success, results = context.sbuild_cmd(command, output_format=output)
+    shutil.rmtree(temp_dir)
     print ("Thread End")
