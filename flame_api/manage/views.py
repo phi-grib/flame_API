@@ -258,6 +258,33 @@ class ManageParameters(APIView):
         else:
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
+class ManageSeries(APIView):
+    """
+    Return training series
+    """
+
+    def get(self,request,modelname,version):
+        """
+        Retrieve parameters of model version
+        """
+        current_path = os.getcwd()
+        temp_dir = tempfile.mkdtemp(prefix="series_", dir=None)
+        os.chdir(temp_dir)
+
+        flame_status = manage.action_series(modelname,version)       
+        if flame_status[0] == False:
+            os.chdir(current_path)
+            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
+
+        file = open(os.path.abspath('training_series.sdf'), 'rb')
+        response = HttpResponse(FileWrapper(file), content_type='text')
+        response['Content-Disposition'] = 'attachment; filename=training_series.sdf'
+
+        os.chdir(current_path)
+        shutil.rmtree(temp_dir)
+
+        return response
+
 class ManageValidation(APIView):
 
     def get(self,request,modelname,version):    
