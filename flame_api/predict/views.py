@@ -98,6 +98,9 @@ class PredictSmiles(APIView):
         # Creates a simple MOLfile from the SMILES
         try:
             m = Chem.MolFromSmiles(smiles)
+            if m is None:
+                return JsonResponse({'error': 'SMILES format not recognized'}, status=status.HTTP_400_BAD_REQUEST)
+
             m.SetProp("_Name",molname)
             with open(predict_data,'w') as f:
                 f.write(Chem.MolToMolBlock(m))

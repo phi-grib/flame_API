@@ -119,12 +119,62 @@ class SearchSmiles(APIView):
         # Creates a simple MOLfile from the SMILES
         try:
             m = Chem.MolFromSmiles(smiles)
+            if m is None:
+                return JsonResponse({'error': 'SMILES format not recognized'}, status=status.HTTP_400_BAD_REQUEST)
+
             with open(search_data,'w') as f:
                 f.write(Chem.MolToMolBlock(m))
+
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
         command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'infile':search_data , 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
+        
+        x = threading.Thread(target=searchThread, args=(command_search,'JSON', temp_dir))
+        x.start()
+        return Response(searchName, status=status.HTTP_200_OK)
+
+class SearchSmarts(APIView):
+    """
+    Search, input file is provided as a SMILES
+    """
+
+    def put(self, request, spacename, version, searchName=None):
+
+        # get the upladed file with name "file"
+        metric = request.query_params.get('metric')
+        numsel = request.query_params.get('numsel')
+        cutoff = request.query_params.get('cutoff')
+        
+        if cutoff is not None:
+            cutoff = float(cutoff)
+
+        if numsel is not None:
+            numsel = int(numsel)
+
+        # command_search = {'space': args.space,
+        #          'version': version,
+        #          'infile': args.infile,
+        #          'smarts': args.smarts,
+        #          'runtime_param': args.parameters,
+        #          'label': label}
+
+        try:
+            smarts = request.POST.get("SMARTS")
+        except MultiValueDictKeyError as e:
+            return JsonResponse({'error':'SMARTS not provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Set the temp filesystem storage
+        temp_dir = tempfile.mkdtemp(prefix="search_data_", dir=None)
+
+        if searchName is None:
+            searchName = id_generator()
+
+        m = Chem.MolFromSmarts(smarts)
+        if m is None:
+            return JsonResponse({'error': 'SMARTS format not recognized'}, status=status.HTTP_400_BAD_REQUEST)
+
+        command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'smarts':smarts , 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
         
         x = threading.Thread(target=searchThread, args=(command_search,'JSON', temp_dir))
         x.start()

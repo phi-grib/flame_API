@@ -21,11 +21,13 @@
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
 from django.urls import path
-from .views import Search, SearchSmiles
+from .views import Search, SearchSmiles, SearchSmarts
 
 urlpatterns = [
   path("space/<str:spacename>/version/<int:version>", Search.as_view()),
   path("space/<str:spacename>/version/<int:version>/smiles", SearchSmiles.as_view()),
+  path("space/<str:spacename>/version/<int:version>/smarts", SearchSmarts.as_view()),
   path("space/<str:spacename>/version/<int:version>/searchName/<str:searchName>", Search.as_view()),
-  path("space/<str:spacename>/version/<int:version>/searchName/<str:searchName>/smiles", SearchSmiles.as_view())
+  path("space/<str:spacename>/version/<int:version>/searchName/<str:searchName>/smiles", SearchSmiles.as_view()),
+  path("space/<str:spacename>/version/<int:version>/searchName/<str:searchName>/smarts", SearchSmarts.as_view())
   ]
