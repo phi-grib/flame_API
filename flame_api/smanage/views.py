@@ -89,13 +89,12 @@ class ManageSpaces(APIView):
 
     def delete(self, request, spacename):
         """
-        Delete endpoint
+        Delete space
         """
         flame_status = smanage.action_kill(spacename)
 
         if flame_status[0]:
             return Response(status=status.HTTP_204_NO_CONTENT)
-        # TODO: implement other responses for model not found
         else:
             return JsonResponse({'error':flame_status[1]}, status=status.HTTP_404_NOT_FOUND)
 
