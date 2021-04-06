@@ -109,6 +109,11 @@ class SearchSmiles(APIView):
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'SMILES not provided'}, status=status.HTTP_400_BAD_REQUEST)
 
+        try:
+            molname = request.POST.get("name")
+        except MultiValueDictKeyError as e:
+            molname = "anonymous"
+
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="search_data_", dir=None)
         search_data = os.path.join(temp_dir,'smiles.sdf')
@@ -121,6 +126,8 @@ class SearchSmiles(APIView):
             m = Chem.MolFromSmiles(smiles)
             if m is None:
                 return JsonResponse({'error': 'SMILES format not recognized'}, status=status.HTTP_400_BAD_REQUEST)
+
+            m.SetProp("_Name",molname)
 
             with open(search_data,'w') as f:
                 f.write(Chem.MolToMolBlock(m))

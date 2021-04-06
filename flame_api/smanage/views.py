@@ -157,7 +157,7 @@ class ManageParameters(APIView):
         """
         Retrieve parameters of space version
         """
-        flame_status = smanage.action_parameters(spacename, version, oformat = "JSON")       
+        flame_status = smanage.action_parameters(spacename, version, oformat = 'JSON')       
         if flame_status[0]:
             return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         else:
