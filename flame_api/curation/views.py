@@ -54,9 +54,9 @@ class Curate(APIView):
     #sends get request to repo returns the list of the endpoints(where the curated list is saved)
     def get(self, request, endpoint):
         """
-        Retrieves endpoints list
+        Retrieves endpoint's info'
         """
-        curations = manage.action_list(endpoint)
+        curations = manage.action_info_curation(endpoint)
         return Response(curations, status= status.HTTP_200_OK)
 
     #adds a new endpoint to repo
@@ -67,18 +67,7 @@ class Curate(APIView):
         flame_status = manage.action_new(endpoint)
         return Response(flame_status, status=status.HTTP_201_CREATED)
 
-    #sends a delete request to delete endpoint in the repo, returns error if not found
-    def delete(self, request, endpoint):
-        """
-        Deletes endpoint
-        """
-        flame_status = manage.action_kill(endpoint)
-
-        if flame_status[0]:
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        # TODO: implement other responses for model not found
-        else:
-            return JsonResponse({'error':flame_status[1]}, status=status.HTTP_404_NOT_FOUND)
+    
     
     #sends a put request to proccess a formData with the file content(ask user about columns and metadata?)
     def put(self, request, endpoint, date):
