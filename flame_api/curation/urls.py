@@ -26,5 +26,6 @@ from django.urls import path
 from .views import Curate
 
 urlpatterns = [
+    path("curate/<str:endpoint>", Curate.as_view()),
     path("curate/<str:endpoint>", Curate.as_view())
 ]
