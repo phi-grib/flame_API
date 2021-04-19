@@ -48,15 +48,24 @@ class BuildSpace(APIView):
     
     def post(self, request, spacename, format=None):
 
-       
       # get the upladed file
         try:
             file_obj = request.FILES['SDF']
         except MultiValueDictKeyError:
             file_obj = False
 
-        params = request.POST.get('parameters')
-
+        params = request.POST.get('parameters')  
+        incremental = request.POST.get('incremental') 
+        # print ("---------------------------")
+        # print ("Incremental before", incremental)
+        # print ("Incremental before type", type(incremental))
+        if incremental == 'true':
+          incremental = True
+        else:
+          incremental = False
+        # print ("Incremental after", incremental)
+        # print ("Incremental after type", type(incremental))
+        # print ("---------------------------")
         training_data = None     
         # Set the temp filesystem storage
         if not isinstance(file_obj, bool):
@@ -65,10 +74,9 @@ class BuildSpace(APIView):
             path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
             training_data = os.path.join(temp_dir, path_SDF)
 
-       
-        # TODO: implement correctly flame build
-        command_sbuild = {'space': spacename, 'infile': training_data, 'param_string': params}
-        x = threading.Thread(target=sbuildThread, args=(command_sbuild,'JSON', temp_dir))
+        command_build = {'endpoint': spacename, 'infile': training_data, 'param_string': params, 'incremental': incremental}
+        x = threading.Thread(target=sbuildThread, args=(command_build,'JSON'))
+
         x.start()
         
         return Response( spacename, status=status.HTTP_200_OK)  

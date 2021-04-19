@@ -109,12 +109,12 @@ class SearchSmiles(APIView):
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'SMILES not provided'}, status=status.HTTP_400_BAD_REQUEST)
 
-        try:
-            molname = request.POST.get("name")
-        except MultiValueDictKeyError as e:
-            molname = "anonymous"
+        molname = request.POST.get("name")
 
-        # Set the temp filesystem storage
+        if molname is None:
+            molname = 'anonymous'
+    
+         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="search_data_", dir=None)
         search_data = os.path.join(temp_dir,'smiles.sdf')
 
