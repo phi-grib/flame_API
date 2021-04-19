@@ -105,12 +105,8 @@ class ManageSpaces(APIView):
         """
         flame_status = smanage.action_publish(spacename)
         if flame_status[0]:
-            #PATCH to get version
-            version = flame_status[1].split('/')
-            version = version[len(version)-1]
-            version = version.replace("ver","")
-            version = int(version)
-            response = {'spacename':spacename,'version':version}
+            response = {'spacename':spacename,'version':flame_status[1]}
+            print ('***************************', response)
             return JsonResponse(response, status=status.HTTP_201_CREATED)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
