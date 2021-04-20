@@ -35,6 +35,7 @@ from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
+from django.http import JsonResponse
 
 import flame.context as context
 import threading
@@ -48,38 +49,40 @@ class BuildSpace(APIView):
     
     def post(self, request, spacename, format=None):
 
-      # get the upladed file
-        try:
-            file_obj = request.FILES['SDF']
-        except MultiValueDictKeyError:
-            file_obj = False
+      # get the uploaded file
+      try:
+          file_obj = request.FILES['SDF']
+      except MultiValueDictKeyError:
+          file_obj = None
 
-        params = request.POST.get('parameters')  
-        incremental = request.POST.get('incremental') 
-        # print ("---------------------------")
-        # print ("Incremental before", incremental)
-        # print ("Incremental before type", type(incremental))
-        if incremental == 'true':
-          incremental = True
-        else:
-          incremental = False
-        # print ("Incremental after", incremental)
-        # print ("Incremental after type", type(incremental))
-        # print ("---------------------------")
-        training_data = None     
+      params = request.POST.get('parameters')  
+      incremental = request.POST.get('incremental') 
+
+      # print ("---------------------------")
+      # print ("Incremental before", incremental)
+      # print ("Incremental before type", type(incremental))
+      if incremental == 'true':
+        incremental = True
+      else:
+        incremental = False
+      # print ("Incremental after", incremental)
+      # print ("Incremental after type", type(incremental))
+      # print ("---------------------------")
+      training_data = None     
+      temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
+
+      if file_obj is not None:
         # Set the temp filesystem storage
-        if not isinstance(file_obj, bool):
-            temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
-            fs = FileSystemStorage(location=temp_dir)
-            path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
-            training_data = os.path.join(temp_dir, path_SDF)
+        fs = FileSystemStorage(location=temp_dir)
+        path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
+        training_data = os.path.join(temp_dir, path_SDF)
 
-        command_build = {'endpoint': spacename, 'infile': training_data, 'param_string': params, 'incremental': incremental}
-        x = threading.Thread(target=sbuildThread, args=(command_build,'JSON'))
+      command_build = {'space': spacename, 'infile': training_data, 'param_string': params, 'incremental': incremental}
+      x = threading.Thread(target=sbuildThread, args=(command_build,'JSON', temp_dir))
 
-        x.start()
-        
-        return Response( spacename, status=status.HTTP_200_OK)  
+      x.start()
+      
+      return Response( spacename, status=status.HTTP_200_OK)  
 
 def sbuildThread(command, output, temp_dir):
 

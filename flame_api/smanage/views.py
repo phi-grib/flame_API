@@ -68,7 +68,7 @@ class ManageSpaces(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = smanage.action_info(spacename, 0)
+        flame_status = smanage.action_info(spacename, 0, 'bin')
         
         if flame_status[0]:
             return Response(flame_status[1], status=status.HTTP_200_OK)
@@ -106,7 +106,6 @@ class ManageSpaces(APIView):
         flame_status = smanage.action_publish(spacename)
         if flame_status[0]:
             response = {'spacename':spacename,'version':flame_status[1]}
-            print ('***************************', response)
             return JsonResponse(response, status=status.HTTP_201_CREATED)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
@@ -125,13 +124,13 @@ class ManageVersions(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = smanage.action_info(spacename, version, output='JSON')
+        flame_status = smanage.action_info(spacename, version, output='bin')
         
         if flame_status[0]:
             # return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
             return Response(flame_status[1], status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            return Response(flame_status[1], status = status.HTTP_404_NOT_FOUND)
             
 
     def delete(self, request, spacename, version):
