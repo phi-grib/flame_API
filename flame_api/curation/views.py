@@ -70,14 +70,13 @@ class Curate(APIView):
         # save to a variable the new path
         data_input = os.path.join(temp_dir, path)
 
-        # command_curate = {'endpoint':params['endpoint'], 'data_input':data_input, 'molecule_identifier':params['molecule_identifier'], 'structure_column':params['structure_column'],'separator':params['separator'], 'remove_problematic':params['remove_problematic'], 'outfile_type':params['outfile_type']}
-        # print(command_curate.items)
-        # x = threading.Thread(target=curateThread, args=(command_curate,'JSON',temp_dir))
-        # x.start()
+        command_curate = {'endpoint':params['endpoint'], 'data_input':data_input, 'molecule_identifier':params['molecule_identifier'], 'structure_column':params['structure_column'],'separator':params['separator'], 'remove_problematic':params['remove_problematic'], 'outfile_type':params['outfile_type']}
+        print(command_curate)
+        x = threading.Thread(target=curateThread, args=(command_curate,temp_dir))
+        x.start()
  
-        # return Response('Curating' + params['endpoint'], status=status.HTTP_201_CREATED)
-        curation = context.curation_cmd(endpoint=params['endpoint'], data_input=data_input, molecule_identifier=params['molecule_identifier'], structure_column=params['structure_column'],separator=params['separator'], remove_problematic=params['remove_problematic'], outfile_type=params['outfile_type'])
-        return Response(curation, status=status.HTTP_200_OK)
+        return Response('Curating' + params['endpoint'], status=status.HTTP_201_CREATED)
+
 
     def get(self, request, endpoint):
         """
@@ -88,10 +87,11 @@ class Curate(APIView):
         return Response(curation, status=status.HTTP_200_OK)
 
 
-def curateThread(command, output, temp_dir=''):
+def curateThread(command, temp_dir=''):
 
     print ("Thread Start")
-    success, results = context.curation_cmd()
+    print(command)
+    success, results = context.curation_cmd(command)
     shutil.rmtree(temp_dir)
     # print (f"Folder {temp_dir} removed")
     print ("Thread End")
