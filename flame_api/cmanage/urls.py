@@ -27,7 +27,5 @@ from .views import Cmanage
 
 urlpatterns = [
     path("list", Cmanage.as_view()),
-    path("delete/<str:endpoint>", Cmanage.as_view()),
-    path("export/", Cmanage.as_view()),
-    path("info/", Cmanage.as_view())
+    # path("delete/<str:endpoint>", Cmanage.as_view()),
 ]

@@ -56,8 +56,12 @@ class Cmanage(APIView):
         """
         Retrieves endpoints list
         """
-        curations = manage.action_info_dir()
+        curations = manage.action_dir()
         return Response(curations, status= status.HTTP_200_OK)
+
+
+  
+
 
     #sends a delete request to delete endpoint in the repo, returns error if not found
     def delete(self, request, endpoint):
@@ -71,3 +75,12 @@ class Cmanage(APIView):
         # TODO: implement other responses for model not found
         else:
             return JsonResponse({'error':flame_status[1]}, status=status.HTTP_404_NOT_FOUND)
+
+class CurationDetails(APIView):
+
+    def get(self, request, endpoint):
+        """
+        Retrieves info dicts from specific endpoint
+        """
+        curation = manage.action_info_dir(endpoint)
+        return Response(curations, status= status.HTTP_200_OK)
