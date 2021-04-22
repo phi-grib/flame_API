@@ -71,7 +71,6 @@ class Curate(APIView):
         data_input = os.path.join(temp_dir, path)
 
         command_curate = {'endpoint':params['endpoint'], 'data_input':data_input, 'molecule_identifier':params['molecule_identifier'], 'structure_column':params['structure_column'],'separator':params['separator'], 'remove_problematic':params['remove_problematic'], 'outfile_type':params['outfile_type']}
-        print(command_curate)
         x = threading.Thread(target=curateThread, args=(command_curate,temp_dir))
         x.start()
  
@@ -86,11 +85,25 @@ class Curate(APIView):
         curation = manage.action_info_curation(endpoint)
         return Response(curation, status=status.HTTP_200_OK)
 
+    def post(self, request, endpoint):
+        """
+        Creates a new curation endpoint
+        """
+        curation = manage.action_new(endpoint)
+        if curation[1] == f"Endpoint {endpoint} already exists":
+            return Response({'error':curation[1]}, status=status.HTTP_409_CONFLICT)
 
+
+
+        return Response(curation, status=status.HTTP_201_CREATED)
+
+
+# retrieves the command formated to context.curation_cmd and executes curation
 def curateThread(command, temp_dir=''):
 
+
     print ("Thread Start")
-    print(command)
+
     success, results = context.curation_cmd(command)
     shutil.rmtree(temp_dir)
     # print (f"Folder {temp_dir} removed")
