@@ -296,7 +296,6 @@ class ManageValidation(APIView):
             return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
-        #print(flame_status)
 
 class ManageExport(APIView):
 
