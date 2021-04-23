@@ -69,9 +69,12 @@ class Curate(APIView):
         path = fs.save(file_obj.name, ContentFile(file_obj.read()))
         # save to a variable the new path
         data_input = os.path.join(temp_dir, path)
-
-        command_curate = {'endpoint':params['endpoint'], 'data_input':data_input, 'molecule_identifier':params['molecule_identifier'], 'structure_column':params['structure_column'],'separator':params['separator'], 'remove_problematic':params['remove_problematic'], 'outfile_type':params['outfile_type']}
-        x = threading.Thread(target=curateThread, args=(command_curate,temp_dir))
+        if params['remove_problematic']=='True':
+            remove_bool = True
+        else:
+            remove_bool = False
+        command_curate = {'endpoint':params['endpoint'], 'data_input':data_input, 'molecule_identifier':params['molecule_identifier'], 'structure_column':params['structure_column'],'separator':params['separator'], 'remove_problematic':remove_bool, 'outfile_type':params['outfile_type']}
+        x = threading.Thread(target=curateThread, args=(command_curate,))
         x.start()
  
         return Response('Curating' + params['endpoint'], status=status.HTTP_201_CREATED)
@@ -98,14 +101,25 @@ class Curate(APIView):
         return Response(curation, status=status.HTTP_201_CREATED)
 
 
+    #sends a delete request to delete endpoint in the repo, returns error if not found
+    def delete(self, request, endpoint):
+        """
+        Deletes endpoint
+        """
+        flame_status = manage.action_kill(endpoint)
+
+        if flame_status[0]:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        # TODO: implement other responses for model not found
+        else:
+            return JsonResponse({'error':flame_status[1]}, status=status.HTTP_404_NOT_FOUND)
+
 # retrieves the command formated to context.curation_cmd and executes curation
-def curateThread(command, temp_dir=''):
+def curateThread(command):
 
 
     print ("Thread Start")
-
-    success, results = context.curation_cmd(command)
-    shutil.rmtree(temp_dir)
+    results = context.curation_cmd(command) 
     # print (f"Folder {temp_dir} removed")
     print ("Thread End")
 

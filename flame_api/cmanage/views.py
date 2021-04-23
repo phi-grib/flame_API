@@ -61,21 +61,6 @@ class Cmanage(APIView):
 
 
   
-
-
-    #sends a delete request to delete endpoint in the repo, returns error if not found
-    def delete(self, request, endpoint):
-        """
-        Deletes endpoint
-        """
-        flame_status = manage.action_kill(endpoint)
-
-        if flame_status[0]:
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        # TODO: implement other responses for model not found
-        else:
-            return JsonResponse({'error':flame_status[1]}, status=status.HTTP_404_NOT_FOUND)
-
 class CurationDetails(APIView):
 
     def get(self, request, endpoint):
