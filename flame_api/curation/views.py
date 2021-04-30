@@ -123,4 +123,11 @@ def curateThread(command):
     # print (f"Folder {temp_dir} removed")
     print ("Thread End")
 
-    
+
+class CurateParams(APIView):
+    """
+    retrieves the parameters for a given endpoint from backend 
+    """
+    def get(self, request, endpoint):
+        curation = manage.action_parameters(endpoint)
+        return Response(curation, status=status.HTTP_200_OK)
