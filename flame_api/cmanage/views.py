@@ -49,7 +49,7 @@ import time
 
 class Cmanage(APIView):
     """
-    Curation tool
+    Curation table with all the endpoints and dates 
     """
     #sends get request to repo returns the list of the endpoints(where the curated list is saved)
     def get(self, request):
@@ -59,13 +59,20 @@ class Cmanage(APIView):
         curations = manage.action_dir()
         return Response(curations, status= status.HTTP_200_OK)
 
-
-  
-class CurationDetails(APIView):
-
+class CDocumentation(APIView):
+    """
+    Curation header from pickle to preview the result
+    """
     def get(self, request, endpoint):
-        """
-        Retrieves info dicts from specific endpoint
-        """
-        curation = manage.action_info_dir(endpoint)
-        return Response(curations, status= status.HTTP_200_OK)
+        curation = manage.action_header_curation(endpoint)
+        return Response(curation, status= status.HTTP_200_OK)
+
+
+class CurateParams(APIView):
+    """
+    retrieves the parameters for a given endpoint from backend 
+    """
+    def get(self, request, endpoint):
+        curation = manage.action_parameters(endpoint)
+        return Response(curation, status=status.HTTP_200_OK)
+

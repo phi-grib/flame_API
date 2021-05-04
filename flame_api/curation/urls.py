@@ -24,9 +24,9 @@
 
 from django.urls import path
 from .views import Curate
-from .views import CurateParams
+
 
 urlpatterns = [
-    path("curate/<str:endpoint>", Curate.as_view()),
-    path("params/<str:endpoint>", CurateParams.as_view())
+    path("curate/<str:endpoint>", Curate.as_view())
+    
 ]
