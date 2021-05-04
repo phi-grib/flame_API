@@ -24,8 +24,13 @@
 
 from django.urls import path
 from .views import Cmanage
+from .views import CDocumentation
+from .views import CurateParams
+
+
 
 urlpatterns = [
     path("list", Cmanage.as_view()),
-    # path("delete/<str:endpoint>", Cmanage.as_view()),
+    path("documentation/<str:endpoint>", CDocumentation.as_view()),
+    path("params/<str:endpoint>", CurateParams.as_view())
 ]
