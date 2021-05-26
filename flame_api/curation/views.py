@@ -73,10 +73,10 @@ class Curate(APIView):
             remove_bool = True
         else:
             remove_bool = False
-        command_curate = {'endpoint':params['endpoint'], 'data_input':data_input, 'molecule_identifier':params['molecule_identifier'], 'structure_column':params['structure_column'],'separator':params['separator'], 'remove_problematic':remove_bool, 'outfile_type':params['outfile_type']}
+        command_curate = {'endpoint':params['endpoint'], 'data_input':data_input, 'molecule_identifier':params['molecule_identifier'], 'structure_column':params['structure_column'],'separator':params['separator'], 'remove_problematic':remove_bool, 'outfile_type':params['outfile_type'], 'metadata':params['metadata']}
         x = threading.Thread(target=curateThread, args=(command_curate,))
         x.start()
- 
+        print(command_curate)
         return Response('Curating' + params['endpoint'], status=status.HTTP_201_CREATED)
 
 

@@ -13,10 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-#from django.contrib import admin
-#from django.urls import path, include
-
-from django.conf.urls import url, include
+#from django.contrib import admin url(r'^$', serve,kwargs={'path': 'index.html'}), 
+from django.urls import include, path
 from django.views.generic import RedirectView
 from django.contrib.staticfiles.views import serve
 from django.views.generic.base import TemplateView
@@ -26,18 +24,18 @@ from . import views
 
 
 urlpatterns = [  
-    url(r'^$', serve,kwargs={'path': 'index.html'}), 
+    path(r'^$', serve,kwargs={'path': 'index.html'}), 
     # url(r'^$', views.HomePageView.as_view() ),
     # url(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$',
     #    RedirectView.as_view(url='/static/%(path)s', permanent=False)),
-    url("api/v1/",include("minimal.urls")),
-    url("api/v1/manage/", include("manage.urls")),
-    url("api/v1/smanage/", include("smanage.urls")),
-    url("api/v1/build/", include("build.urls")),
-    url("api/v1/sbuild/", include("sbuild.urls")),
-    url("api/v1/predict/", include("predict.urls")),
-    url("api/v1/search/", include("search.urls")),
-    url("api/v1/cmanage/", include("cmanage.urls")),
-    url("api/v1/curate/", include("curation.urls")),
+    path("api/v1/",include("minimal.urls")),
+    path("api/v1/manage/", include("manage.urls")),
+    path("api/v1/smanage/", include("smanage.urls")),
+    path("api/v1/build/", include("build.urls")),
+    path("api/v1/sbuild/", include("sbuild.urls")),
+    path("api/v1/predict/", include("predict.urls")),
+    path("api/v1/search/", include("search.urls")),
+    path("api/v1/cmanage/", include("cmanage.urls")),
+    path("api/v1/curate/", include("curation.urls")),
 # ]+ static(settings.STATIC_URL)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

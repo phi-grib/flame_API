@@ -24,13 +24,14 @@
 
 from django.urls import path
 from .views import Cmanage
-from .views import CDocumentation
+from .views import CHead
 from .views import CurateParams
-
+from .views import CurationFile
 
 
 urlpatterns = [
     path("list", Cmanage.as_view()),
-    path("documentation/<str:endpoint>", CDocumentation.as_view()),
-    path("params/<str:endpoint>", CurateParams.as_view())
+    path("head/<str:endpoint>", CHead.as_view()),
+    path("params/<str:endpoint>", CurateParams.as_view()), 
+    path("fullfile/<str:endpoint>", CurationFile.as_view())
 ]
