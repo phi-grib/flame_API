@@ -59,7 +59,7 @@ class Cmanage(APIView):
         curations = manage.action_dir()
         return Response(curations, status= status.HTTP_200_OK)
 
-class CDocumentation(APIView):
+class CHead(APIView):
     """
     Curation header from pickle to preview the result
     """
@@ -76,3 +76,11 @@ class CurateParams(APIView):
         curation = manage.action_parameters(endpoint)
         return Response(curation, status=status.HTTP_200_OK)
 
+class CurationFile(APIView):
+    """
+    retrieves the complete curation to be downloaded using the same
+    format the user sent when using curate
+    """
+    def get(self, request, endpoint):
+        curation = manage.action_curation_results(endpoint)
+        return Response(curation, status=status.HTTP_200_OK)
