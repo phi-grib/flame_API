@@ -162,18 +162,25 @@ class ManageDocumentation(APIView):
         """
         Retrieves model documentation
         """
+
+        flame_status = manage.action_documentation(modelname, version, oformat='JSON')
+
+        if not flame_status[0]:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
         if oformat=='JSON':
-            flame_status = manage.action_documentation(modelname, version, oformat='JSON')
-            if flame_status[0]:
-                return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
-            else:
-                return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
         elif oformat=='YAML':
-            flame_status = manage.action_documentation(modelname, version, oformat='JSON')
-            if flame_status[0]:
-                return Response(flame_status[1].dumpYAML(), status=status.HTTP_200_OK)
-            else:
-                return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+            return Response(flame_status[1].dumpYAML(), status=status.HTTP_200_OK)
+        # elif oformat=='WORD':
+        #     word = flame_status[1].dumpWORD()
+        #     word.save ('model_documentation.docx')
+        #     file = open('model_documentation.docx', 'rb')
+        #     response = HttpResponse(FileWrapper(file), 
+        #                content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+        #     response['Content-Disposition'] = 'attachment; filename=''model_documentation.docx'
+
+        #     return response
         else:
             return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
 
