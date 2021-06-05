@@ -162,11 +162,8 @@ class ManageDocumentation(APIView):
         """
         Retrieves model documentation
         """
-
-        print ('****************************',oformat)
         if oformat == 'WORD':
             success, results = manage.action_documentation(modelname, version, oformat='WORD')
-            print (success, results)
             if success: 
                 file = open(results, 'rb')
                 response = HttpResponse(FileWrapper(file), 
