@@ -163,6 +163,13 @@ class ManageDocumentation(APIView):
         Retrieves model documentation
         """
         if oformat == 'WORD':
+            current_path = os.getcwd()
+
+            # create a temp directory to copy the word file with the documentation
+            # and make it the current directory
+            temp_dir = tempfile.mkdtemp(prefix="documentation_", dir=None)
+            os.chdir(temp_dir)
+
             success, results = manage.action_documentation(modelname, version, oformat='WORD')
             if success: 
                 file = open(results, 'rb')
@@ -170,10 +177,16 @@ class ManageDocumentation(APIView):
                         content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
                 response['Content-Disposition'] = f'attachment; filename={results}'
 
+                # return to original directory and remove the temp dir
+                os.chdir(current_path)
+                shutil.rmtree(temp_dir)
                 return response
             else: 
+                # retur not original directory
+                os.chdir(current_path)
                 return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
 
+        # for JSON or YAML
         flame_status = manage.action_documentation(modelname, version, oformat='JSON')
 
         if not flame_status[0]:
