@@ -199,7 +199,10 @@ class ManageDocumentation(APIView):
             if success:
                 file = open(results, 'rb')
                 response = HttpResponse(FileWrapper(file), 
-                        content_type='application/vnd.ms-excel')
+                        # content_type='application/vnd.ms-excel')
+                        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+
+
                 response['Content-Disposition'] = f'attachment; filename={results}'
 
                 # return to original directory and remove the temp dir
