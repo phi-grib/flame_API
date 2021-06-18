@@ -58,6 +58,7 @@ class Curate(APIView):
         Updates endpoint with file to be processed
         """
         params = request.data
+        print(params)
         try:
             file_obj = request.FILES['data_input']
         except MultiValueDictKeyError as e:
