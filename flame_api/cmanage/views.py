@@ -83,4 +83,11 @@ class CurationFile(APIView):
     """
     def get(self, request, endpoint):
         curation = manage.action_curation_results(endpoint)
-        return Response(curation, status=status.HTTP_200_OK)
+        print(curation)
+        if curation[0]:
+           return Response(curation, status=status.HTTP_200_OK)
+        else:
+           return Response(curation,status = status.HTTP_404_NOT_FOUND)
+
+
+        
