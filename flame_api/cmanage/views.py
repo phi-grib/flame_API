@@ -82,12 +82,12 @@ class CurationFile(APIView):
     format the user sent when using curate
     """
     def get(self, request, endpoint):
-        curation = manage.action_curation_results(endpoint)
-        print(curation)
-        if curation[0]:
-           return Response(curation, status=status.HTTP_200_OK)
+        flame_status = manage.action_curation_results(endpoint)
+        if flame_status[0]:
+            return Response(flame_status, status=status.HTTP_200_OK)
         else:
-           return Response(curation,status = status.HTTP_404_NOT_FOUND)
+            print(flame_status[1])
+            return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
 
 
         
