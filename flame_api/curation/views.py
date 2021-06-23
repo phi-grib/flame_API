@@ -3,7 +3,7 @@
 # Description    Flame API build views
 #
 # Authors:       Manuel Pastor (manuel.pastor@upf.edu)
-#                Ignacio Pasamontes 
+#                Rodrigo Lorenzo
 #
 # Copyright 2018-2020 Manuel Pastor
 #

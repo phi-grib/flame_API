@@ -3,7 +3,7 @@
 # Description    Flame API build urls
 #
 # Authors:       Manuel Pastor (manuel.pastor@upf.edu)
-#                Ignacio Pasamontes 
+#                Rodrigo Lorenzo Lorenzo
 #
 # Copyright 2018-2020 Manuel Pastor
 #
@@ -27,11 +27,13 @@ from .views import Cmanage
 from .views import CHead
 from .views import CurateParams
 from .views import CurationFile
+from .views import ExportCurationFile
 
 
 urlpatterns = [
     path("list", Cmanage.as_view()),
     path("head/<str:endpoint>", CHead.as_view()),
     path("params/<str:endpoint>", CurateParams.as_view()), 
-    path("fullfile/<str:endpoint>", CurationFile.as_view())
+    path("fullfile/<str:endpoint>", CurationFile.as_view()),
+    path("exportFile/<str:endpoint>/format/<str:oformat>", ExportCurationFile.as_view())
 ]

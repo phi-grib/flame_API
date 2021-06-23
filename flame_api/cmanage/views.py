@@ -3,7 +3,7 @@
 # Description    Flame API build views
 #
 # Authors:       Manuel Pastor (manuel.pastor@upf.edu)
-#                Ignacio Pasamontes 
+#                Rodrigo Lorenzo Lorenzo
 #
 # Copyright 2018-2020 Manuel Pastor
 #
@@ -39,8 +39,11 @@ from django.http import HttpResponse, JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError  
+from wsgiref.util import FileWrapper
+
 
 from curate import manage
+from pathlib import Path
 
 import flame.context as context
 import threading
@@ -63,6 +66,7 @@ class CHead(APIView):
     """
     Curation header from pickle to preview the result
     """
+    #returns the content of header pickl
     def get(self, request, endpoint):
         curation = manage.action_header_curation(endpoint)
         return Response(curation, status= status.HTTP_200_OK)
@@ -72,13 +76,14 @@ class CurateParams(APIView):
     """
     retrieves the parameters for a given endpoint from backend 
     """
+    #returns the content of parameters.yaml
     def get(self, request, endpoint):
         curation = manage.action_parameters(endpoint)
         return Response(curation, status=status.HTTP_200_OK)
 
 class CurationFile(APIView):
     """
-    retrieves the complete curation to be downloaded using the same
+    retrieves the complete curation using the same
     format the user sent when using curate
     """
     def get(self, request, endpoint):
@@ -86,8 +91,86 @@ class CurationFile(APIView):
         if flame_status[0]:
             return Response(flame_status, status=status.HTTP_200_OK)
         else:
-            print(flame_status[1])
             return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
 
+class ExportCurationFile(APIView):
+    """
+    retrieves the route to the file and sets a temp path to download it
+    """
+    def get(self, request, endpoint, oformat):
+        flame_status = manage.action_curation_results(endpoint)
+        if oformat=='xlsx':
+            current_path = os.getcwd()
 
-        
+            # create a temp directory to copy the file with the curation
+            # and make it the current directory
+            temp_dir = tempfile.mkdtemp(prefix="curation_", dir=None)
+            os.chdir(temp_dir)
+
+            success, results = manage.action_curation_results(endpoint)
+            if success: 
+                file = open(results, 'rb')
+                response = HttpResponse(FileWrapper(file), 
+                        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                response['Content-Disposition'] = f'attachment; filename={"curated_data" + "." + oformat}'
+
+                # return to original directory and remove the temp dir
+                os.chdir(current_path)
+                shutil.rmtree(temp_dir)
+                return response
+            else: 
+                # retur not original directory
+                os.chdir(current_path)
+                return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
+        elif oformat=='csv' or oformat=='tsv' or oformat=='sdf':
+            current_path = os.getcwd()
+
+            # create a temp directory to copy the file with the curation
+            # and make it the current directory
+            temp_dir = tempfile.mkdtemp(prefix="curation_", dir=None)
+            os.chdir(temp_dir)
+
+            success, results = manage.action_curation_results(endpoint)
+            if success: 
+                file = open(results, 'rb')
+                response = HttpResponse(FileWrapper(file), 
+                        content_type='text/csv')
+                response['Content-Disposition'] = f'attachment; filename={"curated_data" + "." + oformat}'
+
+                # return to original directory and remove the temp dir
+                os.chdir(current_path)
+                shutil.rmtree(temp_dir)
+                return response
+            else: 
+                # return not original directory
+                os.chdir(current_path)
+                return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
+        flame_status = manage.action_curation_results(endpoint)  
+        if not flame_status[0]:
+            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
+        if oformat=='JSON':
+            current_path = os.getcwd()
+
+            # create a temp directory to copy the file with the curation results
+            # and make it the current directory
+            temp_dir = tempfile.mkdtemp(prefix="curation_", dir=None)
+            os.chdir(temp_dir)
+
+            success, results = manage.action_curation_results(endpoint)
+            if success: 
+                file = open(results, 'rb')
+                response = HttpResponse(FileWrapper(file), 
+                        content_type='application/json')
+                response['Content-Disposition'] = f'attachment; filename={"curated_data.json" }'
+
+                # return to original directory and remove the temp dir
+                os.chdir(current_path)
+                shutil.rmtree(temp_dir)
+                return response
+            else: 
+                # retur not original directory
+                os.chdir(current_path)
+                return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
+        else:
+            return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
