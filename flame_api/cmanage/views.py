@@ -23,31 +23,19 @@
 
 import tempfile
 import os
-import yaml
-import json
 import shutil
 from ast import literal_eval
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser, FileUploadParser
 from rest_framework import status
 
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from django.core.files.storage import FileSystemStorage
-from django.core.files.base import ContentFile
-from django.utils.datastructures import MultiValueDictKeyError  
 from wsgiref.util import FileWrapper
 
-
 from curate import manage
-from pathlib import Path
-
-import flame.context as context
-import threading
-import time
 
 
 class Cmanage(APIView):
@@ -62,7 +50,7 @@ class Cmanage(APIView):
         curations = manage.action_dir()
 
         print (curations)
-        
+
         return Response(curations, status= status.HTTP_200_OK)
 
 class CHead(APIView):
