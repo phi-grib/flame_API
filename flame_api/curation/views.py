@@ -23,15 +23,11 @@
 
 import tempfile
 import os
-import yaml
-import json
-import shutil
 from ast import literal_eval
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser, FileUploadParser
 from rest_framework import status
 
 from django.shortcuts import render
@@ -45,8 +41,6 @@ from curate import context
 
 # import flame.context as context
 import threading
-import time
-
 
 class Curate(APIView):
     """
@@ -58,26 +52,38 @@ class Curate(APIView):
         Updates endpoint with file to be processed
         """
         params = request.data
-        print(params)
+        # print(params)
         try:
             file_obj = request.FILES['data_input']
         except MultiValueDictKeyError as e:
             return  JsonResponse({'error':'Datatest not provided'}, status=status.HTTP_400_BAD_REQUEST)
+
          # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="data_input", dir=None)
         fs = FileSystemStorage(location=temp_dir)
+
         # save the file to the new filesystem
         path = fs.save(file_obj.name, ContentFile(file_obj.read()))
+
         # save to a variable the new path
         data_input = os.path.join(temp_dir, path)
         if params['remove_problematic']=='True':
             remove_bool = True
         else:
             remove_bool = False
-        command_curate = {'endpoint':params['endpoint'], 'data_input':data_input, 'molecule_identifier':params['molecule_identifier'], 'structure_column':params['structure_column'],'separator':params['separator'], 'remove_problematic':remove_bool, 'outfile_type':params['outfile_type'], 'metadata':params['metadata']}
+            
+        command_curate = {'endpoint':params['endpoint'], 
+                          'data_input':data_input, 
+                          'molecule_identifier':params['molecule_identifier'], 
+                          'structure_column':params['structure_column'],
+                          'separator':params['separator'], 
+                          'remove_problematic':remove_bool, 
+                          'outfile_type':params['outfile_type'], 
+                          'metadata':params['metadata']}
         x = threading.Thread(target=curateThread, args=(command_curate,))
         x.start()
-        print(command_curate)
+
+        # print(command_curate)
         return Response('Curating' + params['endpoint'], status=status.HTTP_201_CREATED)
 
 
@@ -97,10 +103,7 @@ class Curate(APIView):
         if curation[1] == f"Endpoint {endpoint} already exists":
             return Response({'error':curation[1]}, status=status.HTTP_409_CONFLICT)
 
-
-
         return Response(curation, status=status.HTTP_201_CREATED)
-
 
     #sends a delete request to delete endpoint in the repo, returns error if not found
     def delete(self, request, endpoint):
@@ -117,7 +120,6 @@ class Curate(APIView):
 
 # retrieves the command formated to context.curation_cmd and executes curation
 def curateThread(command):
-
 
     print ("Thread Start")
     results = context.curation_cmd(command) 
