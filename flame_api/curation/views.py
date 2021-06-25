@@ -36,8 +36,10 @@ from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError  
 
+# requires curate module
 from curate import manage
 from curate import context
+
 
 # import flame.context as context
 import threading
