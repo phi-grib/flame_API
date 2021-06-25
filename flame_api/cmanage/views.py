@@ -35,7 +35,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from wsgiref.util import FileWrapper
 
-from curate import manage
+# from curate import manage
 
 
 class Cmanage(APIView):
