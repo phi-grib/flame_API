@@ -35,6 +35,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from wsgiref.util import FileWrapper
 
+# requires curate module
 from curate import manage
 
 
