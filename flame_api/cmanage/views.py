@@ -24,6 +24,7 @@
 import tempfile
 import os
 import shutil
+import json
 from ast import literal_eval
 
 from rest_framework.decorators import api_view
@@ -70,8 +71,11 @@ class CurateParams(APIView):
     """
     #returns the content of parameters.yaml
     def get(self, request, endpoint):
-        curation = manage.action_parameters(endpoint)
-        return Response(curation, status=status.HTTP_200_OK)
+        response = manage.action_parameters(endpoint,'JSON')
+        if response[0]:
+            return Response(json.loads(response[1].dumpJSON()), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':response[1]},status = status.HTTP_404_NOT_FOUND)
 
 class CurationFile(APIView):
     """
