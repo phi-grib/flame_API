@@ -36,6 +36,7 @@ urlpatterns = [
     url("api/v1/build/", include("build.urls")),
     url("api/v1/sbuild/", include("sbuild.urls")),
     url("api/v1/predict/", include("predict.urls")),
-    url("api/v1/search/", include("search.urls"))
+    url("api/v1/search/", include("search.urls")),
+    url("api/v1/verification/", include("verification.urls"))
 # ]+ static(settings.STATIC_URL)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
