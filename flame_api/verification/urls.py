@@ -26,7 +26,7 @@ from django.urls import path
 from .views import ManageVerification,Report,Sign
 
 urlpatterns = [
-    path("verification/<str:modelname>",ManageVerification.as_view()),
+    path("verification/<str:modelname>/<int:version>",ManageVerification.as_view()),
     path("report/<str:verificationname>/<str:verificatorname>",Report.as_view()),
     path("sign/<str:verificatorname>/<str:nreport>",Sign.as_view()),
 ]
