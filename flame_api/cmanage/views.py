@@ -94,79 +94,53 @@ class ExportCurationFile(APIView):
     retrieves the route to the file and sets a temp path to download it
     """
     def get(self, request, endpoint, oformat):
-        flame_status = manage.action_curation_results(endpoint)
-        if oformat=='xlsx':
-            current_path = os.getcwd()
+        class Object(object):
+            pass
+        oformat_ci = oformat.lower()    
+        a = Object()
+        a.endpoint = endpoint
+        a.format = oformat_ci
+        current_path = os.getcwd()
 
-            # create a temp directory to copy the file with the curation
-            # and make it the current directory
-            temp_dir = tempfile.mkdtemp(prefix="curation_", dir=None)
-            os.chdir(temp_dir)
+        # create a temp directory to copy the file with the curation
+        # and make it the current directory
+        temp_dir = tempfile.mkdtemp(prefix="curation_", dir=None)
+        os.chdir(temp_dir)
 
-            success, results = manage.action_curation_results(endpoint)
-            if success: 
-                file = open(results, 'rb')
-                response = HttpResponse(FileWrapper(file), 
-                        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-                response['Content-Disposition'] = f'attachment; filename={"curated_data" + "." + oformat}'
+        success, results = manage.action_curation_results(a)
 
-                # return to original directory and remove the temp dir
-                os.chdir(current_path)
-                shutil.rmtree(temp_dir)
-                return response
-            else: 
-                # retur not original directory
-                os.chdir(current_path)
-                return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
-        elif oformat=='csv' or oformat=='tsv' or oformat=='sdf':
-            current_path = os.getcwd()
+        if not success:
+            os.chdir(current_path)
+            return JsonResponse({'error':results},status = status.HTTP_404_NOT_FOUND)
 
-            # create a temp directory to copy the file with the curation
-            # and make it the current directory
-            temp_dir = tempfile.mkdtemp(prefix="curation_", dir=None)
-            os.chdir(temp_dir)
+        curated_data = open(os.path.abspath('curated_data.{}'.format(oformat_ci)), 'rb')
 
-            success, results = manage.action_curation_results(endpoint)
-            if success: 
-                file = open(results, 'rb')
-                response = HttpResponse(FileWrapper(file), 
-                        content_type='text/csv')
-                response['Content-Disposition'] = f'attachment; filename={"curated_data" + "." + oformat}'
+        if os.path.isfile(os.path.abspath('problematic_structures_removed.xlsx')):
+            problematic_struc = open(os.path.abspath('problematic_structures_removed.xlsx'), 'rb')
+            tar_file = open(os.path.abspath('curation.tgz'), 'rb')
+            response = HttpResponse(FileWrapper(tar_file), 
+                content_type='application/tar+gzip')
+            response['Content-Disposition'] = 'attachment; filename = curation.tgz'
 
-                # return to original directory and remove the temp dir
-                os.chdir(current_path)
-                shutil.rmtree(temp_dir)
-                return response
-            else: 
-                # return not original directory
-                os.chdir(current_path)
-                return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
-        flame_status = manage.action_curation_results(endpoint)  
-        if not flame_status[0]:
-            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
-
-        if oformat=='JSON':
-            current_path = os.getcwd()
-
-            # create a temp directory to copy the file with the curation results
-            # and make it the current directory
-            temp_dir = tempfile.mkdtemp(prefix="curation_", dir=None)
-            os.chdir(temp_dir)
-
-            success, results = manage.action_curation_results(endpoint)
-            if success: 
-                file = open(results, 'rb')
-                response = HttpResponse(FileWrapper(file), 
-                        content_type='application/json')
-                response['Content-Disposition'] = f'attachment; filename={"curated_data.json" }'
-
-                # return to original directory and remove the temp dir
-                os.chdir(current_path)
-                shutil.rmtree(temp_dir)
-                return response
-            else: 
-                # retur not original directory
-                os.chdir(current_path)
-                return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
         else:
-            return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
+            if oformat_ci == 'xlsx':
+                response = HttpResponse(FileWrapper(curated_data), 
+                    content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                response['Content-Disposition'] = f'attachment; filename={"curated_data.xlsx"}'
+
+            elif oformat_ci=='csv' or oformat_ci=='tsv' or oformat_ci=='sdf':
+                response = HttpResponse(FileWrapper(curated_data), 
+                    content_type='text/csv')
+                response['Content-Disposition'] = f'attachment; filename={"curated_data.{}".format(oformat)}'
+            elif oformat_ci == 'json':
+                response = HttpResponse(FileWrapper(curated_data), 
+                        content_type='application/json')
+                response['Content-Disposition'] = f'attachment; filename={"curated_data.json"}'
+            else:
+                return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
+
+            
+
+        os.chdir(current_path)
+        shutil.rmtree(temp_dir)
+        return response

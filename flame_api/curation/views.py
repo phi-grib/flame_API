@@ -80,7 +80,6 @@ class Curate(APIView):
                           'structure_column':params['structure_column'],
                           'separator':params['separator'], 
                           'remove_problematic':remove_bool, 
-                          'outfile_type':params['outfile_type'], 
                           'metadata':params['metadata']}
         x = threading.Thread(target=curateThread, args=(command_curate,))
         x.start()
