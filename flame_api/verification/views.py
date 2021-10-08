@@ -26,12 +26,10 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 
-
 from rest_framework.response import Response
 from rest_framework import status
 
-# dirty
-from random import randint
+from flame.util import verify
 
 # Create your views here.
 
@@ -41,30 +39,24 @@ class ManageVerification(APIView):
     Manage verification
     """
     
-    def get(self, request,modelname):
+    def get(self, request,modelname,version):
         """
         Retrieve info of model verification
         """
-        # TODOO
-        if randint(0,1) == 1:
-            staticModelVerification = {'stage':'Data cheking', 'status':'Passed','Comments':''},{'stage':'Model testing', 'status':'Passed','Comments':''},{'stage':'Inspection of model', 'status':'Failed','Comments':'Missing information: Version'},{'stage':'examination of executive summary','status':'','comments':''}
-            return Response(staticModelVerification,status=status.HTTP_200_OK)
-        else:
-           return Response(False,status=status.HTTP_200_OK) 
+        return Response(False,status=status.HTTP_200_OK)
 
-    def post(self, request, modelname):
+    def post(self, request, modelname,version):
         """
         Generate Model verification
         """
-        # TODOO
-        generateVerification =  {'stage':'Data cheking', 'status':'Passed','Comments':'Not description'},{'stage':'Model testing', 'status':'Passed','Comments':''},{'stage':'Inspection of model', 'status':'Failed','Comments':'Missing information: Version'},{'stage':'examination of executive summary','status':'','comments':''}
-        return Response(generateVerification,status.HTTP_200_OK)
+        result = verify.verify(modelname,version)
+        return Response(result,status.HTTP_200_OK)
 
     def delete(self,request,modelname):
         """
         Delete Model verification
         """
-        # TODOO
+        
         return HttpResponse("<h1>TODO DELETE VERIFICATION</h1>")
 
 class Report(APIView):
