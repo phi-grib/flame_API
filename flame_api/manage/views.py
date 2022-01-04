@@ -25,6 +25,7 @@ import os
 import shutil
 import json
 import yaml
+import time
 import tempfile
 
 
@@ -138,7 +139,11 @@ class ManagePredictions(APIView):
         if flame_status[0]:
             return Response(json.loads(flame_status[1].getJSON(xdata = True)), status=status.HTTP_200_OK)
         else:
-            return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
+            response = flame_status[1]
+            if response['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            else:
+                return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
     
     def delete(self, request, predictionName):
         """
