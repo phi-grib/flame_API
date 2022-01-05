@@ -27,6 +27,7 @@ import json
 import yaml
 import time
 import tempfile
+import threading
 
 
 from rest_framework.decorators import api_view
@@ -135,15 +136,17 @@ class ManagePredictions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_predictions_result(predictionName, output='bin')
-        if flame_status[0]:
-            return Response(json.loads(flame_status[1].getJSON(xdata = True)), status=status.HTTP_200_OK)
+        success, result = manage.action_predictions_result(predictionName, output='bin')
+        if success:
+            return Response(json.loads(result.getJSON(xdata = True)), status=status.HTTP_200_OK)
         else:
-            response = flame_status[1]
-            if response['code'] == 0:
-                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
-            else:
-                return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
+            # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
+            if 'code' in result:
+                if result['code'] == 0:
+                    return JsonResponse({'waiting': time.ctime(time.time()), 'message': result}, status=status.HTTP_200_OK)
+            
+            # either if there is no 'code' or if the 'code' is not 0 an error happened
+            return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
     
     def delete(self, request, predictionName):
         """
@@ -282,11 +285,17 @@ class ManageVersions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_info(modelname, version, output='bin')
-        if flame_status[0]:
-            return Response(flame_status[1], status=status.HTTP_200_OK)
+        success, result = manage.action_info(modelname, version, output='bin')
+        if success:
+            return Response(result, status=status.HTTP_200_OK)
         else:
-            return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
+            # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
+            if 'code' in result:
+                if result['code'] == 0:
+                    return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            
+            # either if there is no 'code' or if the 'code' is not 0 an error happened
+            return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
 
     def delete(self, request, modelname, version):
         """
@@ -354,28 +363,84 @@ class ManageValidation(APIView):
 
 class ManageExport(APIView):
 
-    def get(self,request,modelname):
+    # def get(self,request,modelname):
+    #     """
+    #     Creates a compressed file in a temp directory and sends it as an
+    #     HttpResponse
+    #     """
+    #     current_path = os.getcwd()
+
+    #     temp_dir = tempfile.mkdtemp(prefix="export_", dir=None)
+    #     os.chdir(temp_dir)
+    #     success, results = manage.action_export(modelname)
+    #     if not success:
+    #         os.chdir(current_path)
+    #         return JsonResponse({'error':results},status = status.HTTP_404_NOT_FOUND)
+
+    #     file = open(os.path.abspath(modelname+'.tgz'), 'rb')
+    #     response = HttpResponse(FileWrapper(file), content_type='application/tgz')
+    #     response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
+
+    #     os.chdir(current_path)
+    #     shutil.rmtree(temp_dir)
+
+    #     return response
+
+    def get (self, request, modelname):
         """
         Creates a compressed file in a temp directory and sends it as an
         HttpResponse
         """
-        current_path = os.getcwd()
-
         temp_dir = tempfile.mkdtemp(prefix="export_", dir=None)
-        os.chdir(temp_dir)
-        success, results = manage.action_export(modelname)
-        if not success:
-            os.chdir(current_path)
-            return JsonResponse({'error':results},status = status.HTTP_404_NOT_FOUND)
+        x = threading.Thread(target=exportThread, args=(modelname,temp_dir))
+        x.start()
 
-        file = open(os.path.abspath(modelname+'.tgz'), 'rb')
+        return JsonResponse({'temp_dir':os.path.split(temp_dir)[-1]},status = status.HTTP_200_OK)
+
+def exportThread(modelname, temp_dir=''):
+    os.chdir(temp_dir)
+    print ("Thread Start")
+    success, results = manage.action_export(modelname)
+    print ("Thread End")
+
+class ManageTest(APIView):
+
+    def get(self,request, modelname,temp_dir):
+        """
+        Creates a compressed file in a temp directory and sends it as an
+        HttpResponse
+        """
+        temp_dir = os.path.join(tempfile.gettempdir(),temp_dir)
+        export_file = os.path.join(temp_dir,modelname+'.tgz')
+        finish_file = os.path.join(temp_dir,modelname+'.completed')
+        
+        if (os.path.isfile(export_file) and os.path.isfile(finish_file)):   
+            return JsonResponse({'ready': True}, status=status.HTTP_200_OK)
+        
+        return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
+class ManageDownload(APIView):
+
+    def get(self, request, modelname, temp_dir):
+        """
+        Creates a compressed file in a temp directory and sends it as an
+        HttpResponse
+        """
+        temp_dir = os.path.join(tempfile.gettempdir(),temp_dir)
+        export_file = os.path.join(temp_dir,modelname+'.tgz')
+        file = open(export_file, 'rb')
         response = HttpResponse(FileWrapper(file), content_type='application/tgz')
         response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
-
-        os.chdir(current_path)
-        shutil.rmtree(temp_dir)
-
+        # print (temp_dir)
+        # xxx = threading.Thread(target=deleteThread, args=(modelname, temp_dir))
+        # xxx.start()
         return response
+
+# def deleteThread(modelname, temp_dir=''):
+#     print (temp_dir)
+#     time.sleep(100)
+#     shutil.rmtree(temp_dir)
+#     print ('****************KILLED *******************')
 
 class ManageImport(APIView):
 
