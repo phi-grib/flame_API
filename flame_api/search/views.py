@@ -84,6 +84,7 @@ class Search(APIView):
         
         x = threading.Thread(target=searchThread, args=(command_search,'JSON',temp_dir))
         x.start()
+        x.setName('searching_'+searchName)
         return Response(searchName, status=status.HTTP_200_OK)  
 
 class SearchSmiles(APIView):

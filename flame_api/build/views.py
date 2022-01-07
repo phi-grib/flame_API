@@ -81,7 +81,7 @@ class BuildModel(APIView):
 
         command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params, 'incremental': incremental}
         x = threading.Thread(target=buildThread, args=(command_build,'JSON'))
-            
+        x.setName('building_'+modelname)    
         x.start()
         
         return Response("Creating Model " + modelname, status=status.HTTP_200_OK)  
