@@ -133,26 +133,47 @@ class ManagePredictions(APIView):
     Manage models to the version level
     """
 
+    # def get(self, request, predictionName):
+    #     """
+    #     Retrieve info of model version
+    #     """
+    #     threadNames = [i.getName() for i in threading.enumerate()]
+    #     print (threadNames)
+
+    #     success, result = manage.action_predictions_result(predictionName, output='bin')
+    #     if success:
+    #         return Response(json.loads(result.getJSON(xdata = True)), status=status.HTTP_200_OK)
+    #     else:
+    #         if not 'predicting_'+predictionName in threadNames:
+    #             return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
+
+    #         # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
+    #         if 'code' in result:
+    #             if result['code'] == 0:
+    #                 return JsonResponse({'waiting': time.ctime(time.time()), 'message': result}, status=status.HTTP_200_OK)
+            
+    #         # either if there is no 'code' or if the 'code' is not 0 an error happened
+    #         return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
+    
     def get(self, request, predictionName):
         """
         Retrieve info of model version
         """
+        threadNames = [i.name for i in threading.enumerate()]
+
+        if 'predicting_'+predictionName in threadNames:
+            return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
         success, result = manage.action_predictions_result(predictionName, output='bin')
         if success:
             return Response(json.loads(result.getJSON(xdata = True)), status=status.HTTP_200_OK)
         else:
-            threadNames = [i.getName() for i in threading.enumerate()]
-            if not 'predicting_'+predictionName in threadNames:
-                return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
-
-            # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
-            if 'code' in result:
-                if result['code'] == 0:
-                    return JsonResponse({'waiting': time.ctime(time.time()), 'message': result}, status=status.HTTP_200_OK)
+            if 'code' in result and result['code'] != 0:
+                    return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
             
-            # either if there is no 'code' or if the 'code' is not 0 an error happened
-            return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
-    
+        return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
+
+
     def delete(self, request, predictionName):
         """
         Delete model
@@ -290,22 +311,20 @@ class ManageVersions(APIView):
         """
         Retrieve info of model version
         """
+        threadNames = [i.name for i in threading.enumerate()]
+
+        if 'building_'+modelname in threadNames:
+            return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
         success, result = manage.action_info(modelname, version, output='bin')
         if success:
             return Response(result, status=status.HTTP_200_OK)
         else:
-
-            threadNames = [i.getName() for i in threading.enumerate()]
-            if not 'building_'+modelname in threadNames:
-                return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
-
-            # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
-            if 'code' in result:
-                if result['code'] == 0:
-                    return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            if 'code' in result and result['code'] != 0:
+                    return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
             
-            # either if there is no 'code' or if the 'code' is not 0 an error happened
-            return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
+        return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
+
 
     def delete(self, request, modelname, version):
         """
@@ -400,12 +419,12 @@ class ManageExport(APIView):
         """
         Starts a thread for exporting a model. This can take a lot of time!
         """
-        temp_dir = tempfile.mkdtemp(prefix="export_", dir=None)
-        x = threading.Thread(target=exportThread, args=(modelname,temp_dir))
-        x.setName(temp_dir)
+        temp_path = tempfile.mkdtemp(prefix="export_", dir=None)
+        temp_dir = os.path.split(temp_path)[-1]
+        x = threading.Thread(target=exportThread, name=temp_dir, args=(modelname,temp_path))
         x.start()
 
-        return JsonResponse({'temp_dir':os.path.split(temp_dir)[-1]},status = status.HTTP_200_OK)
+        return JsonResponse({'temp_dir':temp_dir},status = status.HTTP_200_OK)
 
 def exportThread(modelname, temp_dir=''):
     os.chdir(temp_dir)
@@ -419,18 +438,18 @@ class ManageExportTest(APIView):
         """
         Test if the export Thread has finished
         """
-        temp_dir = os.path.join(tempfile.gettempdir(),temp_dir)
-        export_file = os.path.join(temp_dir,modelname+'.tgz')
-        finish_file = os.path.join(temp_dir,modelname+'.completed')
+        threadNames = [i.name for i in threading.enumerate()]
+        if temp_dir in threadNames:
+            return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
+        temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
+        export_file = os.path.join(temp_path,modelname+'.tgz')
+        finish_file = os.path.join(temp_path,modelname+'.completed')
         
         if (os.path.isfile(export_file) and os.path.isfile(finish_file)):   
             return JsonResponse({'ready': True}, status=status.HTTP_200_OK)
-        
-        threadNames = [i.getName() for i in threading.enumerate()]
-        if not temp_dir in threadNames:
-            return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
-        
-        return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
+        return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
 
 class ManageExportDownload(APIView):
 
@@ -438,8 +457,8 @@ class ManageExportDownload(APIView):
         """
         returns the compressed file as a part of the response
         """
-        temp_dir = os.path.join(tempfile.gettempdir(),temp_dir)
-        export_file = os.path.join(temp_dir,modelname+'.tgz')
+        temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
+        export_file = os.path.join(temp_path,modelname+'.tgz')
         response = HttpResponse(FileWrapper(open(export_file, 'rb')), content_type='application/tgz')
         response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
         # shutil.rmtree(temp_dir)

@@ -58,16 +58,10 @@ class BuildSpace(APIView):
       params = request.POST.get('parameters')  
       incremental = request.POST.get('incremental') 
 
-      # print ("---------------------------")
-      # print ("Incremental before", incremental)
-      # print ("Incremental before type", type(incremental))
       if incremental == 'true':
         incremental = True
       else:
         incremental = False
-      # print ("Incremental after", incremental)
-      # print ("Incremental after type", type(incremental))
-      # print ("---------------------------")
       training_data = None     
       temp_dir = tempfile.mkdtemp(prefix="train_data_", dir=None)
 
@@ -78,8 +72,7 @@ class BuildSpace(APIView):
         training_data = os.path.join(temp_dir, path_SDF)
 
       command_build = {'space': spacename, 'infile': training_data, 'param_string': params, 'incremental': incremental}
-      x = threading.Thread(target=sbuildThread, args=(command_build,'JSON', temp_dir))
-      x.setName('sbuiling_'+spacename)
+      x = threading.Thread(target=sbuildThread, name='sbuilding_'+spacename, args=(command_build,'JSON', temp_dir))
       x.start()
       
       return Response( spacename, status=status.HTTP_200_OK)  
