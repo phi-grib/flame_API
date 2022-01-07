@@ -126,32 +126,34 @@ class ManageVersions(APIView):
         TODO: dont use hardcoded 0 version
         TODO: haandle info errors 
         """
-        # TODO: FIX model info and metadata for  whole endpoint in flame
-        # flame_status = smanage.action_info(spacename, version, output='bin')
-        
-        # if flame_status[0]:
-        #     # return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
-        #     return Response(flame_status[1], status=status.HTTP_200_OK)
+        # success, result = smanage.action_info(spacename, version, output='bin')
+        # if success:
+        #     return Response(result, status=status.HTTP_200_OK)
         # else:
-        #     return Response(flame_status[1], status = status.HTTP_404_NOT_FOUND)
+        #     threadNames = [i.getName() for i in threading.enumerate()]
+        #     if not 'sbuilding_'+spacename in threadNames:
+        #         return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
+
+        #     # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
+        #     if 'code' in result:
+        #         if result['code'] == 0:
+        #             return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
             
+        #     # either if there is no 'code' or if the 'code' is not 0 an error happened
+        #     return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
+
+        threadNames = [i.name for i in threading.enumerate()]
+        if 'sbuilding_'+spacename in threadNames:
+            return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
 
         success, result = smanage.action_info(spacename, version, output='bin')
         if success:
             return Response(result, status=status.HTTP_200_OK)
         else:
-            threadNames = [i.getName() for i in threading.enumerate()]
-            if not 'sbuilding_'+spacename in threadNames:
-                return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
-
-            # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
-            if 'code' in result:
-                if result['code'] == 0:
-                    return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            if 'code' in result and result['code'] != 0:
+                return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
             
-            # either if there is no 'code' or if the 'code' is not 0 an error happened
-            return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
-
+        return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
 
 
     def delete(self, request, spacename, version):
@@ -160,7 +162,7 @@ class ManageVersions(APIView):
         """
         flame_status = smanage.action_remove(spacename, version)
         if flame_status[0]:
-             return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
@@ -193,19 +195,15 @@ class ManageSearches(APIView):
         # else:
         #     return JsonResponse(flame_status[1], status = status.HTTP_404_NOT_FOUND)
 
+        threadNames = [i.name for i in threading.enumerate()]
+        if 'searching_'+searchName in threadNames:
+           return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
 
         success, result = smanage.action_searches_result(searchName, output='JSON')
         if success:
             return Response(json.loads(result.getJSON()), status=status.HTTP_200_OK)
         else:
-            threadNames = [i.getName() for i in threading.enumerate()]
-            if not 'searching_'+searchName in threadNames:
-                return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
+            if 'code' in result and result['code'] != 0:
+                return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
 
-            # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
-            if 'code' in result:
-                if result['code'] == 0:
-                    return JsonResponse({'waiting': time.ctime(time.time()), 'message': result}, status=status.HTTP_200_OK)
-            
-            # either if there is no 'code' or if the 'code' is not 0 an error happened
-            return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
+        return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)

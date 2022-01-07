@@ -70,8 +70,7 @@ class Predict(APIView):
 
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        x =threading.Thread(target=predictThread, args=(command_predict,'JSON',temp_dir))
-        x.setName('predicting_'+predictionName)
+        x =threading.Thread(target=predictThread, name='predicting_'+predictionName,  args=(command_predict,'JSON',temp_dir))
         x.start()
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
 
