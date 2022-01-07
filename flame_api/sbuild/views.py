@@ -79,7 +79,7 @@ class BuildSpace(APIView):
 
       command_build = {'space': spacename, 'infile': training_data, 'param_string': params, 'incremental': incremental}
       x = threading.Thread(target=sbuildThread, args=(command_build,'JSON', temp_dir))
-
+      x.setName('sbuiling_'+spacename)
       x.start()
       
       return Response( spacename, status=status.HTTP_200_OK)  

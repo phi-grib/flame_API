@@ -23,6 +23,7 @@
 
 from django.shortcuts import render
 import json
+import time
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -38,6 +39,8 @@ from django.utils.datastructures import MultiValueDictKeyError
 #from rest_framework.permissions import IsAuthenticated
 
 from flame import smanage
+
+import threading
 
 # Create your views here.
 class ListSpaces(APIView):
@@ -124,14 +127,32 @@ class ManageVersions(APIView):
         TODO: haandle info errors 
         """
         # TODO: FIX model info and metadata for  whole endpoint in flame
-        flame_status = smanage.action_info(spacename, version, output='bin')
+        # flame_status = smanage.action_info(spacename, version, output='bin')
         
-        if flame_status[0]:
-            # return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
-            return Response(flame_status[1], status=status.HTTP_200_OK)
-        else:
-            return Response(flame_status[1], status = status.HTTP_404_NOT_FOUND)
+        # if flame_status[0]:
+        #     # return Response(json.loads(flame_status[1]), status=status.HTTP_200_OK)
+        #     return Response(flame_status[1], status=status.HTTP_200_OK)
+        # else:
+        #     return Response(flame_status[1], status = status.HTTP_404_NOT_FOUND)
             
+
+        success, result = smanage.action_info(spacename, version, output='bin')
+        if success:
+            return Response(result, status=status.HTTP_200_OK)
+        else:
+            threadNames = [i.getName() for i in threading.enumerate()]
+            if not 'sbuilding_'+spacename in threadNames:
+                return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
+
+            # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
+            if 'code' in result:
+                if result['code'] == 0:
+                    return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            
+            # either if there is no 'code' or if the 'code' is not 0 an error happened
+            return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
+
+
 
     def delete(self, request, spacename, version):
         """
@@ -166,8 +187,25 @@ class ManageSearches(APIView):
         Retrieve info of sesrch
         """
 
-        flame_status = smanage.action_searches_result(searchName, output = "JSON")
-        if flame_status[0]:
-            return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)      
+        # flame_status = smanage.action_searches_result(searchName, output = "JSON")
+        # if flame_status[0]:
+        #     return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)      
+        # else:
+        #     return JsonResponse(flame_status[1], status = status.HTTP_404_NOT_FOUND)
+
+
+        success, result = smanage.action_searches_result(searchName, output='JSON')
+        if success:
+            return Response(json.loads(result.getJSON()), status=status.HTTP_200_OK)
         else:
-            return JsonResponse(flame_status[1], status = status.HTTP_404_NOT_FOUND)
+            threadNames = [i.getName() for i in threading.enumerate()]
+            if not 'searching_'+searchName in threadNames:
+                return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
+
+            # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
+            if 'code' in result:
+                if result['code'] == 0:
+                    return JsonResponse({'waiting': time.ctime(time.time()), 'message': result}, status=status.HTTP_200_OK)
+            
+            # either if there is no 'code' or if the 'code' is not 0 an error happened
+            return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)

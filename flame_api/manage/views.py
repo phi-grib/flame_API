@@ -22,6 +22,7 @@
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import sys
 import shutil
 import json
 import yaml
@@ -140,6 +141,10 @@ class ManagePredictions(APIView):
         if success:
             return Response(json.loads(result.getJSON(xdata = True)), status=status.HTTP_200_OK)
         else:
+            threadNames = [i.getName() for i in threading.enumerate()]
+            if not 'predicting_'+predictionName in threadNames:
+                return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
+
             # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
             if 'code' in result:
                 if result['code'] == 0:
@@ -289,6 +294,11 @@ class ManageVersions(APIView):
         if success:
             return Response(result, status=status.HTTP_200_OK)
         else:
+
+            threadNames = [i.getName() for i in threading.enumerate()]
+            if not 'building_'+modelname in threadNames:
+                return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
+
             # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
             if 'code' in result:
                 if result['code'] == 0:
@@ -388,11 +398,11 @@ class ManageExport(APIView):
 
     def get (self, request, modelname):
         """
-        Creates a compressed file in a temp directory and sends it as an
-        HttpResponse
+        Starts a thread for exporting a model. This can take a lot of time!
         """
         temp_dir = tempfile.mkdtemp(prefix="export_", dir=None)
         x = threading.Thread(target=exportThread, args=(modelname,temp_dir))
+        x.setName(temp_dir)
         x.start()
 
         return JsonResponse({'temp_dir':os.path.split(temp_dir)[-1]},status = status.HTTP_200_OK)
@@ -403,12 +413,11 @@ def exportThread(modelname, temp_dir=''):
     success, results = manage.action_export(modelname)
     print ("Thread End")
 
-class ManageTest(APIView):
+class ManageExportTest(APIView):
 
     def get(self,request, modelname,temp_dir):
         """
-        Creates a compressed file in a temp directory and sends it as an
-        HttpResponse
+        Test if the export Thread has finished
         """
         temp_dir = os.path.join(tempfile.gettempdir(),temp_dir)
         export_file = os.path.join(temp_dir,modelname+'.tgz')
@@ -417,30 +426,24 @@ class ManageTest(APIView):
         if (os.path.isfile(export_file) and os.path.isfile(finish_file)):   
             return JsonResponse({'ready': True}, status=status.HTTP_200_OK)
         
+        threadNames = [i.getName() for i in threading.enumerate()]
+        if not temp_dir in threadNames:
+            return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
+        
         return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
 
-class ManageDownload(APIView):
+class ManageExportDownload(APIView):
 
     def get(self, request, modelname, temp_dir):
         """
-        Creates a compressed file in a temp directory and sends it as an
-        HttpResponse
+        returns the compressed file as a part of the response
         """
         temp_dir = os.path.join(tempfile.gettempdir(),temp_dir)
         export_file = os.path.join(temp_dir,modelname+'.tgz')
-        file = open(export_file, 'rb')
-        response = HttpResponse(FileWrapper(file), content_type='application/tgz')
+        response = HttpResponse(FileWrapper(open(export_file, 'rb')), content_type='application/tgz')
         response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
-        # print (temp_dir)
-        # xxx = threading.Thread(target=deleteThread, args=(modelname, temp_dir))
-        # xxx.start()
+        # shutil.rmtree(temp_dir)
         return response
-
-# def deleteThread(modelname, temp_dir=''):
-#     print (temp_dir)
-#     time.sleep(100)
-#     shutil.rmtree(temp_dir)
-#     print ('****************KILLED *******************')
 
 class ManageImport(APIView):
 
