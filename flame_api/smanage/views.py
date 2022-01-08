@@ -142,18 +142,20 @@ class ManageVersions(APIView):
         #     # either if there is no 'code' or if the 'code' is not 0 an error happened
         #     return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
 
-        threadNames = [i.name for i in threading.enumerate()]
-        if 'sbuilding_'+spacename in threadNames:
-            return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+        # threadNames = [i.name for i in threading.enumerate()]
+        # if 'sbuilding_'+spacename in threadNames:
+        #     return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
 
         success, result = smanage.action_info(spacename, version, output='bin')
         if success:
             return Response(result, status=status.HTTP_200_OK)
         else:
-            if 'code' in result and result['code'] != 0:
-                return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
+            if 'code' in result and result['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+    
+        return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
             
-        return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
+        # return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
 
 
     def delete(self, request, spacename, version):
@@ -195,15 +197,17 @@ class ManageSearches(APIView):
         # else:
         #     return JsonResponse(flame_status[1], status = status.HTTP_404_NOT_FOUND)
 
-        threadNames = [i.name for i in threading.enumerate()]
-        if 'searching_'+searchName in threadNames:
-           return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+        # threadNames = [i.name for i in threading.enumerate()]
+        # if 'searching_'+searchName in threadNames:
+        #    return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
 
         success, result = smanage.action_searches_result(searchName, output='JSON')
         if success:
             return Response(json.loads(result.getJSON()), status=status.HTTP_200_OK)
         else:
-            if 'code' in result and result['code'] != 0:
-                return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
+            if 'code' in result and result['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+        
+        return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
 
-        return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
+        # return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
