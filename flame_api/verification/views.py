@@ -43,7 +43,8 @@ class ManageVerification(APIView):
         """
         Retrieve info of model verification
         """
-        return Response(False,status=status.HTTP_200_OK)
+        result = verify.get_verification(modelname,version)
+        return Response(result,status=status.HTTP_200_OK)
 
     def post(self, request, modelname,version):
         """
