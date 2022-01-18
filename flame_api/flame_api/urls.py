@@ -38,5 +38,7 @@ urlpatterns = [
     url("api/v1/predict/", include("predict.urls")),
     url("api/v1/search/", include("search.urls")),
     url("api/v1/verification/", include("verification.urls"))
+    # url("api/v1/cmanage/", include("cmanage.urls")),
+    # url("api/v1/curate/", include("curation.urls"))
 # ]+ static(settings.STATIC_URL)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

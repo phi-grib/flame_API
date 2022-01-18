@@ -22,10 +22,13 @@
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import sys
 import shutil
 import json
 import yaml
+import time
 import tempfile
+import threading
 
 
 from rest_framework.decorators import api_view
@@ -125,21 +128,30 @@ class ManageModels(APIView):
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
 class ManagePredictions(APIView):
-
     """
     Manage models to the version level
     """
-
+    
     def get(self, request, predictionName):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_predictions_result(predictionName, output='bin')
-        if flame_status[0]:
-            return Response(json.loads(flame_status[1].getJSON(xdata = True)), status=status.HTTP_200_OK)
+        # threadNames = [i.name for i in threading.enumerate()]
+        # if 'predicting_'+predictionName in threadNames:
+        #     return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
+        success, result = manage.action_predictions_result(predictionName, output='bin')
+        if success:
+            return Response(json.loads(result.getJSON(xdata = True)), status=status.HTTP_200_OK)
         else:
-            return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
-    
+            if 'code' in result and result['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            
+        return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
+            
+        # return JsonResponse({'message': 'Thread stopped' + str(threadNames)},status = status.HTTP_404_NOT_FOUND)
+
+
     def delete(self, request, predictionName):
         """
         Delete model
@@ -277,11 +289,21 @@ class ManageVersions(APIView):
         """
         Retrieve info of model version
         """
-        flame_status = manage.action_info(modelname, version, output='bin')
-        if flame_status[0]:
-            return Response(flame_status[1], status=status.HTTP_200_OK)
+        # threadNames = [i.name for i in threading.enumerate()]
+        # if 'building_'+modelname in threadNames:
+        #     return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
+        success, result = manage.action_info(modelname, version, output='bin')
+        if success:
+            return Response(result, status=status.HTTP_200_OK)
         else:
-            return JsonResponse(flame_status[1],status = status.HTTP_404_NOT_FOUND)
+            if 'code' in result and result['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+        
+        return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
+            
+        # return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
+
 
     def delete(self, request, modelname, version):
         """
@@ -349,27 +371,78 @@ class ManageValidation(APIView):
 
 class ManageExport(APIView):
 
-    def get(self,request,modelname):
-        """
-        Creates a compressed file in a temp directory and sends it as an
-        HttpResponse
-        """
-        current_path = os.getcwd()
+    # def get(self,request,modelname):
+    #     """
+    #     Creates a compressed file in a temp directory and sends it as an
+    #     HttpResponse
+    #     """
+    #     current_path = os.getcwd()
 
-        temp_dir = tempfile.mkdtemp(prefix="export_", dir=None)
-        os.chdir(temp_dir)
-        success, results = manage.action_export(modelname)
-        if not success:
-            os.chdir(current_path)
-            return JsonResponse({'error':results},status = status.HTTP_404_NOT_FOUND)
+    #     temp_dir = tempfile.mkdtemp(prefix="export_", dir=None)
+    #     os.chdir(temp_dir)
+    #     success, results = manage.action_export(modelname)
+    #     if not success:
+    #         os.chdir(current_path)
+    #         return JsonResponse({'error':results},status = status.HTTP_404_NOT_FOUND)
 
-        file = open(os.path.abspath(modelname+'.tgz'), 'rb')
-        response = HttpResponse(FileWrapper(file), content_type='application/tgz')
+    #     file = open(os.path.abspath(modelname+'.tgz'), 'rb')
+    #     response = HttpResponse(FileWrapper(file), content_type='application/tgz')
+    #     response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
+
+    #     os.chdir(current_path)
+    #     shutil.rmtree(temp_dir)
+
+    #     return response
+
+    def get (self, request, modelname):
+        """
+        Starts a thread for exporting a model. This can take a lot of time!
+        """
+        temp_path = tempfile.mkdtemp(prefix="export_", dir=None)
+        temp_dir = os.path.split(temp_path)[-1]
+        x = threading.Thread(target=exportThread, name=temp_dir, args=(modelname,temp_path))
+        x.start()
+
+        return JsonResponse({'temp_dir':temp_dir},status = status.HTTP_200_OK)
+
+def exportThread(modelname, temp_dir=''):
+    os.chdir(temp_dir)
+    print ("Thread Start")
+    success, results = manage.action_export(modelname)
+    print ("Thread End")
+
+class ManageExportTest(APIView):
+
+    def get(self,request, modelname,temp_dir):
+        """
+        Test if the export Thread has finished
+        """
+        # threadNames = [i.name for i in threading.enumerate()]
+        # if temp_dir in threadNames:
+        #     return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
+        temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
+        export_file = os.path.join(temp_path,modelname+'.tgz')
+        finish_file = os.path.join(temp_path,modelname+'.completed')
+        
+        if (os.path.isfile(export_file) and os.path.isfile(finish_file)):   
+            return JsonResponse({'ready': True}, status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+
+        # return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
+
+class ManageExportDownload(APIView):
+
+    def get(self, request, modelname, temp_dir):
+        """
+        returns the compressed file as a part of the response
+        """
+        temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
+        export_file = os.path.join(temp_path,modelname+'.tgz')
+        response = HttpResponse(FileWrapper(open(export_file, 'rb')), content_type='application/tgz')
         response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
-
-        os.chdir(current_path)
-        shutil.rmtree(temp_dir)
-
+        # shutil.rmtree(temp_dir)
         return response
 
 class ManageImport(APIView):
