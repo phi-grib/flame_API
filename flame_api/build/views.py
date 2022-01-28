@@ -37,7 +37,45 @@ from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
 import flame.context as context
-import threading
+import threading 
+import traceback
+import sys
+
+
+# old_init = threading.Thread.__init__
+# def new_init(self, *args, **kwargs):
+#     old_init(self, *args, **kwargs)
+#     old_run = self.run
+#     def run_with_our_excepthook(*args, **kwargs):
+#         try:
+#            old_run(*args, **kwargs)
+#         except:
+#            # ceate a file in temp with FLAME BUILD and date
+#            var = traceback.format_exc()
+#            tmp = os.path.join(tempfile.gettempdir(),'BUILD_FLAME_ERROR')
+#            with open (tmp,'w') as f:
+#              f.write(var)
+#            sys.excepthook(*sys.exc_info())
+
+#     self.run = run_with_our_excepthook
+# threading.Thread.__init__ = new_init
+
+
+class FlameThread (threading.Thread):
+  def __init__ (self, *args, **kwargs):
+    self.inner_name = kwargs['name'] 
+    super().__init__(*args, **kwargs)
+  
+  def run (self, *args, **kwargs):
+    try:
+      super().run (*args, **kwargs)
+    except:
+      # ceate a file in temp with FLAME BUILD and date
+      tmp = os.path.join(tempfile.gettempdir(),self.inner_name)
+      with open (tmp,'w') as f:
+        f.write(traceback.format_exc())
+      sys.excepthook(*sys.exc_info())
+
 
 class BuildModel(APIView):
     """
@@ -67,15 +105,19 @@ class BuildModel(APIView):
             path_SDF = fs.save(file_obj.name, ContentFile(file_obj.read()))
             training_data = os.path.join(temp_dir, path_SDF)
 
+        # Clean previous error messages
+        error_file = os.path.join(tempfile.gettempdir(),'building_'+modelname)
+        if os.path.isfile(error_file):
+            os.remove(error_file)
+
         command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params, 'incremental': incremental}
-        x = threading.Thread(target=buildThread, name='building_'+modelname, args=(command_build,'JSON'))
+        x = FlameThread(target=buildThread, name='building_'+modelname, args=(command_build,'JSON'))
         x.start()
         
         return Response("Creating Model " + modelname, status=status.HTTP_200_OK)  
        
 def buildThread(command, output):
-
-    print ("Thread Start")
+    print ("Thread Start NEW")
     success, results = context.build_cmd(command, output_format=output)
     print ("Thread End")
         
