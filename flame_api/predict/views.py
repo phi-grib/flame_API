@@ -24,7 +24,7 @@
 import tempfile
 import os
 import shutil
-from urllib.parse import unquote
+# from urllib.parse import unquote
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -32,8 +32,8 @@ from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FileUploadParser
 from rest_framework import status
 
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+# from django.shortcuts import render
+from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
@@ -42,7 +42,25 @@ from rdkit import Chem
 
 import flame.context as context
 import threading        
+import sys
+import traceback
 
+class FlameThread (threading.Thread):
+  def __init__ (self, *args, **kwargs):
+    self.inner_name = kwargs['name'] 
+    super().__init__(*args, **kwargs)
+  
+  def run (self, *args, **kwargs):
+    try:
+      super().run (*args, **kwargs)
+    except:
+      # ceate a file in temp with the exception error inside
+
+      print ('77777777777777777777777777777777777777777777777777777')
+      tmp = os.path.join(tempfile.gettempdir(),self.inner_name)
+      with open (tmp,'w') as f:
+        f.write(traceback.format_exc())
+      sys.excepthook(*sys.exc_info())
 class Predict(APIView):
     
     """
@@ -68,9 +86,14 @@ class Predict(APIView):
         if predictionName is None:
             predictionName = 'temp'
 
+        # Clean previous error messages
+        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionName)
+        if os.path.isfile(error_file):
+            os.remove(error_file)
+
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        x =threading.Thread(target=predictThread, name='predicting_'+predictionName,  args=(command_predict,'JSON',temp_dir))
+        x =FlameThread(target=predictThread, name='predicting_'+predictionName,  args=(command_predict,'JSON',temp_dir))
         x.start()
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
 
@@ -111,9 +134,14 @@ class PredictSmiles(APIView):
         if predictionName is None:
             predictionName = 'temp'
 
+        # Clean previous error messages
+        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionName)
+        if os.path.isfile(error_file):
+            os.remove(error_file)
+
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        x = threading.Thread(target=predictThread, args=(command_predict,'JSON',temp_dir))
+        x = FlameThread(target=predictThread, args=(command_predict,'JSON',temp_dir))
         x.start()
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
         

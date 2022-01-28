@@ -23,7 +23,7 @@
 
 import tempfile
 import os
-from ast import literal_eval
+# from ast import literal_eval
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -31,7 +31,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser
 from rest_framework import status
 
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
@@ -40,26 +40,6 @@ import flame.context as context
 import threading 
 import traceback
 import sys
-
-
-# old_init = threading.Thread.__init__
-# def new_init(self, *args, **kwargs):
-#     old_init(self, *args, **kwargs)
-#     old_run = self.run
-#     def run_with_our_excepthook(*args, **kwargs):
-#         try:
-#            old_run(*args, **kwargs)
-#         except:
-#            # ceate a file in temp with FLAME BUILD and date
-#            var = traceback.format_exc()
-#            tmp = os.path.join(tempfile.gettempdir(),'BUILD_FLAME_ERROR')
-#            with open (tmp,'w') as f:
-#              f.write(var)
-#            sys.excepthook(*sys.exc_info())
-
-#     self.run = run_with_our_excepthook
-# threading.Thread.__init__ = new_init
-
 
 class FlameThread (threading.Thread):
   def __init__ (self, *args, **kwargs):
@@ -70,7 +50,7 @@ class FlameThread (threading.Thread):
     try:
       super().run (*args, **kwargs)
     except:
-      # ceate a file in temp with FLAME BUILD and date
+      # ceate a file in temp with the exception error inside
       tmp = os.path.join(tempfile.gettempdir(),self.inner_name)
       with open (tmp,'w') as f:
         f.write(traceback.format_exc())
