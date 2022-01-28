@@ -37,13 +37,36 @@ from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
 import flame.context as context
-import threading
+import threading 
+import traceback
+import sys
+
+
+old_init = threading.Thread.__init__
+def new_init(self, *args, **kwargs):
+    old_init(self, *args, **kwargs)
+    old_run = self.run
+    def run_with_our_excepthook(*args, **kwargs):
+        try:
+           old_run(*args, **kwargs)
+        except:
+           # ceate a file in temp with FLAME BUILD and date
+           var = traceback.format_exc()
+           tmp = os.path.join(tempfile.gettempdir(),'BUILD_FLAME_ERROR')
+           with open (tmp,'w') as f:
+             f.write(var)
+           print (f">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>{tmp}")
+           sys.excepthook(*sys.exc_info())
+
+    self.run = run_with_our_excepthook
+threading.Thread.__init__ = new_init
 
 class BuildModel(APIView):
     """
     Build model
     """
     parser_classes = (MultiPartParser,)
+
     
     def post(self, request, modelname, format=None):
 
@@ -75,7 +98,7 @@ class BuildModel(APIView):
        
 def buildThread(command, output):
 
-    print ("Thread Start")
+    print ("Thread Start NEW")
     success, results = context.build_cmd(command, output_format=output)
     print ("Thread End")
         
