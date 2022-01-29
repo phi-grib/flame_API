@@ -22,7 +22,7 @@
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
 import os
-import sys
+# import sys
 import shutil
 import json
 import yaml
@@ -30,25 +30,22 @@ import time
 import tempfile
 import threading
 
-
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import FileUploadParser, MultiPartParser
+from rest_framework.parsers import MultiPartParser
 from rest_framework import status
 
 from django.core.files.storage import FileSystemStorage
-from django.core.files.base import ContentFile
+# from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from django.utils.datastructures import MultiValueDictKeyError
+# from django.utils.datastructures import MultiValueDictKeyError
 #from rest_framework.permissions import IsAuthenticated
 
 from flame import manage
 from flame.util import utils, config
-
 from wsgiref.util import FileWrapper
-
 
 class ListModels(APIView):
     """
