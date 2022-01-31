@@ -538,3 +538,18 @@ class ManageYaml2Parameters(APIView):
             return Response(json.loads(param.dumpJSON()), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':param},status = status.HTTP_404_NOT_FOUND)
+
+class ManageRefresh(APIView):
+    """
+    Start model refresh
+    """
+
+    def get(self,request,modelname):    
+        """
+        Retrieve parameters of model version
+        """
+        success, result = manage.action_refresh(model=modelname, version=None)
+        if success:
+            return Response('OK', status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':result },status = status.HTTP_404_NOT_FOUND)
