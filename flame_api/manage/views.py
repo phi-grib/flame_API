@@ -546,10 +546,35 @@ class ManageRefresh(APIView):
 
     def get(self,request,modelname):    
         """
-        Retrieve parameters of model version
+        Lauch a thread for refreshing a model
         """
-        success, result = manage.action_refresh(model=modelname, version=None)
-        if success:
-            return Response('OK', status=status.HTTP_200_OK)
+        
+        token_file = os.path.join(tempfile.gettempdir(),'refreshing_'+modelname)
+        if os.path.isfile(token_file):
+            os.remove(token_file)
+
+        r = threading.Thread(target=refreshThread, args=(modelname, ''))
+        r.start()
+        return Response('OK', status=status.HTTP_200_OK)
+
+def refreshThread(modelname, temp_dir=''):
+    print ("Thread Start")
+    success, results = manage.action_refresh(model=modelname, version=None, GUI=True)
+    print ("Thread End")
+
+class ManageRefreshTest(APIView):
+    """
+    Check model refresh status
+    """
+
+    def get(self,request,modelname):    
+        """
+        Check if the model refresh task has finished
+        """
+
+        # Manage action_refresh test can return 'working' or 'ready' only 
+        result = manage.action_refresh_test(model=modelname) 
+        if result != 'ready':
+            return JsonResponse({'progress': result}, status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'error':result },status = status.HTTP_404_NOT_FOUND)
+            return JsonResponse({'ready':True}, status=status.HTTP_200_OK)
