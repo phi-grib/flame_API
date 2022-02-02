@@ -37,24 +37,25 @@ from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
 import flame.context as context
-import threading 
-import traceback
-import sys
+from flame.util import flthread
+# import threading 
+# import traceback
+# import sys
 
-class FlameThread (threading.Thread):
-  def __init__ (self, *args, **kwargs):
-    self.inner_name = kwargs['name'] 
-    super().__init__(*args, **kwargs)
+# class FlameThread (threading.Thread):
+#   def __init__ (self, *args, **kwargs):
+#     self.inner_name = kwargs['name'] 
+#     super().__init__(*args, **kwargs)
   
-  def run (self, *args, **kwargs):
-    try:
-      super().run (*args, **kwargs)
-    except:
-      # ceate a file in temp with the exception error inside
-      tmp = os.path.join(tempfile.gettempdir(),self.inner_name)
-      with open (tmp,'w') as f:
-        f.write(traceback.format_exc())
-      sys.excepthook(*sys.exc_info())
+#   def run (self, *args, **kwargs):
+#     try:
+#       super().run (*args, **kwargs)
+#     except:
+#       # ceate a file in temp with the exception error inside
+#       tmp = os.path.join(tempfile.gettempdir(),self.inner_name)
+#       with open (tmp,'w') as f:
+#         f.write(traceback.format_exc())
+#       sys.excepthook(*sys.exc_info())
 
 
 class BuildModel(APIView):
@@ -91,7 +92,8 @@ class BuildModel(APIView):
             os.remove(error_file)
 
         command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params, 'incremental': incremental}
-        x = FlameThread(target=buildThread, name='building_'+modelname, args=(command_build,'JSON'))
+        # x = FlameThread(target=buildThread, name='building_'+modelname, args=(command_build,'JSON'))
+        x = flthread.FlThread(target=buildThread, name='building_'+modelname, args=(command_build,'JSON'))
         x.start()
         
         return Response("Creating Model " + modelname, status=status.HTTP_200_OK)  

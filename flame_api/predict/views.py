@@ -24,15 +24,12 @@
 import tempfile
 import os
 import shutil
-# from urllib.parse import unquote
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-# from rest_framework.parsers import MultiPartParser, FileUploadParser
 from rest_framework import status
 
-# from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
@@ -41,25 +38,26 @@ from django.utils.datastructures import MultiValueDictKeyError
 from rdkit import Chem
 
 import flame.context as context
-import threading        
-import sys
-import traceback
+from flame.util import flthread
+# import threading        
+# import sys
+# import traceback
 
-class FlameThread (threading.Thread):
-  def __init__ (self, *args, **kwargs):
+# class FlameThread (threading.Thread):
+#   def __init__ (self, *args, **kwargs):
     
-    self.inner_name = kwargs['name'] 
-    super().__init__(*args, **kwargs)
+#     self.inner_name = kwargs['name'] 
+#     super().__init__(*args, **kwargs)
   
-  def run (self, *args, **kwargs):
-    try:
-      super().run (*args, **kwargs)
-    except:
-      # ceate a file in temp with the exception error inside
-      tmp = os.path.join(tempfile.gettempdir(), self.inner_name)
-      with open (tmp,'w') as f:
-        f.write(traceback.format_exc())
-      sys.excepthook(*sys.exc_info())
+#   def run (self, *args, **kwargs):
+#     try:
+#       super().run (*args, **kwargs)
+#     except:
+#       # ceate a file in temp with the exception error inside
+#       tmp = os.path.join(tempfile.gettempdir(), self.inner_name)
+#       with open (tmp,'w') as f:
+#         f.write(traceback.format_exc())
+#       sys.excepthook(*sys.exc_info())
 
 class Predict(APIView):
     
@@ -93,7 +91,7 @@ class Predict(APIView):
 
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        x =FlameThread(target=predictThread, name='predicting_'+predictionName,  args=(command_predict,'JSON',temp_dir))
+        x =flthread.FlThread(target=predictThread, name='predicting_'+predictionName,  args=(command_predict,'JSON',temp_dir))
         x.start()
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
 
@@ -141,7 +139,7 @@ class PredictSmiles(APIView):
 
         command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        x = FlameThread(target=predictThread, name='predicting_'+predictionName, args=(command_predict,'JSON',temp_dir) )
+        x = flthread.FlThread(target=predictThread, name='predicting_'+predictionName, args=(command_predict,'JSON',temp_dir) )
         x.start()
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
         
@@ -150,5 +148,4 @@ def predictThread(command, output, temp_dir=''):
     print ("Thread Start")
     success, results = context.predict_cmd(command, output_format=output)
     shutil.rmtree(temp_dir)
-    # print (f"Folder {temp_dir} removed")
     print ("Thread End")

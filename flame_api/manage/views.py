@@ -22,13 +22,11 @@
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
 import os
-# import sys
 import shutil
 import json
 import yaml
 import time
 import tempfile
-import threading
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -37,14 +35,11 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework import status
 
 from django.core.files.storage import FileSystemStorage
-# from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-# from django.utils.datastructures import MultiValueDictKeyError
-#from rest_framework.permissions import IsAuthenticated
 
 from flame import manage
-from flame.util import utils, config
+from flame.util import utils, config, flthread
 from wsgiref.util import FileWrapper
 
 class ListModels(APIView):
@@ -401,7 +396,7 @@ class ManageExport(APIView):
         """
         temp_path = tempfile.mkdtemp(prefix="export_", dir=None)
         temp_dir = os.path.split(temp_path)[-1]
-        x = threading.Thread(target=exportThread, name=temp_dir, args=(modelname,temp_path))
+        x = flthread.FlThread(target=exportThread, name=temp_dir, args=(modelname,temp_path))
         x.start()
 
         return JsonResponse({'temp_dir':temp_dir},status = status.HTTP_200_OK)
@@ -418,9 +413,6 @@ class ManageExportTest(APIView):
         """
         Test if the export Thread has finished
         """
-        # threadNames = [i.name for i in threading.enumerate()]
-        # if temp_dir in threadNames:
-        #     return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
 
         temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
         export_file = os.path.join(temp_path,modelname+'.tgz')
@@ -430,8 +422,6 @@ class ManageExportTest(APIView):
             return JsonResponse({'ready': True}, status=status.HTTP_200_OK)
         else:
             return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
-
-        # return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
 
 class ManageExportDownload(APIView):
 
@@ -553,7 +543,14 @@ class ManageRefresh(APIView):
         if os.path.isfile(token_file):
             os.remove(token_file)
 
-        r = threading.Thread(target=refreshThread, args=(modelname, ''))
+        # Clean previous error messages
+        error_file = os.path.join(tempfile.gettempdir(),'refreshing_error_'+modelname)
+        if os.path.isfile(error_file):
+            os.remove(error_file)
+
+        # r = threading.Thread(target=refreshThread, args=(modelname, ''))
+        # r = threading.Thread(target=refreshThread, name='refreshing_error_'+modelname, args=(modelname, ''))
+        r = flthread.FlThread(target=refreshThread, name='refreshing_error_'+modelname, args=(modelname, ''))
         r.start()
         return Response('OK', status=status.HTTP_200_OK)
 
@@ -574,7 +571,4 @@ class ManageRefreshTest(APIView):
 
         # Manage action_refresh test can return 'working' or 'ready' only 
         result = manage.action_refresh_test(model=modelname) 
-        if result != 'ready':
-            return JsonResponse({'progress': result}, status=status.HTTP_200_OK)
-        else:
-            return JsonResponse({'ready':True}, status=status.HTTP_200_OK)
+        return JsonResponse(result, status=status.HTTP_200_OK)
