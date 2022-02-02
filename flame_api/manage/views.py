@@ -502,14 +502,16 @@ class ManageParameters2Yaml(APIView):
     def post (self, request, modelname, version):
 
         # retrieve delta parameters, which were encoded as JSON
+        # when delta is '*' it will not be applied 
         delta = request.POST.get('parameters') 
         
         # retrive existing parameters for this model version
         success, param = manage.action_parameters(modelname,version,oformat='bin')
 
         if success:
-            # apply delta to the existing paramyeres
-            param.applyDelta(json.loads(delta))
+            # apply delta to the existing parameters
+            if delta != '*':
+                param.applyDelta(json.loads(delta))
             return Response(param.dumpYAML(), status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':param},status = status.HTTP_404_NOT_FOUND)
