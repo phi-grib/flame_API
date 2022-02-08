@@ -390,49 +390,49 @@ class ManageExport(APIView):
 
     #     return response
 
-    def get (self, request, modelname):
+    def get (self, request, modelname, version):
         """
         Starts a thread for exporting a model. This can take a lot of time!
         """
         temp_path = tempfile.mkdtemp(prefix="export_", dir=None)
         temp_dir = os.path.split(temp_path)[-1]
-        x = flthread.FlThread(target=exportThread, name=temp_dir, args=(modelname,temp_path))
+        x = flthread.FlThread(target=exportThread, name=temp_dir, args=(modelname, version, temp_path))
         x.start()
 
         return JsonResponse({'temp_dir':temp_dir},status = status.HTTP_200_OK)
 
-def exportThread(modelname, temp_dir=''):
+def exportThread(modelname, version, temp_dir=''):
     os.chdir(temp_dir)
     print ("Thread Start")
-    success, results = manage.action_export(modelname)
+    success, results = manage.action_export(modelname, version)
     print ("Thread End")
 
 class ManageExportTest(APIView):
 
-    def get(self,request, modelname,temp_dir):
+    def get(self,request, modelname, version, temp_dir):
         """
         Test if the export Thread has finished
         """
 
         temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
-        export_file = os.path.join(temp_path,modelname+'.tgz')
+        export_file = os.path.join(temp_path,f'{modelname}_v{version:06d}.tgz')
         finish_file = os.path.join(temp_path,modelname+'.completed')
         
-        if (os.path.isfile(export_file) and os.path.isfile(finish_file)):   
+        if (os.path.isfile(export_file) and os.path.isfile(finish_file)):  
             return JsonResponse({'ready': True}, status=status.HTTP_200_OK)
         else:
             return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
 
 class ManageExportDownload(APIView):
 
-    def get(self, request, modelname, temp_dir):
+    def get(self, request, modelname, version, temp_dir):
         """
         returns the compressed file as a part of the response
         """
         temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
-        export_file = os.path.join(temp_path,modelname+'.tgz')
+        export_file = os.path.join(temp_path,f'{modelname}_v{version:06d}.tgz')
         response = HttpResponse(FileWrapper(open(export_file, 'rb')), content_type='application/tgz')
-        response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
+        response['Content-Disposition'] = 'attachment; filename=' + f'{modelname}_v{version:06d}.tgz'
         # shutil.rmtree(temp_dir)
         return response
 
