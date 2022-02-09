@@ -415,7 +415,12 @@ class ManageExportTest(APIView):
         """
 
         temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
-        export_file = os.path.join(temp_path,f'{modelname}_v{version:06d}.tgz')
+        if version == 0:
+            export_name = f'{modelname}.tgz'
+        else:
+            export_name = f'{modelname}_v{version:06d}.tgz'
+
+        export_file = os.path.join(temp_path,export_name)
         finish_file = os.path.join(temp_path,modelname+'.completed')
         
         if (os.path.isfile(export_file) and os.path.isfile(finish_file)):  
@@ -430,9 +435,13 @@ class ManageExportDownload(APIView):
         returns the compressed file as a part of the response
         """
         temp_path = os.path.join(tempfile.gettempdir(),temp_dir)
-        export_file = os.path.join(temp_path,f'{modelname}_v{version:06d}.tgz')
+        if version == 0:
+            export_name = f'{modelname}.tgz'
+        else:
+            export_name = f'{modelname}_v{version:06d}.tgz'
+        export_file = os.path.join(temp_path,export_name)
         response = HttpResponse(FileWrapper(open(export_file, 'rb')), content_type='application/tgz')
-        response['Content-Disposition'] = 'attachment; filename=' + f'{modelname}_v{version:06d}.tgz'
+        response['Content-Disposition'] = 'attachment; filename=' + export_name
         # shutil.rmtree(temp_dir)
         return response
 

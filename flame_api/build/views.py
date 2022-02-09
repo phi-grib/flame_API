@@ -101,6 +101,11 @@ class BuildModel(APIView):
 def buildThread(command, output):
     print ("Thread Start NEW")
     success, results = context.build_cmd(command, output_format=output)
+    if not success:
+        error_file = os.path.join(tempfile.gettempdir(),'building_'+command['endpoint'])
+        with open (error_file,'w') as f:
+            f.write(results)
+
     print ("Thread End")
         
 
