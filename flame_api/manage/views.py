@@ -450,13 +450,21 @@ class ManageImport(APIView):
     def post(self,request):
         
         file_object = request.FILES['model']
+        model_raw = file_object.name
         model_name = file_object.name.split('.')
         model_name = model_name[0]
-        base_path = utils.model_repository_path()
-        fs = FileSystemStorage(location=base_path) #defaults to models root
 
+        # base_path = utils.model_repository_path()
+        base_path = tempfile.gettempdir()
+
+        # delete any previously existing file, e.g., from a failed import
+        if (os.path.isfile(os.path.join(base_path, model_raw))):
+            os.remove(os.path.join(base_path, model_raw))
+
+        fs = FileSystemStorage(location=base_path) 
         tarname = fs.save(file_object.name, file_object)
         tarpath = os.path.join(base_path,tarname)
+
         flame_status = manage.action_import(tarpath)
         os.remove(tarpath) 
 
