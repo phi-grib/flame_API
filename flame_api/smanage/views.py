@@ -191,23 +191,55 @@ class ManageSearches(APIView):
         Retrieve info of sesrch
         """
 
-        # flame_status = smanage.action_searches_result(searchName, output = "JSON")
-        # if flame_status[0]:
-        #     return Response(json.loads(flame_status[1].getJSON()), status=status.HTTP_200_OK)      
-        # else:
-        #     return JsonResponse(flame_status[1], status = status.HTTP_404_NOT_FOUND)
-
-        # threadNames = [i.name for i in threading.enumerate()]
-        # if 'searching_'+searchName in threadNames:
-        #    return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
-
         success, result = smanage.action_searches_result(searchName, output='JSON')
         if success:
-            return Response(json.loads(result.getJSON()), status=status.HTTP_200_OK)
+            results_json = json.loads(result.getJSON())
+            results_json.pop('var_nam', None)
+            return Response(results_json, status=status.HTTP_200_OK)
         else:
             if 'code' in result and result['code'] == 0:
                 return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
         
         return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
 
-        # return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
+class ManageSearchesTH(APIView):
+
+    def get(self, request, searchName):
+        """
+        Retrieve info of search and reformat for Toxhub
+        """
+
+        success, result = smanage.action_searches_result(searchName, output='JSON')
+        if success:
+            results_json = json.loads(result.getJSON())
+            results_json.pop('var_nam', None)
+            results_json.pop('meta', None)
+            results_json.pop('manifest', None)
+
+            # we will process ONLY the first query molecule
+            search_results = results_json['search_results'][0]
+
+            n_results = len(search_results['distances'])
+            if not 'obj_id' in search_results:
+                search_results['obj_id'] = search_results['obj_nam']
+
+            search_results_TH = []
+            for i in range (n_results):
+                idict = {'distances': search_results['distances'][i], 
+                         'obj_nam': search_results['obj_nam'][i],
+                         'obj_id': search_results['obj_id'][i],
+                         'SMILES': search_results['SMILES'][i]
+                        }
+                search_results_TH.append(idict) 
+
+            # only the results for the first molecule are returned    
+            results_json['search_results'] = search_results_TH
+            results_json['obj_nam'] = [results_json['obj_nam'][0]]
+            results_json['SMILES'] = [results_json['SMILES'][0]]
+
+            return Response(results_json, status=status.HTTP_200_OK)
+        else:
+            if 'code' in result and result['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+        
+        return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)

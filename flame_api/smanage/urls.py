@@ -22,7 +22,7 @@
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
 from django.urls import path
-from .views import ListSpaces, ManageSpaces, ManageVersions, ManageParameters, ManageSearches
+from .views import ListSpaces, ManageSpaces, ManageVersions, ManageParameters, ManageSearches, ManageSearchesTH
 
 urlpatterns = [
     # spaces
@@ -34,5 +34,6 @@ urlpatterns = [
     path("space/<str:spacename>/version/<int:version>/parameters",ManageParameters.as_view()),
     # searches
     path("search/<str:searchName>", ManageSearches.as_view()),
+    path("search/<str:searchName>/TH", ManageSearchesTH.as_view()),
     #path("space/<str:spacename>/version/<int:version>/validation",ManageValidation.as_view()),
 ]
