@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "build.apps.BuildConfig",
     "manage.apps.ManageConfig",
-    "predict.apps.PredictConfig"
+    "predict.apps.PredictConfig", 
+    "django_keycloak",
 ]
 
 MIDDLEWARE = [
@@ -55,8 +56,31 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware"
+    "corsheaders.middleware.CorsMiddleware", 
+    # "django_keycloak.middleware.KeycloakMiddleware"
 ]
+
+# Excempt list - URL paths that doesn't need Keycloak Authorization 
+KEYCLOAK_BEARER_AUTHENTICATION_EXEMPT_PATHS = [
+    'admin', 'accounts',
+    ]
+CONFIG_DIR = os.path.join(os.path.dirname(__file__),os.pardir)
+
+KEYCLOAK_CLIENT_PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
+xsTsjJgxyNqswPx1u3syUWp9mkqTjVgcz0lQTcBVLnE
+-----END PUBLIC KEY-----"""
+
+KEYCLOAK_CONFIG = {
+    'KEYCLOAK_REALM': 'KH',
+    'KEYCLOAK_CLIENT_ID': 'flame',
+    'KEYCLOAK_DEFAULT_ACCESS': 'ALLOW', # DENY or ALLOW
+    'KEYCLOAK_AUTHORIZATION_CONFIG': os.path.join(CONFIG_DIR , 'authorization-config.json'),
+    'KEYCLOAK_METHOD_VALIDATE_TOKEN': 'DECODE',
+    'KEYCLOAK_SERVER_URL': 'http://localhost:8090/auth/',
+    'KEYCLOAK_CLIENT_SECRET_KEY': '**********',
+    'KEYCLOAK_CLIENT_PUBLIC_KEY': KEYCLOAK_CLIENT_PUBLIC_KEY, 
+    # 'KEYCLOAK_METHOD_VALIDATE_TOKEN': 'INTROSPECT'
+}
 
 ROOT_URLCONF = "flame_api.urls"
 
