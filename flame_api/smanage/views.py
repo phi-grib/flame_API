@@ -47,11 +47,8 @@ class ListSpaces(APIView):
     """
     Spaces list
     """
+    roles = {'kh-access'}
 
-    keycloak_scopes = {'GET': 'read-only-admin-view',
-                    'POST': 'edit-admin-view'}
-
-    #permission_classes = (IsAuthenticated,)
     def get(self, request):
         spaces = smanage.action_dir()
         return Response(spaces, status=status.HTTP_200_OK)

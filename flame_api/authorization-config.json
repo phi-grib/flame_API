@@ -1,9 +1,0 @@
-{
-  "realm": "KH",
-  "auth-server-url": "http://localhost:8090/auth/",
-  "ssl-required": "external",
-  "resource": "flame",
-  "public-client": true,
-  "confidential-port": 0,
-  "policies": []
-}

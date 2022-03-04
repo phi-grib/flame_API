@@ -9,14 +9,11 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-
 import os
 from socket import gethostname, gethostbyname 
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -26,12 +23,22 @@ SECRET_KEY = "ul-c_)4d4pz!g42-$-(3a^v4--prqkfzgmxels2h1_!ul(pkj!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 # ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ] 
 ALLOWED_HOSTS = ['*']
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20*1024*1024  # your size limit in bytes
 
 # Application definition
+
+APPLICATION_CONFIG = {
+    'KEYCLOAK_REALM': 'KH',
+    'KEYCLOAK_CLIENT_ID': 'knowledge-hub',
+    'KEYCLOAK_DEFAULT_ACCESS': 'ALLOW', # DENY or ALLOW
+    'KEYCLOAK_METHOD_VALIDATE_TOKEN': 'DECODE',
+    'KEYCLOAK_SERVER_URL': 'http://localhost:8090/auth/',
+    'KEYCLOAK_CLIENT_SECRET_KEY': '**********',
+    }
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -45,7 +52,7 @@ INSTALLED_APPS = [
     "build.apps.BuildConfig",
     "manage.apps.ManageConfig",
     "predict.apps.PredictConfig", 
-    "django_keycloak",
+    # "django_keycloak"
 ]
 
 MIDDLEWARE = [
@@ -57,30 +64,18 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware", 
+    # uncomment for activating keycloak
     # "django_keycloak.middleware.KeycloakMiddleware"
 ]
 
 # Excempt list - URL paths that doesn't need Keycloak Authorization 
 KEYCLOAK_BEARER_AUTHENTICATION_EXEMPT_PATHS = [
-    'admin', 'accounts',
+    'admin', 'accounts', 'static', 'favicon.ico'
     ]
+
 CONFIG_DIR = os.path.join(os.path.dirname(__file__),os.pardir)
 
-KEYCLOAK_CLIENT_PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
-xsTsjJgxyNqswPx1u3syUWp9mkqTjVgcz0lQTcBVLnE
------END PUBLIC KEY-----"""
-
-KEYCLOAK_CONFIG = {
-    'KEYCLOAK_REALM': 'KH',
-    'KEYCLOAK_CLIENT_ID': 'flame',
-    'KEYCLOAK_DEFAULT_ACCESS': 'ALLOW', # DENY or ALLOW
-    'KEYCLOAK_AUTHORIZATION_CONFIG': os.path.join(CONFIG_DIR , 'authorization-config.json'),
-    'KEYCLOAK_METHOD_VALIDATE_TOKEN': 'DECODE',
-    'KEYCLOAK_SERVER_URL': 'http://localhost:8090/auth/',
-    'KEYCLOAK_CLIENT_SECRET_KEY': '**********',
-    'KEYCLOAK_CLIENT_PUBLIC_KEY': KEYCLOAK_CLIENT_PUBLIC_KEY, 
-    # 'KEYCLOAK_METHOD_VALIDATE_TOKEN': 'INTROSPECT'
-}
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 ROOT_URLCONF = "flame_api.urls"
 
@@ -102,7 +97,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "flame_api.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -113,7 +107,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -123,7 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

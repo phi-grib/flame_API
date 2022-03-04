@@ -46,9 +46,7 @@ class ListModels(APIView):
     """
     Model list
     """
-
-    keycloak_scopes = {'GET': 'read-only-admin-view',
-                    'POST': 'edit-admin-view'}
+    roles = {'kh-access'}
 
     #permission_classes = (IsAuthenticated,)
     def get(self, request):
@@ -60,11 +58,8 @@ class ListPredictions(APIView):
     """
     Predictions list
     """
+    roles = {'kh-access'}
 
-    keycloak_scopes = {'GET': 'read-only-admin-view',
-                    'POST': 'edit-admin-view'}
-
-    #permission_classes = (IsAuthenticated,)
     def get(self, request):
         predictions = manage.action_predictions_list()
         return Response(predictions, status=status.HTTP_200_OK)
@@ -169,10 +164,7 @@ class ManageDocumentation(APIView):
     """
     Manage model documentation
     """
-    #permission_classes = (IsAuthenticated,)
-
-    keycloak_scopes = {'GET': 'read-only-admin-view',
-                       'POST': 'edit-admin-view'}
+    roles = {'kh-access'}
     
     def get(self, request, modelname, version, oformat):
         
@@ -366,8 +358,7 @@ class ManageSeries(APIView):
 
 class ManageValidation(APIView):
 
-    keycloak_scopes = {'GET': 'read-only-admin-view',
-                       'POST': 'edit-admin-view'}
+    roles = {'kh-access'}
 
     def get(self,request,modelname,version):    
         """
@@ -494,8 +485,7 @@ class ManageConfiguration(APIView):
     """
     Get and set Flame configuration
     """
-    keycloak_scopes = {'GET': 'read-only-admin-view',
-                       'POST': 'edit-admin-view'}
+    roles = {'kh-access'}
 
     def get(self, request):
         """
