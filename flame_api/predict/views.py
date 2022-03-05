@@ -39,31 +39,14 @@ from rdkit import Chem
 
 import flame.context as context
 from flame.util import flthread
-# import threading        
-# import sys
-# import traceback
-
-# class FlameThread (threading.Thread):
-#   def __init__ (self, *args, **kwargs):
-    
-#     self.inner_name = kwargs['name'] 
-#     super().__init__(*args, **kwargs)
-  
-#   def run (self, *args, **kwargs):
-#     try:
-#       super().run (*args, **kwargs)
-#     except:
-#       # ceate a file in temp with the exception error inside
-#       tmp = os.path.join(tempfile.gettempdir(), self.inner_name)
-#       with open (tmp,'w') as f:
-#         f.write(traceback.format_exc())
-#       sys.excepthook(*sys.exc_info())
 
 class Predict(APIView):
     
     """
     Prediction, input file is provided as a SDFile
     """
+    roles = {'kh-access'}
+
     def put(self, request, modelname, version, predictionName=None):
 
         # get the upladed file with name "file"
@@ -100,6 +83,8 @@ class PredictSmiles(APIView):
     """
     Prediction, nput file is provided as a SMILES
     """
+    roles = {'kh-access'}
+
     def put (self, request, modelname, version, predictionName=None):
 
         try:

@@ -46,6 +46,8 @@ class Curate(APIView):
     """
     Curation tool
     """
+    roles = {'kh-access'}
+
     #sends a put request to proccess a formData with the file content(ask user about columns and metadata?)
     def put(self, request, endpoint):
         """

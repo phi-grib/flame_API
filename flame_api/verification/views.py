@@ -38,6 +38,7 @@ class ManageVerification(APIView):
     """
     Manage verification
     """
+    roles = {'kh-access'}
     
     def get(self, request,modelname,version):
         """
@@ -64,6 +65,8 @@ class Report(APIView):
     """
     Report
     """
+    roles = {'kh-access'}
+
     def post(self, request,verificationname,verificatorname):
         """
         Generate a verification report 
@@ -77,6 +80,8 @@ class Sign(APIView):
     """
     Sign report
     """
+    roles = {'kh-access'}
+
     def post(self,request,verificatorname,nreport):
         # TODOO
         message = "Signed successfully"

@@ -45,8 +45,8 @@ class BuildSpace(APIView):
     """
     Build space
     """
-    #parser_classes = (MultiPartParser,)
-    
+    roles = {'kh-access'}
+
     def post(self, request, spacename, format=None):
 
       # get the uploaded file

@@ -42,6 +42,8 @@ class Cmanage(APIView):
     """
     Curation table with all the endpoints and dates 
     """
+    roles = {'kh-access'}
+
     #sends get request to repo returns the list of the endpoints(where the curated list is saved)
     def get(self, request):
         """
@@ -57,6 +59,8 @@ class CHead(APIView):
     """
     Curation header from pickle to preview the result
     """
+    roles = {'kh-access'}
+
     #returns the content of header pickl
     def get(self, request, endpoint):
         curation = manage.action_header_curation(endpoint)
@@ -67,6 +71,8 @@ class CurateParams(APIView):
     """
     retrieves the parameters for a given endpoint from backend 
     """
+    roles = {'kh-access'}
+
     #returns the content of parameters.yaml
     def get(self, request, endpoint):
         curation = manage.action_parameters(endpoint)
@@ -77,6 +83,8 @@ class CurationFile(APIView):
     retrieves the complete curation using the same
     format the user sent when using curate
     """
+    roles = {'kh-access'}
+
     def get(self, request, endpoint):
         flame_status = manage.action_curation_results(endpoint)
         if flame_status[0]:
@@ -88,6 +96,8 @@ class ExportCurationFile(APIView):
     """
     retrieves the route to the file and sets a temp path to download it
     """
+    roles = {'kh-access'}
+
     def get(self, request, endpoint, oformat):
         flame_status = manage.action_curation_results(endpoint)
         if oformat=='xlsx':

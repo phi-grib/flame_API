@@ -44,12 +44,11 @@ import threading
 import string
 import random
 
-
 class Search(APIView):
-
     """
     Search, input file is provided as a SDFIle
     """
+    roles = {'kh-access'}
 
     def put(self, request, spacename, version, searchName=None):
 
@@ -90,6 +89,7 @@ class SearchSmiles(APIView):
     """
     Search, input file is provided as a SMILES
     """
+    roles = {'kh-access'}
 
     def put(self, request, spacename, version, searchName=None):
 
@@ -145,6 +145,7 @@ class SearchSmarts(APIView):
     """
     Search, input file is provided as a SMILES
     """
+    roles = {'kh-access'}
 
     def put(self, request, spacename, version, searchName=None):
 

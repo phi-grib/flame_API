@@ -28,19 +28,12 @@ import time
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import FileUploadParser, MultiPartParser
 from rest_framework import status
 
-from django.core.files.storage import FileSystemStorage
-from django.core.files.base import ContentFile
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.utils.datastructures import MultiValueDictKeyError
-#from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse
 
 from flame import smanage
-
-import threading
 
 # Create your views here.
 class ListSpaces(APIView):
@@ -53,17 +46,11 @@ class ListSpaces(APIView):
         spaces = smanage.action_dir()
         return Response(spaces, status=status.HTTP_200_OK)
 
-        # if spaces[0]:
-        #     return Response(spaces[1], status=status.HTTP_200_OK)
-        # else:
-        #     return JsonResponse({'error':spaces[1]}, status = status.HTTP_404_NOT_FOUND)
-
-
 class ManageSpaces(APIView):
     """
     Manage flame space
     """
-    #permission_classes = (IsAuthenticated,)
+    roles = {'kh-access'}
 
     def get(self, request, spacename):
         """
@@ -115,11 +102,10 @@ class ManageSpaces(APIView):
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
 class ManageVersions(APIView):
-
     """
     Manage spaces to the version level
-    TODO: FIX and FINISH!
     """
+    roles = {'kh-access'}
 
     def get(self, request, spacename, version):
         """
@@ -127,26 +113,6 @@ class ManageVersions(APIView):
         TODO: dont use hardcoded 0 version
         TODO: haandle info errors 
         """
-        # success, result = smanage.action_info(spacename, version, output='bin')
-        # if success:
-        #     return Response(result, status=status.HTTP_200_OK)
-        # else:
-        #     threadNames = [i.getName() for i in threading.enumerate()]
-        #     if not 'sbuilding_'+spacename in threadNames:
-        #         return JsonResponse({'message': 'Thread crashed'},status = status.HTTP_404_NOT_FOUND)
-
-        #     # if there is a dictionary with a 'code' = 0, the process is just waiting to be finished
-        #     if 'code' in result:
-        #         if result['code'] == 0:
-        #             return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
-            
-        #     # either if there is no 'code' or if the 'code' is not 0 an error happened
-        #     return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
-
-        # threadNames = [i.name for i in threading.enumerate()]
-        # if 'sbuilding_'+spacename in threadNames:
-        #     return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
-
         success, result = smanage.action_info(spacename, version, output='bin')
         if success:
             return Response(result, status=status.HTTP_200_OK)
@@ -156,8 +122,6 @@ class ManageVersions(APIView):
     
         return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
             
-        # return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
-
 
     def delete(self, request, spacename, version):
         """
@@ -173,6 +137,7 @@ class ManageParameters(APIView):
     """
     Manage space parameters
     """
+    roles = {'kh-access'}
 
     def get(self,request,spacename,version):
         """
@@ -186,6 +151,8 @@ class ManageParameters(APIView):
 
 
 class ManageSearches(APIView):
+
+    roles = {'kh-access'}
 
     def get(self, request, searchName):
         """
@@ -204,6 +171,8 @@ class ManageSearches(APIView):
         return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
 
 class ManageSearchesTH(APIView):
+
+    roles = {'kh-access'}
 
     def get(self, request, searchName):
         """

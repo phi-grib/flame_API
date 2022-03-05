@@ -68,7 +68,7 @@ class ManageModels(APIView):
     """
     Manage flame model 
     """
-    #permission_classes = (IsAuthenticated,)
+    roles = {'kh-access'}
 
     def get(self, request, modelname):
         """
@@ -126,6 +126,7 @@ class ManagePredictions(APIView):
     """
     Manage models to the version level
     """
+    roles = {'kh-access'}
     
     def get(self, request, predictionName):
         """
@@ -260,10 +261,10 @@ class ManageDocumentation(APIView):
             return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
 
 class ManageLabels(APIView):
-
     """
     Manage flame labels (aka endpoint)
     """
+    roles = {'kh-access'}
 
     def post(self, request, modelname, version):
         
@@ -281,6 +282,7 @@ class ManageVersions(APIView):
     """
     Manage models to the version level
     """
+    roles = {'kh-access'}
 
     def get(self, request, modelname, version):
         """
@@ -318,6 +320,7 @@ class ManageParameters(APIView):
     """
     Manage model parameters
     """
+    roles = {'kh-access'}
 
     def get(self,request,modelname,version):
         """
@@ -333,6 +336,7 @@ class ManageSeries(APIView):
     """
     Return training series
     """
+    roles = {'kh-access'}
 
     def get(self,request,modelname,version):
         """
@@ -372,28 +376,7 @@ class ManageValidation(APIView):
 
 class ManageExport(APIView):
 
-    # def get(self,request,modelname):
-    #     """
-    #     Creates a compressed file in a temp directory and sends it as an
-    #     HttpResponse
-    #     """
-    #     current_path = os.getcwd()
-
-    #     temp_dir = tempfile.mkdtemp(prefix="export_", dir=None)
-    #     os.chdir(temp_dir)
-    #     success, results = manage.action_export(modelname)
-    #     if not success:
-    #         os.chdir(current_path)
-    #         return JsonResponse({'error':results},status = status.HTTP_404_NOT_FOUND)
-
-    #     file = open(os.path.abspath(modelname+'.tgz'), 'rb')
-    #     response = HttpResponse(FileWrapper(file), content_type='application/tgz')
-    #     response['Content-Disposition'] = 'attachment; filename=' + modelname + '.tgz'
-
-    #     os.chdir(current_path)
-    #     shutil.rmtree(temp_dir)
-
-    #     return response
+    roles = {'kh-access'}
 
     def get (self, request, modelname, version):
         """
@@ -413,6 +396,8 @@ def exportThread(modelname, version, temp_dir=''):
     print ("Thread End")
 
 class ManageExportTest(APIView):
+
+    roles = {'kh-access'}
 
     def get(self,request, modelname, version, temp_dir):
         """
@@ -435,6 +420,8 @@ class ManageExportTest(APIView):
 
 class ManageExportDownload(APIView):
 
+    roles = {'kh-access'}
+
     def get(self, request, modelname, version, temp_dir):
         """
         returns the compressed file as a part of the response
@@ -451,6 +438,8 @@ class ManageExportDownload(APIView):
         return response
 
 class ManageImport(APIView):
+
+    roles = {'kh-access'}
 
     def post(self,request):
         
@@ -515,6 +504,9 @@ class ManageConfiguration(APIView):
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
 class TestUpload(APIView):
+
+    roles = {'kh-access'}
+
     parser_classes = (MultiPartParser,)
 
     def post(self, request):
@@ -522,6 +514,9 @@ class TestUpload(APIView):
         return Response(request.FILES)
 
 class ManageParameters2Yaml(APIView):
+
+    roles = {'kh-access'}
+
     def post (self, request, modelname, version):
 
         # retrieve delta parameters, which were encoded as JSON
@@ -540,6 +535,9 @@ class ManageParameters2Yaml(APIView):
             return JsonResponse({'error':param},status = status.HTTP_404_NOT_FOUND)
 
 class ManageYaml2Parameters(APIView):
+
+    roles = {'kh-access'}
+
     def post(self, request, modelname,version):
         # retrieve delta parameters, as a YAML file
         delta = request.POST.get('parameters') 
@@ -558,6 +556,7 @@ class ManageRefresh(APIView):
     """
     Start model refresh
     """
+    roles = {'kh-access'}
 
     def get(self,request,modelname):    
         """
@@ -588,6 +587,7 @@ class ManageRefreshTest(APIView):
     """
     Check model refresh status
     """
+    roles = {'kh-access'}
 
     def get(self,request,modelname):    
         """
