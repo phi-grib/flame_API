@@ -34,8 +34,6 @@ class Ready(APIView):
     """
     Ready service
     """
-    roles = {'kh-access'}
-
     def get(self, request):
        
         return Response("I am ready", 200)
@@ -44,8 +42,6 @@ class Alive(APIView):
     """
     Alive service
     """
-    roles = {'kh-access'}
-
     def get(self, request):
        
         return Response("I am alive", 200)
@@ -54,9 +50,9 @@ class API(APIView):
     """
     Returns the API definition file
     """
-    roles = {'kh-access'}
 
     renderer_classes = [YAMLRenderer]
+    
     def get(self, request):
         # Read YAML file
 

@@ -66,17 +66,14 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware", 
     # uncomment for activating keycloak
     # "django_keycloak.middleware.KeycloakMiddleware"
-    "flame.util.middleware.KeycloakMiddleware"
+    # "flame.util.middleware.KeycloakMiddleware"
 ]
 
 # Excempt list - URL paths that doesn't need Keycloak Authorization 
 KEYCLOAK_BEARER_AUTHENTICATION_EXEMPT_PATHS = [
-    # 'admin', 'accounts', 'static', 'favicon.ico
-    ]
+    'admin', 'accounts'    ]
 
 CONFIG_DIR = os.path.join(os.path.dirname(__file__),os.pardir)
-
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 ROOT_URLCONF = "flame_api.urls"
 
