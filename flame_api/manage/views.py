@@ -22,6 +22,7 @@
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+# import readline
 import shutil
 import json
 import yaml
@@ -351,14 +352,13 @@ class ManageSeries(APIView):
             os.chdir(current_path)
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
-        file = open(os.path.abspath('training_series.sdf'), 'rb')
-        response = HttpResponse(FileWrapper(file), content_type='text')
-        response['Content-Disposition'] = 'attachment; filename=training_series.sdf'
-
+        with open(os.path.abspath('training_series.sdf'), 'r') as f:
+            series_content = [line for line in f]
+        
         os.chdir(current_path)
         shutil.rmtree(temp_dir)
 
-        return response
+        return JsonResponse( series_content, safe=False, status=status.HTTP_200_OK)
 
 class ManageValidation(APIView):
 
