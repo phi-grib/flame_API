@@ -184,7 +184,7 @@ class ManageDocumentation(APIView):
             success, results = manage.action_documentation(modelname, version, oformat='WORD')
             if success: 
                 file = open(results, 'rb')
-                response = HttpResponse(FileWrapper(file), 
+                response = HttpResponse(FileWrapper(file), status = status.HTTP_200_OK,
                         content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
                 response['Content-Disposition'] = f'attachment; filename={results}'
 
@@ -209,7 +209,7 @@ class ManageDocumentation(APIView):
 
             if success:
                 file = open(results, 'rb')
-                response = HttpResponse(FileWrapper(file), 
+                response = HttpResponse(FileWrapper(file), status = status.HTTP_200_OK,
                         # content_type='application/vnd.ms-excel')
                         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
@@ -226,15 +226,19 @@ class ManageDocumentation(APIView):
                 return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
 
         # for JSON or YAML
-        flame_status = manage.action_documentation(modelname, version, oformat='JSON')
+        success, results = manage.action_documentation(modelname, version, oformat='JSON')
 
-        if not flame_status[0]:
-            return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+        if not success:
+            return JsonResponse({'error':results}, status = status.HTTP_404_NOT_FOUND)
 
         if oformat=='JSON':
-            return Response(json.loads(flame_status[1].dumpJSON()), status=status.HTTP_200_OK)
+            return Response(json.loads(results.dumpJSON()), status=status.HTTP_200_OK)
         elif oformat=='YAML':
-            return Response(flame_status[1].dumpYAML(), status=status.HTTP_200_OK)
+            yamllist = results.dumpYAML()
+            yamltext = ''
+            for iyaml in yamllist:
+                yamltext += iyaml+'\n'
+            return Response(yamltext, status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':'unknown format'}, status = status.HTTP_404_NOT_FOUND)
 
@@ -353,12 +357,12 @@ class ManageSeries(APIView):
             return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
 
         with open(os.path.abspath('training_series.sdf'), 'r') as f:
-            series_content = [line for line in f]
-        
+            series_content = f.read()
+
         os.chdir(current_path)
         shutil.rmtree(temp_dir)
 
-        return JsonResponse( series_content, safe=False, status=status.HTTP_200_OK)
+        return Response( series_content, status=status.HTTP_200_OK)
 
 class ManageValidation(APIView):
 
@@ -390,9 +394,11 @@ class ManageExport(APIView):
         return JsonResponse({'temp_dir':temp_dir},status = status.HTTP_200_OK)
 
 def exportThread(modelname, version, temp_dir=''):
+    current_path = os.getcwd()
     os.chdir(temp_dir)
     print ("Thread Start")
     success, results = manage.action_export(modelname, version)
+    os.chdir(current_path)
     print ("Thread End")
 
 class ManageExportTest(APIView):
@@ -434,7 +440,9 @@ class ManageExportDownload(APIView):
         export_file = os.path.join(temp_path,export_name)
         response = HttpResponse(FileWrapper(open(export_file, 'rb')), content_type='application/tgz')
         response['Content-Disposition'] = 'attachment; filename=' + export_name
-        # shutil.rmtree(temp_dir)
+
+        shutil.rmtree(temp_path)
+
         return response
 
 class ManageImport(APIView):
@@ -572,8 +580,6 @@ class ManageRefresh(APIView):
         if os.path.isfile(error_file):
             os.remove(error_file)
 
-        # r = threading.Thread(target=refreshThread, args=(modelname, ''))
-        # r = threading.Thread(target=refreshThread, name='refreshing_error_'+modelname, args=(modelname, ''))
         r = flthread.FlThread(target=refreshThread, name='refreshing_error_'+modelname, args=(modelname, ''))
         r.start()
         return Response('OK', status=status.HTTP_200_OK)
