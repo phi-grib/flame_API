@@ -65,7 +65,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware", 
     # uncomment for activating keycloak
-    # "django_keycloak.middleware.KeycloakMiddleware"
     # "flame.util.middleware.KeycloakMiddleware"
 ]
 
