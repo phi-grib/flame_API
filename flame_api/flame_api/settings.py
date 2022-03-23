@@ -63,14 +63,19 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware", 
+    "corsheaders.middleware.CorsMiddleware"
     # uncomment for activating keycloak
     # "flame.util.middleware.KeycloakMiddleware"
 ]
 
+# The file keycloak should be added to activate the keycloak middleware
+# The AWS dockerfile will take care of this
+if os.path.isfile(os.path.join(BASE_DIR, 'keycloak')):
+    MIDDLEWARE.append("flame.util.middleware.KeycloakMiddleware")
+
 # Excempt list - URL paths that doesn't need Keycloak Authorization 
 KEYCLOAK_BEARER_AUTHENTICATION_EXEMPT_PATHS = [
-    'admin', 'accounts'    ]
+    'admin', 'accounts'  ]
 
 CONFIG_DIR = os.path.join(os.path.dirname(__file__),os.pardir)
 
