@@ -24,6 +24,7 @@
 import tempfile
 import os
 import shutil
+import json
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -146,12 +147,11 @@ class Profile(APIView):
             endpoints = request.POST.get("endpoints")
             versions = request.POST.get("versions")
             
-            endpoints_list = endpoints.split(',')
-            versions_list = versions.split(',')
+            endpoints_list = json.loads(endpoints)
+            versions_list = json.loads(versions)
 
-            versions_int = [int(j) for j in versions_list]
+            multi = {'endpoints': endpoints_list, 'versions': versions_list}
 
-            multi = {'endpoints': endpoints_list, 'versions': versions_int}
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'models and versions not provided'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -186,7 +186,6 @@ class ProfileSmiles(APIView):
     roles = {'kh-access'}
 
     def put (self, request, profileName=None):
-
         try:
             smiles = request.POST.get("SMILES")
         except MultiValueDictKeyError as e:
@@ -196,12 +195,10 @@ class ProfileSmiles(APIView):
             endpoints = request.POST.get("endpoints")
             versions = request.POST.get("versions")
             
-            endpoints_list = endpoints.split(',')
-            versions_list = versions.split(',')
+            endpoints_list = json.loads(endpoints)
+            versions_list = json.loads(versions)
 
-            versions_int = [int(j) for j in versions_list]
-
-            multi = {'endpoints': endpoints_list, 'versions': versions_int}
+            multi = {'endpoints': endpoints_list, 'versions': versions_list}
 
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'models and versions not provided'}, status=status.HTTP_400_BAD_REQUEST)
