@@ -176,13 +176,13 @@ class ManagePredictions(APIView):
 
 class ManageProfiles(APIView):
     """
-    Manage models to the version level
+    Manage profiling results
     """
     roles = {'kh-access'}
     
     def get(self, request, profileName, item):
         """
-        Retrieve info of model version
+        Retrieve a single prediction (#item) from a profile
         """
 
         success, result = manage.action_profiles_result(profileName, item, output='bin')
@@ -199,7 +199,7 @@ class ManageProfiles(APIView):
 
     def delete(self, request, profileName):
         """
-        Delete model
+        Delete profile
         """
         flame_status = manage.action_profiles_remove(profileName)
         if flame_status[0]:
@@ -215,43 +215,77 @@ class ManageProfilesSummary(APIView):
     
     def get(self, request, profileName):
         """
-        Retrieve info of model version
+        Retrieve summary of profile specifically oriented to populate the heatmap
         """
 
         success, result = manage.action_profiles_summary(profileName, output='bin')
         if success:
             result_dict = {}
-            num_models = len (result)
             first = True
+            endpoints = []
+            versions = []
+            quantitatives = []
             values = []
             pval0 = []
             pval1 = []
+            upper = []
+            lower = []
             for imodel in result:
                 if first:
                     obj_num = imodel.getVal('obj_num')
+                    zero = np.zeros((obj_num), dtype=np.float )
+                    
                     result_dict['obj_num'] = obj_num
                     result_dict['obj_nam'] = imodel.getVal('obj_nam')
                     result_dict['SMILES'] = imodel.getVal('SMILES')
+                    
                     values = np.array(imodel.getVal('values'), dtype=np.float)
+                    
                     if imodel.isKey('p0'):
                         pval0 = np.array(imodel.getVal('p0'), dtype=np.float)
                         pval1 = np.array(imodel.getVal('p1'), dtype=np.float)
                     else:
-                        pval0 = np.zeros((obj_num), dtype=np.float )
-                        pval1 = np.zeros((obj_num), dtype=np.float )
+                        pval0 = zero
+                        pval1 = zero
+
+                    if imodel.isKey('lower_limit'):
+                        lower = np.array(imodel.getVal('lower_limit'), dtype=np.float)
+                        upper = np.array(imodel.getVal('upper_limit'), dtype=np.float)
+                    else:
+                        lower = zero
+                        upper = zero
+                    
                     first  = False
                 else:
+                    
                     values = np.c_[values, imodel.getVal('values')]
+                    
                     if imodel.isKey('p0'):
                         pval0 = np.c_[pval0, imodel.getVal('p0')]
                         pval1 = np.c_[pval1, imodel.getVal('p1')]
                     else:
-                        pval0 = np.c_[pval0, np.zeros((obj_num), dtype=np.float )]
-                        pval1 = np.c_[pval1, np.zeros((obj_num), dtype=np.float )]
+                        pval0 = zero
+                        pval1 = zero
 
-            result_dict['values'] = values
-            result_dict['pval0'] = pval0
-            result_dict['pval1'] = pval1
+                    if imodel.isKey('lower_limit'):
+                        lower = np.c_[pval0, imodel.getVal('lower_limit')]
+                        upper = np.c_[pval1, imodel.getVal('upper_limit')]
+                    else:
+                        lower = zero
+                        upper = zero
+                
+                endpoints.append(imodel.getMeta('endpoint'))    
+                versions.append(imodel.getMeta('version'))    
+                quantitatives.append(imodel.getMeta('quantitative'))    
+
+            result_dict['values'] = values.tolist()
+            result_dict['pval0'] = pval0.tolist()
+            result_dict['pval1'] = pval1.tolist()
+            result_dict['lower_limit'] = lower.tolist()
+            result_dict['upper_limit'] = upper.tolist()
+            result_dict['endpoint'] = endpoints
+            result_dict['version'] = versions
+            result_dict['quantitative'] = quantitatives
 
             return Response(result_dict, status=status.HTTP_200_OK)
         else:
