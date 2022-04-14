@@ -26,11 +26,15 @@ from .views import ListModels, ManageModels, ManageVersions
 from .views import ManageSeries, ManageParameters, ManageValidation, ManageExport, ManageExportTest, ManageExportDownload, ManageImport
 from .views import ListPredictions, ManagePredictions, ManageDocumentation
 from .views import ManageLabels, ManageConfiguration, ManageParameters2Yaml, ManageYaml2Parameters, ManageRefresh, ManageRefreshTest
+from .views import ListProfiles, ManageProfiles, ManageProfilesSummary
 
 urlpatterns = [
     path("models", ListModels.as_view()),
     path("predictions", ListPredictions.as_view()),
     path("prediction/<str:predictionName>", ManagePredictions.as_view()),
+    path("profiles", ListProfiles.as_view()),
+    path("profile/<str:profileName>/<int:item>", ManageProfiles.as_view()),
+    path("profile/<str:profileName>/summary", ManageProfilesSummary.as_view()),
     path("model/import", ManageImport.as_view()),
     path("model/<str:modelname>", ManageModels.as_view()),
     path("model/<str:modelname>/version/<int:version>/export",ManageExport.as_view()),

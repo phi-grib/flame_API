@@ -28,6 +28,7 @@ import json
 import yaml
 import time
 import tempfile
+import numpy as np
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -42,6 +43,7 @@ from django.http import HttpResponse, JsonResponse
 from flame import manage
 from flame.util import utils, config, flthread
 from wsgiref.util import FileWrapper
+
 
 class ListModels(APIView):
     """
@@ -64,6 +66,17 @@ class ListPredictions(APIView):
     def get(self, request):
         predictions = manage.action_predictions_list()
         return Response(predictions, status=status.HTTP_200_OK)
+
+class ListProfiles(APIView):
+    """
+    Profiles list
+    """
+    roles = {'kh-access'}
+
+    def get(self, request):
+        profiles = manage.action_profiles_list()
+        return Response(profiles, status=status.HTTP_200_OK)
+   
 
 class ManageModels(APIView):
     """
@@ -160,6 +173,95 @@ class ManagePredictions(APIView):
              return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
+class ManageProfiles(APIView):
+    """
+    Manage models to the version level
+    """
+    roles = {'kh-access'}
+    
+    def get(self, request, profileName, item):
+        """
+        Retrieve info of model version
+        """
+
+        success, result = manage.action_profiles_result(profileName, item, output='bin')
+        if success:
+            return Response(json.loads(result.getJSON(xdata = True)), status=status.HTTP_200_OK)
+        else:
+            if 'code' in result and result['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            if 'code' in result and result['code'] == 1:
+                return JsonResponse({'aborted': result['message']}, status=status.HTTP_200_OK)
+
+        return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
+            
+
+    def delete(self, request, profileName):
+        """
+        Delete model
+        """
+        flame_status = manage.action_profiles_remove(profileName)
+        if flame_status[0]:
+             return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
+class ManageProfilesSummary(APIView):
+    """
+    Manage models to the version level
+    """
+    roles = {'kh-access'}
+    
+    def get(self, request, profileName):
+        """
+        Retrieve info of model version
+        """
+
+        success, result = manage.action_profiles_summary(profileName, output='bin')
+        if success:
+            result_dict = {}
+            num_models = len (result)
+            first = True
+            values = []
+            pval0 = []
+            pval1 = []
+            for imodel in result:
+                if first:
+                    obj_num = imodel.getVal('obj_num')
+                    result_dict['obj_num'] = obj_num
+                    result_dict['obj_nam'] = imodel.getVal('obj_nam')
+                    result_dict['SMILES'] = imodel.getVal('SMILES')
+                    values = np.array(imodel.getVal('values'), dtype=np.float)
+                    if imodel.isKey('p0'):
+                        pval0 = np.array(imodel.getVal('p0'), dtype=np.float)
+                        pval1 = np.array(imodel.getVal('p1'), dtype=np.float)
+                    else:
+                        pval0 = np.zeros((obj_num), dtype=np.float )
+                        pval1 = np.zeros((obj_num), dtype=np.float )
+                    first  = False
+                else:
+                    values = np.c_[values, imodel.getVal('values')]
+                    if imodel.isKey('p0'):
+                        pval0 = np.c_[pval0, imodel.getVal('p0')]
+                        pval1 = np.c_[pval1, imodel.getVal('p1')]
+                    else:
+                        pval0 = np.c_[pval0, np.zeros((obj_num), dtype=np.float )]
+                        pval1 = np.c_[pval1, np.zeros((obj_num), dtype=np.float )]
+
+            result_dict['values'] = values
+            result_dict['pval0'] = pval0
+            result_dict['pval1'] = pval1
+
+            return Response(result_dict, status=status.HTTP_200_OK)
+        else:
+            if 'code' in result and result['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            if 'code' in result and result['code'] == 1:
+                return JsonResponse({'aborted': result['message']}, status=status.HTTP_200_OK)
+
+        return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
+         
 
 class ManageDocumentation(APIView):
 
