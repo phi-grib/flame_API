@@ -624,15 +624,18 @@ class ManageConfiguration(APIView):
         """
         Retrieve flame configuration
         """
-        flame_status = config.configure(None, silent=False)
+        success, results = config.configure(None, silent=False)
 
-        if flame_status[0]:
-            model_path = flame_status[1]['model_repository_path']
-            root_path = os.path.split(model_path)[0]
+        if success:
+            if 'root_repository' in results:
+                root_path = results['root_repository']
+            else:
+                model_path = results['models']
+                root_path = os.path.split(model_path)[0]
 
-            return Response((root_path, flame_status[1]), status=status.HTTP_200_OK)
+            return Response((root_path, results), status=status.HTTP_200_OK)
         else:
-            return JsonResponse({'error':flame_status[1]},status = status.HTTP_404_NOT_FOUND)
+            return JsonResponse({'error':results},status = status.HTTP_404_NOT_FOUND)
 
     def post(self,request):
         """
