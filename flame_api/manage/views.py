@@ -629,9 +629,14 @@ class ManageConfiguration(APIView):
         if success:
             if 'root_repository' in results:
                 root_path = results['root_repository']
-            else:
-                model_path = results['models']
-                root_path = os.path.split(model_path)[0]
+            else:       
+                if 'models' in results:
+                    model_path = results['models']
+                    root_path = os.path.split(model_path)[0]
+
+                else:   # legacy configuration files
+                    model_path = results['model_repository_path']
+                    root_path = os.path.split(model_path)[0]  
 
             return Response((root_path, results), status=status.HTTP_200_OK)
         else:
