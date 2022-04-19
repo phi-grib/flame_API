@@ -27,6 +27,7 @@ from .views import ManageSeries, ManageParameters, ManageValidation, ManageExpor
 from .views import ListPredictions, ManagePredictions, ManageDocumentation
 from .views import ManageLabels, ManageConfiguration, ManageParameters2Yaml, ManageYaml2Parameters, ManageRefresh, ManageRefreshTest
 from .views import ListProfiles, ManageProfiles, ManageProfilesSummary
+from .views import ListBaskets, ManageBasket
 
 urlpatterns = [
     path("models", ListModels.as_view()),
@@ -51,4 +52,8 @@ urlpatterns = [
     path("model/<str:modelname>/refresh", ManageRefresh.as_view()),
     path("model/<str:modelname>/refresh_test", ManageRefreshTest.as_view()),
     path("configuration", ManageConfiguration.as_view()),
+    path("basket/add", ManageBasket.as_view()),
+    path("baskets", ListBaskets.as_view()),
+    path("basket/<int:item>", ManageBasket.as_view()),
+    path("basket", ManageBasket.as_view()),
 ]

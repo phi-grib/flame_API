@@ -747,3 +747,37 @@ class ManageRefreshTest(APIView):
         # Manage action_refresh test can return 'working' or 'ready' only 
         result = manage.action_refresh_test(model=modelname) 
         return JsonResponse(result, status=status.HTTP_200_OK)
+
+class ListBaskets(APIView):
+    
+    roles = {'kh-access'}
+
+    def get(self, request):
+        result = manage.action_basket_list()
+        return Response(result, status=status.HTTP_200_OK)
+
+class ManageBasket(APIView):
+
+    roles = {'kh-access'}
+
+    def post(self, request):
+        compound_list_json = request.POST.get('compound_list') 
+        try:
+            compound_list=json.loads(compound_list_json)
+        except:
+            return JsonResponse({'error': 'unable to convert compound list'}, status = status.HTTP_404_NOT_FOUND)
+
+        success, result = manage.action_basket_add(compound_list)
+
+        if success:
+            return JsonResponse({'OK': result}, status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':result}, status = status.HTTP_404_NOT_FOUND)
+
+
+    def get(self,request,item=None): 
+        success, result = manage.action_basket_get(item)
+        if success:
+            return Response(json.dumps(result), status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({'error':result}, status = status.HTTP_404_NOT_FOUND)
