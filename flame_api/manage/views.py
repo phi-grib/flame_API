@@ -778,6 +778,6 @@ class ManageBasket(APIView):
     def get(self,request,item=None): 
         success, result = manage.action_basket_get(item)
         if success:
-            return Response(json.dumps(result), status=status.HTTP_200_OK)
+            return Response(result, status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':result}, status = status.HTTP_404_NOT_FOUND)
