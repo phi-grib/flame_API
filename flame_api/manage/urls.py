@@ -54,6 +54,5 @@ urlpatterns = [
     path("configuration", ManageConfiguration.as_view()),
     path("basket/add", ManageBasket.as_view()),
     path("baskets", ListBaskets.as_view()),
-    path("basket/<int:item>", ManageBasket.as_view()),
-    path("basket", ManageBasket.as_view()),
+    path("basket/<int:item>", ManageBasket.as_view())
 ]
