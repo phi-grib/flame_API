@@ -129,6 +129,60 @@ class PredictSmiles(APIView):
         x.start()
         return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
 
+class PredictSmilesList(APIView):
+    
+    """
+    Prediction, nput file is provided as a SMILES
+    """
+    roles = {'kh-access'}
+
+    def put (self, request, modelname, version, predictionName=None):
+
+        try:
+            smiles_list = json.loads(request.POST.get("smiles_list"))
+        except MultiValueDictKeyError as e:
+            return JsonResponse({'error':'SMILES not provided'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            molname = request.POST.get("name")
+        except MultiValueDictKeyError as e:
+            molname = "anonymous"
+
+        # Set the temp filesystem storage
+        temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
+        predict_data = os.path.join(temp_dir,molname+'.sdf')
+
+        # Creates a simple MOLfile from the SMILES
+        try:
+            with open(predict_data,'w') as f:
+                for ismiles in smiles_list:
+
+                    m = Chem.MolFromSmiles(ismiles['smiles'])
+                    if m is None:
+                        return JsonResponse({'error': 'SMILES format not recognized'}, status=status.HTTP_400_BAD_REQUEST)
+
+                    m.SetProp("_Name",ismiles['name'])
+                    f.write(Chem.MolToMolBlock(m))
+                    f.write('$$$$\n')
+
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        if predictionName is None:
+            predictionName = 'temp'
+
+        # Clean previous error messages
+        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionName)
+        if os.path.isfile(error_file):
+            os.remove(error_file)
+
+        command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
+        
+        x = flthread.FlThread(target=predictThread, name='predicting_'+predictionName, args=(command_predict,'JSON',temp_dir) )
+        x.start()
+        return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
+
+
 class Profile(APIView):
     """
     Prediction, input file is provided as a SDFile
