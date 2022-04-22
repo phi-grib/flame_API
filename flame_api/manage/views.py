@@ -264,15 +264,15 @@ class ManageProfilesSummary(APIView):
                         pval0 = np.c_[pval0, imodel.getVal('p0')]
                         pval1 = np.c_[pval1, imodel.getVal('p1')]
                     else:
-                        pval0 = zero
-                        pval1 = zero
+                        pval0 = np.c_[pval0, zero]
+                        pval1 = np.c_[pval1, zero]
 
                     if imodel.isKey('lower_limit'):
                         lower = np.c_[pval0, imodel.getVal('lower_limit')]
                         upper = np.c_[pval1, imodel.getVal('upper_limit')]
                     else:
-                        lower = zero
-                        upper = zero
+                        lower = np.c_[lower, zero]
+                        upper = np.c_[upper, zero]
                 
                 endpoints.append(imodel.getMeta('endpoint'))    
                 versions.append(imodel.getMeta('version'))    
