@@ -230,11 +230,14 @@ class ManageProfilesSummary(APIView):
             pval1 = []
             upper = []
             lower = []
+
             for imodel in result:
                 if first:
+
+                    # all models must have the same number of objects, we get it only for the first model
                     obj_num = imodel.getVal('obj_num')
                     zero = np.zeros((obj_num), dtype=np.float )
-                    
+
                     result_dict['obj_num'] = obj_num
                     result_dict['obj_nam'] = imodel.getVal('obj_nam')
                     result_dict['SMILES'] = imodel.getVal('SMILES')
@@ -268,8 +271,8 @@ class ManageProfilesSummary(APIView):
                         pval1 = np.c_[pval1, zero]
 
                     if imodel.isKey('lower_limit'):
-                        lower = np.c_[pval0, imodel.getVal('lower_limit')]
-                        upper = np.c_[pval1, imodel.getVal('upper_limit')]
+                        lower = np.c_[lower, imodel.getVal('lower_limit')]
+                        upper = np.c_[upper, imodel.getVal('upper_limit')]
                     else:
                         lower = np.c_[lower, zero]
                         upper = np.c_[upper, zero]
