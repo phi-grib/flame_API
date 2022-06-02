@@ -230,6 +230,8 @@ class ManageProfilesSummary(APIView):
             pval1 = []
             upper = []
             lower = []
+            errors = []
+            error_msg = []
 
             for imodel in result:
                 if first:
@@ -241,9 +243,9 @@ class ManageProfilesSummary(APIView):
                     result_dict['obj_num'] = obj_num
                     result_dict['obj_nam'] = imodel.getVal('obj_nam')
                     result_dict['SMILES'] = imodel.getVal('SMILES')
-                    
+
                     values = np.array(imodel.getVal('values'), dtype=np.float)
-                    
+
                     if imodel.isKey('p0'):
                         pval0 = np.array(imodel.getVal('p0'), dtype=np.float)
                         pval1 = np.array(imodel.getVal('p1'), dtype=np.float)
@@ -260,7 +262,6 @@ class ManageProfilesSummary(APIView):
                     
                     first  = False
                 else:
-                    
                     values = np.c_[values, imodel.getVal('values')]
                     
                     if imodel.isKey('p0'):
@@ -277,10 +278,14 @@ class ManageProfilesSummary(APIView):
                         lower = np.c_[lower, zero]
                         upper = np.c_[upper, zero]
                 
+                errors.append(imodel.getError())
+                error_msg.append(imodel.getErrorMessage())
                 endpoints.append(imodel.getMeta('endpoint'))    
                 versions.append(imodel.getMeta('version'))    
                 quantitatives.append(imodel.getMeta('quantitative'))    
 
+            result_dict['errors'] = errors
+            result_dict['error_msg'] = error_msg
             result_dict['values'] = values.tolist()
             result_dict['pval0'] = pval0.tolist()
             result_dict['pval1'] = pval1.tolist()
