@@ -141,7 +141,7 @@ class PredictSmilesList(APIView):
         try:
             smiles_list = json.loads(request.POST.get("smiles_list"))
         except MultiValueDictKeyError as e:
-            return JsonResponse({'error':'SMILES not provided'}, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse({'error':'SMILES list not provided'}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             molname = request.POST.get("name")
@@ -301,11 +301,10 @@ class ProfileSmilesList(APIView):
     roles = {'kh-access'}
 
     def put (self, request, profileName=None):
-
         try:
             smiles_list = json.loads(request.POST.get("smiles_list"))
         except MultiValueDictKeyError as e:
-            return JsonResponse({'error':'SMILES not provided'}, status=status.HTTP_400_BAD_REQUEST)        
+            return JsonResponse({'error':'SMILES list not provided'}, status=status.HTTP_400_BAD_REQUEST)        
         try:
             molname = request.POST.get("name")
         except MultiValueDictKeyError as e:
@@ -342,10 +341,6 @@ class ProfileSmilesList(APIView):
 
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'models and versions not provided'}, status=status.HTTP_400_BAD_REQUEST)
-
-        # Set the temp filesystem storage
-        temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
-        predict_data = os.path.join(temp_dir,molname+'.sdf')
 
         if profileName is None:
             profileName = 'temp'
