@@ -25,6 +25,7 @@ import tempfile
 import os
 import shutil
 import json
+import random
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -68,7 +69,10 @@ class Predict(APIView):
         if predictionName is None:
             predictionName = 'temp'
 
-        predictionID = predictionName + 'XXXX'
+        random_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        predictionID = predictionName + ''.join( random.choice(random_chars) for i in range(5))
+
+        print (predictionID)
 
         # Clean previous error messages
         error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionID)
