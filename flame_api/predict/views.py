@@ -68,16 +68,18 @@ class Predict(APIView):
         if predictionName is None:
             predictionName = 'temp'
 
+        predictionID = predictionName + 'XXXX'
+
         # Clean previous error messages
-        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionName)
+        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionID)
         if os.path.isfile(error_file):
             os.remove(error_file)
 
-        command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
+        command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionID, 'infile':predict_data}
         
-        x =flthread.FlThread(target=predictThread, name='predicting_'+predictionName,  args=(command_predict,'JSON',temp_dir))
+        x =flthread.FlThread(target=predictThread, name='predicting_'+predictionID,  args=(command_predict,'JSON',temp_dir))
         x.start()
-        return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
+        return Response(predictionID, status=status.HTTP_200_OK)  
 
 class PredictSmiles(APIView):
     
