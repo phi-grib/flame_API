@@ -19,3 +19,5 @@ flame.log
 flame_api/flame.log
 training_series.sdf
 flame API.bat
+output.tsv
+output_md.tsv
