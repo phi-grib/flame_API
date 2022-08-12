@@ -25,7 +25,6 @@ import tempfile
 import os
 import shutil
 import json
-import random
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -41,6 +40,7 @@ from rdkit import Chem
 
 import flame.context as context
 from flame.util import flthread
+from flame.util import utils
 
 class Predict(APIView):
     
@@ -57,7 +57,6 @@ class Predict(APIView):
         except MultiValueDictKeyError as e:
             return  JsonResponse({'error':'Datatest not provided'}, status=status.HTTP_400_BAD_REQUEST)
         
-
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
         fs = FileSystemStorage(location=temp_dir)
@@ -66,24 +65,26 @@ class Predict(APIView):
 
         predict_data = os.path.join(temp_dir, path)
 
-        if predictionName is None:
-            predictionName = 'temp'
+        return (predictCommon(predictionName, modelname, version, predict_data, temp_dir))
 
-        random_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        predictionID = predictionName + ''.join( random.choice(random_chars) for i in range(5))
 
-        print (predictionID)
+        # if predictionName is None:
+        #     predictionName = 'temp'
 
-        # Clean previous error messages
-        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionID)
-        if os.path.isfile(error_file):
-            os.remove(error_file)
+        # # Add a hash to guarantee that the name is truly unique, even in the case that a new prediction was run
+        # # in a different thread or by a different user
+        # predictionID = predictionName + '_' + utils.id_generator(5)
 
-        command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionID, 'infile':predict_data}
+        # # Clean previous error messages
+        # error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionID)
+        # if os.path.isfile(error_file):
+        #     os.remove(error_file)
+
+        # command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionID, 'infile':predict_data}
         
-        x =flthread.FlThread(target=predictThread, name='predicting_'+predictionID,  args=(command_predict,'JSON',temp_dir))
-        x.start()
-        return Response(predictionID, status=status.HTTP_200_OK)  
+        # x =flthread.FlThread(target=predictThread, name='predicting_'+predictionID,  args=(command_predict,'JSON',temp_dir))
+        # x.start()
+        # return Response(predictionID, status=status.HTTP_200_OK)  
 
 class PredictSmiles(APIView):
     
@@ -121,19 +122,25 @@ class PredictSmiles(APIView):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        if predictionName is None:
-            predictionName = 'temp'
-
-        # Clean previous error messages
-        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionName)
-        if os.path.isfile(error_file):
-            os.remove(error_file)
-
-        command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
+        return (predictCommon(predictionName, modelname, version, predict_data, temp_dir))
         
-        x = flthread.FlThread(target=predictThread, name='predicting_'+predictionName, args=(command_predict,'JSON',temp_dir) )
-        x.start()
-        return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
+        # if predictionName is None:
+        #     predictionName = 'temp'
+
+        # # Add a hash to guarantee that the name is truly unique, even in the case that a new prediction was run
+        # # in a different thread or by a different user
+        # predictionID = predictionName + '_' + utils.id_generator(5)
+
+        # # Clean previous error messages
+        # error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionID)
+        # if os.path.isfile(error_file):
+        #     os.remove(error_file)
+
+        # command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionID, 'infile':predict_data}
+        
+        # x =flthread.FlThread(target=predictThread, name='predicting_'+predictionID,  args=(command_predict,'JSON',temp_dir))
+        # x.start()
+        # return Response(predictionID, status=status.HTTP_200_OK) 
 
 class PredictSmilesList(APIView):
     
@@ -174,19 +181,22 @@ class PredictSmilesList(APIView):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        if predictionName is None:
-            predictionName = 'temp'
+        return (predictCommon(predictionName, modelname, version, predict_data, temp_dir))
 
-        # Clean previous error messages
-        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionName)
-        if os.path.isfile(error_file):
-            os.remove(error_file)
+        # if predictionName is None:
+        #     predictionName = 'temp'
 
-        command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
+        # # Clean previous error messages
+        # error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionName)
+        # if os.path.isfile(error_file):
+        #     os.remove(error_file)
+
+        # command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionName, 'infile':predict_data}
         
-        x = flthread.FlThread(target=predictThread, name='predicting_'+predictionName, args=(command_predict,'JSON',temp_dir) )
-        x.start()
-        return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
+        # x = flthread.FlThread(target=predictThread, name='predicting_'+predictionName, args=(command_predict,'JSON',temp_dir) )
+        # x.start()
+        # return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
+
 
 
 class Profile(APIView):
@@ -215,7 +225,6 @@ class Profile(APIView):
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'models and versions not provided'}, status=status.HTTP_400_BAD_REQUEST)
 
-
         # Set the temp filesystem storage
         temp_dir = tempfile.mkdtemp(prefix="predict_data_", dir=None)
         fs = FileSystemStorage(location=temp_dir)
@@ -224,20 +233,24 @@ class Profile(APIView):
 
         predict_data = os.path.join(temp_dir, path)
 
-        if profileName is None:
-            profileName = 'temp'
+        return (profileCommon(profileName, multi, predict_data, temp_dir))
 
-        # Clean previous error messages
-        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+profileName)
-        if os.path.isfile(error_file):
-            os.remove(error_file)
+        # if profileName is None:
+        #     profileName = 'temp'
 
-        command_profile={'label':profileName, 'infile':predict_data, 'multi': multi}
+        # # Clean previous error messages
+        # error_file = os.path.join(tempfile.gettempdir(),'predicting_'+profileName)
+        # if os.path.isfile(error_file):
+        #     os.remove(error_file)
 
-        x =flthread.FlThread(target=profileThread, name='predicting_'+profileName,  args=(command_profile,'JSON',temp_dir))
+        # command_profile={'label':profileName, 'infile':predict_data, 'multi': multi}
 
-        x.start()
-        return Response("Predicting " + profileName, status=status.HTTP_200_OK)  
+        # x =flthread.FlThread(target=profileThread, name='predicting_'+profileName,  args=(command_profile,'JSON',temp_dir))
+
+        # x.start()
+        # return Response("Predicting " + profileName, status=status.HTTP_200_OK)  
+
+
 class ProfileSmiles(APIView):
     
     """
@@ -285,19 +298,21 @@ class ProfileSmiles(APIView):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-        if profileName is None:
-            profileName = 'temp'
+        return (profileCommon(profileName, multi, predict_data, temp_dir))
 
-        # Clean previous error messages
-        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+profileName)
-        if os.path.isfile(error_file):
-            os.remove(error_file)
+        # if profileName is None:
+        #     profileName = 'temp'
 
-        command_profile={'label':profileName, 'infile':predict_data, 'multi': multi}
+        # # Clean previous error messages
+        # error_file = os.path.join(tempfile.gettempdir(),'predicting_'+profileName)
+        # if os.path.isfile(error_file):
+        #     os.remove(error_file)
+
+        # command_profile={'label':profileName, 'infile':predict_data, 'multi': multi}
         
-        x = flthread.FlThread(target=profileThread, name='predicting_'+profileName, args=(command_profile,'JSON',temp_dir) )
-        x.start()
-        return Response("Predicting " + profileName, status=status.HTTP_200_OK)  
+        # x = flthread.FlThread(target=profileThread, name='predicting_'+profileName, args=(command_profile,'JSON',temp_dir) )
+        # x.start()
+        # return Response("Predicting " + profileName, status=status.HTTP_200_OK)  
 
 class ProfileSmilesList(APIView):
     
@@ -348,20 +363,63 @@ class ProfileSmilesList(APIView):
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'models and versions not provided'}, status=status.HTTP_400_BAD_REQUEST)
 
-        if profileName is None:
-            profileName = 'temp'
+        return (profileCommon(profileName, multi, predict_data, temp_dir))
 
-        # Clean previous error messages
-        error_file = os.path.join(tempfile.gettempdir(),'predicting_'+profileName)
-        if os.path.isfile(error_file):
-            os.remove(error_file)
+        # if profileName is None:
+        #     profileName = 'temp'
 
-        command_profile={'label':profileName, 'infile':predict_data, 'multi': multi}
+        # # Clean previous error messages
+        # error_file = os.path.join(tempfile.gettempdir(),'predicting_'+profileName)
+        # if os.path.isfile(error_file):
+        #     os.remove(error_file)
+
+        # command_profile={'label':profileName, 'infile':predict_data, 'multi': multi}
         
-        x = flthread.FlThread(target=profileThread, name='predicting_'+profileName, args=(command_profile,'JSON',temp_dir) )
-        x.start()
-        return Response("Predicting " + profileName, status=status.HTTP_200_OK)  
+        # x = flthread.FlThread(target=profileThread, name='predicting_'+profileName, args=(command_profile,'JSON',temp_dir) )
+        # x.start()
+        # return Response("Predicting " + profileName, status=status.HTTP_200_OK)  
         
+def predictCommon(predictionName, modelname, version, predict_data, temp_dir):
+    if predictionName is None:
+        predictionName = 'temp'
+    
+    # Add a hash to guarantee that the name is truly unique, even in the case that a new prediction was run
+    # in a different thread or by a different user
+    predictionID = predictionName + '_' + utils.id_generator(5)
+
+    # Clean previous error messages
+    error_file = os.path.join(tempfile.gettempdir(),'predicting_'+predictionID)
+    if os.path.isfile(error_file):
+        os.remove(error_file)
+
+    command_predict={'endpoint': modelname, 'version':int(version) ,'label':predictionID, 'infile':predict_data}
+    
+    x =flthread.FlThread(target=predictThread, name='predicting_'+predictionID,  args=(command_predict,'JSON',temp_dir))
+    x.start()
+
+    return Response(predictionID, status=status.HTTP_200_OK) 
+
+def profileCommon(profileName, multi, predict_data, temp_dir):
+
+    if profileName is None:
+        profileName = 'temp'
+    
+    # Add a hash to guarantee that the name is truly unique, even in the case that a new prediction was run
+    # in a different thread or by a different user
+    profileID = profileName + '_' + utils.id_generator(5)
+
+    # Clean previous error messages
+    error_file = os.path.join(tempfile.gettempdir(),'predicting_'+profileID)
+    if os.path.isfile(error_file):
+        os.remove(error_file)
+
+    command_profile={'label':profileID, 'infile':predict_data, 'multi': multi}
+
+    x =flthread.FlThread(target=profileThread, name='predicting_'+profileID,  args=(command_profile,'JSON',temp_dir))
+
+    x.start()
+    return Response(profileID, status=status.HTTP_200_OK)     
+
 def predictThread(command, output, temp_dir=''):
 
     print ("Thread Start")
