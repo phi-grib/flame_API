@@ -37,12 +37,13 @@ from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
 from rdkit import Chem
+from flame.util import utils
 
 import flame.context as context
 import threading
 
-import string
-import random
+# import string
+# import random
 
 class Search(APIView):
     """
@@ -77,7 +78,8 @@ class Search(APIView):
         search_data = os.path.join(temp_dir, path)
 
         if searchName is None:
-            searchName = id_generator()
+            # searchName = id_generator()
+            searchName = utils.id_generator(6)
 
         command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'infile':search_data, 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
         
@@ -119,7 +121,8 @@ class SearchSmiles(APIView):
         search_data = os.path.join(temp_dir,'smiles.sdf')
 
         if searchName is None:
-            searchName = id_generator()
+            # searchName = id_generator()
+            searchName = utils.id_generator(6)
 
         # Creates a simple MOLfile from the SMILES
         try:
@@ -160,13 +163,6 @@ class SearchSmarts(APIView):
         if numsel is not None:
             numsel = int(numsel)
 
-        # command_search = {'space': args.space,
-        #          'version': version,
-        #          'infile': args.infile,
-        #          'smarts': args.smarts,
-        #          'runtime_param': args.parameters,
-        #          'label': label}
-
         try:
             smarts = request.POST.get("SMARTS")
         except MultiValueDictKeyError as e:
@@ -176,7 +172,9 @@ class SearchSmarts(APIView):
         temp_dir = tempfile.mkdtemp(prefix="search_data_", dir=None)
 
         if searchName is None:
-            searchName = id_generator()
+            # searchName = id_generator()
+            searchName = utils.id_generator(6)
+
 
         m = Chem.MolFromSmarts(smarts)
         if m is None:
@@ -196,6 +194,6 @@ def searchThread(command, output, temp_dir):
     shutil.rmtree(temp_dir)
     print ("Thread End")
 
-def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
+# def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+#     return ''.join(random.choice(chars) for _ in range(size))
     
