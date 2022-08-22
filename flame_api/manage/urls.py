@@ -34,6 +34,7 @@ urlpatterns = [
     path("predictions", ListPredictions.as_view()),
     path("prediction/<str:predictionName>", ManagePredictions.as_view()),
     path("profiles", ListProfiles.as_view()),
+    path("profile/<str:profileName>", ManageProfiles.as_view()),
     path("profile/<str:profileName>/<int:item>", ManageProfiles.as_view()),
     path("profile/<str:profileName>/summary", ManageProfilesSummary.as_view()),
     path("model/import", ManageImport.as_view()),

@@ -203,7 +203,7 @@ class ManageProfiles(APIView):
         """
         flame_status = manage.action_profiles_remove(profileName)
         if flame_status[0]:
-             return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
