@@ -167,6 +167,8 @@ class ManageSearches(APIView):
         else:
             if 'code' in result and result['code'] == 0:
                 return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            if 'code' in result and result['code'] == 1:
+                return JsonResponse({'aborted': result['message']}, status=status.HTTP_200_OK)
         
         return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)
 
@@ -211,5 +213,7 @@ class ManageSearchesTH(APIView):
         else:
             if 'code' in result and result['code'] == 0:
                 return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            if 'code' in result and result['code'] == 1:
+                return JsonResponse({'aborted': result['message']}, status=status.HTTP_200_OK)
         
         return JsonResponse(result,status = status.HTTP_404_NOT_FOUND)

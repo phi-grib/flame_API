@@ -37,10 +37,12 @@ from django.core.files.base import ContentFile
 from django.utils.datastructures import MultiValueDictKeyError
 
 from rdkit import Chem
+
 from flame.util import utils
+from flame.util import flthread
 
 import flame.context as context
-import threading
+# import threading
 
 # import string
 # import random
@@ -81,9 +83,15 @@ class Search(APIView):
             # searchName = id_generator()
             searchName = utils.id_generator(6)
 
+        # Clean previous error messages
+        error_file = os.path.join(tempfile.gettempdir(),'searching_'+searchName)
+        if os.path.isfile(error_file):
+            os.remove(error_file)
+
         command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'infile':search_data, 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
         
-        x = threading.Thread(target=searchThread, name = 'searching_'+searchName, args=(command_search,'JSON',temp_dir))
+        # x = threading.Thread(target=searchThread, name = 'searching_'+searchName, args=(command_search,'JSON',temp_dir))
+        x = flthread.FlThread(target=searchThread, name='searching_'+searchName, args=(command_search,'JSON', temp_dir))
         x.start()
         return Response(searchName, status=status.HTTP_200_OK)  
 
@@ -138,9 +146,16 @@ class SearchSmiles(APIView):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+        # Clean previous error messages
+        error_file = os.path.join(tempfile.gettempdir(),'searching_'+searchName)
+        if os.path.isfile(error_file):
+            os.remove(error_file)
+
         command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'infile':search_data , 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
         
-        x = threading.Thread(target=searchThread, args=(command_search,'JSON', temp_dir))
+        # x = threading.Thread(target=searchThread, args=(command_search,'JSON', temp_dir))
+        x = flthread.FlThread(target=searchThread, name='searching_'+searchName, args=(command_search,'JSON', temp_dir))
+
         x.start()
         return Response(searchName, status=status.HTTP_200_OK)
 
@@ -175,6 +190,10 @@ class SearchSmarts(APIView):
             # searchName = id_generator()
             searchName = utils.id_generator(6)
 
+        # Clean previous error messages
+        error_file = os.path.join(tempfile.gettempdir(),'searching_'+searchName)
+        if os.path.isfile(error_file):
+            os.remove(error_file)
 
         m = Chem.MolFromSmarts(smarts)
         if m is None:
@@ -182,10 +201,10 @@ class SearchSmarts(APIView):
 
         command_search={'space': spacename, 'version':int(version) ,'label':searchName, 'smarts':smarts , 'metric':metric, 'numsel':numsel, 'cutoff':cutoff}
         
-        x = threading.Thread(target=searchThread, args=(command_search,'JSON', temp_dir))
+        # x = threading.Thread(target=searchThread, args=(command_search,'JSON', temp_dir))
+        x = flthread.FlThread(target=searchThread, name='searching_'+searchName, args=(command_search,'JSON', temp_dir))
         x.start()
         return Response(searchName, status=status.HTTP_200_OK)
-
         
 def searchThread(command, output, temp_dir):
 
