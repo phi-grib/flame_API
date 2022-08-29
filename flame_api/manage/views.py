@@ -39,8 +39,9 @@ from rest_framework import status
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-
+from django.utils.datastructures import MultiValueDictKeyError
 from flame import manage
+from flame.util import collections
 from flame.util import utils, config, flthread
 from wsgiref.util import FileWrapper
 
@@ -76,7 +77,17 @@ class ListProfiles(APIView):
     def get(self, request):
         profiles = manage.action_profiles_list()
         return Response(profiles, status=status.HTTP_200_OK)
-   
+
+class ListCollections(APIView):
+    """
+    Collections List
+    """
+    def get(self, request):
+        """
+        Return collections list
+        """
+        collections = manage.action_collections_list()
+        return Response(collections, status=status.HTTP_200_OK)  
 
 class ManageModels(APIView):
     """
@@ -173,6 +184,25 @@ class ManagePredictions(APIView):
              return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
+class ManageCollections(APIView):
+    """
+    Manage models collections
+    """
+    roles = {'kh-access'}
+
+    def put(self, request, collectionName):
+        
+        endpoints_json = request.POST.get("endpoints")
+        versions_json = request.POST.get('versions')
+        try:
+            endpoints = json.loads(endpoints_json)
+            versions=json.loads(versions_json)
+        except:
+            return JsonResponse({'error': 'unable to convert endpoints or versions'}, status = status.HTTP_404_NOT_FOUND)
+
+        result = collections.createCollection(collectionName,endpoints,versions)
+        return Response(result,status.HTTP_200_OK)
 
 class ManageProfiles(APIView):
     """
