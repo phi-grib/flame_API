@@ -171,6 +171,9 @@ class PredictSmilesList(APIView):
                 unkMol = 1
                 for ismiles in smiles_list:
 
+                    if not 'smiles' in ismiles:
+                        continue
+
                     m = Chem.MolFromSmiles(ismiles['smiles'])
                     if m is None:
                         return JsonResponse({'error': 'SMILES format not recognized'}, status=status.HTTP_400_BAD_REQUEST)
@@ -350,6 +353,9 @@ class ProfileSmilesList(APIView):
 
                 unkMol = 1
                 for ismiles in smiles_list:
+
+                    if not 'smiles' in ismiles:
+                        continue
 
                     m = Chem.MolFromSmiles(ismiles['smiles'])
                     if m is None:
