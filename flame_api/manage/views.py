@@ -86,8 +86,10 @@ class ListCollections(APIView):
         """
         Return collections list
         """
-        collections = manage.action_collections_list()
-        return Response(collections, status=status.HTTP_200_OK)  
+        roles = {'kh-access'}
+        
+        collect = collections.get_collections()
+        return Response(collect, status=status.HTTP_200_OK)  
 
 class ManageModels(APIView):
     """
