@@ -193,7 +193,7 @@ class ManageCollections(APIView):
     """
     roles = {'kh-access'}
 
-    def put(self, request, collectionName):
+    def put(self, request, nameCollection):
         
         endpoints_json = request.POST.get("endpoints")
         versions_json = request.POST.get('versions')
@@ -203,8 +203,18 @@ class ManageCollections(APIView):
         except:
             return JsonResponse({'error': 'unable to convert endpoints or versions'}, status = status.HTTP_404_NOT_FOUND)
 
-        result = collections.createCollection(collectionName,endpoints,versions)
+        result = collections.createCollection(nameCollection,endpoints,versions)
         return Response(result,status.HTTP_200_OK)
+    
+    def delete(self,request,nameCollection):
+
+        flame_status = collections.deleteCollection(nameCollection)
+        
+        if flame_status[0]:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return JsonResponse({'error': flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
+
 
 class ManageProfiles(APIView):
     """

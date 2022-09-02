@@ -40,7 +40,7 @@ urlpatterns = [
     path("profile/<str:profileName>/<int:item>", ManageProfiles.as_view()),
     path("profile/<str:profileName>/summary", ManageProfilesSummary.as_view()),
     path("collections",ListCollections.as_view()),
-    path("collection/<str:collectionName>", ManageCollections.as_view()),
+    path("collection/<str:nameCollection>", ManageCollections.as_view()),
     path("model/import", ManageImport.as_view()),
     path("model/<str:modelname>", ManageModels.as_view()),
     path("model/<str:modelname>/version/<int:version>/export",ManageExport.as_view()),
