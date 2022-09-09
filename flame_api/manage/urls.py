@@ -27,6 +27,8 @@ from .views import ManageSeries, ManageParameters, ManageValidation, ManageExpor
 from .views import ListPredictions, ManagePredictions, ManageDocumentation
 from .views import ManageLabels, ManageConfiguration, ManageParameters2Yaml, ManageYaml2Parameters, ManageRefresh, ManageRefreshTest
 from .views import ListProfiles, ManageProfiles, ManageProfilesSummary
+from .views import ListCollections, ManageCollections
+from .views import ListProfiles, ManageProfiles, ManageProfilesSummary
 from .views import ListBaskets, ManageBasket
 
 urlpatterns = [
@@ -37,6 +39,8 @@ urlpatterns = [
     path("profile/<str:profileName>", ManageProfiles.as_view()),
     path("profile/<str:profileName>/<int:item>", ManageProfiles.as_view()),
     path("profile/<str:profileName>/summary", ManageProfilesSummary.as_view()),
+    path("collections",ListCollections.as_view()),
+    path("collection/<str:nameCollection>", ManageCollections.as_view()),
     path("model/import", ManageImport.as_view()),
     path("model/<str:modelname>", ManageModels.as_view()),
     path("model/<str:modelname>/version/<int:version>/export",ManageExport.as_view()),
