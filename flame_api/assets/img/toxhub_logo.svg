@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="171.06277"
+   height="68.170593"
+   viewbox="0 0 171.22237 100"
+   id="svg3744"
+   sodipodi:docname="toxhub_logo.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3840"
+     inkscape:window-height="2066"
+     id="namedview78"
+     showgrid="false"
+     inkscape:zoom="9.162384"
+     inkscape:cx="86.349949"
+     inkscape:cy="50.106941"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3744" />
+  <defs
+     id="defs3746" />
+  <metadata
+     id="metadata3749">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="g882"
+     transform="matrix(1.9916384,0,0,2.1017182,-81.994705,-186.88318)"
+     style="stroke-width:1.84732">
+    <g
+       transform="matrix(0.74434664,0,0,0.74434664,-34.550677,21.860304)"
+       fill-rule="evenodd"
+       id="g20"
+       style="stroke-width:2.22127">
+      <path
+         d="m 105.35,116.1 v 17.567 h 17.567 V 116.1 Z"
+         fill="#6391c4"
+         id="path12"
+         style="stroke-width:2.67091" />
+      <path
+         d="m 127.15,116.1 v 17.567 h 17.567 V 116.1 Z"
+         fill="#2b4c71"
+         id="path14"
+         style="stroke-width:2.67091" />
+      <path
+         d="m 127.15,94.218 v 17.567 h 17.567 V 94.218 Z"
+         fill="#6391c4"
+         id="path16"
+         style="stroke-width:2.67091" />
+      <path
+         d="m 114.22,90.091 12.355,12.493 -12.493,12.355 -12.355,-12.493 z"
+         fill="#e79127"
+         id="path18"
+         style="stroke-width:2.67091" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:16.9333px;line-height:1.25;font-family:sans-serif;fill:#2b4c71;fill-opacity:1;stroke:none;stroke-width:0.488772"
+       x="76.938042"
+       y="111.37566"
+       id="text35"><tspan
+         sodipodi:role="line"
+         id="tspan33"
+         x="76.938042"
+         y="111.37566"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:16.9333px;font-family:Arial;-inkscape-font-specification:'Arial Bold Condensed';fill:#2b4c71;fill-opacity:1;stroke-width:0.488772">ToxHub</tspan></text>
+  </g>
+</svg>
