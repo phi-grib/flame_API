@@ -155,7 +155,6 @@ class PredictSmilesList(APIView):
             smiles_list = json.loads(request.POST.get("smiles_list"))
         except MultiValueDictKeyError as e:
             return JsonResponse({'error':'SMILES list not provided'}, status=status.HTTP_400_BAD_REQUEST)
-        
         try:
             molname = request.POST.get("name")
         except MultiValueDictKeyError as e:
@@ -168,13 +167,26 @@ class PredictSmilesList(APIView):
         # Creates a simple MOLfile from the SMILES
         try:
             with open(predict_data,'w') as f:
+
+                unkMol = 1
                 for ismiles in smiles_list:
+
+                    if not 'smiles' in ismiles:
+                        continue
 
                     m = Chem.MolFromSmiles(ismiles['smiles'])
                     if m is None:
                         return JsonResponse({'error': 'SMILES format not recognized'}, status=status.HTTP_400_BAD_REQUEST)
+                    
+                    name = None
+                    if 'name' in ismiles:
+                        name = ismiles['name']
 
-                    m.SetProp("_Name",ismiles['name'])
+                    if name is None:
+                        name = f'mol{unkMol:08d}'
+                        unkMol+=1
+                    
+                    m.SetProp("_Name",name)
                     f.write(Chem.MolToMolBlock(m))
                     f.write('$$$$\n')
 
@@ -338,13 +350,26 @@ class ProfileSmilesList(APIView):
         # Creates a simple MOLfile from the SMILES
         try:
             with open(predict_data,'w') as f:
+
+                unkMol = 1
                 for ismiles in smiles_list:
+
+                    if not 'smiles' in ismiles:
+                        continue
 
                     m = Chem.MolFromSmiles(ismiles['smiles'])
                     if m is None:
                         return JsonResponse({'error': 'SMILES format not recognized'}, status=status.HTTP_400_BAD_REQUEST)
 
-                    m.SetProp("_Name",ismiles['name'])
+                    name = None
+                    if 'name' in ismiles:
+                        name = ismiles['name']
+
+                    if name is None:
+                        name = f'mol{unkMol:08d}'
+                        unkMol+=1
+
+                    m.SetProp("_Name",name)
                     f.write(Chem.MolToMolBlock(m))
                     f.write('$$$$\n')
 
