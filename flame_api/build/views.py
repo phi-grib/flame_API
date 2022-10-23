@@ -38,6 +38,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 import flame.context as context
 from flame.util import flthread
+from flame.util.utils import id_generator
 
 class BuildModel(APIView):
     """
@@ -74,12 +75,18 @@ class BuildModel(APIView):
         if os.path.isfile(error_file):
             os.remove(error_file)
 
-        command_build = {'endpoint': modelname, 'infile': training_data, 'param_string': params, 'incremental': incremental}
+        build_id = f'build{id_generator(5)}'        
+
+        command_build = {'endpoint': modelname, 'infile': training_data, 
+            'param_string': params, 'incremental': incremental,
+            'build_token': build_id}
+
         # x = FlameThread(target=buildThread, name='building_'+modelname, args=(command_build,'JSON'))
         x = flthread.FlThread(target=buildThread, name='building_'+modelname, args=(command_build,'JSON'))
         x.start()
         
-        return Response("Creating Model " + modelname, status=status.HTTP_200_OK)  
+        # return Response("Creating Model " + modelname, status=status.HTTP_200_OK)  
+        return Response(build_id, status=status.HTTP_200_OK)  
        
 def buildThread(command, output):
     print ("Thread Start NEW")

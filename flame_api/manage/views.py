@@ -469,6 +469,31 @@ class ManageLabels(APIView):
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
 
+
+
+class ManageToken(APIView):
+    """
+    Manage models being built
+    """
+    roles = {'kh-access'}
+
+    def get(self, request, modelname, token):
+        """
+        Retrieve info of model version
+        """
+
+        success, result = manage.action_info(modelname, 0, output='bin', build_id=token)
+
+        if success:
+            return Response(result, status=status.HTTP_200_OK)
+        else:
+            if 'code' in result and result['code'] == 0:
+                return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
+            if 'code' in result and result['code'] == 1:
+                return JsonResponse({'aborted': result['message']}, status=status.HTTP_200_OK)
+
+        return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
+            
 class ManageVersions(APIView):
     """
     Manage models to the version level
@@ -483,7 +508,16 @@ class ManageVersions(APIView):
         # if 'building_'+modelname in threadNames:
         #     return JsonResponse({'waiting': time.ctime(time.time())}, status=status.HTTP_200_OK)
 
-        success, result = manage.action_info(modelname, version, output='bin')
+        # print ('>>>>>>>>>>>>>>>>>>>>>>>>>', version)
+        # build_id = None
+        # if isinstance(version, str):
+        #     build_id = version
+        #     version = 0
+        #     print ('<<<<<<<<<<<<<<<<<<<<<<<<<<', build_id, version)
+
+        # success, result = manage.action_info(modelname, version, output='bin', build_id=build_id)
+        success, result = manage.action_info(modelname, version, output='bin', build_id=None)
+
         if success:
             return Response(result, status=status.HTTP_200_OK)
         else:
@@ -494,9 +528,6 @@ class ManageVersions(APIView):
 
         return JsonResponse (result,status = status.HTTP_404_NOT_FOUND)
             
-        # return JsonResponse({'message': 'Thread stopped'},status = status.HTTP_404_NOT_FOUND)
-
-
     def delete(self, request, modelname, version):
         """
         Delete model
