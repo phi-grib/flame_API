@@ -82,6 +82,8 @@ class ListCollections(APIView):
     """
     Collections List
     """
+    roles = {'kh-access'}
+
     def get(self, request):
         """
         Return collections list
@@ -348,7 +350,6 @@ class ManageProfilesSummary(APIView):
          
 
 class ManageDocumentation(APIView):
-
     """
     Manage model documentation
     """
@@ -468,8 +469,6 @@ class ManageLabels(APIView):
             return Response(flame_status[0], status=status.HTTP_200_OK)
         else:
             return JsonResponse({'error':flame_status[1]}, status = status.HTTP_404_NOT_FOUND)
-
-
 
 class ManageToken(APIView):
     """
