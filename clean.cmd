@@ -1,0 +1,1 @@
+powershell.exe -noprofile -noexit -c "Get-Process "Python" | Stop-process"
