@@ -22,7 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "ul-c_)4d4pz!g42-$-(3a^v4--prqkfzgmxels2h1_!ul(pkj!"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# if os.environ.get('DJANGO_NOT_DEBUG'):
+if os.path.isfile(os.path.join(BASE_DIR, 'django_not_debug')):
+    print ('DJANGO working in not-debug mode')
+    DEBUG = False
+else:
+    DEBUG = True
 
 # ALLOWED_HOSTS = [ gethostname(), gethostbyname(gethostname()), ] 
 ALLOWED_HOSTS = ['*']
