@@ -21,11 +21,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
-import os
 import yaml
-from django.shortcuts import render
-from django.conf import settings
-from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework_yaml.renderers import YAMLRenderer
 from rest_framework.views import APIView
@@ -54,9 +50,9 @@ class API(APIView):
     renderer_classes = [YAMLRenderer]
     
     def get(self, request):
-        # Read YAML file
 
-        with open("../flameAPI.yaml", 'r') as stream:
+        # Read YAML file
+        with open("flameAPI.yaml", 'r') as stream:
             data_loaded = yaml.safe_load(stream)
         return Response(data_loaded, status=200)
 
