@@ -22,9 +22,12 @@
 # along with Flame. If not, see <http://www.gnu.org/licenses/>.
 
 import yaml
+import os
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework_yaml.renderers import YAMLRenderer
 from rest_framework.views import APIView
+from django.http import JsonResponse
 
 class Ready(APIView):
     """
@@ -52,7 +55,14 @@ class API(APIView):
     def get(self, request):
 
         # Read YAML file
-        with open("flameAPI.yaml", 'r') as stream:
+        api_location= "../flameAPI.yaml"
+        if not os.path.isfile(api_location):
+            api_location="flameAPI.yaml"
+        
+            if not os.path.isfile(api_location):
+                return JsonResponse({'error':'API definition file not found'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+        with open(api_location, 'r') as stream:
             data_loaded = yaml.safe_load(stream)
         return Response(data_loaded, status=200)
 
