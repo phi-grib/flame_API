@@ -1,0 +1,1068 @@
+openapi: "3.0.0"
+kind: Service
+info:
+  version: "0.2"
+  title: Flame
+  description: eTRANSAFE modeling framework for building and applying predictive models.
+  license:
+    name: GLP v3 and posterior
+    url: https://www.gnu.org/licenses/gpl-3.0.en.html
+  x-meta:
+    serviceType: prediction
+    uuid: f27b70ef-1003-4b99-8015-09ab9e052082
+    provider: Universitat Pompeu Fabra
+    created: 2019-09-27
+    released: 2019-09-27
+    lastChanged: 2019-09-27
+    software: 
+      - name: Flame
+        version: 0.2
+        description: eTRANSAFE modeling framework for building and applying predictive models.
+        provider:  Universitat Pompeu Fabra
+        license:  Universitat Pompeu Fabra
+servers:
+  - url: /api/v1
+    variables:
+      version:
+        enum:
+          - 'v1'
+        default: 'v1'
+tags:
+  - name: Minimal
+    description: Minimal API specifications
+  - name: Manage
+    description: Manage models, versioning, etc.
+  - name: Build
+    description: Build a predictive model
+  - name: Predict
+    description: Predict the properties of a query compound
+  - name: Smanage
+    description: Manage spaces, versioning, etc.
+  - name: Sbuild
+    description: Build a chemical space
+  - name: Search
+    description: Search compounds similar to a query compound 
+  
+  
+  #- name: user
+  #  description: user with acces to prediction and basic manage
+  #- name: modeler
+  #  description: model developer with acces to all of the api'''
+
+#==================
+# PATHS
+#==================
+paths:
+  #----------------------
+  # MINIMAL specification 
+  #----------------------
+  /api:
+    get:
+      tags:
+        - Minimal
+      summary: Returns this API definition
+      responses:
+        200:
+          description: YAML specification of the API
+          content:
+            text/yaml:
+              schema:
+                type: object
+        401:
+          $ref: "#/components/schemas/UnauthorizedError"
+
+  /ready:
+    get:
+      tags:
+        - Minimal
+      summary: Reports the status of the service component
+      responses:
+        200:
+          description: Service is up and operational
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Service is ready
+        401:
+         $ref: "#/components/schemas/UnauthorizedError"
+
+        503:
+          description: Service is non-operational
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Service is down for maintenance
+  /alive:
+    get:
+      tags:
+        - Minimal
+      summary: Performs a health check of the service
+      responses:
+        200:
+          description: Service passes the internal tests and works
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Service is up and running
+        401:
+          $ref: "#/components/schemas/UnauthorizedError"
+
+        503:
+          description: Service is non-operational
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Service is non-operation
+
+#----------------------------------------------------------------
+# MODELS
+#----------------------------------------------------------------                
+  #--------
+  # MANAGE
+  #--------
+  # LIST
+  /manage/models:
+    get:
+      tags:
+        - Manage
+        #- user
+      summary: Model list
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of Models to return. Default to all.
+
+      responses:
+        "200":
+          description: requested models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ListModel"
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        #"501":
+          #$ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  
+  /manage/import:
+    post:
+      tags:
+        - Manage
+      summary: Import model
+      description: import the new model from selecetd tar file
+      
+      requestBody:
+        description: tarfile of the model
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                tarfile:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Model imported successfully
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        #"501":
+          #$ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  
+  /manage/model/{modelname}:
+    # CREATE
+    post:
+      tags:
+        - Manage
+        #- modeler
+      description: create a new model with the given name
+      summary: New model
+      parameters:
+        - in: path
+          name: modelname
+          description: model name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "201":
+          description: The model has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+  
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+
+    # GET INFO
+    get:
+      tags:
+        - Manage
+        #- user
+      description: retrieve information of of given Model
+      summary: Model info
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "200":
+          description: requested info of model
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelInfoArray"
+      
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "501":
+          $ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+    
+    # PUBLISH MODEL
+    put:
+      tags:
+        - Manage
+        #- modeler
+      description: create a new version via flame publish method
+      summary: New version
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be published
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: The model version has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+                
+        #"400":
+        #  $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        
+        
+    # DELETE MODEL
+    delete:
+      tags:
+        - Manage
+        #- modeler
+      description: delete model
+      summary: Delete model
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: model deleted
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+  /manage/model/{modelname}/export:
+    get:
+      tags:
+        - Manage
+      description: export model selected as a tar file
+      summary:  export model selected
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model to export
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: requested info of version
+  
+  /manage/model/{modelname}/version/{version}:
+    get:
+      tags:
+        - Manage
+        #- user
+      description: retrive information about the model version
+      summary: Version info
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be build
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: version
+          description: version of the model
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "200":
+          description: requested info of version
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelInfoArray"
+      
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "501":
+          $ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+    delete:
+      tags:
+        - Manage
+        #- modeler
+      description: delete version
+      summary: Delete version
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+        
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "204":
+          description: version deleted
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/VersionNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+   
+  # PARAMETERS 
+  /manage/model/{modelname}/version/{version}/parameters:
+    get:
+      tags:
+        - Manage
+        #- user
+      description: retrieve model parameters
+      summary: Model parameters
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelParameters"
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+    
+  /manage/model/{modelname}/version/{version}/validation:
+    get:
+      tags:
+        - Manage
+        #- user
+      description: retrieve model parameters
+      summary: Model parameters
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the model to get info from
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelParameters"
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  #---------
+  # BUILD
+  #---------
+  # PLACE SDF IN POST IN BODY
+  /build/model/{modelname}:
+    post:
+      tags:
+        - Build
+        #- modeler
+      description: Build model with the present SDF in the body as training set. Always builds version 0
+      summary: Build model
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be build
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: training SDF to build the model with
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                modelParams:
+                  $ref: "#/components/schemas/ModelParameters"
+      
+      responses:
+        "200":
+          description: Model built succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  buildStatus:
+                    description: return flame status
+                    type: string
+                  fileName:
+                    description: uploaded file name in the server
+                    type: string
+                  modelName:
+                    type: string
+                  version:
+                    type: number
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  
+  #----------
+  # PREDICT
+  #----------
+  /predict/model/{modelname}/version/{version}:
+    put:
+      tags:
+        - Predict
+        #- user
+      description: 'uploads molecules and runs prediction with specified model '
+      summary: Predict 
+      operationId: Predict
+      parameters:
+        - in: path
+          required: true
+          name: modelname
+          description: model id to run prediction
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the model to run prediction
+          required: true
+          schema:
+            type: string
+      
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+      
+      responses:
+        '200':
+          description: prediction successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Manifest:
+                    description: especification of what data is represented
+                    type: array
+                    items:
+                      type: object
+                  Meta:
+                    description: model metainformation
+                    type: object
+        "400":
+          $ref: "#/components/schemas/FileNotProvided"
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+#--------------------------------------------------------
+# SPACES
+#--------------------------------------------------------
+  #---------
+  # SMANAGE
+  #---------
+  /smanage/spaces:
+    get:
+      tags:
+        - Smanage
+        #- user
+      summary: Spaces list
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of spaces to return. Default to all.
+
+      responses:
+        "200":
+          description: requested spaces
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ListSpace"
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  /smanage/space/{spacename}:
+    # CREATE
+    post:
+      tags:
+        - Smanage
+        #- modeler
+      description: create a new space with the given name
+      summary: New model
+      parameters:
+        - in: path
+          name: spacename
+          description: space name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "201":
+          description: The space has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "409":
+          $ref: "#/components/schemas/ResourceAlreadyExists"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+
+    # GET INFO
+    get:
+      tags:
+        - Smanage
+        #- user
+      description: retrieve information of of given Model
+      summary: Space info
+      parameters:
+        - name: spacename
+          in: path
+          description: space name
+          required: true
+          schema:
+            type: string
+      
+      responses:
+        "200":
+          description: requested info of model
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelInfoArray"
+      
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "501":
+          $ref: "#/components/schemas/NotImplemented"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+    
+    # PUBLISH MODEL
+    put:
+      tags:
+        - Smanage
+        #- modeler
+      description: create a new version via flame publish method
+      summary: New version
+      parameters:
+        - in: path
+          name: modelname
+          description: name of the model that will be published
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: The model version has been created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+                
+        #"400":
+        #  $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        
+        
+    # DELETE MODEL
+    delete:
+      tags:
+        - Smanage
+        #- modeler
+      description: delete model
+      summary: Delete model
+      parameters:
+        - name: modelname
+          in: path
+          description: model name
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: model deleted
+        "400":
+          $ref: "#/components/schemas/BadRequest"
+        "401":
+          $ref: "#/components/schemas/UnauthorizedError"
+        "404":
+          $ref: "#/components/schemas/ModelNotFound"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+ 
+  #---------
+  # SBUILD
+  #---------
+  /sbuild/space/{spacename}:
+    post:
+      tags:
+        - Sbuild
+      description: Build a chemical space with the present SDF in the body. Always builds version 0
+      summary: Build a chemical space
+      parameters:
+        - in: path
+          name: space name
+          description: name of the chemical space that will be build
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        description: SDFile with a collection of compounds populating the chemical space
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                modelParams:
+                  $ref: "#/components/schemas/ModelParameters"
+      
+      responses:
+        "200":
+          description: Space built succesfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  buildStatus:
+                    description: return flame status
+                    type: string
+                  fileName:
+                    description: uploaded file name in the server
+                    type: string
+                  modelName:
+                    type: string
+                  version:
+                    type: number
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+
+  #----------
+  # SEARCH
+  #----------
+  /search/space/{spacename}/version/{version}:
+    put:
+      tags:
+        - Search
+      description: 'uploads molecules and runs simuilarity search with specified space and parameters '
+      summary: Search 
+      operationId: Search
+      parameters:
+        - in: path
+          required: true
+          name: spacename
+          description: space id to run similarity search
+          schema:
+            type: string
+        - name: version
+          in: path
+          description: version of the chemical space to run similarity search
+          required: true
+          schema:
+            type: string
+      
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                SDF:
+                  type: string
+                  format: binary
+                searchParams:
+                  $ref: "#/components/schemas/SearchParameters"
+      
+      responses:
+        '200':
+          description: search successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Manifest:
+                    description: especification of what data is represented
+                    type: array
+                    items:
+                      type: object
+                  Meta:
+                    description: model metainformation
+                    type: object
+        "404":
+          $ref: "#/components/schemas/BadRequest"
+        "500":
+          $ref: "#/components/schemas/InternalServerError"
+        "503":
+          $ref: "#/components/schemas/ServiceUnavailable"
+  
+#======================
+# COMPONENTS
+#======================
+
+components:
+  schemas:
+  
+    AnyValue:
+      nullable: true
+      description: Can be any value, including `null`.
+
+    # -------
+    # MODEL
+    # -------
+    Model:
+      type: object
+      properties:
+        modelNname:
+          type: string
+        version:
+          type: string
+      example:
+        modelName: CACO2
+        versions: "0"
+    # -------
+    # ListModel
+    # -------
+    ListModel:
+      type: object
+      properties:
+        modelName:
+          type: string
+        nodes:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string 
+            example:
+              text:
+      example: 
+        text: Model4
+        nodes: [text: dev,text: ver000001]
+    # -------
+    # ListSpaces
+    # -------
+    ListSpace:
+      type: object
+      properties:
+        modelName:
+          type: string
+        nodes:
+          type: array
+          items:
+            type: object
+            properties:
+              text:
+                type: string 
+            example:
+              text:
+      example: 
+        text: Space4
+        nodes: [text: dev,text: ver000001]
+
+    
+
+    # ----------------
+    # MODEL PARAMETERS
+    # ----------------
+    ModelParameters:
+      description: Model parameters object
+      type: object
+    
+    # ----------------
+    # SEARCH PARAMETERS
+    # ----------------
+    SearchParameters:
+      description: Search parameters object
+      type: object
+
+    # -------------
+    # MODEL RESULTS
+    # -------------
+    PredictionResults:
+      type: object
+      properties:
+        Manifest:
+          description: especification of what data is represented
+          type: array
+          items:
+            type: object
+        Meta:
+          description: model metainformation
+          type: object
+
+    # ----------
+    # MODEL INFO
+    # ----------
+    ModelInfo:
+      type: array
+      items:
+        type: object
+        properties:
+          varName:
+            type: string
+          varDescription:
+            type: string
+          values:
+            $ref: "#/components/schemas/AnyValue"
+      example: |
+        [
+          {
+            varName: "nobj",
+            varDescription: "number of objects",
+            values: 100
+          },
+          {
+            varName: "model"
+            varDescription: "model type"
+            values: "RF quantitave"
+          },
+          ...
+        ]
+    #----------
+    # MODEL INFO
+    # ----------
+    ModelInfoArray:
+      type: array
+      items: 
+        type: array
+        items:
+          type: string
+      example: |
+        [
+          [
+          "nobj",
+          "number of objects",
+          100
+          ],
+          [
+          "nvarx",
+          "number of predictor variables",
+          10
+          ],
+          [
+              "model",
+              "model type",
+              "RF quantitative"
+          ],
+          [
+              "scoringR",
+              "Scoring P",
+              0.04411365154338174
+          ],
+          [
+              "R2",
+              "Determination coefficient",
+              0.9267718233293424
+          ],
+          [...]
+        ]
+       
+  
+    # -------
+    # STATUS
+    # ------- 
+
+    FileNotProvided:
+      description: File not provided
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    BadRequest:
+      description: Invalid input parameter
+
+    ModelNotFound:
+      description: Model not found
+    
+    ModelAlreadyExist:
+      description: Model already exist
+
+    VersionNotFound:
+      description: Version not found
+    
+    ResourceAlreadyExists:
+      description: The model already exists or the name is used by another model
+
+    InternalServerError:
+      description: The server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
+
+    NotImplemented:
+      description: The request method is not supported by the server and cannot be handled.
+
+    ServiceUnavailable:
+description: The server is not ready to handle the request.
