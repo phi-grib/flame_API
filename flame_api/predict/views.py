@@ -45,7 +45,7 @@ from flame.util import utils
 class Predict(APIView):
     
     """
-    Prediction, input file is provided as a SDFile
+    Prediction using a single model, the input structures is provided as a SDFile
     """
     roles = {'kh-access'}
 
@@ -89,7 +89,7 @@ class Predict(APIView):
 class PredictSmiles(APIView):
     
     """
-    Prediction, nput file is provided as a SMILES
+    Prediction using a single model, the input structure is provided as a SMILES
     """
     roles = {'kh-access'}
 
@@ -145,7 +145,7 @@ class PredictSmiles(APIView):
 class PredictSmilesList(APIView):
     
     """
-    Prediction, nput file is provided as a SMILES
+    Prediction using a single model, input structures are provided as a list of SMILES
     """
     roles = {'kh-access'}
 
@@ -210,10 +210,9 @@ class PredictSmilesList(APIView):
         # return Response("Predicting " + predictionName, status=status.HTTP_200_OK)  
 
 
-
 class Profile(APIView):
     """
-    Prediction, input file is provided as a SDFile
+     Prediction using a multiple models, the input structures is provided as a SDFile
     """
     roles = {'kh-access'}
 
@@ -266,7 +265,7 @@ class Profile(APIView):
 class ProfileSmiles(APIView):
     
     """
-    Prediction, nput file is provided as a SMILES
+    Prediction using a multiple models, the input structure is provided as a SMILES
     """
     roles = {'kh-access'}
 
@@ -329,7 +328,7 @@ class ProfileSmiles(APIView):
 class ProfileSmilesList(APIView):
     
     """
-    Prediction, nput file is provided as a SMILES
+    Prediction using a multiple models, the input structure is provided as a list of SMILES
     """
     roles = {'kh-access'}
 

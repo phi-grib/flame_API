@@ -60,11 +60,11 @@ paths:
   /build/model/{modelname}:
     post:
       operationId: build_model_create
-      description: Build model
+      description: Build the model modelname using the parameters provided
       parameters: []
       responses:
         '201':
-          description: ''
+          description: 'returns the building task ID'
       consumes:
         - multipart/form-data
       tags:
@@ -77,7 +77,7 @@ paths:
   /manage/basket/add:
     get:
       operationId: manage_basket_add_list
-      description: ''
+      description: 'adds a list of compounds to the basket'
       parameters: []
       responses:
         '200':

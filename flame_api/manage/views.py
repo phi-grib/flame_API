@@ -48,7 +48,7 @@ from wsgiref.util import FileWrapper
 
 class ListModels(APIView):
     """
-    Model list
+    Lists all models present in the repository
     """
     roles = {'kh-access'}
 
@@ -60,7 +60,7 @@ class ListModels(APIView):
 
 class ListPredictions(APIView):
     """
-    Predictions list
+    Lists all predictions present in the repository
     """
     roles = {'kh-access'}
 
@@ -70,7 +70,7 @@ class ListPredictions(APIView):
 
 class ListProfiles(APIView):
     """
-    Profiles list
+    List all profiles (predictions with multiple models) present in the repository
     """
     roles = {'kh-access'}
 
@@ -80,7 +80,7 @@ class ListProfiles(APIView):
 
 class ListCollections(APIView):
     """
-    Collections List
+    List all collections (sets of endpoints usually selected together for the profiles) present in the repository
     """
     roles = {'kh-access'}
 
@@ -111,7 +111,7 @@ class ManageModels(APIView):
             
     def post(self, request, modelname):
         """
-        Creates a new flame model
+        Creates a new model model of name 'modelname'
         """
         flame_status = manage.action_new(modelname)
 
@@ -124,7 +124,7 @@ class ManageModels(APIView):
 
     def delete(self, request, modelname):
         """
-        Delete endpoint
+        Deletes all versions of a model of name 'modelname'
         """
         flame_status = manage.action_kill(modelname)
 
@@ -136,8 +136,7 @@ class ManageModels(APIView):
 
     def put(self, request, modelname):
         """
-        Publishes a new version of the model
-        TODO: Complete  error handling and error status
+        Publishes a new version of the model of name 'modelname'
         """
         flame_status = manage.action_publish(modelname)
         if flame_status[0]:
@@ -159,7 +158,9 @@ class ManagePredictions(APIView):
     
     def get(self, request, predictionName):
         """
-        Retrieve info of model version
+        Retrieve the results of the prediction of name 'predictionName'. If the prediction is not completed
+        it returns a 'waiting' field in the JSON response with the current time. If the prediction failed it returns 
+        an 'aborted' field in the JSON response with an informative message
         """
         # threadNames = [i.name for i in threading.enumerate()]
         # if 'predicting_'+predictionName in threadNames:
@@ -181,7 +182,8 @@ class ManagePredictions(APIView):
 
     def delete(self, request, predictionName):
         """
-        Delete model
+        Deletes the prediction 'predictionName'. If it was not found in the predictions repository
+        returns a 404 with an 'error' field in the JSON response containing an informative error message
         """
         flame_status = manage.action_predictions_remove(predictionName)
         if flame_status[0]:

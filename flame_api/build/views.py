@@ -23,7 +23,6 @@
 
 import tempfile
 import os
-# from ast import literal_eval
 
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -42,13 +41,20 @@ from flame.util.utils import id_generator
 
 class BuildModel(APIView):
     """
-    Build model
+    Build a model 
     """
     roles = {'kh-access'}
 
     parser_classes = (MultiPartParser,)
     
     def post(self, request, modelname, format=None):
+        ''' Builds model modelname using:
+            - parameters: request.POST.get('parameters') and request.POST.get('incremental')
+            - training series: request.FILES['SDF']
+
+            Starts a thread and returns the build_id, which must be used to check 
+            if the building has completed
+        '''
 
          # get the upladed file
         try:
