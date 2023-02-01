@@ -1,8 +1,7 @@
-openapi: "3.0.0"
-kind: Service
+swagger: '2.0'
 info:
   version: "0.2"
-  title: Flame
+  title: Flame API
   description: eTRANSAFE modeling framework for building and applying predictive models.
   license:
     name: GLP v3 and posterior
@@ -20,1049 +19,1167 @@ info:
         description: eTRANSAFE modeling framework for building and applying predictive models.
         provider:  Universitat Pompeu Fabra
         license:  Universitat Pompeu Fabra
-servers:
-  - url: /api/v1
-    variables:
-      version:
-        enum:
-          - 'v1'
-        default: 'v1'
-tags:
-  - name: Minimal
-    description: Minimal API specifications
-  - name: Manage
-    description: Manage models, versioning, etc.
-  - name: Build
-    description: Build a predictive model
-  - name: Predict
-    description: Predict the properties of a query compound
-  - name: Smanage
-    description: Manage spaces, versioning, etc.
-  - name: Sbuild
-    description: Build a chemical space
-  - name: Search
-    description: Search compounds similar to a query compound 
-  
-  
-  #- name: user
-  #  description: user with acces to prediction and basic manage
-  #- name: modeler
-  #  description: model developer with acces to all of the api'''
-
-#==================
-# PATHS
-#==================
+host: 127.0.0.1:8000
+schemes:
+  - http
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
 paths:
-  #----------------------
-  # MINIMAL specification 
-  #----------------------
-  /api:
-    get:
-      tags:
-        - Minimal
-      summary: Returns this API definition
-      responses:
-        200:
-          description: YAML specification of the API
-          content:
-            text/yaml:
-              schema:
-                type: object
-        401:
-          $ref: "#/components/schemas/UnauthorizedError"
-
-  /ready:
-    get:
-      tags:
-        - Minimal
-      summary: Reports the status of the service component
-      responses:
-        200:
-          description: Service is up and operational
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: Service is ready
-        401:
-         $ref: "#/components/schemas/UnauthorizedError"
-
-        503:
-          description: Service is non-operational
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: Service is down for maintenance
   /alive:
     get:
-      tags:
-        - Minimal
-      summary: Performs a health check of the service
+      operationId: alive_list
+      description: Alive service
+      parameters: []
       responses:
-        200:
-          description: Service passes the internal tests and works
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: Service is up and running
-        401:
-          $ref: "#/components/schemas/UnauthorizedError"
-
-        503:
-          description: Service is non-operational
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: Service is non-operation
-
-#----------------------------------------------------------------
-# MODELS
-#----------------------------------------------------------------                
-  #--------
-  # MANAGE
-  #--------
-  # LIST
-  /manage/models:
+        '200':
+          description: ''
+      tags:
+        - alive
+    parameters: []
+  /api:
     get:
-      tags:
-        - Manage
-        #- user
-      summary: Model list
-      parameters:
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of Models to return. Default to all.
-
+      operationId: api_list
+      description: Returns the API definition file
+      parameters: []
       responses:
-        "200":
-          description: requested models
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/ListModel"
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        #"501":
-          #$ref: "#/components/schemas/NotImplemented"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-  
-  /manage/import:
-    post:
+        '200':
+          description: ''
+      produces:
+        - application/yaml
       tags:
-        - Manage
-      summary: Import model
-      description: import the new model from selecetd tar file
-      
-      requestBody:
-        description: tarfile of the model
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                tarfile:
-                  type: string
-                  format: binary
-      responses:
-        "200":
-          description: Model imported successfully
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "409":
-          $ref: "#/components/schemas/ResourceAlreadyExists"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        #"501":
-          #$ref: "#/components/schemas/NotImplemented"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-  
-  /manage/model/{modelname}:
-    # CREATE
-    post:
-      tags:
-        - Manage
-        #- modeler
-      description: create a new model with the given name
-      summary: New model
-      parameters:
-        - in: path
-          name: modelname
-          description: model name
-          required: true
-          schema:
-            type: string
-      
-      responses:
-        "201":
-          description: The model has been created succesfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Model"
-  
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "409":
-          $ref: "#/components/schemas/ResourceAlreadyExists"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-
-    # GET INFO
-    get:
-      tags:
-        - Manage
-        #- user
-      description: retrieve information of of given Model
-      summary: Model info
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
-      
-      responses:
-        "200":
-          description: requested info of model
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ModelInfoArray"
-      
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "501":
-          $ref: "#/components/schemas/NotImplemented"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-    
-    # PUBLISH MODEL
-    put:
-      tags:
-        - Manage
-        #- modeler
-      description: create a new version via flame publish method
-      summary: New version
-      parameters:
-        - in: path
-          name: modelname
-          description: name of the model that will be published
-          required: true
-          schema:
-            type: string
-      responses:
-        "201":
-          description: The model version has been created succesfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Model"
-                
-        #"400":
-        #  $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        
-        
-    # DELETE MODEL
-    delete:
-      tags:
-        - Manage
-        #- modeler
-      description: delete model
-      summary: Delete model
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
-      responses:
-        "204":
-          description: model deleted
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-
-  /manage/model/{modelname}/export:
-    get:
-      tags:
-        - Manage
-      description: export model selected as a tar file
-      summary:  export model selected
-      parameters:
-        - in: path
-          name: modelname
-          description: name of the model to export
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: requested info of version
-  
-  /manage/model/{modelname}/version/{version}:
-    get:
-      tags:
-        - Manage
-        #- user
-      description: retrive information about the model version
-      summary: Version info
-      parameters:
-        - in: path
-          name: modelname
-          description: name of the model that will be build
-          required: true
-          schema:
-            type: string
-        - in: path
-          name: version
-          description: version of the model
-          required: true
-          schema:
-            type: string
-      
-      responses:
-        "200":
-          description: requested info of version
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ModelInfoArray"
-      
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "501":
-          $ref: "#/components/schemas/NotImplemented"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-
-    delete:
-      tags:
-        - Manage
-        #- modeler
-      description: delete version
-      summary: Delete version
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
-        
-        - name: version
-          in: path
-          description: version of the model to get info from
-          required: true
-          schema:
-            type: string
-      
-      responses:
-        "204":
-          description: version deleted
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "404":
-          $ref: "#/components/schemas/VersionNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-   
-  # PARAMETERS 
-  /manage/model/{modelname}/version/{version}/parameters:
-    get:
-      tags:
-        - Manage
-        #- user
-      description: retrieve model parameters
-      summary: Model parameters
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
-        - name: version
-          in: path
-          description: version of the model to get info from
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ModelParameters"
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-    
-  /manage/model/{modelname}/version/{version}/validation:
-    get:
-      tags:
-        - Manage
-        #- user
-      description: retrieve model parameters
-      summary: Model parameters
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
-        - name: version
-          in: path
-          description: version of the model to get info from
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ModelParameters"
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-  #---------
-  # BUILD
-  #---------
-  # PLACE SDF IN POST IN BODY
+        - api
+    parameters: []
   /build/model/{modelname}:
     post:
-      tags:
-        - Build
-        #- modeler
-      description: Build model with the present SDF in the body as training set. Always builds version 0
-      summary: Build model
-      parameters:
-        - in: path
-          name: modelname
-          description: name of the model that will be build
-          required: true
-          schema:
-            type: string
-
-      requestBody:
-        description: training SDF to build the model with
-        required: false
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                SDF:
-                  type: string
-                  format: binary
-                modelParams:
-                  $ref: "#/components/schemas/ModelParameters"
-      
+      operationId: build_model_create
+      description: Build model
+      parameters: []
       responses:
-        "200":
-          description: Model built succesfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  buildStatus:
-                    description: return flame status
-                    type: string
-                  fileName:
-                    description: uploaded file name in the server
-                    type: string
-                  modelName:
-                    type: string
-                  version:
-                    type: number
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-  
-  #----------
-  # PREDICT
-  #----------
+        '201':
+          description: ''
+      consumes:
+        - multipart/form-data
+      tags:
+        - build
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+  /manage/basket/add:
+    get:
+      operationId: manage_basket_add_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    post:
+      operationId: manage_basket_add_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    parameters: []
+  /manage/basket/{item}:
+    get:
+      operationId: manage_basket_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    post:
+      operationId: manage_basket_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: item
+        in: path
+        required: true
+        type: string
+  /manage/baskets:
+    get:
+      operationId: manage_baskets_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters: []
+  /manage/collection/{nameCollection}:
+    put:
+      operationId: manage_collection_update
+      description: Manage models collections
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    delete:
+      operationId: manage_collection_delete
+      description: Manage models collections
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: nameCollection
+        in: path
+        required: true
+        type: string
+  /manage/collections:
+    get:
+      operationId: manage_collections_list
+      description: Return collections list
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters: []
+  /manage/configuration:
+    get:
+      operationId: manage_configuration_list
+      description: Retrieve flame configuration
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    post:
+      operationId: manage_configuration_create
+      description: Set flame configuration (path to models, predictions and spaces)
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    parameters: []
+  /manage/model/import:
+    post:
+      operationId: manage_model_import_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    parameters: []
+  /manage/model/{modelname}:
+    get:
+      operationId: manage_model_read
+      description: Retrieves model information or metadata
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    post:
+      operationId: manage_model_create
+      description: Creates a new flame model
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    put:
+      operationId: manage_model_update
+      description: Publishes a new version of the model
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    delete:
+      operationId: manage_model_delete
+      description: Delete endpoint
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/refresh:
+    get:
+      operationId: manage_model_refresh_list
+      description: Lauch a thread for refreshing a model
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/refresh_test:
+    get:
+      operationId: manage_model_refresh_test_list
+      description: Check if the model refresh task has finished
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/token/{token}:
+    get:
+      operationId: manage_model_token_read
+      description: Retrieve info of model version
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: token
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}:
+    get:
+      operationId: manage_model_version_read
+      description: Retrieve info of model version
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    delete:
+      operationId: manage_model_version_delete
+      description: Delete model
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/export:
+    get:
+      operationId: manage_model_version_export_list
+      description: Starts a thread for exporting a model. This can take a lot of time!
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/labels:
+    post:
+      operationId: manage_model_version_labels_create
+      description: Updates model documentation
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/oformat/{oformat}/documentation:
+    get:
+      operationId: manage_model_version_oformat_documentation_list
+      description: Retrieves model documentation
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    post:
+      operationId: manage_model_version_oformat_documentation_create
+      description: Updates model documentation
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: oformat
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/parameters:
+    get:
+      operationId: manage_model_version_parameters_list
+      description: Retrieve parameters of model version
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/parameters2yaml:
+    post:
+      operationId: manage_model_version_parameters2yaml_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/series:
+    get:
+      operationId: manage_model_version_series_list
+      description: Retrieve parameters of model version
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/temp_dir/{temp_dir}/export_download:
+    get:
+      operationId: manage_model_version_temp_dir_export_download_list
+      description: returns the compressed file as a part of the response
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: temp_dir
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/temp_dir/{temp_dir}/export_test:
+    get:
+      operationId: manage_model_version_temp_dir_export_test_list
+      description: Test if the export Thread has finished
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: temp_dir
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/validation:
+    get:
+      operationId: manage_model_version_validation_list
+      description: Retrieve parameters of model version
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/model/{modelname}/version/{version}/yaml2parameters:
+    post:
+      operationId: manage_model_version_yaml2parameters_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /manage/models:
+    get:
+      operationId: manage_models_list
+      description: Model list
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters: []
+  /manage/prediction/{predictionName}:
+    get:
+      operationId: manage_prediction_read
+      description: Retrieve info of model version
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    delete:
+      operationId: manage_prediction_delete
+      description: Delete model
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: predictionName
+        in: path
+        required: true
+        type: string
+  /manage/predictions:
+    get:
+      operationId: manage_predictions_list
+      description: Predictions list
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters: []
+  /manage/profile/{profileName}:
+    get:
+      operationId: manage_profile_read
+      description: Retrieve a single prediction (#item) from a profile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    delete:
+      operationId: manage_profile_delete
+      description: Delete profile
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: profileName
+        in: path
+        required: true
+        type: string
+  /manage/profile/{profileName}/summary:
+    get:
+      operationId: manage_profile_summary_list
+      description: >-
+        Retrieve summary of profile specifically oriented to populate the
+        heatmap
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: profileName
+        in: path
+        required: true
+        type: string
+  /manage/profile/{profileName}/{item}:
+    get:
+      operationId: manage_profile_read
+      description: Retrieve a single prediction (#item) from a profile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    delete:
+      operationId: manage_profile_delete
+      description: Delete profile
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - manage
+    parameters:
+      - name: item
+        in: path
+        required: true
+        type: string
+      - name: profileName
+        in: path
+        required: true
+        type: string
+  /manage/profiles:
+    get:
+      operationId: manage_profiles_list
+      description: Profiles list
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - manage
+    parameters: []
   /predict/model/{modelname}/version/{version}:
     put:
-      tags:
-        - Predict
-        #- user
-      description: 'uploads molecules and runs prediction with specified model '
-      summary: Predict 
-      operationId: Predict
-      parameters:
-        - in: path
-          required: true
-          name: modelname
-          description: model id to run prediction
-          schema:
-            type: string
-        - name: version
-          in: path
-          description: version of the model to run prediction
-          required: true
-          schema:
-            type: string
-      
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                SDF:
-                  type: string
-                  format: binary
-      
+      operationId: predict_model_version_update
+      description: Prediction, input file is provided as a SDFile
+      parameters: []
       responses:
         '200':
-          description: prediction successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Manifest:
-                    description: especification of what data is represented
-                    type: array
-                    items:
-                      type: object
-                  Meta:
-                    description: model metainformation
-                    type: object
-        "400":
-          $ref: "#/components/schemas/FileNotProvided"
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-
-#--------------------------------------------------------
-# SPACES
-#--------------------------------------------------------
-  #---------
-  # SMANAGE
-  #---------
-  /smanage/spaces:
-    get:
+          description: ''
       tags:
-        - Smanage
-        #- user
-      summary: Spaces list
-      parameters:
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of spaces to return. Default to all.
-
-      responses:
-        "200":
-          description: requested spaces
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/ListSpace"
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-  /smanage/space/{spacename}:
-    # CREATE
-    post:
-      tags:
-        - Smanage
-        #- modeler
-      description: create a new space with the given name
-      summary: New model
-      parameters:
-        - in: path
-          name: spacename
-          description: space name
-          required: true
-          schema:
-            type: string
-      
-      responses:
-        "201":
-          description: The space has been created succesfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Model"
-
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "409":
-          $ref: "#/components/schemas/ResourceAlreadyExists"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-
-    # GET INFO
-    get:
-      tags:
-        - Smanage
-        #- user
-      description: retrieve information of of given Model
-      summary: Space info
-      parameters:
-        - name: spacename
-          in: path
-          description: space name
-          required: true
-          schema:
-            type: string
-      
-      responses:
-        "200":
-          description: requested info of model
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ModelInfoArray"
-      
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "501":
-          $ref: "#/components/schemas/NotImplemented"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-    
-    # PUBLISH MODEL
+        - predict
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /predict/model/{modelname}/version/{version}/predictionName/{predictionName}:
     put:
-      tags:
-        - Smanage
-        #- modeler
-      description: create a new version via flame publish method
-      summary: New version
-      parameters:
-        - in: path
-          name: modelname
-          description: name of the model that will be published
-          required: true
-          schema:
-            type: string
+      operationId: predict_model_version_predictionName_update
+      description: Prediction, input file is provided as a SDFile
+      parameters: []
       responses:
-        "201":
-          description: The model version has been created succesfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Model"
-                
-        #"400":
-        #  $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        
-        
-    # DELETE MODEL
-    delete:
+        '200':
+          description: ''
       tags:
-        - Smanage
-        #- modeler
-      description: delete model
-      summary: Delete model
-      parameters:
-        - name: modelname
-          in: path
-          description: model name
-          required: true
-          schema:
-            type: string
+        - predict
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: predictionName
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /predict/model/{modelname}/version/{version}/predictionName/{predictionName}/smiles:
+    put:
+      operationId: predict_model_version_predictionName_smiles_update
+      description: Prediction, nput file is provided as a SMILES
+      parameters: []
       responses:
-        "204":
-          description: model deleted
-        "400":
-          $ref: "#/components/schemas/BadRequest"
-        "401":
-          $ref: "#/components/schemas/UnauthorizedError"
-        "404":
-          $ref: "#/components/schemas/ModelNotFound"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
- 
-  #---------
-  # SBUILD
-  #---------
+        '200':
+          description: ''
+      tags:
+        - predict
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: predictionName
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /predict/model/{modelname}/version/{version}/predictionName/{predictionName}/smiles_list:
+    put:
+      operationId: predict_model_version_predictionName_smiles_list_update
+      description: Prediction, nput file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - predict
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: predictionName
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /predict/model/{modelname}/version/{version}/smiles:
+    put:
+      operationId: predict_model_version_smiles_update
+      description: Prediction, nput file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - predict
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /predict/profile:
+    put:
+      operationId: predict_profile_update
+      description: Prediction, input file is provided as a SDFile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - predict
+    parameters: []
+  /predict/profile/profileName/{profileName}:
+    put:
+      operationId: predict_profile_profileName_update
+      description: Prediction, input file is provided as a SDFile
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - predict
+    parameters:
+      - name: profileName
+        in: path
+        required: true
+        type: string
+  /predict/profile/profileName/{profileName}/smiles:
+    put:
+      operationId: predict_profile_profileName_smiles_update
+      description: Prediction, nput file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - predict
+    parameters:
+      - name: profileName
+        in: path
+        required: true
+        type: string
+  /predict/profile/profileName/{profileName}/smiles_list:
+    put:
+      operationId: predict_profile_profileName_smiles_list_update
+      description: Prediction, nput file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - predict
+    parameters:
+      - name: profileName
+        in: path
+        required: true
+        type: string
+  /predict/profile/smiles:
+    put:
+      operationId: predict_profile_smiles_update
+      description: Prediction, nput file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - predict
+    parameters: []
+  /ready:
+    get:
+      operationId: ready_list
+      description: Ready service
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - ready
+    parameters: []
   /sbuild/space/{spacename}:
     post:
-      tags:
-        - Sbuild
-      description: Build a chemical space with the present SDF in the body. Always builds version 0
-      summary: Build a chemical space
-      parameters:
-        - in: path
-          name: space name
-          description: name of the chemical space that will be build
-          required: true
-          schema:
-            type: string
-
-      requestBody:
-        description: SDFile with a collection of compounds populating the chemical space
-        required: false
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                SDF:
-                  type: string
-                  format: binary
-                modelParams:
-                  $ref: "#/components/schemas/ModelParameters"
-      
+      operationId: sbuild_space_create
+      description: Build space
+      parameters: []
       responses:
-        "200":
-          description: Space built succesfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  buildStatus:
-                    description: return flame status
-                    type: string
-                  fileName:
-                    description: uploaded file name in the server
-                    type: string
-                  modelName:
-                    type: string
-                  version:
-                    type: number
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-
-  #----------
-  # SEARCH
-  #----------
+        '201':
+          description: ''
+      tags:
+        - sbuild
+    parameters:
+      - name: spacename
+        in: path
+        required: true
+        type: string
   /search/space/{spacename}/version/{version}:
     put:
-      tags:
-        - Search
-      description: 'uploads molecules and runs simuilarity search with specified space and parameters '
-      summary: Search 
-      operationId: Search
-      parameters:
-        - in: path
-          required: true
-          name: spacename
-          description: space id to run similarity search
-          schema:
-            type: string
-        - name: version
-          in: path
-          description: version of the chemical space to run similarity search
-          required: true
-          schema:
-            type: string
-      
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                SDF:
-                  type: string
-                  format: binary
-                searchParams:
-                  $ref: "#/components/schemas/SearchParameters"
-      
+      operationId: search_space_version_update
+      description: Search, input file is provided as a SDFIle
+      parameters: []
       responses:
         '200':
-          description: search successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Manifest:
-                    description: especification of what data is represented
-                    type: array
-                    items:
-                      type: object
-                  Meta:
-                    description: model metainformation
-                    type: object
-        "404":
-          $ref: "#/components/schemas/BadRequest"
-        "500":
-          $ref: "#/components/schemas/InternalServerError"
-        "503":
-          $ref: "#/components/schemas/ServiceUnavailable"
-  
-#======================
-# COMPONENTS
-#======================
-
-components:
-  schemas:
-  
-    AnyValue:
-      nullable: true
-      description: Can be any value, including `null`.
-
-    # -------
-    # MODEL
-    # -------
-    Model:
-      type: object
-      properties:
-        modelNname:
-          type: string
-        version:
-          type: string
-      example:
-        modelName: CACO2
-        versions: "0"
-    # -------
-    # ListModel
-    # -------
-    ListModel:
-      type: object
-      properties:
-        modelName:
-          type: string
-        nodes:
-          type: array
-          items:
-            type: object
-            properties:
-              text:
-                type: string 
-            example:
-              text:
-      example: 
-        text: Model4
-        nodes: [text: dev,text: ver000001]
-    # -------
-    # ListSpaces
-    # -------
-    ListSpace:
-      type: object
-      properties:
-        modelName:
-          type: string
-        nodes:
-          type: array
-          items:
-            type: object
-            properties:
-              text:
-                type: string 
-            example:
-              text:
-      example: 
-        text: Space4
-        nodes: [text: dev,text: ver000001]
-
-    
-
-    # ----------------
-    # MODEL PARAMETERS
-    # ----------------
-    ModelParameters:
-      description: Model parameters object
-      type: object
-    
-    # ----------------
-    # SEARCH PARAMETERS
-    # ----------------
-    SearchParameters:
-      description: Search parameters object
-      type: object
-
-    # -------------
-    # MODEL RESULTS
-    # -------------
-    PredictionResults:
-      type: object
-      properties:
-        Manifest:
-          description: especification of what data is represented
-          type: array
-          items:
-            type: object
-        Meta:
-          description: model metainformation
-          type: object
-
-    # ----------
-    # MODEL INFO
-    # ----------
-    ModelInfo:
-      type: array
-      items:
-        type: object
-        properties:
-          varName:
-            type: string
-          varDescription:
-            type: string
-          values:
-            $ref: "#/components/schemas/AnyValue"
-      example: |
-        [
-          {
-            varName: "nobj",
-            varDescription: "number of objects",
-            values: 100
-          },
-          {
-            varName: "model"
-            varDescription: "model type"
-            values: "RF quantitave"
-          },
-          ...
-        ]
-    #----------
-    # MODEL INFO
-    # ----------
-    ModelInfoArray:
-      type: array
-      items: 
-        type: array
-        items:
-          type: string
-      example: |
-        [
-          [
-          "nobj",
-          "number of objects",
-          100
-          ],
-          [
-          "nvarx",
-          "number of predictor variables",
-          10
-          ],
-          [
-              "model",
-              "model type",
-              "RF quantitative"
-          ],
-          [
-              "scoringR",
-              "Scoring P",
-              0.04411365154338174
-          ],
-          [
-              "R2",
-              "Determination coefficient",
-              0.9267718233293424
-          ],
-          [...]
-        ]
-       
-  
-    # -------
-    # STATUS
-    # ------- 
-
-    FileNotProvided:
-      description: File not provided
-    UnauthorizedError:
-      description: Access token is missing or invalid
-    BadRequest:
-      description: Invalid input parameter
-
-    ModelNotFound:
-      description: Model not found
-    
-    ModelAlreadyExist:
-      description: Model already exist
-
-    VersionNotFound:
-      description: Version not found
-    
-    ResourceAlreadyExists:
-      description: The model already exists or the name is used by another model
-
-    InternalServerError:
-      description: The server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
-
-    NotImplemented:
-      description: The request method is not supported by the server and cannot be handled.
-
-    ServiceUnavailable:
-description: The server is not ready to handle the request.
+          description: ''
+      tags:
+        - search
+    parameters:
+      - name: spacename
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /search/space/{spacename}/version/{version}/searchName/{searchName}:
+    put:
+      operationId: search_space_version_searchName_update
+      description: Search, input file is provided as a SDFIle
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - search
+    parameters:
+      - name: searchName
+        in: path
+        required: true
+        type: string
+      - name: spacename
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /search/space/{spacename}/version/{version}/searchName/{searchName}/smarts:
+    put:
+      operationId: search_space_version_searchName_smarts_update
+      description: Search, input file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - search
+    parameters:
+      - name: searchName
+        in: path
+        required: true
+        type: string
+      - name: spacename
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /search/space/{spacename}/version/{version}/searchName/{searchName}/smiles:
+    put:
+      operationId: search_space_version_searchName_smiles_update
+      description: Search, input file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - search
+    parameters:
+      - name: searchName
+        in: path
+        required: true
+        type: string
+      - name: spacename
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /search/space/{spacename}/version/{version}/smarts:
+    put:
+      operationId: search_space_version_smarts_update
+      description: Search, input file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - search
+    parameters:
+      - name: spacename
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /search/space/{spacename}/version/{version}/smiles:
+    put:
+      operationId: search_space_version_smiles_update
+      description: Search, input file is provided as a SMILES
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - search
+    parameters:
+      - name: spacename
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /smanage/search/{searchName}:
+    get:
+      operationId: smanage_search_read
+      description: Retrieve info of sesrch
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - smanage
+    parameters:
+      - name: searchName
+        in: path
+        required: true
+        type: string
+  /smanage/search/{searchName}/TH:
+    get:
+      operationId: smanage_search_TH_list
+      description: Retrieve info of search and reformat for Toxhub
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - smanage
+    parameters:
+      - name: searchName
+        in: path
+        required: true
+        type: string
+  /smanage/space/{spacename}:
+    get:
+      operationId: smanage_space_read
+      description: Retrieves model information or metadata
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - smanage
+    post:
+      operationId: smanage_space_create
+      description: Creates a new flame space
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - smanage
+    put:
+      operationId: smanage_space_update
+      description: Publishes a new version of the space
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - smanage
+    delete:
+      operationId: smanage_space_delete
+      description: Delete space
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - smanage
+    parameters:
+      - name: spacename
+        in: path
+        required: true
+        type: string
+  /smanage/space/{spacename}/version/{version}:
+    get:
+      operationId: smanage_space_version_read
+      description: Retrieves space information or metadata
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - smanage
+    delete:
+      operationId: smanage_space_version_delete
+      description: Delete space
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - smanage
+    parameters:
+      - name: spacename
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /smanage/space/{spacename}/version/{version}/parameters:
+    get:
+      operationId: smanage_space_version_parameters_list
+      description: Retrieve parameters of space version
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - smanage
+    parameters:
+      - name: spacename
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+  /smanage/spaces:
+    get:
+      operationId: smanage_spaces_list
+      description: Spaces list
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - smanage
+    parameters: []
+  /verification/report/{verificationname}/{verificatorname}:
+    post:
+      operationId: verification_report_create
+      description: Generate a verification report
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - verification
+    parameters:
+      - name: verificationname
+        in: path
+        required: true
+        type: string
+      - name: verificatorname
+        in: path
+        required: true
+        type: string
+  /verification/sign/{verificatorname}/{nreport}:
+    post:
+      operationId: verification_sign_create
+      description: Sign report
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - verification
+    parameters:
+      - name: nreport
+        in: path
+        required: true
+        type: string
+      - name: verificatorname
+        in: path
+        required: true
+        type: string
+  /verification/verification/{modelname}/{version}:
+    get:
+      operationId: verification_verification_read
+      description: Retrieve info of model verification
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - verification
+    post:
+      operationId: verification_verification_create
+      description: Generate Model verification
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - verification
+    delete:
+      operationId: verification_verification_delete
+      description: Delete Model verification
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - verification
+    parameters:
+      - name: modelname
+        in: path
+        required: true
+        type: string
+      - name: version
+        in: path
+        required: true
+        type: string
+definitions: {}
